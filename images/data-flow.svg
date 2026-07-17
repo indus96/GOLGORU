@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif">
+  <rect width="860" height="300" fill="#FAF7F2"/>
+  <text x="430" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#3A3A3A">데이터 흐름 — 시트가 원장, 계산은 기기 안에서</text>
+
+  <!-- Google Sheets -->
+  <rect x="30" y="80" width="180" height="150" rx="14" fill="#FFFFFF" stroke="#E3DCCF"/>
+  <text x="120" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D32">Google Sheets</text>
+  <text x="120" y="138" text-anchor="middle" font-size="12" fill="#666">내 자산 원장</text>
+  <rect x="50" y="152" width="140" height="22" rx="6" fill="#F1F8E9"/>
+  <text x="120" y="167" text-anchor="middle" font-size="11" fill="#33691E">App_Data_Assets</text>
+  <rect x="50" y="180" width="140" height="22" rx="6" fill="#F1F8E9"/>
+  <text x="120" y="195" text-anchor="middle" font-size="11" fill="#33691E">App_Data_Allocation</text>
+
+  <!-- arrow 1 -->
+  <line x1="210" y1="155" x2="300" y2="155" stroke="#B4A268" stroke-width="2"/>
+  <polygon points="300,155 290,149 290,161" fill="#B4A268"/>
+  <text x="255" y="140" text-anchor="middle" font-size="11" fill="#8A7B4F">읽기 전용</text>
+  <line x1="300" y1="185" x2="210" y2="185" stroke="#B4A268" stroke-width="2" stroke-dasharray="5 4"/>
+  <polygon points="210,185 220,179 220,191" fill="#B4A268"/>
+  <text x="255" y="205" text-anchor="middle" font-size="11" fill="#8A7B4F">승인한 기록만 반영</text>
+
+  <!-- App -->
+  <rect x="300" y="66" width="260" height="178" rx="14" fill="#FFFFFF" stroke="#E3DCCF"/>
+  <text x="430" y="96" text-anchor="middle" font-size="15" font-weight="700" fill="#3A3A3A">자산관리 앱 (iPhone·iPad·Mac)</text>
+  <rect x="320" y="112" width="105" height="30" rx="8" fill="#FDF6E3"/>
+  <text x="372" y="131" text-anchor="middle" font-size="11" fill="#7A6A33">자산 현황·순위</text>
+  <rect x="435" y="112" width="105" height="30" rx="8" fill="#FDF6E3"/>
+  <text x="487" y="131" text-anchor="middle" font-size="11" fill="#7A6A33">배분 차이 계산</text>
+  <rect x="320" y="150" width="105" height="30" rx="8" fill="#FDF6E3"/>
+  <text x="372" y="169" text-anchor="middle" font-size="11" fill="#7A6A33">리밸런싱 계획</text>
+  <rect x="435" y="150" width="105" height="30" rx="8" fill="#FDF6E3"/>
+  <text x="487" y="169" text-anchor="middle" font-size="11" fill="#7A6A33">뉴스·AI 점검</text>
+  <rect x="320" y="188" width="220" height="30" rx="8" fill="#FFF3E0"/>
+  <text x="430" y="207" text-anchor="middle" font-size="11" fill="#8D6E30">🔒 계산은 전부 기기 안 · 자격증명은 Keychain</text>
+
+  <!-- arrow 2 -->
+  <line x1="560" y1="140" x2="650" y2="140" stroke="#B4A268" stroke-width="2"/>
+  <polygon points="650,140 640,134 640,146" fill="#B4A268"/>
+  <text x="605" y="125" text-anchor="middle" font-size="11" fill="#8A7B4F">승인된 주문만</text>
+
+  <!-- Broker -->
+  <rect x="650" y="80" width="180" height="150" rx="14" fill="#FFFFFF" stroke="#E3DCCF"/>
+  <text x="740" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#1A5276">증권사 API</text>
+  <rect x="670" y="128" width="140" height="22" rx="6" fill="#EAF2F8"/>
+  <text x="740" y="143" text-anchor="middle" font-size="11" fill="#1A5276">한국투자증권 (모의·실전)</text>
+  <rect x="670" y="156" width="140" height="22" rx="6" fill="#EAF2F8"/>
+  <text x="740" y="171" text-anchor="middle" font-size="11" fill="#1A5276">토스증권</text>
+  <rect x="670" y="184" width="140" height="22" rx="6" fill="#EAF2F8"/>
+  <text x="740" y="199" text-anchor="middle" font-size="11" fill="#1A5276">업비트</text>
+
+  <text x="430" y="278" text-anchor="middle" font-size="12" fill="#999">자산 데이터는 외부 서버로 전송되지 않습니다 · AI 점검도 요약 데이터만 사용</text>
+</svg>
