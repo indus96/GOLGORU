@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif">
+  <rect width="720" height="440" fill="#FAF7F2"/>
+
+  <!-- phone frame -->
+  <rect x="30" y="20" width="300" height="400" rx="24" fill="#FFFFFF" stroke="#E3DCCF" stroke-width="2"/>
+  <text x="180" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="#3A3A3A">자산 구성 분석</text>
+
+  <!-- section tabs (구성 active) -->
+  <rect x="50" y="64" width="260" height="26" rx="8" fill="#F1EADB"/>
+  <rect x="116" y="66" width="63" height="22" rx="6" fill="#FFFFFF" stroke="#E3DCCF"/>
+  <text x="83" y="81" text-anchor="middle" font-size="11" fill="#948A72">요약</text>
+  <text x="147" y="81" text-anchor="middle" font-size="11" font-weight="700" fill="#3A3A3A">구성</text>
+  <text x="211" y="81" text-anchor="middle" font-size="11" fill="#948A72">수익</text>
+  <text x="275" y="81" text-anchor="middle" font-size="11" fill="#948A72">추정</text>
+
+  <!-- concentration card -->
+  <rect x="50" y="100" width="260" height="58" rx="12" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="66" y="120" font-size="11" font-weight="600" fill="#666">집중도</text>
+  <text x="66" y="142" font-size="10" fill="#948A72">상위 1</text>
+  <text x="66" y="156" font-size="13" font-weight="700" fill="#3A3A3A">18%</text>
+  <text x="146" y="142" font-size="10" fill="#948A72">상위 5</text>
+  <text x="146" y="156" font-size="13" font-weight="700" fill="#3A3A3A">52%</text>
+  <text x="226" y="142" font-size="10" fill="#948A72">상위 10</text>
+  <text x="226" y="156" font-size="13" font-weight="700" fill="#3A3A3A">74%</text>
+
+  <!-- exposure card: country + sector -->
+  <rect x="50" y="166" width="260" height="70" rx="12" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="66" y="186" font-size="10.5" fill="#948A72">국가</text>
+  <text x="294" y="186" text-anchor="end" font-size="10.5" font-weight="600" fill="#3A3A3A">미국 55% · 한국 38%</text>
+  <text x="66" y="206" font-size="10.5" fill="#948A72">산업</text>
+  <text x="294" y="206" text-anchor="end" font-size="10.5" font-weight="600" fill="#3A3A3A">IT 41% · 반도체 22%</text>
+  <text x="66" y="226" font-size="9" fill="#B3A986">개별주식 62% 기준 · ETF·펀드는 내부 미분류</text>
+
+  <!-- dividend card -->
+  <text x="50" y="260" font-size="11" font-weight="600" fill="#666">배당</text>
+  <rect x="50" y="268" width="260" height="72" rx="12" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="66" y="290" font-size="11" fill="#3A3A3A">연 배당</text>
+  <text x="294" y="290" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">₩ •,•••,•••</text>
+  <text x="66" y="310" font-size="10.5" fill="#948A72">배당수익률</text>
+  <text x="294" y="310" text-anchor="end" font-size="11" font-weight="600" fill="#3A7D52">2.8%</text>
+  <text x="66" y="330" font-size="9" fill="#B3A986">지난 1년 실지급 · 보유 24종목 중 18종목 기준</text>
+
+  <!-- proposal card -->
+  <text x="50" y="364" font-size="11" font-weight="600" fill="#666">개선 제안</text>
+  <rect x="50" y="372" width="260" height="36" rx="10" fill="#FDF6E3"/>
+  <text x="66" y="394" font-size="10.5" fill="#5B5343">건강점수</text>
+  <text x="150" y="394" font-size="11" font-weight="700" fill="#948A72">83</text>
+  <text x="166" y="394" font-size="11" fill="#B3A986">›</text>
+  <text x="182" y="394" font-size="11" font-weight="800" fill="#3A7D52">89</text>
+  <text x="294" y="394" text-anchor="end" font-size="10" fill="#948A72">코인 줄이기 · 현금 확보</text>
+
+  <!-- annotations -->
+  <g font-size="12.5" fill="#5B5343">
+    <text x="370" y="130">① 집중도 — 상위 1·5·10 비중</text>
+    <text x="386" y="148" font-size="11" fill="#948A72">매매 가능 종목만 (현금·부동산 제외)</text>
+
+    <text x="370" y="196">② 국가·산업 배분</text>
+    <text x="386" y="214" font-size="11" fill="#948A72">거래소·업종으로 분류, 커버리지 병기</text>
+
+    <text x="370" y="300">③ 예상 연배당 · 배당수익률</text>
+    <text x="386" y="318" font-size="11" fill="#948A72">지난 1년 실지급 기준 (예측 아님)</text>
+    <text x="386" y="334" font-size="11" fill="#948A72">분모는 배당 산출 가능 종목 평가액</text>
+
+    <text x="370" y="392">④ 개선 제안 — 적용 후 점수</text>
+    <text x="386" y="410" font-size="11" fill="#948A72">가드레일 벗어난 자산군만 최소 조정</text>
+  </g>
+
+  <line x1="315" y1="129" x2="362" y2="126" stroke="#C9B98A" stroke-width="1.5"/>
+  <line x1="315" y1="196" x2="362" y2="192" stroke="#C9B98A" stroke-width="1.5"/>
+  <line x1="315" y1="300" x2="362" y2="296" stroke="#C9B98A" stroke-width="1.5"/>
+  <line x1="315" y1="390" x2="362" y2="388" stroke="#C9B98A" stroke-width="1.5"/>
+</svg>
