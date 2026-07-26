@@ -77,12 +77,23 @@
     padding:44px 0;border-top:1px solid var(--line)}
   .feat.rev .txt{order:2}
   .feat .shot img{width:100%;height:auto;border-radius:14px}
+  /* 세로 아이폰 스크린샷은 폭을 제한하고 가운데 정렬 */
+  .feat .shot.phone img{max-width:300px;display:block;margin:0 auto;border-radius:26px;
+    box-shadow:0 18px 44px rgba(58,58,58,.16)}
   .feat h3{font-size:22px;font-weight:800;margin-bottom:12px}
   .feat ul{list-style:none;display:flex;flex-direction:column;gap:9px}
   .feat li{position:relative;padding-left:22px;font-size:15px;color:var(--sub)}
   .feat li::before{content:"›";position:absolute;left:4px;color:var(--gold);font-weight:800}
   .feat .more{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--gold)}
   @media(max-width:820px){.feat{grid-template-columns:1fr;gap:22px}.feat.rev .txt{order:0}}
+
+  /* mac */
+  .mac-shot{margin-top:28px}
+  .mac-shot img{width:100%;height:auto;border-radius:12px;
+    filter:drop-shadow(0 22px 50px rgba(58,58,58,.16))}
+  .mac-note{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .mac-note span{font-size:13px;color:var(--sub);background:var(--card);
+    border:1px solid var(--line);padding:7px 13px;border-radius:999px}
 
   /* status */
   .status{background:var(--gold-soft);border-radius:var(--radius);padding:32px;margin-top:28px}
@@ -108,6 +119,7 @@
     <a href="#analysis">자산 분석</a>
     <a href="#rebalance">리밸런싱</a>
     <a href="#broker">증권사</a>
+    <a href="#mac">맥·아이패드</a>
     <a href="#status">현재 상태</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
@@ -166,7 +178,7 @@
   </div>
 
   <div class="feat rev" id="analysis">
-    <div class="shot"><img src="images/portfolio-analysis.svg" alt="자산 구성 분석 화면"></div>
+    <div class="shot phone"><img src="images/app/phone-analysis.png" alt="자산 구성 분석 — 요약 탭(실제 화면, 금액 가림)"></div>
     <div class="txt">
       <h3>자산 구성 분석</h3>
       <ul>
@@ -179,7 +191,7 @@
   </div>
 
   <div class="feat">
-    <div class="shot"><img src="images/asset-ranking.svg" alt="자산순위 화면"></div>
+    <div class="shot phone"><img src="images/app/phone-stock.png" alt="종목 상세 — 분석 탭(실제 화면)"></div>
     <div class="txt">
       <h3>자산순위 · 종목 상세</h3>
       <ul>
@@ -205,7 +217,7 @@
   </div>
 
   <div class="feat">
-    <div class="shot"><img src="images/news-ai.svg" alt="뉴스와 AI 점검"></div>
+    <div class="shot phone"><img src="images/app/phone-news.png" alt="뉴스 — 보유·관심 종목 기사(실제 화면)"></div>
     <div class="txt">
       <h3>뉴스 · AI 자산 점검</h3>
       <ul>
@@ -228,6 +240,21 @@
       </ul>
       <a class="more" href="docs/broker-connection.md">증권사 연결 문서 →</a>
     </div>
+  </div>
+</div></section>
+
+<section id="mac"><div class="wrap">
+  <div class="label">맥 · 아이패드</div>
+  <h2>같은 앱, 넓은 화면에 맞게 펼쳐집니다</h2>
+  <p class="sub">iPhone · iPad · Mac이 하나의 SwiftUI 코드베이스입니다.
+    좁은 화면에서는 탭바로, 맥·아이패드 같은 넓은 화면에서는 사이드바와 다단 레이아웃으로
+    같은 데이터를 더 넓게 보여줍니다. 아래는 실제 맥 화면입니다(금액은 가림).</p>
+  <div class="mac-shot"><img src="images/app/mac-dashboard.png" alt="맥 버전 대시보드 — 사이드바 와이드 레이아웃"></div>
+  <div class="mac-note">
+    <span>🖥 사이드바 내비게이션</span>
+    <span>📊 시장지표·자산 구성 한 화면</span>
+    <span>🙈 금액 가리기</span>
+    <span>🧩 iPhone·iPad와 동일 기능</span>
   </div>
 </div></section>
 
