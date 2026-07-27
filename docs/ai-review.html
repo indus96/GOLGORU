@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 자산 점검 · GOLGORU 골고루</title>
+<meta name="description" content="현재 보유 자산을 자동으로 분석해 편중을 진단하고, 성향에 맞는 목표를 제안하고, 계좌별 리밸런싱까지 한 화면에서 이어주는 기능입니다. 사용자는 숫자를 직접 설계하지 않고 성향 하나만 고르고, 승인·수정·무시만 하면 됩니다.">
+<link rel="stylesheet" href="doc.css">
+</head><body>
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../index.html">GOLGORU<span>골고루</span></a>
+  <div class="nav-links">
+    <a href="../index.html#dashboard">대시보드</a>
+    <a href="../index.html#analysis">자산 분석</a>
+    <a href="../index.html#rebalance">리밸런싱</a>
+    <a href="../index.html#broker">증권사</a>
+  </div>
+  <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../index.html">← 골고루 홈</a>
+  <div class="eyebrow">AI 점검</div>
+  <h1>AI 자산 점검</h1>
+  <p class="lead">현재 보유 자산을 자동으로 분석해 <strong>편중을 진단하고, 성향에 맞는 목표를 제안하고, 계좌별 리밸런싱까지</strong> 한 화면에서 이어주는 기능입니다. 사용자는 숫자를 직접 설계하지 않고 <strong>성향 하나만 고르고, 승인·수정·무시만</strong> 하면 됩니다.</p>
+  <div class="hero-img wide"><img src="../images/news-ai.svg" alt="AI 자산 점검 화면"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<h2>4단계 흐름</h2>
+<ol><li><strong>현재 자산 자동 분석</strong> — 입력 없이 보유 종목을 자산군(주식·채권·현금·코인·금)과 국가(미국·한국·기타)로 자동 분류합니다. 해외 자산은 기준환율로 원화 환산해 비중을 계산합니다.</li><li><strong>편중·부족 진단</strong> — 어디가 과도하고 어디가 부족한지 <strong>별점·게이지</strong>로 보여줍니다(예: 미국 편중 ★★★★★, 채권 부족 ★★★★☆).</li><li><strong>AI 목표 제안</strong> — 투자 성향(보수·중립·공격)에 맞춰 목표 비중을 제안합니다. 성향 칩만 바꾸면 목표가 통째로 다시 계산됩니다.</li><li><strong>계좌별 리밸런싱</strong> — "무엇을 어느 계좌에서 얼마나 사고팔면" 목표에 가까워지는지, <strong>자산군 → 계좌 → 종목(수량·분할 회차)</strong> 순서로 제안합니다.</li></ol>
+<h2>목표 제안 방식</h2>
+<ul><li><strong>성향 칩</strong>(보수·중립·공격)으로 목표를 고릅니다. 숫자를 직접 입력하지 않습니다.</li><li>목표는 <strong>방어자산 하한(현금·채권)과 위험자산 상한(코인·금·단일 국가)</strong> 같은 일반적 분산 원칙에 비춰 제안하며, 주식 비중은 나머지로 자동 계산됩니다.</li><li><strong>적용 / 수정 / 무시</strong> 중에서 고릅니다. 수정하면 현금·채권·금·코인 목표를 직접 조정할 수 있고, 나머지는 자동으로 다시 맞춰집니다.</li><li>원하면 LLM이 제안을 <strong>자연어로 설명</strong>해 줍니다(숫자는 규칙 기준 그대로 유지).</li></ul>
+<h2>리밸런싱 원칙</h2>
+<ul><li><strong>계좌 경계 안에서</strong> 조정합니다 — 계좌 간 종목 이동 없이, 각 계좌의 자산으로만 사고팝니다.</li><li>한 종목에 몰아주지 않고 <strong>여러 계좌·여러 종목에 비중대로 분산</strong>합니다.</li><li>목표에서 줄이려는 자산군만 매도합니다(작은 차이는 매매하지 않는 허용오차 적용).</li><li>보유가 없는 자산군은 특정 종목을 찍어 추천하지 않고 <strong>카테고리(예: 채권 ETF)로만</strong> 안내합니다.</li></ul>
+<h2>안내</h2>
+<ul><li>여기서 제시하는 목표·조정은 <strong>개인 맞춤 투자자문이 아니라 일반적 분산 원칙에 비춘 참고치</strong>입니다. 최종 판단과 주문은 사용자가 직접 합니다.</li><li>부동산(집·전세보증금 등)은 리밸런싱 대상에서 제외하고 참고로만 표시합니다.</li></ul>
+<h2>프라이버시 원칙</h2>
+<ul><li>원본 데이터가 아니라 <strong>요약 데이터만</strong> AI에 전달합니다 (총자산·비중·배분 차이 수준 — 개별 거래 내역이나 계좌번호는 전송하지 않음).</li><li>목표 계산은 앱 안에서 규칙으로 처리하므로 <strong>오프라인에서도 동작</strong>하며, LLM 설명은 선택입니다.</li><li>AI 제공처 장애·사용량 초과 시 대체 제공처로 자동 폴백합니다.</li></ul>
+</div></main>
+<footer><div class="wrap foot-in">
+  <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
+  <div><a href="../index.html">홈</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+</div></footer>
+</body></html>

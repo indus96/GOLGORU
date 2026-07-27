@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대시보드 · GOLGORU 골고루</title>
+<meta name="description" content="앱을 열면 가장 먼저 보이는 화면입니다. 전체 자산 상태를 30초 안에 파악하는 것이 목표입니다.">
+<link rel="stylesheet" href="doc.css">
+</head><body>
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../index.html">GOLGORU<span>골고루</span></a>
+  <div class="nav-links">
+    <a href="../index.html#dashboard">대시보드</a>
+    <a href="../index.html#analysis">자산 분석</a>
+    <a href="../index.html#rebalance">리밸런싱</a>
+    <a href="../index.html#broker">증권사</a>
+  </div>
+  <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../index.html">← 골고루 홈</a>
+  <div class="eyebrow">대시보드</div>
+  <h1>대시보드</h1>
+  <p class="lead">앱을 열면 가장 먼저 보이는 화면입니다. 전체 자산 상태를 30초 안에 파악하는 것이 목표입니다.</p>
+  <div class="hero-img phone"><img src="../images/app/phone-dashboard.png" alt="대시보드 화면"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<figure><img src="../images/dashboard.svg" alt="대시보드 구성"></figure>
+<h2>화면 구성</h2>
+<ol><li><strong>총 자산 · 현금 비중</strong> — 시트 원장 기준 전체 자산과 현금성 자산 비율. 모의투자 연동 계좌는 자산 계산에서 자동 제외됩니다(검증용 계좌가 실제 자산에 섞이지 않게).</li><li><strong>카테고리 구성</strong> — 주식/ETF · 펀드 · 코인 · 현금 · 부동산 · 저축 · 채권별 비중 바. 탭하면 <a href="portfolio-analysis.html">자산 구성 분석</a>(건강점수·인사이트·배당·추정)으로 들어갑니다.</li><li><strong>시장지표</strong> — 환율·금리·유가·주가지수 11종: USD/KRW, 미국 국채 2년·10년, 한국 국채 5년·10년, WTI·브렌트유, 코스피·코스닥·S&amp;P500·나스닥100. 주가지수·환율에는 최근 추이 스파크라인이 함께 표시됩니다. 일부 지표가 실패해도 성공한 지표만 갱신되고 실패분은 마지막 정상값을 유지합니다.</li><li><strong>자산배분 차이 상위 항목</strong> — 목표 비중과 가장 벌어진 항목. 탭하면 자산배분 화면으로 이동.</li><li><strong>계좌별 자산 순위 상위 3개</strong> · <strong>오늘의 뉴스 요약</strong> — 각 섹션 헤더 탭으로 해당 탭 이동.</li></ol>
+<h2>알아두면 좋은 것</h2>
+<ul><li>USD 자산의 원화 환산은 시장지표의 USD/KRW 값으로 <strong>앱 안에서만</strong> 계산합니다.</li><li>금액은 눈 아이콘으로 가리거나 표시할 수 있습니다(스크린샷·공공장소 대비).</li><li>화면 모드는 설정에서 <strong>밝게 · 어둡게 · 시스템 설정 따름</strong> 중에 고를 수 있습니다.</li></ul>
+</div></main>
+<footer><div class="wrap foot-in">
+  <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
+  <div><a href="../index.html">홈</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+</div></footer>
+</body></html>
