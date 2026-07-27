@@ -29,7 +29,7 @@
 | [자산순위](docs/asset-ranking.md) | 계좌별·자산군별·종목별 순위 · 실시간 시세 · 상세 차트 |
 | [자산배분 · 리밸런싱](docs/allocation-rebalancing.md) | 목표 비중 편집 · 배분 차이 · 3단계 리밸런싱 실행 |
 | [뉴스 · 리포트](docs/news-reports.md) | 보유·관심 종목 뉴스 · 증권사 리포트 · 투자 이벤트 |
-| [AI 자산 점검](docs/ai-review.md) | 배분·집중도 점검과 자유 질문 (요약 데이터만 전송) |
+| [AI 자산 점검](docs/ai-review.md) | 자산 자동 분석 → 편중 진단 → 성향별 목표 제안 → 계좌별 리밸런싱 (요약 데이터만 전송) |
 | [증권사 연결](docs/broker-connection.md) | 한투·토스·업비트 연결 · 연결 확인 · 계좌 동기화 |
 | [데이터와 보안](docs/data-security.md) | Google Sheets 구조 · Keychain · 앱 잠금 · 캐시 보호 |
 
