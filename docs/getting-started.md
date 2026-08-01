@@ -50,7 +50,7 @@
 
 1. 아래 템플릿을 엽니다.
 
-   **[골고루 App_Data 템플릿 사본 만들기](TEMPLATE_URL_PLACEHOLDER)**
+   **[골고루 App_Data 템플릿 사본 만들기](https://docs.google.com/spreadsheets/d/1O6IM5oz3E7JWTVS7_OAJ0Tvkkkm3mNzYXWkgsJ3xVIM/copy)**
 
 2. 내 Google Drive에 사본이 만들어집니다.
 3. 사본에서 자산 정보를 채웁니다. 각 시트의 첫 행(머리글)은 바꾸지 마세요.
