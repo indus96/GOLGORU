@@ -20,7 +20,7 @@ DOCS = {
 }
 
 NAV = """<nav><div class="wrap nav-in">
-  <a class="brand" href="../index.html">GOLGORU<span>골고루</span></a>
+  <a class="brand" href="../index.html">골고루<span>GOLGORU</span></a>
   <div class="nav-links">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
@@ -31,7 +31,7 @@ NAV = """<nav><div class="wrap nav-in">
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
-  <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
+  <div>© 2026 골고루 (GOLGORU) · 내 자산을 골고루.</div>
   <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>"""
 
@@ -149,7 +149,7 @@ def build(slug, meta):
     page = f"""<!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} · GOLGORU 골고루</title>
+<title>{title} · 골고루</title>
 <meta name="description" content="{lead_plain}">
 <link rel="stylesheet" href="doc.css">
 </head><body>

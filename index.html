@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GOLGORU · 골고루 — 내 자산을 골고루</title>
-<meta name="description" content="흩어진 계좌를 한눈에 모으고 목표 배분에 맞춰 자산을 골고루 나누는 개인 자산관리 앱. iPhone · iPad · Mac.">
-<meta property="og:title" content="GOLGORU · 골고루 — 내 자산을 골고루">
+<title>골고루 — 개인 자산관리 앱</title>
+<meta name="description" content="골고루는 흩어진 계좌를 한눈에 모으고 목표 자산배분과의 차이를 계산하는 iPhone · iPad · Mac용 개인 자산관리 앱입니다.">
+<meta property="og:title" content="골고루 — 개인 자산관리 앱">
+<!-- Google Search Console 소유권 확인. OAuth 브랜딩 인증에 홈페이지 소유 증명이 필요하다.
+     https://search.google.com/search-console 에서 URL 접두어
+     https://indus96.github.io/GOLGORU/ 를 추가하고 발급된 content 값을 넣는다. -->
+<meta name="google-site-verification" content="GOOGLE_SITE_VERIFICATION_PLACEHOLDER">
 <meta property="og:description" content="흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다. iPhone · iPad · Mac.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://indus96.github.io/GOLGORU/">
@@ -107,6 +111,12 @@
   .status .soon::before{content:"🔜 "}
   @media(max-width:640px){.status ul{grid-template-columns:1fr}}
 
+  /* 앱 소개 — OAuth 브랜딩 인증이 요구하는 목적 설명 */
+  .purpose{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px;max-width:760px}
+  .purpose li{position:relative;padding-left:20px;font-size:15px;color:var(--sub)}
+  .purpose li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:800}
+  .purpose b{color:var(--ink);word-break:break-all}
+
   /* footer */
   footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-size:13px}
   .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -116,8 +126,9 @@
 <body>
 
 <nav><div class="wrap nav-in">
-  <a class="brand" href="#top">GOLGORU<span>골고루</span></a>
+  <a class="brand" href="#top">골고루<span>GOLGORU</span></a>
   <div class="nav-links">
+    <a href="#about">앱 소개</a>
     <a href="#principles">원칙</a>
     <a href="#dashboard">대시보드</a>
     <a href="#analysis">자산 분석</a>
@@ -131,8 +142,8 @@
 
 <header class="hero" id="top"><div class="wrap hero-grid">
   <div>
-    <span class="eyebrow">iPhone · iPad · Mac</span>
-    <h1>흩어진 계좌를 한눈에,<br>내 자산을 <span class="g">골고루</span>.</h1>
+    <span class="eyebrow">iPhone · iPad · Mac 앱</span>
+    <h1><span class="g">골고루</span><br>흩어진 계좌를 한눈에.</h1>
     <p class="lead">흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다.
       로그인 없이 둘러보거나, 앱에 직접 입력하거나, 쓰던 <b>Google Sheets를 그대로</b> 연결하세요.
       자산 데이터는 기기 안에 머뭅니다.</p>
@@ -149,6 +160,35 @@
   </div>
   <div class="hero-shot"><img src="images/dashboard.svg" alt="GOLGORU 대시보드 화면"></div>
 </div></header>
+
+<section id="about"><div class="wrap">
+  <div class="label">앱 소개</div>
+  <h2>골고루는 어떤 앱인가요?</h2>
+  <p class="sub" style="max-width:760px">
+    <b>골고루</b>는 iPhone · iPad · Mac에서 쓰는 <b>개인 자산관리 앱</b>입니다.
+    여러 계좌에 흩어진 자산을 한 화면에 모아 보여주고, 사용자가 정한 목표 자산배분과
+    실제 보유 비중의 차이를 계산해 무엇부터 조정할지 알려줍니다.
+    개발자는 개인 개발자 indus96이며, 문의는 indus96@gmail.com 으로 받습니다.
+  </p>
+
+  <h3 style="margin-top:28px;font-size:19px;font-weight:800">Google 계정을 어떻게 사용하나요?</h3>
+  <p class="sub" style="max-width:760px">
+    자산 데이터를 <b>Google Sheets에 보관하고 싶은 사용자</b>를 위해 Google 로그인을 제공합니다.
+    사용자가 앱에 직접 입력한 스프레드시트 주소의 <code>App_Data_*</code> 시트에서
+    계좌·보유 종목·수량·평균 단가·목표 비중을 <b>읽기만</b> 합니다.
+  </p>
+  <ul class="purpose">
+    <li>요청 권한은 <b>https://www.googleapis.com/auth/spreadsheets.readonly</b> 하나입니다.</li>
+    <li>앱은 사용자의 시트를 수정·생성·삭제하지 않습니다.</li>
+    <li>Google Drive의 파일 목록을 조회하지 않습니다. 사용자가 시트 주소를 직접 입력합니다.</li>
+    <li>읽은 자산 데이터는 기기 안에서만 계산에 쓰이며 앱 제공자 서버로 전송되지 않습니다.</li>
+    <li>Google 로그인 없이도 <b>둘러보기</b>와 <b>앱에 직접 입력</b> 방식으로 앱 전체를 쓸 수 있습니다.</li>
+  </ul>
+  <p class="sub" style="max-width:760px">
+    자세한 처리 내용은 <a href="docs/privacy.html" style="color:var(--gold);font-weight:600">개인정보처리방침</a>에,
+    사용 방법은 <a href="docs/getting-started.html" style="color:var(--gold);font-weight:600">시작하기</a>에 있습니다.
+  </p>
+</div></section>
 
 <section id="principles"><div class="wrap">
   <div class="label">핵심 원칙</div>
@@ -304,7 +344,7 @@
 </div></section>
 
 <footer><div class="wrap foot-in">
-  <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
+  <div>© 2026 골고루 (GOLGORU) · 내 자산을 골고루.</div>
   <div>
     <a href="docs/getting-started.html">시작하기</a> ·
     <a href="docs/privacy.html">개인정보처리방침</a> ·
