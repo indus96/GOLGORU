@@ -37,7 +37,7 @@
   → 앱이 읽고 기기 안에서 계산</code></pre>
 <ul><li><code>App_Data_*</code> 탭은 제공되는 <strong>템플릿 사본</strong>으로 한 번에 만듭니다.</li><li>요청 권한은 <code>spreadsheets.readonly</code> 하나입니다 — 앱이 시트를 고치거나 지우지 않습니다.</li><li>Google Drive 파일 목록은 조회하지 않습니다. 사용자가 스프레드시트 주소를 직접 넣습니다.</li></ul>
 <h2>보안 장치</h2>
-<div class="tablewrap"><table><thead><tr><th>장치</th><th>내용</th></tr></thead><tbody><tr><td>Google 로그인</td><td><code>spreadsheets.readonly</code> — 읽기 전용. 쓰기 권한을 요청하지 않음</td></tr><tr><td>Keychain</td><td>증권사 자격증명은 생체인증 보호로 기기에만 저장. 잔고 조회에만 사용</td></tr><tr><td>앱 잠금</td><td>기기 소유자 인증으로 잠금 해제, 백그라운드 복귀 시 재잠금</td></tr><tr><td>로컬 캐시 보호</td><td>스냅샷 캐시에 파일 보호 속성 적용, 설정에서 삭제 가능</td></tr><tr><td>외부 전송 최소화</td><td>자산 데이터는 외부 서버로 전송하지 않음. AI 점검은 요약만, 뉴스·재무제표·배당 조회는 종목 식별자만 (보유 수량·금액 미전송)</td></tr><tr><td>로그 마스킹</td><td>토큰·계좌번호는 로그와 화면에 노출하지 않음</td></tr></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>장치</th><th>내용</th></tr></thead><tbody><tr><td>Google 로그인</td><td><code>spreadsheets.readonly</code> — 읽기 전용. 쓰기 권한을 요청하지 않음</td></tr><tr><td>Keychain</td><td>증권사 자격증명은 생체인증 보호로 기기에만 저장. 잔고 조회에만 사용</td></tr><tr><td>앱 잠금</td><td>기기 소유자 인증으로 잠금 해제, 백그라운드 복귀 시 재잠금</td></tr><tr><td>로컬 캐시 보호</td><td>스냅샷 캐시에 파일 보호 속성 적용, 설정에서 삭제 가능</td></tr><tr><td>외부 전송 최소화</td><td>뉴스·시세·재무제표·배당 조회는 종목 식별자만 전송(보유 수량·금액·계좌 미전송). <strong>AI 점검만 예외</strong> — 켠 경우에 한해 금액이 포함된 자산 요약을 AI 제공처로 전송(기본 꺼짐, <a href="privacy.html">개인정보처리방침</a> 참조)</td></tr><tr><td>로그 마스킹</td><td>토큰·계좌번호는 로그와 화면에 노출하지 않음</td></tr></tbody></table></div>
 <h2>장애 대응</h2>
 <ul><li>시트·뉴스·시장지표 로드가 실패하면 마지막 정상 캐시로 폴백합니다.</li><li>시장지표는 일부 지표만 실패해도 성공한 지표는 갱신하고 실패분은 이전 값을 유지합니다.</li></ul>
 </div></main>
