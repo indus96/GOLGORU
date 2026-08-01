@@ -14,6 +14,10 @@
 <meta property="og:description" content="흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다. iPhone · iPad · Mac.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://golgoru.app/">
+<!-- 앱 이름을 기계가 읽는 자리에도 정확히 한 가지로 둔다.
+     OAuth 브랜드 검증이 동의 화면 이름과 홈페이지의 앱 이름 일치를 본다. -->
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
 <meta property="og:image" content="https://golgoru.app/images/og-cover.png">
 <link rel="canonical" href="https://golgoru.app/">
 <meta name="twitter:card" content="summary_large_image">
@@ -128,7 +132,9 @@
 <body>
 
 <nav><div class="wrap nav-in">
-  <a class="brand" href="#top">골고루<span>GOLGORU</span></a>
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="#top">골고루</a>
   <div class="nav-links">
     <a href="#about">앱 소개</a>
     <a href="#principles">원칙</a>
@@ -160,7 +166,7 @@
       <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
     </div>
   </div>
-  <div class="hero-shot"><img src="images/dashboard.svg" alt="GOLGORU 대시보드 화면"></div>
+  <div class="hero-shot"><img src="images/dashboard.svg" alt="골고루 대시보드 화면"></div>
 </div></header>
 
 <section id="about"><div class="wrap">
