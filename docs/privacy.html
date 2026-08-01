@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개인정보처리방침 · GOLGORU 골고루</title>
+<meta name="description" content="최종 수정일: 2026-08-01">
+<link rel="stylesheet" href="doc.css">
+</head><body>
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../index.html">GOLGORU<span>골고루</span></a>
+  <div class="nav-links">
+    <a href="../index.html#dashboard">대시보드</a>
+    <a href="../index.html#analysis">자산 분석</a>
+    <a href="../index.html#rebalance">자산배분</a>
+    <a href="../index.html#broker">증권사</a>
+  </div>
+  <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../index.html">← 골고루 홈</a>
+  <div class="eyebrow">개인정보</div>
+  <h1>개인정보처리방침</h1>
+  <p class="lead">최종 수정일: 2026-08-01</p>
+  
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<p>골고루(GOLGORU, 이하 "앱")는 사용자의 자산 데이터를 앱 제공자의 서버에 저장하지 않습니다. 이 문서는 앱이 어떤 정보를 다루고, 어디에 보관하며, 외부로 무엇을 보내는지 설명합니다.</p>
+<h2>앱이 다루는 정보</h2>
+<h3>자산 정보</h3>
+<p>계좌명, 보유 종목, 수량, 평균 단가, 현금 잔액, 자산배분 목표 비중.</p>
+<p>사용자가 고른 방식에 따라 아래 중 한 곳에 저장됩니다.</p>
+<div class="tablewrap"><table><thead><tr><th>시작 방식</th><th>저장 위치</th></tr></thead><tbody><tr><td>둘러보기</td><td>저장하지 않음 (예시 데이터)</td></tr><tr><td>앱에 직접 입력</td><td>사용자 기기 내부 저장소</td></tr><tr><td>Google Sheets 연동</td><td>사용자 본인의 Google 스프레드시트</td></tr></tbody></table></div>
+<p>세 경우 모두 <strong>앱 제공자의 서버에는 저장되지 않습니다.</strong></p>
+<h3>Google 계정 정보</h3>
+<p>Google Sheets 연동을 고른 경우에만 Google 로그인을 사용합니다.</p>
+<ul><li>요청 권한: <code>https://www.googleapis.com/auth/spreadsheets.readonly</code> — 사용자가 지정한 스프레드시트를 <strong>읽기만</strong> 합니다. 수정하거나 삭제하지 않습니다.</li><li>사용 목적: 사용자의 <code>App_Data_*</code> 시트에서 자산 현황을 읽어 앱 화면에 표시</li><li>액세스 토큰은 기기의 Keychain에만 저장되며 외부로 전송되지 않습니다.</li><li>앱은 사용자의 Google Drive 파일 목록을 조회하지 않습니다. 사용자가 스프레드시트 주소를 직접 입력하므로 파일 검색 권한이 필요하지 않습니다.</li></ul>
+<p>골고루가 Google API로부터 받은 정보의 사용과 다른 앱으로의 전송은 <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API 서비스 사용자 데이터 정책</a>을 준수하며, 여기에는 제한 사용(Limited Use) 요건이 포함됩니다.</p>
+<h3>증권사 API 키</h3>
+<p>사용자가 증권사 잔고 조회를 연결한 경우에만 해당합니다.</p>
+<p>API 키는 기기의 Keychain에 저장되며 앱 제공자의 서버로 전송되지 않습니다. 증권사 서버와의 통신은 기기에서 직접 이루어집니다.</p>
+<p>이 앱은 증권사 API를 <strong>잔고 조회 용도로만</strong> 사용합니다. 주문을 넣지 않습니다.</p>
+<h2>외부로 전송되는 정보</h2>
+<p>앱은 시세·뉴스·AI 점검을 위해 자체 서버리스 함수(Cloudflare Workers)를 사용합니다. 전송되는 내용은 아래로 한정됩니다.</p>
+<div class="tablewrap"><table><thead><tr><th>기능</th><th>전송하는 것</th><th>전송하지 않는 것</th></tr></thead><tbody><tr><td>시세·차트</td><td>종목 심볼</td><td>보유 수량, 금액, 계좌</td></tr><tr><td>시장지표</td><td>지표 코드만</td><td>자산 정보 일체</td></tr><tr><td>뉴스·리포트</td><td>종목명, 검색 키워드</td><td>보유 수량, 금액, 계좌</td></tr><tr><td>AI 자산 점검</td><td>자산군별 <strong>비중</strong>과 집중도 요약</td><td>금액, 계좌번호, 종목 수량</td></tr></tbody></table></div>
+<p>자산 금액·환산·배분 계산은 모두 기기 안에서 수행합니다. AI 자산 점검은 원본 데이터가 아니라 비중 중심의 요약만 전송하며, 설정에서 끌 수 있습니다.</p>
+<h2>보관과 삭제</h2>
+<ul><li>기기 내부에 저장되는 데이터에는 파일 보호 속성이 적용되어, 기기가 잠긴 상태에서는 읽을 수 없습니다.</li><li>설정에서 로컬 캐시와 입력한 원장을 삭제할 수 있습니다.</li><li>앱을 삭제하면 기기에 저장된 모든 데이터가 함께 삭제됩니다.</li><li>Google Sheets 연동을 해제하면 저장된 토큰이 Keychain에서 제거됩니다. 시트 자체는 사용자 소유이므로 앱이 삭제하지 않습니다.</li><li><a href="https://myaccount.google.com/permissions">Google 계정 권한 페이지</a>에서 언제든 앱의 접근 권한을 철회할 수 있습니다.</li></ul>
+<h2>제3자 제공</h2>
+<p>앱 제공자는 사용자의 자산 정보나 Google 계정 정보를 제3자에게 판매하거나 제공하지 않습니다. 광고 식별자를 수집하지 않으며, 분석 SDK를 탑재하지 않습니다.</p>
+<h2>아동의 개인정보</h2>
+<p>앱은 만 14세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 의도적으로 수집하지 않습니다.</p>
+<h2>투자 관련 고지</h2>
+<p>앱이 제공하는 분석과 제안은 참고 자료일 뿐 투자 권유나 자문이 아닙니다. 모든 투자 판단과 그 결과에 대한 책임은 사용자 본인에게 있습니다.</p>
+<h2>문의</h2>
+<p>indus96@gmail.com</p>
+<h2>변경 고지</h2>
+<p>이 방침이 바뀌면 이 페이지의 최종 수정일을 갱신하고, 중요한 변경은 앱 안에서 알립니다.</p>
+</div></main>
+<footer><div class="wrap foot-in">
+  <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
+  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+</div></footer>
+</body></html>

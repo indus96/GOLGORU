@@ -7,12 +7,16 @@ DOCS = {
     "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone"),
     "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone"),
     "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/phone-stock.png",     cls="phone"),
-    "allocation-rebalancing":dict(eyebrow="리밸런싱",  hero="../images/app/phone-rebalance.png", cls="phone"),
+    "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone"),
     "ai-review":            dict(eyebrow="AI 점검",    hero="../images/news-ai.svg",             cls="wide"),
     "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone"),
     "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide",
-                                 lead="앱은 내 Google Sheets를 원장으로 읽고, 자격증명은 기기 Keychain에만 둡니다."),
+                                 lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
+    "getting-started":      dict(eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide",
+                                 lead="둘러보기 · 앱에 직접 입력 · Google Sheets 연동 — 세 가지 중에서 고릅니다."),
+    "privacy":              dict(eyebrow="개인정보",   hero="", cls="wide",
+                                 lead="앱은 자산 데이터를 제공자 서버에 저장하지 않습니다."),
 }
 
 NAV = """<nav><div class="wrap nav-in">
@@ -20,7 +24,7 @@ NAV = """<nav><div class="wrap nav-in">
   <div class="nav-links">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
-    <a href="../index.html#rebalance">리밸런싱</a>
+    <a href="../index.html#rebalance">자산배분</a>
     <a href="../index.html#broker">증권사</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
@@ -28,7 +32,7 @@ NAV = """<nav><div class="wrap nav-in">
 
 FOOTER = """<footer><div class="wrap foot-in">
   <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
-  <div><a href="../index.html">홈</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>"""
 
 
@@ -155,7 +159,7 @@ def build(slug, meta):
   <div class="eyebrow">{meta['eyebrow']}</div>
   <h1>{inline(title)}</h1>
   {f'<p class="lead">{lead_html}</p>' if lead_html else ''}
-  <div class="hero-img {meta['cls']}"><img src="{meta['hero']}" alt="{inline(title)} 화면"></div>
+  {f'''<div class="hero-img {meta['cls']}"><img src="{meta['hero']}" alt="{inline(title)} 화면"></div>''' if meta['hero'] else ''}
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
 {body}
