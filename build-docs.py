@@ -7,7 +7,7 @@ DOCS = {
     "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone"),
     "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone"),
     "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/phone-stock.png",     cls="phone"),
-    "allocation-rebalancing":dict(eyebrow="리밸런싱",  hero="../images/app/phone-rebalance.png", cls="phone"),
+    "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone"),
     "ai-review":            dict(eyebrow="AI 점검",    hero="../images/news-ai.svg",             cls="wide"),
     "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone"),
@@ -24,7 +24,7 @@ NAV = """<nav><div class="wrap nav-in">
   <div class="nav-links">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
-    <a href="../index.html#rebalance">리밸런싱</a>
+    <a href="../index.html#rebalance">자산배분</a>
     <a href="../index.html#broker">증권사</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>

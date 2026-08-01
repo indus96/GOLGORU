@@ -2,7 +2,7 @@
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>데이터와 보안 · GOLGORU 골고루</title>
-<meta name="description" content="앱은 내 Google Sheets를 원장으로 읽고, 자격증명은 기기 Keychain에만 둡니다.">
+<meta name="description" content="&gt; 지원 방식: 전체">
 <link rel="stylesheet" href="doc.css">
 </head><body>
 <nav><div class="wrap nav-in">
@@ -10,7 +10,7 @@
   <div class="nav-links">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
-    <a href="../index.html#rebalance">리밸런싱</a>
+    <a href="../index.html#rebalance">자산배분</a>
     <a href="../index.html#broker">증권사</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
@@ -19,24 +19,30 @@
   <a class="back" href="../index.html">← 골고루 홈</a>
   <div class="eyebrow">데이터·보안</div>
   <h1>데이터와 보안</h1>
-  <p class="lead">앱은 내 Google Sheets를 원장으로 읽고, 자격증명은 기기 Keychain에만 둡니다.</p>
+  <p class="lead">&gt; <strong>지원 방식:</strong> 전체</p>
   <div class="hero-img wide"><img src="../images/data-flow.svg" alt="데이터와 보안 화면"></div>
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
-<h2>데이터 구조</h2>
-<p>앱은 사용자의 Google Sheets에서 정규화된 <code>App_Data_*</code> 탭만 읽습니다.</p>
+<h2>어디에 저장되나</h2>
+<p>시작 방식에 따라 저장 위치가 다릅니다. <strong>어느 쪽이든 앱 제공자 서버에는 저장되지 않습니다.</strong></p>
+<div class="tablewrap"><table><thead><tr><th>시작 방식</th><th>저장 위치</th></tr></thead><tbody><tr><td>둘러보기</td><td>저장하지 않음 (예시 데이터)</td></tr><tr><td>앱에 직접 입력</td><td>기기 내부 저장소</td></tr><tr><td>Google Sheets 연동</td><td>사용자 본인의 스프레드시트</td></tr></tbody></table></div>
+<h3>앱에 직접 입력한 데이터</h3>
+<p>계좌·보유 종목·현금·목표 비중이 기기 내부에 JSON으로 저장됩니다. 파일에는 iOS 파일 보호 속성이 적용되어, <strong>기기가 잠긴 상태에서는 읽을 수 없습니다.</strong></p>
+<p>이 데이터는 어떤 서버로도 전송되지 않습니다. 설정에서 삭제할 수 있고, 앱을 삭제하면 함께 사라집니다.</p>
+<h3>Google Sheets 연동</h3>
+<p>앱은 사용자의 스프레드시트에서 정규화된 <code>App_Data_*</code> 탭만 읽습니다.</p>
 <pre><code>기존 원본 시트 (가계부·포트폴리오 등)
   → Google Sheets 수식 / IMPORTRANGE
   → App_Data_Assets · App_Data_Allocation · App_Data_Watchlist · App_Data_Events
   → 앱이 읽고 기기 안에서 계산</code></pre>
-<ul><li><code>App_Data_*</code> 탭 생성은 제공되는 Apps Script로 자동화됩니다.</li><li>체결 기록·계좌 연동 정보는 별도 탭에 저장돼 기기 간 공유됩니다.</li></ul>
+<ul><li><code>App_Data_*</code> 탭은 제공되는 <strong>템플릿 사본</strong>으로 한 번에 만듭니다.</li><li>요청 권한은 <code>spreadsheets.readonly</code> 하나입니다 — 앱이 시트를 고치거나 지우지 않습니다.</li><li>Google Drive 파일 목록은 조회하지 않습니다. 사용자가 스프레드시트 주소를 직접 넣습니다.</li></ul>
 <h2>보안 장치</h2>
-<div class="tablewrap"><table><thead><tr><th>장치</th><th>내용</th></tr></thead><tbody><tr><td>Google 로그인</td><td>Sheets 읽기 권한 범위. 쓰기는 사용자가 승인한 흐름에서만</td></tr><tr><td>Keychain</td><td>증권사 자격증명은 생체인증 보호로 기기에만 저장</td></tr><tr><td>앱 잠금</td><td>기기 소유자 인증으로 잠금 해제, 백그라운드 복귀 시 재잠금</td></tr><tr><td>로컬 캐시 보호</td><td>스냅샷 캐시에 파일 보호 속성 적용, 설정에서 삭제 가능</td></tr><tr><td>외부 전송 최소화</td><td>자산 데이터는 외부 서버로 전송하지 않음. AI 점검은 요약만, 뉴스·재무제표·배당 조회는 종목 식별자만 (보유 수량·금액 미전송)</td></tr><tr><td>로그 마스킹</td><td>토큰·계좌번호는 로그와 화면에 노출하지 않음</td></tr></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>장치</th><th>내용</th></tr></thead><tbody><tr><td>Google 로그인</td><td><code>spreadsheets.readonly</code> — 읽기 전용. 쓰기 권한을 요청하지 않음</td></tr><tr><td>Keychain</td><td>증권사 자격증명은 생체인증 보호로 기기에만 저장. 잔고 조회에만 사용</td></tr><tr><td>앱 잠금</td><td>기기 소유자 인증으로 잠금 해제, 백그라운드 복귀 시 재잠금</td></tr><tr><td>로컬 캐시 보호</td><td>스냅샷 캐시에 파일 보호 속성 적용, 설정에서 삭제 가능</td></tr><tr><td>외부 전송 최소화</td><td>자산 데이터는 외부 서버로 전송하지 않음. AI 점검은 요약만, 뉴스·재무제표·배당 조회는 종목 식별자만 (보유 수량·금액 미전송)</td></tr><tr><td>로그 마스킹</td><td>토큰·계좌번호는 로그와 화면에 노출하지 않음</td></tr></tbody></table></div>
 <h2>장애 대응</h2>
 <ul><li>시트·뉴스·시장지표 로드가 실패하면 마지막 정상 캐시로 폴백합니다.</li><li>시장지표는 일부 지표만 실패해도 성공한 지표는 갱신하고 실패분은 이전 값을 유지합니다.</li></ul>
 </div></main>
 <footer><div class="wrap foot-in">
   <div>© 2026 GOLGORU · 내 자산을 골고루.</div>
-  <div><a href="../index.html">홈</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>
 </body></html>
