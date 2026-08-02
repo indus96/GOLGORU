@@ -8,10 +8,10 @@ import re, html, glob, os
 DOCS = {
     "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone", back="dashboard"),
     "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone", back="analysis"),
-    "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/phone-stock.png",     cls="phone", back="analysis"),
+    "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/stock-analysis.png",     cls="phone", back="analysis"),
     "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
-    "ai-review":            dict(eyebrow="AI 점검",    hero="../images/news-ai.svg",             cls="wide", back="rebalance"),
+    "ai-review":            dict(eyebrow="AI 점검",    hero="../images/app/phone-ai.png",        cls="phone", back="rebalance"),
     "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone", back="broker"),
     "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide", back="about",
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),

@@ -128,6 +128,20 @@
   .purpose li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:800}
   .purpose b{color:var(--ink);word-break:break-all}
 
+
+  /* 여러 화면 보여주기 — 가로 스와이프 + 아래 점 표시.
+     한 장만 넣으면 점이 안 그려져서 기존 단일 이미지와 똑같이 보인다. */
+  .gallery{position:relative}
+  .frames{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .frames::-webkit-scrollbar{display:none}
+  .frames img{scroll-snap-align:center;flex:0 0 100%;width:100%;height:auto}
+  .dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
+  .dots i{width:7px;height:7px;border-radius:50%;background:var(--line);
+    display:block;transition:background .2s,width .2s}
+  .dots i.on{background:var(--gold);width:20px;border-radius:4px}
+  .gallery .hint{text-align:center;font-size:12px;color:var(--hint);margin-top:8px}
+
   /* footer */
   footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-size:13px}
   .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -256,12 +270,23 @@
   </div>
 
   <div class="feat">
-    <div class="shot phone"><img src="images/app/phone-stock.png" alt="종목 상세 — 분석 탭(실제 화면)"></div>
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="images/app/phone-ranking.png" alt="자산순위 — 종목별 평가액과 수익">
+          <img src="images/app/stock-chart.png" alt="종목 상세 — 차트 탭(캔들·이동평균·매물대)">
+          <img src="images/app/stock-analysis.png" alt="종목 상세 — 분석 탭(기술 지표·재무제표)">
+          <img src="images/app/stock-news.png" alt="종목 상세 — 뉴스 탭">
+          <img src="images/app/stock-note.png" alt="종목 상세 — 메모 탭">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
     <div class="txt">
       <h3>자산순위 · 종목 상세</h3>
       <ul>
         <li>계좌별·자산군별·종목별 순위와 실시간 시세</li>
-        <li>종목을 탭하면 차트·분석·뉴스 3탭 상세</li>
+        <li>종목을 탭하면 <b>차트·분석·뉴스·메모</b> 4탭 상세</li>
         <li>기술 지표·재무제표(SEC·DART·네이버)·ETF 구성</li>
       </ul>
       <a class="more" href="docs/asset-ranking.html">자산순위 문서 →</a>
@@ -282,7 +307,15 @@
   </div>
 
   <div class="feat">
-    <div class="shot phone"><img src="images/app/phone-news.png" alt="뉴스 — 보유·관심 종목 기사(실제 화면)"></div>
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="images/app/phone-news.png" alt="뉴스 — 보유·관심 종목 기사">
+          <img src="images/app/phone-ai.png" alt="AI 점검 — 자동 분석과 편중 진단, 성향별 목표 제안">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
     <div class="txt">
       <h3>뉴스 · AI 자산 점검</h3>
       <ul>
@@ -374,5 +407,32 @@
   </div>
 </div></footer>
 
+<script>
+// 갤러리: 프레임 수만큼 점을 만들고, 스크롤 위치에 따라 현재 점을 칠한다.
+// 스크롤 스냅이 스와이프를 담당하므로 제스처 코드는 없다.
+document.querySelectorAll('[data-gallery]').forEach(function (gallery) {
+  var frames = gallery.querySelector('.frames');
+  var dots = gallery.querySelector('.dots');
+  var images = frames.querySelectorAll('img');
+  if (images.length < 2) { dots.remove(); return; }
+
+  images.forEach(function (_, index) {
+    var dot = document.createElement('i');
+    if (index === 0) dot.className = 'on';
+    dots.appendChild(dot);
+  });
+  var hint = document.createElement('div');
+  hint.className = 'hint';
+  hint.textContent = '옆으로 밀어 ' + images.length + '개 화면 보기';
+  gallery.appendChild(hint);
+
+  frames.addEventListener('scroll', function () {
+    var index = Math.round(frames.scrollLeft / frames.clientWidth);
+    dots.querySelectorAll('i').forEach(function (dot, i) {
+      dot.classList.toggle('on', i === index);
+    });
+  }, { passive: true });
+});
+</script>
 </body>
 </html>
