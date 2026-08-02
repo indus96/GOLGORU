@@ -31,25 +31,41 @@ CAPTIONS = {
         "02-allocation": "목표에서 얼마나 벗어났는지",
         "03-health": "내 포트폴리오는 건강한가",
         "04-ranking": "계좌별·종목별 순위와 실시간 시세",
-        "06-composition": "배당과 국가 분산까지",
-        "07-projection": "1·3·5·10년 뒤 내 자산",
-        "08-ai": "편중 진단과 성향별 목표 제안",
-        "09-news": "보유 종목 뉴스와 증권사 리포트",
-        "10-onboarding": "로그인 없이 둘러보기부터",
+        "05-chart": "차트·분석·뉴스·메모를 한 화면에",
+        "07-composition": "배당과 국가 분산까지",
+        "08-projection": "1·3·5·10년 뒤 내 자산",
+        "09-ai": "편중 진단과 성향별 목표 제안",
+        "10-news": "보유 종목 뉴스와 증권사 리포트",
+        "11-onboarding": "로그인 없이 둘러보기부터",
+    },
+    "mac": {
+        "01-dashboard": "맥에서는 사이드바와 다단으로",
+        "02-ranking": "계좌별·종목별 순위와 실시간 시세",
+        "03-allocation": "목표에서 얼마나 벗어났는지",
+        "04-ai": "편중 진단과 성향별 목표 제안",
+        "05-health": "내 포트폴리오는 건강한가",
     },
     "ipad": {
         "01-dashboard": "넓은 화면에서는 더 넓게",
-        "02-allocation": "목표에서 얼마나 벗어났는지",
-        "03-ranking": "계좌별·종목별 순위와 실시간 시세",
+        "02-ranking": "계좌별·종목별 순위와 실시간 시세",
+        "03-allocation": "목표에서 얼마나 벗어났는지",
         "04-ai": "편중 진단과 성향별 목표 제안",
         "05-health": "내 포트폴리오는 건강한가",
     },
 }
 
 # 기기별 여백 비율. 캡션 영역은 세로의 일정 비율을 쓰고, 남는 만큼 원본을 줄인다.
+# `canvas`가 있으면 원본 크기와 무관하게 그 크기로 만든다 — 맥은 창 캡처라
+# 크기가 매번 다르고, App Store는 정해진 크기만 받는다.
 LAYOUT = {
+    "mac": {
+        "canvas": (2560, 1600),
+        "shot_width_ratio": 0.90,
+        "font_ratio": 0.028,
+        "corner_ratio": 0.012,
+    },
     "iphone": {"shot_width_ratio": 0.848, "font_ratio": 0.052, "corner_ratio": 0.045},
-    "ipad": {"shot_width_ratio": 0.872, "font_ratio": 0.030, "corner_ratio": 0.020},
+    "ipad": {"shot_width_ratio": 0.872, "font_ratio": 0.042, "corner_ratio": 0.020},
 }
 
 
@@ -66,10 +82,15 @@ def rounded(image: Image.Image, radius: int) -> Image.Image:
 
 def render(src_path: Path, caption: str, layout: dict) -> Image.Image:
     shot = Image.open(src_path).convert("RGB")
-    canvas_w, canvas_h = shot.size
+    canvas_w, canvas_h = layout.get("canvas") or shot.size
 
     shot_w = int(canvas_w * layout["shot_width_ratio"])
     shot_h = round(shot.height * shot_w / shot.width)
+    # 캔버스를 고정한 경우 세로가 넘칠 수 있다 — 캡션 자리를 남기고 높이에 맞춘다.
+    max_shot_h = int(canvas_h * 0.82)
+    if shot_h > max_shot_h:
+        shot_w = round(shot_w * max_shot_h / shot_h)
+        shot_h = max_shot_h
     shot = shot.resize((shot_w, shot_h), Image.LANCZOS)
     shot = rounded(shot, int(shot_w * layout["corner_ratio"]))
 
@@ -106,7 +127,7 @@ def render(src_path: Path, caption: str, layout: dict) -> Image.Image:
         fill=GOLD,
     )
 
-    canvas.paste(shot, ((canvas_w - shot_w) // 2, band_h), shot)
+    canvas.paste(shot, ((canvas_w - shot_w) // 2, canvas_h - shot_h), shot)
     return canvas
 
 
