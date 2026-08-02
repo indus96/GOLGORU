@@ -55,8 +55,11 @@
   .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
   .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.5px;
     color:var(--gold);background:var(--gold-soft);padding:6px 12px;border-radius:999px;margin-bottom:18px}
-  h1{font-size:clamp(32px,5vw,50px);line-height:1.18;font-weight:800;letter-spacing:-.5px}
-  h1 .g{color:var(--gold)}
+  h1{font-size:clamp(32px,5vw,50px);line-height:1.18;font-weight:800;letter-spacing:-.5px;
+    color:var(--gold)}
+  /* 예전 h1 두 번째 줄과 같은 크기·굵기를 유지한다(보이는 모습은 그대로). */
+  .tagline{font-size:clamp(32px,5vw,50px);line-height:1.18;font-weight:800;
+    letter-spacing:-.5px;color:var(--ink)}
   .lead{margin-top:18px;font-size:17px;color:var(--sub);max-width:520px}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
   .chip{font-size:13px;color:var(--sub);background:var(--card);border:1px solid var(--line);
@@ -151,7 +154,10 @@
 <header class="hero" id="top"><div class="wrap hero-grid">
   <div>
     <span class="eyebrow">iPhone · iPad · Mac 앱</span>
-    <h1><span class="g">골고루</span><br>흩어진 계좌를 한눈에.</h1>
+    <!-- h1은 앱 이름만 담는다. 태그라인을 <br>로 붙이면 텍스트로 읽을 때
+         "골고루흩어진 계좌를 한눈에."가 되어 동의 화면 이름과 일치하지 않는다. -->
+    <h1>골고루</h1>
+    <p class="tagline">흩어진 계좌를 한눈에.</p>
     <p class="lead">흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다.
       로그인 없이 둘러보거나, 앱에 직접 입력하거나, 쓰던 <b>Google Sheets를 그대로</b> 연결하세요.
       자산 데이터는 기기 안에 머뭅니다.</p>
