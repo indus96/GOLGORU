@@ -79,3 +79,14 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
 footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-size:13px;margin-top:40px}
 .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .foot-in a:hover{color:var(--gold)}
+
+/* 다른 문서 — 문서끼리 오갈 수 있게 본문 아래에 둔다.
+   상단 내비게이션은 랜딩 앵커로만 가서 문서 간 이동 수단이 없었다. */
+.more-docs{border-top:1px solid var(--line);padding:32px 0 8px;margin-top:40px}
+.more-docs h2{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px}
+.doc-cards{display:flex;flex-wrap:wrap;gap:8px}
+.doc-card{display:inline-block;font-size:14px;padding:9px 15px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--sub)}
+a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
+.doc-card.current{background:var(--gold-soft);border-color:var(--gold);
+  color:var(--gold);font-weight:700}

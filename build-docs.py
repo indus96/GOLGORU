@@ -23,11 +23,17 @@ NAV = """<nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
   <a class="brand" href="../index.html">골고루</a>
+  <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
+       다른 사이트처럼 보였다. -->
   <div class="nav-links">
+    <a href="../index.html#about">앱 소개</a>
+    <a href="../index.html#principles">원칙</a>
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
     <a href="../index.html#rebalance">자산배분</a>
     <a href="../index.html#broker">증권사</a>
+    <a href="../index.html#mac">맥·아이패드</a>
+    <a href="../index.html#download">다운로드</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
 </div></nav>"""
@@ -36,6 +42,25 @@ FOOTER = """<footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
   <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>"""
+
+
+def more_docs(current):
+    """문서 사이를 오갈 수 있게 하단에 목록을 붙인다.
+
+    상단 내비게이션은 랜딩 앵커로만 가서, 문서에 들어오면 다른 문서로
+    넘어갈 방법이 없었다. 문서가 10개라 상단에 다 넣을 수는 없다.
+    """
+    items = []
+    for slug, meta in DOCS.items():
+        label = meta["eyebrow"]
+        if slug == current:
+            items.append(f'<span class="doc-card current">{label}</span>')
+        else:
+            items.append(f'<a class="doc-card" href="{slug}.html">{label}</a>')
+    return f"""<section class="more-docs"><div class="wrap narrow">
+  <h2>다른 문서</h2>
+  <div class="doc-cards">{''.join(items)}</div>
+</div></section>"""
 
 
 def inline(t):
@@ -168,6 +193,7 @@ def build(slug, meta):
 <main class="doc-body"><div class="wrap narrow">
 {body}
 </div></main>
+{more_docs(slug)}
 {FOOTER}
 </body></html>
 """

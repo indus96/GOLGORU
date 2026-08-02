@@ -11,11 +11,17 @@
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
   <a class="brand" href="../index.html">골고루</a>
+  <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
+       다른 사이트처럼 보였다. -->
   <div class="nav-links">
+    <a href="../index.html#about">앱 소개</a>
+    <a href="../index.html#principles">원칙</a>
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
     <a href="../index.html#rebalance">자산배분</a>
     <a href="../index.html#broker">증권사</a>
+    <a href="../index.html#mac">맥·아이패드</a>
+    <a href="../index.html#download">다운로드</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
 </div></nav>
@@ -38,6 +44,10 @@
 <ul><li><strong>차트</strong> — 캔들/선 전환, 기간 선택, 이동평균 범례. 소스는 위 "차트 소스 자동 선택"과 같습니다.</li><li><strong>분석</strong> — 이미 받은 시세로 계산하는 기술 지표와 재무제표입니다.</li><li><strong>기술 지표</strong> — 가격 위치 · 이동평균 배열 · 이격도 · 기간 수익률 · 연 변동성 · 최대 낙폭 · 거래량 비율. 값을 낼 수 없으면 그 줄을 숨깁니다(0으로 채워 거짓 정보를 만들지 않습니다).</li><li><strong>요약</strong> — 지표를 관측만 서술하는 규칙 기반 문장입니다(즉시·오프라인, 매매 판단 문구 없음).</li><li><strong>재무제표</strong> — 손익 · 재무상태 · 현금흐름을 연간/분기로 봅니다. 해외는 SEC EDGAR, 국내는 네이버 증권 + DART 공시에서 가져옵니다(모두 무료·키 불필요).</li><li><strong>ETF</strong> — 재무제표 대신 보수 · 기초지수 · 순자산 · 구성종목 상위 · 업종 비중을 보여줍니다.</li><li><strong>수급</strong> — 외국인 보유율과 최근 30거래일 외국인 · 기관 일별 순매수를 막대로 보여줍니다 (0선 위가 순매수, 아래가 순매도). 출처는 네이버 증권입니다.</li><li><strong>주주</strong> — 최대주주 및 특수관계인 지분율과 국민연금 등 5% 이상 대량보유 현황입니다. 출처는 DART 공시라 <strong>보고 시점 기준</strong>이며 현재 지분과 다를 수 있습니다. 수급 · 주주는 <strong>국내 상장 종목만</strong> 제공합니다 — 외국인/기관 구분과 대량보유 공시가 한국 시장 제도라 해외 종목에는 카드가 나타나지 않습니다.</li><li><strong>연기금</strong> — 한국투자증권 <strong>실전</strong> 계좌를 연결했다면 "연기금 보기"로 기관계를 연기금 · 투신 · 사모펀드로 쪼개 볼 수 있습니다. 막대는 기관계와 연기금을 바꿔 끼워 보여줍니다(30일 창에 셋을 넣으면 얇아서 읽기 어렵습니다). 조회에 기기 인증이 필요해 버튼을 눌렀을 때만 불러옵니다.</li><li><strong>뉴스</strong> — 해당 종목 관련 뉴스(<a href="news-reports.html">뉴스 · 리포트</a>와 같은 소스).</li><li><strong>메모</strong> — 종목별 매매 기록입니다. 왜 샀는지 · 손절 라인 · 지켜볼 것을 날짜를 달아 남깁니다. 날짜는 직접 고를 수 있어 지난 매매도 뒤늦게 적을 수 있고, 적은 메모는 수정 · 삭제됩니다. 메모는 <strong>기기 안에</strong> 보관되며 "캐시 지우기"로는 지워지지 않습니다. App Store 버전은 시트를 읽기만 하므로 메모가 기기 밖으로 나가지 않고, 따라서 아이폰 · 아이패드 · 맥이 각각 따로 보관합니다.</li></ul>
 <p>차트에는 <strong>평단선</strong>이 함께 그려집니다. 원장의 수량 · 단가로 계산한 매수 평균가를 청록 점선으로 얹어, 지금 가격이 내 평단 위인지 아래인지 바로 보입니다. 같은 종목이 여러 계좌에 나뉘어 있으면 수량 가중 평균을 씁니다. 원장 통화가 차트 통화와 다르면 그리지 않습니다(환산해서 그리면 실제와 어긋납니다). 평단과 평단 대비 등락은 <strong>내 보유</strong> 카드에도 숫자로 나옵니다.</p>
 </div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>다른 문서</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">대시보드</a><a class="doc-card" href="portfolio-analysis.html">자산 분석</a><span class="doc-card current">자산순위</span><a class="doc-card" href="allocation-rebalancing.html">자산배분</a><a class="doc-card" href="news-reports.html">뉴스·리포트</a><a class="doc-card" href="ai-review.html">AI 점검</a><a class="doc-card" href="broker-connection.html">증권사 연결</a><a class="doc-card" href="data-security.html">데이터·보안</a><a class="doc-card" href="getting-started.html">시작하기</a><a class="doc-card" href="privacy.html">개인정보</a></div>
+</div></section>
 <footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
   <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
