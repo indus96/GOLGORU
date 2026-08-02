@@ -72,6 +72,8 @@
   .btn-primary:hover{background:#b6911f}
   .btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--card)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  /* 아직 받을 수 없다는 것을 눌러보기 전에 알린다(링크가 아니다). */
+  .btn-soon{background:var(--gold-soft);color:var(--hint);cursor:default}
   .hero-shot img{width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(58,58,58,.10))}
   @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-shot{order:-1}}
 
@@ -203,7 +205,7 @@
       <span class="chip">📰 뉴스·AI 점검</span>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#download">App Store에서 받기</a>
+      <a class="btn btn-primary" href="#download">출시 소식 보기</a>
       <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
     </div>
   </div>
@@ -398,8 +400,11 @@
   <p class="sub">로그인 없이 둘러보기부터 시작하세요. 마음에 들면 자산을 직접 입력하거나
     쓰던 Google Sheets를 연결하면 됩니다.</p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="APP_STORE_URL_PLACEHOLDER">App Store에서 받기</a>
-    <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
+    <!-- 공개되면 아래 span을 이 링크로 바꾼다:
+         a class="btn btn-primary" href="앱스토어 주소" — App Store에서 받기
+         그전까지는 링크를 두지 않는다. 죽은 링크는 앱이 없는 것처럼 보인다. -->
+    <span class="btn btn-soon">App Store 심사 준비 중</span>
+    <a class="btn btn-primary" href="docs/getting-started.html">시작하기 안내</a>
   </div>
 </div></section>
 
