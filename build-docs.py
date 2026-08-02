@@ -20,7 +20,9 @@ DOCS = {
 }
 
 NAV = """<nav><div class="wrap nav-in">
-  <a class="brand" href="../index.html">골고루<span>GOLGORU</span></a>
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../index.html">골고루</a>
   <div class="nav-links">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
@@ -31,7 +33,7 @@ NAV = """<nav><div class="wrap nav-in">
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
-  <div>© 2026 골고루 (GOLGORU) · 내 자산을 골고루.</div>
+  <div>© 2026 골고루 · 내 자산을 골고루.</div>
   <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>"""
 
@@ -149,7 +151,9 @@ def build(slug, meta):
     page = f"""<!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} · 골고루</title>
+<title>골고루 · {title}</title>
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
 <meta name="description" content="{lead_plain}">
 <link rel="stylesheet" href="doc.css">
 </head><body>
