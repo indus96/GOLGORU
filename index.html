@@ -132,15 +132,33 @@
   /* 여러 화면 보여주기 — 가로 스와이프 + 아래 점 표시.
      한 장만 넣으면 점이 안 그려져서 기존 단일 이미지와 똑같이 보인다. */
   .gallery{position:relative}
-  .frames{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  /* 폭 제한은 갤러리가 맡는다. 이미지에 max-width를 두면 아래 .frames img의
+     "한 칸 = 한 화면" 규칙(.feat .shot.phone img가 우선순위로 이긴다)이 깨져
+     두 장이 나란히 보이고 스냅이 어긋난다. */
+  .feat .shot.phone .gallery{max-width:300px;margin:0 auto}
+  .frames{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
     scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .frames::-webkit-scrollbar{display:none}
-  .frames img{scroll-snap-align:center;flex:0 0 100%;width:100%;height:auto}
+  .feat .shot.phone .frames img,
+  .frames img{scroll-snap-align:center;flex:0 0 100%;width:100%;max-width:none;
+    height:auto;margin:0}
   .dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
   .dots i{width:7px;height:7px;border-radius:50%;background:var(--line);
-    display:block;transition:background .2s,width .2s}
+    display:block;transition:background .2s,width .2s;cursor:pointer}
   .dots i.on{background:var(--gold);width:20px;border-radius:4px}
   .gallery .hint{text-align:center;font-size:12px;color:var(--hint);margin-top:8px}
+  /* 마우스에는 가로 스크롤을 끌 수단이 없다 — 화살표를 얹는다.
+     터치·트랙패드 환경에서는 굳이 안 보여도 되지만, 있어서 나쁠 게 없다. */
+  .gallery .arrow{position:absolute;top:50%;transform:translateY(-50%);
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--sub);font-size:16px;line-height:1;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    box-shadow:0 4px 14px rgba(58,58,58,.10);transition:opacity .2s,color .2s}
+  .gallery .arrow:hover{color:var(--gold);border-color:var(--gold)}
+  .gallery .arrow.prev{left:-18px}
+  .gallery .arrow.next{right:-18px}
+  .gallery .arrow[disabled]{opacity:.25;cursor:default}
+  @media(max-width:820px){ .gallery .arrow{display:none} }
 
   /* footer */
   footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-size:13px}
@@ -409,29 +427,59 @@
 
 <script>
 // 갤러리: 프레임 수만큼 점을 만들고, 스크롤 위치에 따라 현재 점을 칠한다.
-// 스크롤 스냅이 스와이프를 담당하므로 제스처 코드는 없다.
+// 스크롤 스냅이 스와이프를 담당한다. 다만 마우스에는 가로로 끌 수단이 없어
+// 화살표와 점 클릭으로도 넘길 수 있게 한다.
 document.querySelectorAll('[data-gallery]').forEach(function (gallery) {
   var frames = gallery.querySelector('.frames');
   var dots = gallery.querySelector('.dots');
   var images = frames.querySelectorAll('img');
   if (images.length < 2) { dots.remove(); return; }
 
+  function go(index) {
+    frames.scrollTo({ left: frames.clientWidth * index, behavior: 'smooth' });
+  }
+
   images.forEach(function (_, index) {
     var dot = document.createElement('i');
     if (index === 0) dot.className = 'on';
+    dot.addEventListener('click', function () { go(index); });
     dots.appendChild(dot);
   });
+
   var hint = document.createElement('div');
   hint.className = 'hint';
-  hint.textContent = '옆으로 밀어 ' + images.length + '개 화면 보기';
+  hint.textContent = images.length + '개 화면 — 옆으로 밀거나 화살표를 누르세요';
   gallery.appendChild(hint);
 
-  frames.addEventListener('scroll', function () {
-    var index = Math.round(frames.scrollLeft / frames.clientWidth);
+  var prev = document.createElement('button');
+  prev.className = 'arrow prev';
+  prev.type = 'button';
+  prev.setAttribute('aria-label', '이전 화면');
+  prev.textContent = '‹';
+  var next = document.createElement('button');
+  next.className = 'arrow next';
+  next.type = 'button';
+  next.setAttribute('aria-label', '다음 화면');
+  next.textContent = '›';
+  gallery.appendChild(prev);
+  gallery.appendChild(next);
+
+  function current() {
+    return Math.round(frames.scrollLeft / frames.clientWidth);
+  }
+  prev.addEventListener('click', function () { go(current() - 1); });
+  next.addEventListener('click', function () { go(current() + 1); });
+
+  function sync() {
+    var index = current();
     dots.querySelectorAll('i').forEach(function (dot, i) {
       dot.classList.toggle('on', i === index);
     });
-  }, { passive: true });
+    prev.disabled = index <= 0;
+    next.disabled = index >= images.length - 1;
+  }
+  frames.addEventListener('scroll', sync, { passive: true });
+  sync();
 });
 </script>
 </body>
