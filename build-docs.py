@@ -3,19 +3,21 @@
 마크다운은 소스로 두고, 문서를 고치면 `python3 build-docs.py`로 재생성한다."""
 import re, html, glob, os
 
+# `back`은 랜딩에서 이 문서로 들어오는 섹션이다. 돌아갈 때 그 자리로 보낸다.
+# (JS가 되면 history.back()으로 정확한 스크롤 위치를 복원하고, 이건 그 대비책이다.)
 DOCS = {
-    "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone"),
-    "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone"),
-    "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/phone-stock.png",     cls="phone"),
-    "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone"),
-    "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone"),
-    "ai-review":            dict(eyebrow="AI 점검",    hero="../images/news-ai.svg",             cls="wide"),
-    "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone"),
-    "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide",
+    "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone", back="dashboard"),
+    "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone", back="analysis"),
+    "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/phone-stock.png",     cls="phone", back="analysis"),
+    "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
+    "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
+    "ai-review":            dict(eyebrow="AI 점검",    hero="../images/news-ai.svg",             cls="wide", back="rebalance"),
+    "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone", back="broker"),
+    "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide", back="about",
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
-    "getting-started":      dict(eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide",
+    "getting-started":      dict(eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide", back="download",
                                  lead="둘러보기 · 앱에 직접 입력 · Google Sheets 연동 — 세 가지 중에서 고릅니다."),
-    "privacy":              dict(eyebrow="개인정보",   hero="", cls="wide",
+    "privacy":              dict(eyebrow="개인정보",   hero="", cls="wide", back="about",
                                  lead="앱은 자산 데이터를 제공자 서버에 저장하지 않습니다."),
 }
 
@@ -42,6 +44,24 @@ FOOTER = """<footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
   <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>"""
+
+
+# 랜딩에서 들어왔다면 뒤로 가기로 돌려보낸다 — 브라우저가 보던 스크롤 위치를
+# 그대로 복원하므로 섹션 앵커보다 정확하다. 직접 들어온 경우(검색·북마크·다른
+# 문서에서 온 경우)에는 링크의 앵커가 그대로 쓰인다.
+BACK_SCRIPT = """<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\\/(index\\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>"""
 
 
 def more_docs(current):
@@ -184,7 +204,8 @@ def build(slug, meta):
 </head><body>
 {NAV}
 <header class="doc-hero"><div class="wrap">
-  <a class="back" href="../index.html">← 골고루 홈</a>
+  <a class="back" href="../index.html#{meta.get('back', 'top')}"
+     onclick="return golgoruBack(event)">← 골고루 홈</a>
   <div class="eyebrow">{meta['eyebrow']}</div>
   <h1>{inline(title)}</h1>
   {f'<p class="lead">{lead_html}</p>' if lead_html else ''}
@@ -195,6 +216,7 @@ def build(slug, meta):
 </div></main>
 {more_docs(slug)}
 {FOOTER}
+{BACK_SCRIPT}
 </body></html>
 """
     open(f"docs/{slug}.html", "w", encoding="utf-8").write(page)
