@@ -4,7 +4,7 @@
 
 계좌별·자산군별·개별 종목별로 자산을 정렬해 보는 화면입니다.
 
-![자산순위 구성](../images/asset-ranking.svg)
+![자산순위 — 종목별 평가액과 수익](../images/app/phone-ranking.png)
 
 ## 사용 순서
 
