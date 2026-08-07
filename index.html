@@ -74,6 +74,17 @@
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
   /* 아직 받을 수 없다는 것을 눌러보기 전에 알린다(링크가 아니다). */
   .btn-soon{background:var(--gold-soft);color:var(--hint);cursor:default}
+  .hero-note{margin-top:12px;font-size:14px;color:var(--hint)}
+  /* 플랫폼별 받는 곳. 받을 수 있는 것과 준비 중인 것을 같은 줄에 나란히 둔다. */
+  .dl-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px}
+  .dl{display:flex;flex-direction:column;gap:2px;align-items:center;padding:14px 26px;
+      border-radius:16px;border:1px solid var(--line);background:var(--card);min-width:170px}
+  .dl-on{border-color:var(--gold);background:var(--gold);color:#fff}
+  .dl-on:hover{background:#b6911f;border-color:#b6911f}
+  .dl-off{cursor:default}
+  .dl-plat{font-size:15px;font-weight:700}
+  .dl-state{font-size:13px;opacity:.85}
+  .dl-off .dl-plat,.dl-off .dl-state{color:var(--hint)}
   .hero-shot img{width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(58,58,58,.10))}
   @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-shot{order:-1}}
 
@@ -205,9 +216,10 @@
       <span class="chip">📰 뉴스·AI 점검</span>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#download">출시 소식 보기</a>
+      <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864">App Store에서 받기</a>
       <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
     </div>
+    <p class="hero-note">iPhone · iPad 지원 · 무료 · 맥과 안드로이드는 준비 중입니다</p>
   </div>
   <div class="hero-shot"><img src="images/dashboard.svg" alt="골고루 대시보드 화면"></div>
 </div></header>
@@ -400,25 +412,38 @@
   <h2>iPhone · iPad · Mac에서</h2>
   <p class="sub">로그인 없이 둘러보기부터 시작하세요. 마음에 들면 자산을 직접 입력하거나
     쓰던 Google Sheets를 연결하면 됩니다.</p>
-  <div class="hero-actions">
-    <!-- 공개되면 아래 span을 이 링크로 바꾼다:
-         a class="btn btn-primary" href="앱스토어 주소" — App Store에서 받기
-         그전까지는 링크를 두지 않는다. 죽은 링크는 앱이 없는 것처럼 보인다. -->
-    <span class="btn btn-soon">App Store 심사 준비 중</span>
-    <a class="btn btn-primary" href="docs/getting-started.html">시작하기 안내</a>
+  <!-- 준비 중인 플랫폼은 링크를 걸지 않는다. 죽은 링크는 앱이 없는 것처럼 보인다. -->
+  <div class="dl-row">
+    <a class="dl dl-on" href="https://apps.apple.com/kr/app/id6797157864">
+      <span class="dl-plat">iPhone · iPad</span>
+      <span class="dl-state">App Store에서 받기</span>
+    </a>
+    <span class="dl dl-off">
+      <span class="dl-plat">Mac</span>
+      <span class="dl-state">곧 나옵니다</span>
+    </span>
+    <span class="dl dl-off">
+      <span class="dl-plat">Android</span>
+      <span class="dl-state">준비 중입니다</span>
+    </span>
+  </div>
+  <div class="hero-actions" style="margin-top:18px">
+    <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
   </div>
 </div></section>
 
 <section id="status"><div class="wrap">
   <div class="label">현재 상태</div>
-  <h2>App Store 공개를 준비하고 있습니다</h2>
+  <h2>App Store에 공개되었습니다</h2>
   <div class="status"><ul>
+    <li class="ok">iPhone · iPad App Store 공개</li>
     <li class="ok">자산 현황·순위·배분 차이·뉴스·AI 점검</li>
     <li class="ok">자산 구성 분석(건강점수·배당·추정·개선 제안)</li>
     <li class="ok">세 가지 시작 방식(둘러보기·직접 입력·시트 연동)</li>
     <li class="ok">증권사 잔고 조회와 계좌 자동 채우기</li>
     <li class="ok">맥·아이패드 와이드 레이아웃</li>
-    <li class="soon">App Store 공개</li>
+    <li class="soon">Mac App Store 심사 중</li>
+    <li class="soon">Android 버전</li>
   </ul></div>
 </div></section>
 
