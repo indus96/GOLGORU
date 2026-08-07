@@ -23,7 +23,7 @@
     <a href="../index.html#mac">맥·아이패드</a>
     <a href="../index.html#download">다운로드</a>
   </div>
-  <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
+  <a class="cta" href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub ↗</a>
 </div></nav>
 <header class="doc-hero"><div class="wrap">
   <a class="back" href="../index.html#about"
@@ -44,7 +44,7 @@
 <h3>Google 계정 정보</h3>
 <p>Google Sheets 연동을 고른 경우에만 Google 로그인을 사용합니다.</p>
 <ul><li>요청 권한: <code>https://www.googleapis.com/auth/spreadsheets.readonly</code> — 사용자가 지정한 스프레드시트를 <strong>읽기만</strong> 합니다. 수정하거나 삭제하지 않습니다.</li><li>사용 목적: 사용자의 <code>App_Data_*</code> 시트에서 자산 현황을 읽어 앱 화면에 표시</li><li>액세스 토큰은 기기의 Keychain에만 저장되며 외부로 전송되지 않습니다.</li><li>앱은 사용자의 Google Drive 파일 목록을 조회하지 않습니다. 사용자가 스프레드시트 주소를 직접 입력하므로 파일 검색 권한이 필요하지 않습니다.</li></ul>
-<p>골고루가 Google API로부터 받은 정보의 사용과 다른 앱으로의 전송은 <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API 서비스 사용자 데이터 정책</a>을 준수하며, 여기에는 제한 사용(Limited Use) 요건이 포함됩니다.</p>
+<p>골고루가 Google API로부터 받은 정보의 사용과 다른 앱으로의 전송은 <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API 서비스 사용자 데이터 정책</a>을 준수하며, 여기에는 제한 사용(Limited Use) 요건이 포함됩니다.</p>
 <h3>증권사 API 키</h3>
 <p>사용자가 증권사 잔고 조회를 연결한 경우에만 해당합니다.</p>
 <p>API 키는 기기의 Keychain에 저장되며 앱 제공자의 서버로 전송되지 않습니다. 증권사 서버와의 통신은 기기에서 직접 이루어집니다.</p>
@@ -55,7 +55,7 @@
 <p><strong>금액 정보는 어떤 경우에도 기기 밖으로 나가지 않습니다.</strong> 위 표에서 보듯 앱이 외부로 보내는 것은 종목 심볼과 검색어뿐이고, 총자산·평가액·계좌 잔고 같은 금액은 포함되지 않습니다. 자산 금액·환산·배분 계산은 모두 기기 안에서 수행합니다.</p>
 <p><strong>외부 AI(LLM)를 사용하지 않습니다.</strong> 자산 진단·목표 제안·리밸런싱 계산은 전부 앱 안의 규칙 기반 로직으로 이뤄지며, 외부 AI 제공처로 자산 정보를 보내지 않습니다.</p>
 <h2>보관과 삭제</h2>
-<ul><li>기기 내부에 저장되는 데이터에는 파일 보호 속성이 적용되어, 기기가 잠긴 상태에서는 읽을 수 없습니다.</li><li>설정에서 로컬 캐시와 입력한 원장을 삭제할 수 있습니다.</li><li>앱을 삭제하면 기기에 저장된 모든 데이터가 함께 삭제됩니다.</li><li>Google Sheets 연동을 해제하면 저장된 토큰이 Keychain에서 제거됩니다. 시트 자체는 사용자 소유이므로 앱이 삭제하지 않습니다.</li><li><a href="https://myaccount.google.com/permissions">Google 계정 권한 페이지</a>에서 언제든 앱의 접근 권한을 철회할 수 있습니다.</li></ul>
+<ul><li>기기 내부에 저장되는 데이터에는 파일 보호 속성이 적용되어, 기기가 잠긴 상태에서는 읽을 수 없습니다.</li><li>설정에서 로컬 캐시와 입력한 원장을 삭제할 수 있습니다.</li><li>앱을 삭제하면 기기에 저장된 모든 데이터가 함께 삭제됩니다.</li><li>Google Sheets 연동을 해제하면 저장된 토큰이 Keychain에서 제거됩니다. 시트 자체는 사용자 소유이므로 앱이 삭제하지 않습니다.</li><li><a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google 계정 권한 페이지</a>에서 언제든 앱의 접근 권한을 철회할 수 있습니다.</li></ul>
 <h2>제3자 제공</h2>
 <p>앱 제공자는 사용자의 자산 정보나 Google 계정 정보를 제3자에게 판매하거나 제공하지 않습니다. 광고 식별자를 수집하지 않으며, 분석 SDK를 탑재하지 않습니다.</p>
 <h2>아동의 개인정보</h2>
@@ -73,7 +73,7 @@
 </div></section>
 <footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
-  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
 </div></footer>
 <script>
 function golgoruBack(event) {

@@ -37,7 +37,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="../index.html#mac">맥·아이패드</a>
     <a href="../index.html#download">다운로드</a>
   </div>
-  <a class="cta" href="https://github.com/indus96/GOLGORU">GitHub ↗</a>
+  <a class="cta" href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub ↗</a>
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
@@ -187,6 +187,19 @@ def convert(md, hero):
     return title, lead, "\n".join(out)
 
 
+def open_external_in_new_tab(html):
+    """바깥으로 나가는 링크만 새 창으로 연다.
+
+    문서 안을 오가는 링크는 같은 창이라야 뒤로가기가 자연스럽다. noopener 없이
+    _blank를 쓰면 열린 쪽에서 window.opener로 이 페이지를 조작할 수 있다.
+    """
+    return re.sub(
+        r'<a (?![^>]*target=)([^>]*href="https?://[^"]*")',
+        r'<a \1 target="_blank" rel="noopener"',
+        html,
+    )
+
+
 def build(slug, meta):
     md = open(f"docs/{slug}.md", encoding="utf-8").read()
     title, lead, body = convert(md, meta["hero"])
@@ -219,7 +232,7 @@ def build(slug, meta):
 {BACK_SCRIPT}
 </body></html>
 """
-    open(f"docs/{slug}.html", "w", encoding="utf-8").write(page)
+    open(f"docs/{slug}.html", "w", encoding="utf-8").write(open_external_in_new_tab(page))
     print(f"built docs/{slug}.html  (title={title})")
 
 
