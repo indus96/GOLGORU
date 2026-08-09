@@ -204,7 +204,7 @@ def convert(md, hero):
             out.append("<pre><code>" + html.escape("\n".join(buf)) + "</code></pre>")
             continue
         # heading
-        m = re.match(r"^(#{1,4})\s+(.*)$", s)
+        m = re.match(r"^(#{1,3})\s+(.*)$", s)
         if m:
             lvl, txt = len(m.group(1)), m.group(2)
             if lvl == 1 and title is None:
