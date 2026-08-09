@@ -37,7 +37,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
     <a href="../index.html#rebalance">자산배분</a>
-    <a href="../index.html#capture">캡처</a>
+    <a href="../index.html#capture">계좌 채우기</a>
     <a href="../index.html#mac">맥·아이패드</a>
     <a href="../index.html#download">다운로드</a>
     <a href="changelog.html">버전 기록</a>
