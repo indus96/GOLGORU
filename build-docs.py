@@ -43,7 +43,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="changelog.html">버전 기록</a>
   </div>
   </div>
-  <a class="cta" href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener">앱 받기</a>
+  <a class="cta" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">앱 받기</a>
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
@@ -55,6 +55,27 @@ FOOTER = """<footer><div class="wrap foot-in">
 # 랜딩에서 들어왔다면 뒤로 가기로 돌려보낸다 — 브라우저가 보던 스크롤 위치를
 # 그대로 복원하므로 섹션 앵커보다 정확하다. 직접 들어온 경우(검색·북마크·다른
 # 문서에서 온 경우)에는 링크의 앵커가 그대로 쓰인다.
+STORE_SCRIPT = """<script>
+// 스토어 링크를 기기에서는 스토어 **앱**으로 바로 연다.
+// https 주소도 애플 기기에서는 대개 앱으로 열리지만, 인앱 브라우저에서는 웹으로 빠진다.
+// 반대로 itms-apps://·market:// 를 처음부터 박으면 데스크톱에서 아무 반응이 없다.
+// 그래서 기기를 확인한 뒤에만 바꿔친다.
+(function () {
+  var ua = navigator.userAgent;
+  var rules = [
+    { os: 'apple', test: /iPhone|iPad|iPod|Macintosh/, from: /^https:\/\//, to: 'itms-apps://' },
+    { os: 'android', test: /Android/, from: /^https:\/\/play\.google\.com\/store\/apps\/details\?id=/, to: 'market://details?id=' }
+  ];
+  document.querySelectorAll('[data-store]').forEach(function (link) {
+    var rule = rules.filter(function (r) { return r.os === link.dataset.store; })[0];
+    if (!rule || !rule.test.test(ua)) return;
+    link.href = link.href.replace(rule.from, rule.to);
+    // 스킴 링크는 새 탭에서 열면 빈 탭이 남는다.
+    link.removeAttribute('target');
+  });
+})();
+</script>"""
+
 MENU_SCRIPT = """<script>
 // 모바일 헤더 메뉴. 좁은 화면에서는 링크를 접어 두고 버튼으로 편다.
 document.querySelectorAll('.menu').forEach(function (menu) {
@@ -256,6 +277,7 @@ def build(slug, meta):
 {FOOTER}
 {BACK_SCRIPT}
 {MENU_SCRIPT}
+{STORE_SCRIPT}
 </body></html>
 """
     open(f"docs/{slug}.html", "w", encoding="utf-8").write(open_external_in_new_tab(page))

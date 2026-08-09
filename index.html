@@ -217,7 +217,7 @@
   </div>
   </div>
   <!-- 이 자리는 방문자가 가장 하고 싶어 할 일이어야 한다. 저장소 링크는 푸터에 있다. -->
-  <a class="cta" href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener">앱 받기</a>
+  <a class="cta" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">앱 받기</a>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap hero-grid">
@@ -238,7 +238,7 @@
       <span class="chip">📰 뉴스·AI 점검</span>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener">App Store에서 받기</a>
+      <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">App Store에서 받기</a>
       <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
     </div>
     <p class="hero-note">iPhone · iPad 지원 · 무료 · 맥과 안드로이드는 준비 중입니다</p>
@@ -436,7 +436,7 @@
     쓰던 Google Sheets를 연결하면 됩니다.</p>
   <!-- 준비 중인 플랫폼은 링크를 걸지 않는다. 죽은 링크는 앱이 없는 것처럼 보인다. -->
   <div class="dl-row">
-    <a class="dl dl-on" href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener">
+    <a class="dl dl-on" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">
       <span class="dl-plat">iPhone · iPad</span>
       <span class="dl-state">App Store에서 받기</span>
     </a>
@@ -561,6 +561,26 @@ document.querySelectorAll('.menu').forEach(function (menu) {
     });
   });
 });
+</script>
+<script>
+// 스토어 링크를 기기에서는 스토어 **앱**으로 바로 연다.
+// https 주소도 애플 기기에서는 대개 앱으로 열리지만, 인앱 브라우저에서는 웹으로 빠진다.
+// 반대로 itms-apps://·market:// 를 처음부터 박으면 데스크톱에서 아무 반응이 없다.
+// 그래서 기기를 확인한 뒤에만 바꿔친다.
+(function () {
+  var ua = navigator.userAgent;
+  var rules = [
+    { os: 'apple', test: /iPhone|iPad|iPod|Macintosh/, from: /^https:\/\//, to: 'itms-apps://' },
+    { os: 'android', test: /Android/, from: /^https:\/\/play\.google\.com\/store\/apps\/details\?id=/, to: 'market://details?id=' }
+  ];
+  document.querySelectorAll('[data-store]').forEach(function (link) {
+    var rule = rules.filter(function (r) { return r.os === link.dataset.store; })[0];
+    if (!rule || !rule.test.test(ua)) return;
+    link.href = link.href.replace(rule.from, rule.to);
+    // 스킴 링크는 새 탭에서 열면 빈 탭이 남는다.
+    link.removeAttribute('target');
+  });
+})();
 </script>
 </body>
 </html>
