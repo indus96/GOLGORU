@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """docs/*.md → docs/*.html (랜딩과 같은 톤의 정적 문서 페이지).
 마크다운은 소스로 두고, 문서를 고치면 `python3 build-docs.py`로 재생성한다."""
-import re, html, glob, os
+import re, html, glob, os, datetime, pathlib
 
 # `back`은 랜딩에서 이 문서로 들어오는 섹션이다. 돌아갈 때 그 자리로 보낸다.
 # (JS가 되면 history.back()으로 정확한 스크롤 위치를 복원하고, 이건 그 대비책이다.)
+# 정본 도메인. 색인은 이 주소 하나만 본다 — http·www 로 들어온 것은 여기로 접힌다.
+SITE = "https://golgoru.app"
+
 DOCS = {
     "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone", back="dashboard"),
     "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone", back="analysis"),
@@ -280,6 +283,8 @@ def build(slug, meta):
     lead = lead or meta.get("lead", "")
     lead_html = inline(lead) if lead else ""
     lead_plain = re.sub(r"<[^>]+>", "", lead_html)
+    # 색인은 주소 하나만 봐야 한다 — 여기서 정본 주소를 못 박는다.
+    canonical = f"{SITE}/docs/{slug}.html"
     page = f"""<!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -287,6 +292,8 @@ def build(slug, meta):
 <meta property="og:site_name" content="골고루">
 <meta name="application-name" content="골고루">
 <meta name="description" content="{lead_plain}">
+<link rel="canonical" href="{canonical}">
+<meta property="og:url" content="{canonical}">
 <link rel="stylesheet" href="doc.css">
 </head><body>
 {NAV}
@@ -317,3 +324,24 @@ if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     for slug, meta in DOCS.items():
         build(slug, meta)
+
+
+def write_sitemap():
+    """색인 대상 주소를 한 곳에 모아 준다.
+
+    리디렉션·중복으로 떨어진 주소들이 계속 크롤링되는 것보다, 정본 목록을 주고
+    거기만 보게 하는 편이 빠르다. 문서 목록에서 만들므로 문서가 늘어도 빠지지 않는다.
+    """
+    today = datetime.date.today().isoformat()
+    urls = [f"{SITE}/"] + [f"{SITE}/docs/{name}.html" for name in sorted(DOCS)]
+    body = "\n".join(
+        f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>" for u in urls)
+    pathlib.Path("sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{body}\n</urlset>\n")
+    pathlib.Path("robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
+
+
+write_sitemap()
