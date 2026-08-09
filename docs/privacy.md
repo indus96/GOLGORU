@@ -17,7 +17,7 @@
 | --- | --- | --- |
 | 둘러보기 | 저장하지 않음 (예시 데이터) | 전체 |
 | 앱에 직접 입력 | 사용자 기기 내부 저장소 (Apple 기기는 본인 iCloud에도 동기화) | 전체 |
-| Google Sheets 연동 | 사용자 본인의 Google 스프레드시트 | iPhone · iPad · Mac |
+| Google Sheets 연동 (1.0까지) | 사용자 본인의 Google 스프레드시트 | iPhone · iPad · Mac |
 
 세 경우 모두 **앱 제공자의 서버에는 저장되지 않습니다.**
 
@@ -30,6 +30,9 @@ iCloud에 로그인하지 않은 기기에서는 동기화가 일어나지 않�
 Android 앱에는 이 동기화가 없습니다.
 
 ### Google 계정 정보
+
+**1.1.0부터 공개 앱에는 Google 로그인이 없습니다.** Google Sheets 연동을 뺐기 때문이며,
+아래 내용은 1.0 버전에 해당합니다.
 
 Google Sheets 연동을 고른 경우에만 Google 로그인을 사용합니다.
 **Android 앱에는 Google 로그인이 없습니다** — 둘러보기와 앱에 직접 입력만 제공하므로
