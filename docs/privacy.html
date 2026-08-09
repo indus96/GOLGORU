@@ -4,7 +4,7 @@
 <title>골고루 · 개인정보처리방침</title>
 <meta property="og:site_name" content="골고루">
 <meta name="application-name" content="골고루">
-<meta name="description" content="최종 수정일: 2026-08-08">
+<meta name="description" content="최종 수정일: 2026-08-09">
 <link rel="stylesheet" href="doc.css">
 </head><body>
 <nav><div class="wrap nav-in">
@@ -30,7 +30,7 @@
      onclick="return golgoruBack(event)">← 골고루 홈</a>
   <div class="eyebrow">개인정보</div>
   <h1>개인정보처리방침</h1>
-  <p class="lead">최종 수정일: 2026-08-08</p>
+  <p class="lead">최종 수정일: 2026-08-09</p>
   
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
@@ -54,7 +54,8 @@
 <p>앱은 시세·뉴스를 위해 자체 서버리스 함수(Cloudflare Workers)를 사용합니다. 전송되는 내용은 아래로 한정됩니다.</p>
 <div class="tablewrap"><table><thead><tr><th>기능</th><th>전송하는 것</th><th>전송하지 않는 것</th></tr></thead><tbody><tr><td>시세·차트</td><td>종목 심볼</td><td>보유 수량, 금액, 계좌</td></tr><tr><td>시장지표</td><td>지표 코드만</td><td>자산 정보 일체</td></tr><tr><td>뉴스·리포트</td><td>종목명, 검색 키워드</td><td>보유 수량, 금액, 계좌</td></tr></tbody></table></div>
 <p><strong>금액 정보는 어떤 경우에도 기기 밖으로 나가지 않습니다.</strong> 위 표에서 보듯 앱이 외부로 보내는 것은 종목 심볼과 검색어뿐이고, 총자산·평가액·계좌 잔고 같은 금액은 포함되지 않습니다. 자산 금액·환산·배분 계산은 모두 기기 안에서 수행합니다.</p>
-<p><strong>외부 AI(LLM)를 사용하지 않습니다.</strong> 자산 진단·목표 제안·리밸런싱 계산은 전부 앱 안의 규칙 기반 로직으로 이뤄지며, 외부 AI 제공처로 자산 정보를 보내지 않습니다.</p>
+<p><strong>자산 정보는 외부 AI(LLM)로 보내지 않습니다.</strong> 자산 진단·목표 제안·리밸런싱 계산은 전부 앱 안의 규칙 기반 로직으로 이뤄집니다.</p>
+<p>뉴스 번역 기능에 한해 <strong>기사 제목과 요약만</strong> 번역 모델(Cloudflare Workers AI)에 전달됩니다. 여기에는 사용자의 보유 종목·수량·금액·계좌가 포함되지 않으며, 번역 대상은 이미 공개된 기사 본문입니다.</p>
 <h2>보관과 삭제</h2>
 <ul><li>기기 내부에 저장되는 데이터는 앱 전용 영역에 있어 다른 앱이 읽을 수 없습니다. Apple 기기는 파일 보호 속성이 적용되어 기기가 잠긴 상태에서는 읽을 수 없고, Android는 앱 전용 저장소에 두고 기기 백업에서 제외합니다.</li><li>설정에서 로컬 캐시와 입력한 원장을 삭제할 수 있습니다.</li><li>앱을 삭제하면 기기에 저장된 모든 데이터가 함께 삭제됩니다.</li><li>Google Sheets 연동(Apple 기기 전용)을 해제하면 저장된 토큰이 Keychain에서 제거됩니다. 시트 자체는 사용자 소유이므로 앱이 삭제하지 않습니다.</li><li><a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google 계정 권한 페이지</a>에서 언제든 앱의 접근 권한을 철회할 수 있습니다.</li></ul>
 <h2>제3자 제공</h2>
