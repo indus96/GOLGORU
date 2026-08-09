@@ -38,6 +38,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="../index.html#broker">증권사</a>
     <a href="../index.html#mac">맥·아이패드</a>
     <a href="../index.html#download">다운로드</a>
+    <a href="changelog.html">버전 기록</a>
   </div>
   <a class="cta" href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub ↗</a>
 </div></nav>"""
