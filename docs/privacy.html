@@ -39,9 +39,10 @@
 <h3>자산 정보</h3>
 <p>계좌명, 보유 종목, 수량, 평균 단가, 현금 잔액, 자산배분 목표 비중.</p>
 <p>사용자가 고른 방식에 따라 아래 중 한 곳에 저장됩니다.</p>
-<div class="tablewrap"><table><thead><tr><th>시작 방식</th><th>저장 위치</th><th>지원 기기</th></tr></thead><tbody><tr><td>둘러보기</td><td>저장하지 않음 (예시 데이터)</td><td>전체</td></tr><tr><td>앱에 직접 입력</td><td>사용자 기기 내부 저장소</td><td>전체</td></tr><tr><td>Google Sheets 연동</td><td>사용자 본인의 Google 스프레드시트</td><td>iPhone · iPad · Mac</td></tr></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>시작 방식</th><th>저장 위치</th><th>지원 기기</th></tr></thead><tbody><tr><td>둘러보기</td><td>저장하지 않음 (예시 데이터)</td><td>전체</td></tr><tr><td>앱에 직접 입력</td><td>사용자 기기 내부 저장소 (Apple 기기는 본인 iCloud에도 동기화)</td><td>전체</td></tr><tr><td>Google Sheets 연동</td><td>사용자 본인의 Google 스프레드시트</td><td>iPhone · iPad · Mac</td></tr></tbody></table></div>
 <p>세 경우 모두 <strong>앱 제공자의 서버에는 저장되지 않습니다.</strong></p>
 <p>기기 내부 저장소는 플랫폼이 제공하는 앱 전용 영역입니다 — Apple 기기는 앱 샌드박스, Android는 앱 전용 저장소(다른 앱이 읽을 수 없고, 기기 백업에도 포함되지 않습니다).</p>
+<p>Apple 기기에서 "앱에 직접 입력"으로 넣은 원장은 아이폰·아이패드에서 함께 보기 위해 <strong>사용자 본인의 iCloud</strong>에도 동기화됩니다. 앱 제공자는 이 영역에 접근할 수 없고, iCloud에 로그인하지 않은 기기에서는 동기화가 일어나지 않습니다. Android 앱에는 이 동기화가 없습니다.</p>
 <h3>Google 계정 정보</h3>
 <p>Google Sheets 연동을 고른 경우에만 Google 로그인을 사용합니다. <strong>Android 앱에는 Google 로그인이 없습니다</strong> — 둘러보기와 앱에 직접 입력만 제공하므로 아래 내용은 Android에 해당하지 않습니다.</p>
 <ul><li>요청 권한: <code>https://www.googleapis.com/auth/spreadsheets.readonly</code> — 사용자가 지정한 스프레드시트를 <strong>읽기만</strong> 합니다. 수정하거나 삭제하지 않습니다.</li><li>사용 목적: 사용자의 <code>App_Data_*</code> 시트에서 자산 현황을 읽어 앱 화면에 표시</li><li>액세스 토큰은 기기의 Keychain에만 저장되며 외부로 전송되지 않습니다.</li><li>앱은 사용자의 Google Drive 파일 목록을 조회하지 않습니다. 사용자가 스프레드시트 주소를 직접 입력하므로 파일 검색 권한이 필요하지 않습니다.</li></ul>
@@ -53,9 +54,11 @@
 <h2>외부로 전송되는 정보</h2>
 <p>앱은 시세·뉴스를 위해 자체 서버리스 함수(Cloudflare Workers)를 사용합니다. 전송되는 내용은 아래로 한정됩니다.</p>
 <div class="tablewrap"><table><thead><tr><th>기능</th><th>전송하는 것</th><th>전송하지 않는 것</th></tr></thead><tbody><tr><td>시세·차트</td><td>종목 심볼</td><td>보유 수량, 금액, 계좌</td></tr><tr><td>시장지표</td><td>지표 코드만</td><td>자산 정보 일체</td></tr><tr><td>뉴스·리포트</td><td>종목명, 검색 키워드</td><td>보유 수량, 금액, 계좌</td></tr></tbody></table></div>
-<p><strong>금액 정보는 어떤 경우에도 기기 밖으로 나가지 않습니다.</strong> 위 표에서 보듯 앱이 외부로 보내는 것은 종목 심볼과 검색어뿐이고, 총자산·평가액·계좌 잔고 같은 금액은 포함되지 않습니다. 자산 금액·환산·배분 계산은 모두 기기 안에서 수행합니다.</p>
+<p><strong>금액 정보는 앱 제공자의 서버로 전송되지 않습니다.</strong> 위 표에서 보듯 앱이 외부로 보내는 것은 종목 심볼과 검색어뿐이고, 총자산·평가액·계좌 잔고 같은 금액은 포함되지 않습니다. 자산 금액·환산·배분 계산은 모두 기기 안에서 수행합니다.</p>
+<p><strong>예외는 사용자 본인의 iCloud 하나입니다.</strong> "앱에 직접 입력"으로 넣은 원장은 같은 Apple 계정의 기기끼리 함께 보기 위해 iCloud의 비공개 저장 영역에 동기화됩니다. 이 저장 영역은 사용자의 Apple 계정에 속하며 <strong>앱 제공자는 접근할 수 없습니다.</strong> 기기에서 iCloud에 로그인하지 않았다면 동기화는 일어나지 않습니다.</p>
 <p><strong>자산 정보는 외부 AI(LLM)로 보내지 않습니다.</strong> 자산 진단·목표 제안·리밸런싱 계산은 전부 앱 안의 규칙 기반 로직으로 이뤄집니다.</p>
 <p>뉴스 번역 기능에 한해 <strong>기사 제목과 요약만</strong> 번역 모델(Cloudflare Workers AI)에 전달됩니다. 여기에는 사용자의 보유 종목·수량·금액·계좌가 포함되지 않으며, 번역 대상은 이미 공개된 기사 본문입니다.</p>
+<p><strong>화면 캡처로 종목을 가져올 때도 이미지는 전송되지 않습니다.</strong> 붙여넣은 캡처에서 글자를 읽는 일은 기기 안의 운영체제 기능(Apple Vision)으로 이뤄집니다. 이미지는 읽는 즉시 사라지며 저장하지 않습니다.</p>
 <h2>보관과 삭제</h2>
 <ul><li>기기 내부에 저장되는 데이터는 앱 전용 영역에 있어 다른 앱이 읽을 수 없습니다. Apple 기기는 파일 보호 속성이 적용되어 기기가 잠긴 상태에서는 읽을 수 없고, Android는 앱 전용 저장소에 두고 기기 백업에서 제외합니다.</li><li>설정에서 로컬 캐시와 입력한 원장을 삭제할 수 있습니다.</li><li>앱을 삭제하면 기기에 저장된 모든 데이터가 함께 삭제됩니다.</li><li>Google Sheets 연동(Apple 기기 전용)을 해제하면 저장된 토큰이 Keychain에서 제거됩니다. 시트 자체는 사용자 소유이므로 앱이 삭제하지 않습니다.</li><li><a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google 계정 권한 페이지</a>에서 언제든 앱의 접근 권한을 철회할 수 있습니다.</li></ul>
 <h2>제3자 제공</h2>
