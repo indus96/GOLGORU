@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 620" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif">
+  <rect width="320" height="620" fill="#FAF7F2"/>
+
+  <text x="20" y="42" font-size="11" fill="#948A72">‹ 원장 편집</text>
+  <text x="20" y="76" font-size="21" font-weight="800" fill="#3A3A3A">캡처로 가져오기</text>
+
+  <!-- 안내 -->
+  <text x="22" y="106" font-size="11" font-weight="700" fill="#948A72">연금저축에 가져오기</text>
+  <rect x="16" y="116" width="288" height="62" rx="14" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="30" y="138" font-size="10" fill="#6B6350">증권사 앱의 보유 종목 화면을 캡처해 붙여넣으세요.</text>
+  <text x="30" y="154" font-size="10" fill="#948A72">읽기는 기기 안에서만 이뤄지며 이미지는 어디로도</text>
+  <text x="30" y="168" font-size="10" fill="#948A72">전송되지 않습니다.</text>
+
+  <text x="22" y="204" font-size="11" font-weight="700" fill="#948A72">읽은 종목 4개</text>
+
+  <!-- 읽어 온 행 — 종목명 / 수량 / 평단 -->
+  <rect x="16" y="214" width="288" height="86" rx="14" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="30" y="236" font-size="12" font-weight="700" fill="#3A3A3A">TIGER 미국S&amp;P500</text>
+  <text x="290" y="236" text-anchor="end" font-size="9" fill="#948A72">이미 있는 종목 — 덮어씁니다</text>
+  <g font-size="9" fill="#948A72">
+    <text x="30" y="256">종목명</text><text x="150" y="256">수량</text><text x="228" y="256">평단</text>
+  </g>
+  <rect x="28" y="262" width="112" height="26" rx="7" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="36" y="279" font-size="11" fill="#3A3A3A">TIGER 미국S&amp;P500</text>
+  <rect x="146" y="262" width="72" height="26" rx="7" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="212" y="279" text-anchor="end" font-size="11" fill="#3A3A3A">142</text>
+  <rect x="224" y="262" width="68" height="26" rx="7" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="286" y="279" text-anchor="end" font-size="11" fill="#3A3A3A">18,240</text>
+
+  <!-- 확인 필요 행 -->
+  <rect x="16" y="312" width="288" height="86" rx="14" fill="#FFFFFF" stroke="#E3C9A0"/>
+  <text x="30" y="334" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 200TR</text>
+  <rect x="238" y="322" width="54" height="17" rx="8.5" fill="#FDF6E3"/>
+  <text x="265" y="334" text-anchor="middle" font-size="9" font-weight="700" fill="#B4881F">확인 필요</text>
+  <g font-size="9" fill="#948A72">
+    <text x="30" y="354">종목명</text><text x="150" y="354">수량</text><text x="228" y="354">평단</text>
+  </g>
+  <rect x="28" y="360" width="112" height="26" rx="7" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="36" y="377" font-size="11" fill="#3A3A3A">KODEX 200TR</text>
+  <rect x="146" y="360" width="72" height="26" rx="7" fill="#FAF7F2" stroke="#E3C9A0"/>
+  <text x="212" y="377" text-anchor="end" font-size="11" fill="#B4881F">—</text>
+  <rect x="224" y="360" width="68" height="26" rx="7" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="286" y="377" text-anchor="end" font-size="11" fill="#3A3A3A">14,870</text>
+
+  <!-- 나머지 두 줄 요약 -->
+  <rect x="16" y="410" width="288" height="72" rx="14" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="30" y="434" font-size="12" font-weight="700" fill="#3A3A3A">TIGER 미국나스닥100</text>
+  <text x="290" y="434" text-anchor="end" font-size="10" fill="#948A72">38주 · 21,905원</text>
+  <line x1="30" y1="446" x2="290" y2="446" stroke="#EEE7D8"/>
+  <text x="30" y="468" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 미국S&amp;P500</text>
+  <text x="290" y="468" text-anchor="end" font-size="10" fill="#948A72">173주 · 14,260원</text>
+
+  <text x="26" y="510" font-size="10" fill="#948A72">화면에 보이는 종목만 가져옵니다 — 스크롤해서</text>
+  <text x="26" y="526" font-size="10" fill="#948A72">안 보인 종목은 지워지지 않습니다.</text>
+
+  <rect x="16" y="548" width="288" height="42" rx="21" fill="#C9A227"/>
+  <text x="160" y="574" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">저장</text>
+  <text x="160" y="608" text-anchor="middle" font-size="9.5" fill="#948A72">값이 맞는지 확인하고 저장하세요.</text>
+</svg>

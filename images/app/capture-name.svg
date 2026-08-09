@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 620" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif">
+  <rect width="320" height="620" fill="#FAF7F2"/>
+
+  <text x="20" y="42" font-size="11" fill="#948A72">‹ 원장 편집</text>
+  <text x="20" y="76" font-size="21" font-weight="800" fill="#3A3A3A">종목 이름 맞추기</text>
+
+  <rect x="16" y="96" width="288" height="46" rx="14" fill="#FDF6E3"/>
+  <text x="30" y="120" font-size="10.5" fill="#8A6D14">캡처는 화면 폭에서 이름을 자릅니다.</text>
+  <text x="30" y="135" font-size="10.5" fill="#8A6D14">읽은 뒤 검색으로 전체 이름을 찾아 맞춥니다.</text>
+
+  <!-- 자동으로 맞춰진 행 -->
+  <rect x="16" y="158" width="288" height="76" rx="14" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="30" y="182" font-size="9.5" fill="#948A72">읽은 이름</text>
+  <text x="290" y="182" text-anchor="end" font-size="9.5" fill="#948A72">TIME코리아밸류업액</text>
+  <text x="30" y="204" font-size="12.5" font-weight="700" fill="#3A3A3A">TIME코리아밸류업액티브</text>
+  <text x="30" y="222" font-size="9.5" fill="#948A72">검색으로 맞춘 이름입니다. 다르면 눌러서 다시 찾으세요.</text>
+
+  <!-- 후보가 여럿인 행 -->
+  <rect x="16" y="248" width="288" height="228" rx="14" fill="#FFFFFF" stroke="#E3C9A0"/>
+  <text x="30" y="272" font-size="9.5" fill="#948A72">읽은 이름</text>
+  <text x="290" y="272" text-anchor="end" font-size="9.5" fill="#948A72">KODEX미국S&amp;P500</text>
+  <text x="30" y="294" font-size="11" font-weight="700" fill="#B4881F">여러 종목이 걸립니다. 맞는 것을 골라 주세요.</text>
+
+  <rect x="28" y="306" width="264" height="46" rx="10" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="42" y="326" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 미국S&amp;P500</text>
+  <text x="42" y="343" font-size="9.5" fill="#948A72">379800 · KRX</text>
+  <text x="278" y="334" text-anchor="end" font-size="12" fill="#C9B98A">›</text>
+
+  <rect x="28" y="360" width="264" height="46" rx="10" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="42" y="380" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 미국S&amp;P500TR</text>
+  <text x="42" y="397" font-size="9.5" fill="#948A72">449180 · KRX</text>
+  <text x="278" y="388" text-anchor="end" font-size="12" fill="#C9B98A">›</text>
+
+  <rect x="28" y="414" width="264" height="46" rx="10" fill="#FAF7F2" stroke="#E9E1D2"/>
+  <text x="42" y="434" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 미국S&amp;P500(H)</text>
+  <text x="42" y="451" font-size="9.5" fill="#948A72">453850 · KRX</text>
+  <text x="278" y="442" text-anchor="end" font-size="12" fill="#C9B98A">›</text>
+
+  <!-- 못 찾은 행 -->
+  <rect x="16" y="490" width="288" height="66" rx="14" fill="#FFFFFF" stroke="#EEE7D8"/>
+  <text x="30" y="514" font-size="12.5" font-weight="700" fill="#3A3A3A">사내 우리사주</text>
+  <text x="30" y="532" font-size="9.5" fill="#948A72">후보를 찾지 못했습니다. 이름을 직접 고쳐 주세요.</text>
+  <rect x="30" y="538" width="66" height="12" rx="6" fill="#FDF6E3"/>
+  <text x="63" y="548" text-anchor="middle" font-size="8.5" font-weight="700" fill="#B4881F">이름 찾기</text>
+
+  <text x="26" y="588" font-size="10" fill="#948A72">이름이 맞아야 시세가 붙고, 다음 캡처에서</text>
+  <text x="26" y="604" font-size="10" fill="#948A72">같은 종목으로 알아봅니다.</text>
+</svg>
