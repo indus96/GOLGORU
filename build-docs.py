@@ -43,7 +43,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="changelog.html">버전 기록</a>
   </div>
   </div>
-  <a class="cta" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">앱 받기</a>
+  <a class="cta" href="../index.html#download" data-cta="1">다운로드</a>
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
@@ -55,6 +55,34 @@ FOOTER = """<footer><div class="wrap foot-in">
 # 랜딩에서 들어왔다면 뒤로 가기로 돌려보낸다 — 브라우저가 보던 스크롤 위치를
 # 그대로 복원하므로 섹션 앵커보다 정확하다. 직접 들어온 경우(검색·북마크·다른
 # 문서에서 온 경우)에는 링크의 앵커가 그대로 쓰인다.
+CTA_SCRIPT = """<script>
+// 헤더 버튼은 접속한 기기에 맞춰 바뀐다.
+//
+// 기본 상태는 "다운로드 → #download" 다. 스크립트가 없거나 기기를 못 가려도
+// 모든 플랫폼이 보이는 자리로 가므로 항상 맞는 답이 된다.
+// 받을 수 있는 기기에서만 스토어 링크로 올린다 — 아직 안 나온 플랫폼(맥·안드로이드)에서
+// 스토어로 보내면 "찾을 수 없음"을 만나게 된다.
+(function () {
+  var ua = navigator.userAgent;
+  // 아이패드는 데스크톱 모드에서 UA 가 Macintosh 로 나온다. 터치 지점 수로 가른다 —
+  // 이걸 빼면 아이패드 사용자가 맥으로 잡혀 스토어 대신 다운로드 자리로 간다.
+  var touch = navigator.maxTouchPoints > 1;
+  var isIOS = /iPhone|iPod|iPad/.test(ua) || (/Macintosh/.test(ua) && touch);
+
+  var APPLE = 'https://apps.apple.com/kr/app/id6797157864';
+  // 맥 심사가 끝나면 아래에 { test: /Macintosh/ && !touch, url: APPLE } 를 더한다.
+  var target = isIOS ? APPLE : null;
+  if (!target) return;
+
+  document.querySelectorAll('[data-cta]').forEach(function (cta) {
+    cta.href = target;
+    cta.textContent = '앱 받기';
+    cta.setAttribute('data-store', 'apple');
+    cta.setAttribute('rel', 'noopener');
+  });
+})();
+</script>"""
+
 STORE_SCRIPT = """<script>
 // 스토어 링크를 기기에서는 스토어 **앱**으로 바로 연다.
 // https 주소도 애플 기기에서는 대개 앱으로 열리지만, 인앱 브라우저에서는 웹으로 빠진다.
@@ -277,6 +305,7 @@ def build(slug, meta):
 {FOOTER}
 {BACK_SCRIPT}
 {MENU_SCRIPT}
+{CTA_SCRIPT}
 {STORE_SCRIPT}
 </body></html>
 """
