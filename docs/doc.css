@@ -24,7 +24,25 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
 .cta{background:var(--gold);color:#fff!important;padding:9px 16px;border-radius:999px;
   font-size:14px;font-weight:600;margin-left:20px;white-space:nowrap}
 .cta:hover{background:#b6911f}
-@media(max-width:760px){.nav-links{display:none}.cta{margin-left:auto}}
+/* 모바일 메뉴. <details>로도 만들어 봤지만 닫힌 <details>는 브라우저가 내용을
+   네이티브로 감춰서, 데스크톱에서 summary만 CSS로 숨기면 링크가 통째로 사라진다.
+   그래서 버튼 + 클래스 토글로 간다. */
+.menu{margin-left:auto;position:relative}
+.menu-btn{display:none;cursor:pointer;font:inherit;font-size:14px;font-weight:600;
+  color:var(--sub);background:none;padding:8px 12px;
+  border:1px solid var(--line);border-radius:999px}
+.menu-btn:hover{color:var(--gold)}
+.menu .nav-links{margin-left:0}
+@media(max-width:760px){
+  .menu-btn{display:block}
+  .menu .nav-links{display:none}
+  .menu.open .nav-links{display:flex;position:absolute;right:0;top:calc(100% + 10px);
+    flex-direction:column;gap:14px;min-width:170px;padding:16px 18px;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.10);z-index:30}
+  .cta{margin-left:12px}
+}
+}
 
 /* doc hero */
 .doc-hero{padding:44px 0 8px;background:

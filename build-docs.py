@@ -29,6 +29,8 @@ NAV = """<nav><div class="wrap nav-in">
   <a class="brand" href="../index.html">골고루</a>
   <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
        다른 사이트처럼 보였다. -->
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
   <div class="nav-links">
     <a href="../index.html#about">앱 소개</a>
     <a href="../index.html#principles">원칙</a>
@@ -40,7 +42,8 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="../index.html#download">다운로드</a>
     <a href="changelog.html">버전 기록</a>
   </div>
-  <a class="cta" href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+  <a class="cta" href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener">앱 받기</a>
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
@@ -52,6 +55,25 @@ FOOTER = """<footer><div class="wrap foot-in">
 # 랜딩에서 들어왔다면 뒤로 가기로 돌려보낸다 — 브라우저가 보던 스크롤 위치를
 # 그대로 복원하므로 섹션 앵커보다 정확하다. 직접 들어온 경우(검색·북마크·다른
 # 문서에서 온 경우)에는 링크의 앵커가 그대로 쓰인다.
+MENU_SCRIPT = """<script>
+// 모바일 헤더 메뉴. 좁은 화면에서는 링크를 접어 두고 버튼으로 편다.
+document.querySelectorAll('.menu').forEach(function (menu) {
+  var button = menu.querySelector('.menu-btn');
+  if (!button) return;
+  button.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // 링크를 고르면 닫는다 — 같은 페이지 앵커로 이동할 때 메뉴가 덮고 있으면 안 된다.
+  menu.querySelectorAll('.nav-links a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      menu.classList.remove('open');
+      button.setAttribute('aria-expanded', 'false');
+    });
+  });
+});
+</script>"""
+
 BACK_SCRIPT = """<script>
 function golgoruBack(event) {
   try {
@@ -233,6 +255,7 @@ def build(slug, meta):
 {more_docs(slug)}
 {FOOTER}
 {BACK_SCRIPT}
+{MENU_SCRIPT}
 </body></html>
 """
     open(f"docs/{slug}.html", "w", encoding="utf-8").write(open_external_in_new_tab(page))
