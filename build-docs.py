@@ -12,7 +12,7 @@ DOCS = {
     "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
     "ai-review":            dict(eyebrow="AI 점검",    hero="../images/app/phone-ai.png",        cls="phone", back="rebalance"),
-    "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone", back="broker"),
+    "broker-connection":    dict(eyebrow="증권사 연결", hero="../images/app/phone-broker.png",    cls="phone", back="about"),
     "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide", back="about",
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
     "getting-started":      dict(eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide", back="download",
@@ -37,7 +37,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="../index.html#dashboard">대시보드</a>
     <a href="../index.html#analysis">자산 분석</a>
     <a href="../index.html#rebalance">자산배분</a>
-    <a href="../index.html#broker">증권사</a>
+    <a href="../index.html#capture">캡처</a>
     <a href="../index.html#mac">맥·아이패드</a>
     <a href="../index.html#download">다운로드</a>
     <a href="changelog.html">버전 기록</a>

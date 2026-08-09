@@ -210,7 +210,7 @@
     <a href="#dashboard">대시보드</a>
     <a href="#analysis">자산 분석</a>
     <a href="#rebalance">자산배분</a>
-    <a href="#broker">증권사</a>
+    <a href="#capture">캡처</a>
     <a href="#mac">맥·아이패드</a>
     <a href="#download">다운로드</a>
     <a href="docs/changelog.html">버전 기록</a>
@@ -388,16 +388,27 @@
     </div>
   </div>
 
-  <div class="feat rev" id="broker">
-    <div class="shot phone"><img src="images/app/phone-broker.png" alt="증권사 연결 — 한투·토스·업비트·바이낸스"></div>
+  <div class="feat rev" id="capture">
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="images/app/capture-menu.png" alt="원장 편집 — 캡처로 종목 가져오기">
+          <img src="images/app/capture-review.png" alt="읽어 온 종목 확인 — 수량·평단을 고칠 수 있다">
+          <img src="images/app/capture-name.png" alt="종목 이름 고르기 — 잘린 이름을 검색으로 맞춘다">
+          <img src="images/app/capture-done.png" alt="계좌에 반영된 보유 종목">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
     <div class="txt">
-      <h3>증권사 연결 · 보안</h3>
+      <h3>캡처로 계좌 채우기</h3>
       <ul>
-        <li>한투·업비트·바이낸스 키 저장(Keychain, 생체인증) + 연결 확인</li>
-        <li>증권사 잔고를 읽어 계좌를 자동으로 채움 · 혼재 계좌 코인 보호</li>
-        <li>앱 잠금 · 로컬 캐시 파일 보호 · 토큰·계좌번호 로그 마스킹</li>
+        <li>증권사 앱 잔고 화면을 캡처해 붙여넣으면 종목·수량·평단을 읽어 옵니다</li>
+        <li>화면 폭에 잘린 이름은 검색으로 맞추고, 여럿이면 골라서 확정합니다</li>
+        <li>바로 저장하지 않습니다 — 읽은 값을 확인하고 고친 뒤에 원장에 들어갑니다</li>
+        <li>이미 있는 종목은 덮어쓰고, 캡처에 안 담긴 종목은 건드리지 않습니다</li>
       </ul>
-      <a class="more" href="docs/broker-connection.html">증권사 연결 문서 →</a>
+      <a class="more" href="docs/getting-started.html">시작하기 문서 →</a>
     </div>
   </div>
 </div></section>
