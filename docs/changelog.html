@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>골고루 · 버전 기록</title>
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
+<meta name="description" content="골고루에 무엇이 언제 들어갔는지 적어 둡니다. 앱 화면에서 설정 &gt; 도움말 &gt; 버전 기록으로도 볼 수 있습니다.">
+<link rel="stylesheet" href="doc.css">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../index.html">골고루</a>
+  <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
+       다른 사이트처럼 보였다. -->
+  <div class="nav-links">
+    <a href="../index.html#about">앱 소개</a>
+    <a href="../index.html#principles">원칙</a>
+    <a href="../index.html#dashboard">대시보드</a>
+    <a href="../index.html#analysis">자산 분석</a>
+    <a href="../index.html#rebalance">자산배분</a>
+    <a href="../index.html#broker">증권사</a>
+    <a href="../index.html#mac">맥·아이패드</a>
+    <a href="../index.html#download">다운로드</a>
+  </div>
+  <a class="cta" href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub ↗</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../index.html#download"
+     onclick="return golgoruBack(event)">← 골고루 홈</a>
+  <div class="eyebrow">버전 기록</div>
+  <h1>버전 기록</h1>
+  <p class="lead">골고루에 무엇이 언제 들어갔는지 적어 둡니다. 앱 화면에서 <strong>설정 &gt; 도움말 &gt; 버전 기록</strong>으로도 볼 수 있습니다.</p>
+  
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<p>지금 쓰는 버전은 <strong>설정</strong> 화면 맨 아래에서 확인할 수 있습니다.</p>
+<p>---</p>
+<h2>1.1.0 — 심사 중</h2>
+<p>App Store 심사를 기다리는 중입니다. 승인되면 iPhone · iPad · Mac에 함께 나갑니다. 아래 기능은 <strong>1.1.0부터</strong> 쓸 수 있습니다.</p>
+<h3>증권사 화면을 캡처해서 종목 가져오기</h3>
+<p>종목을 하나씩 치는 대신, 증권사 앱 화면을 캡처해 붙여넣으면 종목명 · 수량 · 매입단가를 읽어 채워 줍니다. 증권사 API 키가 없어도 되고, 어느 증권사든 쓸 수 있습니다.</p>
+<p>읽은 값은 목록으로 보여 주고 그 자리에서 고칠 수 있습니다. <strong>확인하고 저장을 눌러야 반영됩니다.</strong> 화면에 보이는 종목만 가져오므로, 스크롤해서 안 보인 종목은 지워지지 않습니다. 이미 있는 종목은 새로 만들지 않고 덮어씁니다.</p>
+<p>글자 인식은 <strong>기기 안에서만</strong> 이뤄집니다. 캡처 이미지는 어디로도 전송되지 않고 저장되지도 않습니다.</p>
+<p>자세한 사용법은 <a href="getting-started.html">시작하기</a>에 있습니다.</p>
+<h3>아이폰 · 아이패드 · 맥이 같은 원장을 봅니다</h3>
+<p>"앱에 직접 입력"으로 넣은 계좌와 종목이 기기 사이에 동기화됩니다. 같은 Apple 계정으로 iCloud에 로그인해 두면 따로 켤 것이 없습니다.</p>
+<p>원장 전체를 맞추는 방식이라 <strong>마지막에 고친 내용이 기준</strong>이 됩니다. 저장 위치와 범위는 <a href="privacy.html">개인정보처리방침</a>에 적어 두었습니다.</p>
+<h3>처음 시작할 때 안내</h3>
+<p>"앱에 직접 입력"을 고른 직후처럼 아직 아무것도 입력하지 않았을 때, 빈 화면 대신 무엇을 하면 되는지 알려 줍니다.</p>
+<h3>해외 자산에 현지 통화 표시</h3>
+<p>해외 종목은 원화 환산액과 함께 달러 금액도 같이 보여 줍니다. 증권사 앱 화면과 바로 대조할 수 있습니다.</p>
+<p>---</p>
+<h2>1.0.0 — 2026년 8월</h2>
+<p>App Store 첫 공개. iPhone · iPad.</p>
+<h3>세 가지 시작 방식</h3>
+<p>로그인 없이 예시 자산으로 둘러보거나, 앱에 직접 입력하거나, 본인 Google 스프레드시트를 원장으로 쓸 수 있습니다.</p>
+<h3>자산 현황과 구성 분석</h3>
+<p>총자산 · 현금 비중 · 수익률을 한 화면에 모으고, 투자 건강점수 · 집중도 · 배당 · 자산 추정까지 보여 줍니다.</p>
+<h3>자산배분과 리밸런싱 계획</h3>
+<p>목표 비중과 지금 비중의 차이를 계산하고, 무엇을 얼마나 사고팔아야 목표에 맞는지 계획을 만들어 줍니다. <strong>주문은 넣지 않습니다</strong> — 계획을 보고 증권사 앱에서 직접 체결합니다.</p>
+<h3>뉴스 · 리포트 · 증권사 잔고 조회</h3>
+<p>보유 종목 관련 뉴스와 증권사 리포트를 모아 보고, 증권사 API 키를 연결하면 잔고를 읽어 계좌를 채울 수 있습니다.</p>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>다른 문서</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">대시보드</a><a class="doc-card" href="portfolio-analysis.html">자산 분석</a><a class="doc-card" href="asset-ranking.html">자산순위</a><a class="doc-card" href="allocation-rebalancing.html">자산배분</a><a class="doc-card" href="news-reports.html">뉴스·리포트</a><a class="doc-card" href="ai-review.html">AI 점검</a><a class="doc-card" href="broker-connection.html">증권사 연결</a><a class="doc-card" href="data-security.html">데이터·보안</a><a class="doc-card" href="getting-started.html">시작하기</a><a class="doc-card" href="privacy.html">개인정보</a><span class="doc-card current">버전 기록</span></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 골고루 · 내 자산을 골고루.</div>
+  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+</body></html>

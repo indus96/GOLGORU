@@ -33,6 +33,7 @@
 | [증권사 연결](docs/broker-connection.md) | 한투·업비트 잔고 조회 · 연결 확인 · 계좌 자동 채우기 |
 | [데이터와 보안](docs/data-security.md) | 저장 위치 · Keychain · 앱 잠금 · 캐시 보호 |
 | [개인정보처리방침](docs/privacy.md) | 다루는 정보 · 전송 범위 · 보관과 삭제 |
+| [버전 기록](docs/changelog.md) | 어떤 기능이 어느 버전에 들어갔는지 |
 
 ## 지원 환경
 

@@ -19,6 +19,8 @@ DOCS = {
                                  lead="둘러보기 · 앱에 직접 입력 · Google Sheets 연동 — 세 가지 중에서 고릅니다."),
     "privacy":              dict(eyebrow="개인정보",   hero="", cls="wide", back="about",
                                  lead="앱은 자산 데이터를 제공자 서버에 저장하지 않습니다."),
+    "changelog":            dict(eyebrow="버전 기록",  hero="", cls="wide", back="download",
+                                 lead="어떤 기능이 어느 버전에 들어갔는지 적어 둡니다."),
 }
 
 NAV = """<nav><div class="wrap nav-in">
