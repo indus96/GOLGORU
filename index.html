@@ -241,7 +241,7 @@
       <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">App Store에서 받기</a>
       <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
     </div>
-    <p class="hero-note">iPhone · iPad 지원 · 무료 · 맥과 안드로이드는 준비 중입니다</p>
+    <p class="hero-note">iPhone · iPad · Mac 지원 · 무료 · 안드로이드는 준비 중입니다</p>
   </div>
   <div class="hero-shot"><img src="images/dashboard.svg" alt="골고루 대시보드 화면"></div>
 </div></header>
@@ -461,10 +461,10 @@
       <span class="dl-plat">iPhone · iPad</span>
       <span class="dl-state">App Store에서 받기</span>
     </a>
-    <span class="dl dl-off">
+    <a class="dl dl-on" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">
       <span class="dl-plat">Mac</span>
-      <span class="dl-state">곧 나옵니다</span>
-    </span>
+      <span class="dl-state">Mac App Store에서 받기</span>
+    </a>
     <span class="dl dl-off">
       <span class="dl-plat">Android</span>
       <span class="dl-state">준비 중입니다</span>
@@ -486,8 +486,8 @@
     <li class="ok">세 가지 시작 방식(둘러보기·직접 입력·시트 연동)</li>
     <li class="ok">증권사 잔고 조회와 계좌 자동 채우기</li>
     <li class="ok">맥·아이패드 와이드 레이아웃</li>
-    <li class="soon">Mac App Store 심사 중</li>
-    <li class="soon">1.1.0 심사 중 — 캡처로 종목 가져오기 · 아이폰↔아이패드↔맥 동기화</li>
+    <li class="ok">Mac App Store 공개</li>
+    <li class="soon">1.1.0 준비 중 — 캡처로 종목 가져오기 · 아이폰↔아이패드↔맥 동기화</li>
     <li class="soon">Android 버전</li>
   </ul></div>
   <!-- 새 버전이 심사 중일 때 "그게 뭔데"로 이어지는 길. 이게 없으면 위 한 줄이
@@ -598,8 +598,9 @@ document.querySelectorAll('.menu').forEach(function (menu) {
   var isIOS = /iPhone|iPod|iPad/.test(ua) || (/Macintosh/.test(ua) && touch);
 
   var APPLE = 'https://apps.apple.com/kr/app/id6797157864';
-  // 맥 심사가 끝나면 아래에 { test: /Macintosh/ && !touch, url: APPLE } 를 더한다.
-  var target = isIOS ? APPLE : null;
+  // 맥도 같은 앱 레코드다(Catalyst) — 주소가 같아서 스토어 앱이 알아서 맥 버전을 연다.
+  var isMac = /Macintosh/.test(ua) && !touch;
+  var target = (isIOS || isMac) ? APPLE : null;
   if (!target) return;
 
   document.querySelectorAll('[data-cta]').forEach(function (cta) {
