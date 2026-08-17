@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>골고루 · 공유받은 구성안</title>
+<!-- 내용이 링크의 # 뒤(URL 조각)에만 있어 코드마다 다른 페이지를 색인할 수 없고,
+     코드가 없는 상태의 이 주소 하나만 보면 안내문 몇 줄뿐이라 검색 결과로 줄 게
+     없다. sitemap.xml 은 build-docs.py 가 DOCS 목록에서만 만들므로 여기에 넣지
+     않는다 — 넣어도 재생성 때 지워진다. -->
+<meta name="robots" content="noindex">
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
+<meta name="description" content="링크로 받은 골고루 구성안을 앱 설치 없이 바로 확인합니다.">
+<meta property="og:title" content="골고루 · 공유받은 구성안">
+<meta property="og:description" content="링크로 받은 골고루 구성안을 앱 설치 없이 바로 확인합니다.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://golgoru.app/p/">
+<meta property="og:url" content="https://golgoru.app/p/">
+<link rel="stylesheet" href="../docs/doc.css">
+<style>
+  /* doc.css 에 없는 것만 여기서 더한다. */
+  .btn{display:inline-block;padding:11px 20px;border-radius:999px;font-weight:600;
+    font-size:14px;cursor:pointer;border:1px solid transparent;font-family:inherit}
+  .btn-primary{background:var(--gold);color:#fff!important}
+  .btn-primary:hover{background:#b6911f}
+  .code-form{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
+  .code-form input{flex:1;min-width:220px;padding:11px 14px;border:1px solid var(--line);
+    border-radius:10px;font-size:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    color:var(--ink);background:var(--card)}
+  .code-form input:focus{outline:2px solid var(--gold);outline-offset:1px}
+  .result-name{font-size:20px;font-weight:800;color:var(--ink);word-break:break-word;
+    white-space:pre-line}
+  .result-meta{margin-top:4px;color:var(--sub);font-size:14px}
+  .weight-total td{font-weight:700;color:var(--ink);border-top:2px solid var(--line)}
+  .open-note{margin-top:10px;font-size:13px;color:var(--hint)}
+  #app{margin-top:8px}
+</style>
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../">골고루</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
+  <div class="nav-links">
+    <a href="../#about">앱 소개</a>
+    <a href="../#principles">원칙</a>
+    <a href="../#dashboard">대시보드</a>
+    <a href="../#analysis">자산 분석</a>
+    <a href="../#rebalance">자산배분</a>
+    <a href="../#capture">계좌 채우기</a>
+    <a href="../#mac">맥·아이패드</a>
+    <a href="../#download">다운로드</a>
+    <a href="../docs/changelog.html">버전 기록</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">다운로드</a>
+</div></nav>
+
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../" onclick="return golgoruBack(event)">← 골고루 홈</a>
+  <div class="eyebrow">구성안 공유</div>
+  <h1>공유받은 구성안</h1>
+  <p class="lead">앱이 없어도 이 화면에서 바로 볼 수 있습니다. 링크의 <code>#</code> 뒤
+    코드는 이 브라우저 안에서만 읽고, 어디로도 보내지 않습니다.</p>
+</div></header>
+
+<main class="doc-body"><div class="wrap narrow">
+
+<div id="app"></div>
+
+<h2>코드만 있다면</h2>
+<p>메신저가 링크를 자르거나 코드만 따로 받았다면 여기에 붙여넣으세요. 링크
+  전체를 붙여넣어도 됩니다.</p>
+<div class="code-form">
+  <input id="codeInput" type="text" placeholder="v1.US.이름.QQQ:50,SCHD:30,TLT:20"
+    autocomplete="off" spellcheck="false" autocapitalize="off">
+  <button class="btn btn-primary" id="codeSubmit" type="button">확인</button>
+</div>
+
+<blockquote>이 화면은 종목·비중·계좌 이름만 보여줍니다. 투자금은 코드에
+  담기지 않아 여기서도 알 수 없습니다.</blockquote>
+
+</div></main>
+
+<footer><div class="wrap foot-in">
+  <div>© 2026 골고루 · 내 자산을 골고루.</div>
+  <div><a href="../">홈</a> · <a href="../docs/getting-started.html">시작하기</a> · <a href="../docs/privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+</div></footer>
+
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../site.js" defer></script>
+
+<script>
+(function () {
+  "use strict";
+
+  // ── 파서: Swift PortfolioDraftCodec.decode 와 규칙이 같아야 한다. ──
+  // 기준: contracts/fixtures/expected/portfolio-share-code.json (골든 픽스처).
+  // 이 함수는 어떤 네트워크 호출도 하지 않는다 — code 값은 화면을 그리는 데만
+  // 쓰이고, fetch·이미지·분석 스크립트 어디로도 나가지 않는다.
+
+  var MARKET_LABEL = { kr: '한국', us: '미국', all: '한국+미국' };
+  var MAX_CODE_LENGTH = 2000;
+  var MAX_NAME_LENGTH = 40;
+  var MAX_LINES = 20;
+  var WEIGHT_TOLERANCE = 0.5;
+  var NUMBER_RE = /^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/;
+
+  function decodeShareCode(code) {
+    if (code === '') return { ok: false, error: 'empty' };
+    if (code.length > MAX_CODE_LENGTH) return { ok: false, error: 'tooLong' };
+
+    // "v1.<시장>.<이름>.<종목줄>" — 처음 세 개의 "." 만 구분자다(이름은 이미
+    // 퍼센트 인코딩돼 있어 그 안에 원본 "."이 없다). 넷째 조각(종목줄)의 "."은
+    // 비중 소수점이므로 나머지 전부를 그대로 남긴다.
+    var dot1 = code.indexOf('.');
+    var dot2 = dot1 === -1 ? -1 : code.indexOf('.', dot1 + 1);
+    var dot3 = dot2 === -1 ? -1 : code.indexOf('.', dot2 + 1);
+    if (dot1 === -1 || dot2 === -1 || dot3 === -1) return { ok: false, error: 'malformed' };
+
+    var versionField = code.slice(0, dot1);
+    var marketField = code.slice(dot1 + 1, dot2);
+    var nameField = code.slice(dot2 + 1, dot3);
+    var linesField = code.slice(dot3 + 1);
+
+    if (versionField !== 'v1') return { ok: false, error: 'unsupportedVersion', detail: versionField };
+
+    var market = marketField.toLowerCase();
+    if (!MARKET_LABEL.hasOwnProperty(market)) return { ok: false, error: 'malformed' };
+
+    var name;
+    try {
+      name = decodeURIComponent(nameField);
+    } catch (e) {
+      return { ok: false, error: 'malformed' };
+    }
+    if (Array.from(name).length > MAX_NAME_LENGTH) return { ok: false, error: 'tooLong' };
+
+    var lines = [];
+    var rawLines = linesField.split(',');
+    for (var i = 0; i < rawLines.length; i++) {
+      var lineField = rawLines[i];
+      // 심볼 자체에 ":" 가 들어간다("NASDAQ:QQQ") — 마지막 ":" 를 경계로 삼는다.
+      var idx = lineField.lastIndexOf(':');
+      if (idx === -1) return { ok: false, error: 'malformed' };
+      var symbol = lineField.slice(0, idx);
+      var weightField = lineField.slice(idx + 1);
+      if (symbol === '' || !NUMBER_RE.test(weightField)) return { ok: false, error: 'malformed' };
+      lines.push({ symbol: symbol, weight: parseFloat(weightField) });
+    }
+
+    if (lines.length > MAX_LINES) return { ok: false, error: 'tooManyLines' };
+
+    var sum = 0;
+    for (var j = 0; j < lines.length; j++) sum += lines[j].weight;
+    if (Math.abs(sum - 100) > WEIGHT_TOLERANCE) return { ok: false, error: 'unbalancedWeights', detail: sum };
+
+    return { ok: true, name: name, market: market, lines: lines, sum: sum };
+  }
+
+  // 앱의 AppSharedDraftPreviewModel.errorText 와 문구를 맞춘다 — 같은 코드가
+  // 앱에서도 웹에서도 같은 이유로 거부된다는 것을 사용자가 알 수 있어야 한다.
+  function errorText(result) {
+    switch (result.error) {
+      case 'empty': return '코드가 비어 있습니다.';
+      case 'unsupportedVersion': return '지원하지 않는 코드 버전입니다(' + result.detail + ').';
+      case 'malformed': return '코드 형식이 올바르지 않습니다.';
+      case 'tooManyLines': return '종목 수가 너무 많습니다(최대 ' + MAX_LINES + '개).';
+      case 'unbalancedWeights': return '비중 합이 100%가 아닙니다(현재 ' + percentText(result.detail) + ').';
+      case 'tooLong': return '코드가 너무 깁니다.';
+      default: return '코드를 읽을 수 없습니다.';
+    }
+  }
+
+  // 앱의 AppPortfolioDraftDetailModel.percentText 와 같은 반올림.
+  function percentText(value) {
+    var rounded = Math.round(value * 100) / 100;
+    return rounded + '%';
+  }
+
+  // 개행·제어문자만 지운다. 마크다운·링크 문법은 그대로 두되, textContent 로만
+  // 그려서 해석되지 않게 한다(앱 AppSharedDraftPreviewModel.sanitizedName 과 같은 방침).
+  function sanitizedName(raw) {
+    return raw.replace(/[\x00-\x1F\x7F]/g, '').slice(0, MAX_NAME_LENGTH);
+  }
+
+  function el(tag, className) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    return node;
+  }
+
+  // ── 렌더링. 이름·심볼은 전부 textContent 로만 넣는다 — 남이 쓴 글자이므로
+  // innerHTML 을 쓰면 <img src=x onerror=...> 같은 것이 실행될 수 있다. ──
+
+  function renderEmpty(container) {
+    var box = el('blockquote');
+    box.textContent = '아직 코드가 없습니다. 받은 링크로 다시 들어오거나, 아래에 코드를 붙여넣어 보세요.';
+    container.appendChild(box);
+  }
+
+  function renderError(container, result) {
+    var box = el('blockquote');
+    box.textContent = errorText(result);
+    container.appendChild(box);
+  }
+
+  function renderSuccess(container, result, rawCode) {
+    var name = el('div', 'result-name');
+    name.textContent = sanitizedName(result.name);
+    container.appendChild(name);
+
+    var meta = el('div', 'result-meta');
+    meta.textContent = (MARKET_LABEL[result.market] || result.market) + ' · 종목 ' + result.lines.length + '개';
+    container.appendChild(meta);
+
+    var wrap = el('div', 'tablewrap');
+    var table = el('table');
+    var thead = el('thead');
+    var headRow = el('tr');
+    ['종목', '비중'].forEach(function (label) {
+      var th = el('th');
+      th.textContent = label;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    var tbody = el('tbody');
+    result.lines.forEach(function (line) {
+      var row = el('tr');
+      var symbolCell = el('td');
+      symbolCell.textContent = line.symbol;
+      var weightCell = el('td');
+      weightCell.textContent = percentText(line.weight);
+      row.appendChild(symbolCell);
+      row.appendChild(weightCell);
+      tbody.appendChild(row);
+    });
+
+    var totalRow = el('tr', 'weight-total');
+    var totalLabel = el('td');
+    totalLabel.textContent = '합계';
+    var totalValue = el('td');
+    totalValue.textContent = percentText(result.sum);
+    totalRow.appendChild(totalLabel);
+    totalRow.appendChild(totalValue);
+    tbody.appendChild(totalRow);
+
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    container.appendChild(wrap);
+
+    // Universal Link 배선은 아직 없다(프로비저닝 프로파일 재발급이 걸려 있어
+    // 1.3.0 아카이브 직전에 처리한다). 지금 누르면 이 페이지가 다시 뜨는 것으로
+    // 조용히 끝난다 — 안내문으로 기대치를 맞춘다. 배선이 끝나면 같은 버튼이
+    // 그대로 앱을 연다.
+    var openLink = el('a', 'btn btn-primary');
+    openLink.href = window.location.href;
+    openLink.textContent = '앱에서 열기';
+    container.appendChild(openLink);
+
+    var note = el('div', 'open-note');
+    note.textContent = '골고루 앱이 설치되어 있으면 눌렀을 때 앱에서 열립니다. 반응이 없으면 이 화면이 그대로 보입니다 — 앱을 내려받은 뒤 코드만 복사해 붙여넣어도 됩니다.';
+    container.appendChild(note);
+  }
+
+  function render(code) {
+    var app = document.getElementById('app');
+    app.innerHTML = '';
+    if (code === '') {
+      renderEmpty(app);
+      return;
+    }
+    var result = decodeShareCode(code);
+    if (result.ok) {
+      renderSuccess(app, result, code);
+    } else {
+      renderError(app, result);
+    }
+  }
+
+  // location.hash 는 "#" 만 있거나 아예 없거나 둘 다 "" 를 준다 — 이 페이지에는
+  // 뜻 차이가 없어 구분하지 않는다.
+  function showFromHash() {
+    render(window.location.hash.replace(/^#/, ''));
+  }
+
+  function extractCode(raw) {
+    raw = raw.trim();
+    var hashIdx = raw.indexOf('#');
+    return hashIdx === -1 ? raw : raw.slice(hashIdx + 1);
+  }
+
+  window.addEventListener('hashchange', showFromHash);
+  document.addEventListener('DOMContentLoaded', function () {
+    showFromHash();
+    document.getElementById('codeSubmit').addEventListener('click', function () {
+      var code = extractCode(document.getElementById('codeInput').value);
+      if (window.location.hash.replace(/^#/, '') === code) {
+        render(code);
+      } else {
+        window.location.hash = code;
+      }
+    });
+    document.getElementById('codeInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') document.getElementById('codeSubmit').click();
+    });
+  });
+})();
+</script>
+</body>
+</html>
