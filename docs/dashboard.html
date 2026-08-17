@@ -4,7 +4,10 @@
 <title>골고루 · 대시보드</title>
 <meta property="og:site_name" content="골고루">
 <meta name="application-name" content="골고루">
-<meta name="description" content="&gt; 지원 방식: 둘러보기 · 앱에 직접 입력 · Google Sheets 연동">
+<meta name="description" content="앱을 열면 가장 먼저 보이는 화면입니다. 전체 자산 상태를 30초 안에 파악하는 것이 목표입니다.">
+<meta property="og:title" content="골고루 · 대시보드">
+<meta property="og:description" content="앱을 열면 가장 먼저 보이는 화면입니다. 전체 자산 상태를 30초 안에 파악하는 것이 목표입니다.">
+<meta property="og:type" content="article">
 <link rel="canonical" href="https://golgoru.app/docs/dashboard.html">
 <meta property="og:url" content="https://golgoru.app/docs/dashboard.html">
 <link rel="stylesheet" href="doc.css">
@@ -12,35 +15,35 @@
 <nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
-  <a class="brand" href="../index.html">골고루</a>
+  <a class="brand" href="../">골고루</a>
   <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
        다른 사이트처럼 보였다. -->
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
   <div class="nav-links">
-    <a href="../index.html#about">앱 소개</a>
-    <a href="../index.html#principles">원칙</a>
-    <a href="../index.html#dashboard">대시보드</a>
-    <a href="../index.html#analysis">자산 분석</a>
-    <a href="../index.html#rebalance">자산배분</a>
-    <a href="../index.html#capture">계좌 채우기</a>
-    <a href="../index.html#mac">맥·아이패드</a>
-    <a href="../index.html#download">다운로드</a>
+    <a href="../#about">앱 소개</a>
+    <a href="../#principles">원칙</a>
+    <a href="../#dashboard">대시보드</a>
+    <a href="../#analysis">자산 분석</a>
+    <a href="../#rebalance">자산배분</a>
+    <a href="../#capture">계좌 채우기</a>
+    <a href="../#mac">맥·아이패드</a>
+    <a href="../#download">다운로드</a>
     <a href="changelog.html">버전 기록</a>
   </div>
   </div>
-  <a class="cta" href="../index.html#download" data-cta="1">다운로드</a>
+  <a class="cta" href="../#download" data-cta="1">다운로드</a>
 </div></nav>
 <header class="doc-hero"><div class="wrap">
-  <a class="back" href="../index.html#dashboard"
+  <a class="back" href="../#dashboard"
      onclick="return golgoruBack(event)">← 골고루 홈</a>
   <div class="eyebrow">대시보드</div>
   <h1>대시보드</h1>
-  <p class="lead">&gt; <strong>지원 방식:</strong> 둘러보기 · 앱에 직접 입력 · Google Sheets 연동</p>
+  <p class="lead">앱을 열면 가장 먼저 보이는 화면입니다. 전체 자산 상태를 30초 안에 파악하는 것이 목표입니다.</p>
   <div class="hero-img phone"><img src="../images/app/phone-dashboard.png" alt="대시보드 화면"></div>
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
-<p>앱을 열면 가장 먼저 보이는 화면입니다. 전체 자산 상태를 30초 안에 파악하는 것이 목표입니다.</p>
+<blockquote><strong>지원 방식:</strong> 둘러보기 · 앱에 직접 입력 · Google Sheets 연동</blockquote>
 <figure><img src="../images/dashboard.svg" alt="대시보드 구성"></figure>
 <h2>화면 구성</h2>
 <ol><li><strong>총 자산 · 현금 비중</strong> — 전체 자산과 현금성 자산 비율. 시트 연동이든 앱 직접 입력이든 같은 화면으로 보여줍니다.</li><li><strong>카테고리 구성</strong> — 주식/ETF · 펀드 · 코인 · 현금 · 부동산 · 저축 · 채권별 비중 바. 탭하면 <a href="portfolio-analysis.html">자산 구성 분석</a>(건강점수·인사이트·배당·추정)으로 들어갑니다.</li><li><strong>시장지표</strong> — 환율·금리·유가·주가지수 11종: USD/KRW, 미국 국채 2년·10년, 한국 국채 5년·10년, WTI·브렌트유, 코스피·코스닥·S&amp;P500·나스닥100. 주가지수·환율에는 최근 추이 스파크라인이 함께 표시됩니다. 일부 지표가 실패해도 성공한 지표만 갱신되고 실패분은 마지막 정상값을 유지합니다.</li><li><strong>자산배분 차이 상위 항목</strong> — 목표 비중과 가장 벌어진 항목. 탭하면 자산배분 화면으로 이동.</li><li><strong>계좌별 자산 순위 상위 3개</strong> · <strong>오늘의 뉴스 요약</strong> — 각 섹션 헤더 탭으로 해당 탭 이동.</li></ol>
@@ -53,7 +56,7 @@
 </div></section>
 <footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
-  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div><a href="../">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
 </div></footer>
 <script>
 function golgoruBack(event) {

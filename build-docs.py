@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """docs/*.md → docs/*.html (랜딩과 같은 톤의 정적 문서 페이지).
 마크다운은 소스로 두고, 문서를 고치면 `python3 build-docs.py`로 재생성한다."""
-import re, html, glob, os, datetime, pathlib
+import re, html, glob, os, datetime, pathlib, unicodedata
 
 # `back`은 랜딩에서 이 문서로 들어오는 섹션이다. 돌아갈 때 그 자리로 보낸다.
 # (JS가 되면 history.back()으로 정확한 스크롤 위치를 복원하고, 이건 그 대비책이다.)
@@ -26,32 +26,34 @@ DOCS = {
                                  lead="어떤 기능이 어느 버전에 들어갔는지 적어 둡니다."),
 }
 
+# 홈은 `../`로만 건다. `../index.html`은 같은 내용을 다른 주소로 200을 주는
+# 중복 주소여서, 색인이 "표준 태그가 있는 대체 페이지"로 잡고 크롤링을 낭비한다.
 NAV = """<nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
-  <a class="brand" href="../index.html">골고루</a>
+  <a class="brand" href="../">골고루</a>
   <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
        다른 사이트처럼 보였다. -->
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
   <div class="nav-links">
-    <a href="../index.html#about">앱 소개</a>
-    <a href="../index.html#principles">원칙</a>
-    <a href="../index.html#dashboard">대시보드</a>
-    <a href="../index.html#analysis">자산 분석</a>
-    <a href="../index.html#rebalance">자산배분</a>
-    <a href="../index.html#capture">계좌 채우기</a>
-    <a href="../index.html#mac">맥·아이패드</a>
-    <a href="../index.html#download">다운로드</a>
+    <a href="../#about">앱 소개</a>
+    <a href="../#principles">원칙</a>
+    <a href="../#dashboard">대시보드</a>
+    <a href="../#analysis">자산 분석</a>
+    <a href="../#rebalance">자산배분</a>
+    <a href="../#capture">계좌 채우기</a>
+    <a href="../#mac">맥·아이패드</a>
+    <a href="../#download">다운로드</a>
     <a href="changelog.html">버전 기록</a>
   </div>
   </div>
-  <a class="cta" href="../index.html#download" data-cta="1">다운로드</a>
+  <a class="cta" href="../#download" data-cta="1">다운로드</a>
 </div></nav>"""
 
 FOOTER = """<footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
-  <div><a href="../index.html">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+  <div><a href="../">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
 </div></footer>"""
 
 
@@ -117,7 +119,7 @@ def render_table(rows):
     return f'<div class="tablewrap"><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
-SPECIAL = re.compile(r"^(#{1,3}\s|\||\d+\.\s|-\s|```)")
+SPECIAL = re.compile(r"^(#{1,3}\s|\||\d+\.\s|-\s|```|>)")
 
 
 def convert(md, hero):
@@ -150,6 +152,14 @@ def convert(md, hero):
                 if lvl == 2: seen_h2 = True
                 out.append(f"<h{lvl}>{inline(txt)}</h{lvl}>")
             i += 1; continue
+        # blockquote — "지원 방식" 같은 머리 주석이다. 문단으로 처리하면 이게
+        # 리드·meta description을 차지해서, 여러 문서가 같은 설명을 갖게 된다.
+        if s.startswith(">"):
+            buf = []
+            while i < n and lines[i].strip().startswith(">"):
+                buf.append(lines[i].strip().lstrip(">").strip()); i += 1
+            out.append(f"<blockquote>{inline(' '.join(buf))}</blockquote>")
+            continue
         # standalone image
         im = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)\s*$", s)
         if im:
@@ -214,7 +224,12 @@ def build(slug, meta):
     title, lead, body = convert(md, meta["hero"])
     lead = lead or meta.get("lead", "")
     lead_html = inline(lead) if lead else ""
-    lead_plain = re.sub(r"<[^>]+>", "", lead_html)
+    # meta description은 태그도 엔티티도 없는 평문이어야 한다. 검색결과에서
+    # 잘리지 않게 155자로 자르고, 자를 때는 단어(어절) 경계에서 끊는다.
+    lead_plain = html.unescape(re.sub(r"<[^>]+>", "", lead_html))
+    lead_plain = unicodedata.normalize("NFC", " ".join(lead_plain.split()))
+    if len(lead_plain) > 155:
+        lead_plain = lead_plain[:155].rsplit(" ", 1)[0] + "…"
     # 색인은 주소 하나만 봐야 한다 — 여기서 정본 주소를 못 박는다.
     canonical = f"{SITE}/docs/{slug}.html"
     page = f"""<!doctype html>
@@ -223,14 +238,17 @@ def build(slug, meta):
 <title>골고루 · {title}</title>
 <meta property="og:site_name" content="골고루">
 <meta name="application-name" content="골고루">
-<meta name="description" content="{lead_plain}">
+<meta name="description" content="{html.escape(lead_plain, quote=True)}">
+<meta property="og:title" content="골고루 · {title}">
+<meta property="og:description" content="{html.escape(lead_plain, quote=True)}">
+<meta property="og:type" content="article">
 <link rel="canonical" href="{canonical}">
 <meta property="og:url" content="{canonical}">
 <link rel="stylesheet" href="doc.css">
 </head><body>
 {NAV}
 <header class="doc-hero"><div class="wrap">
-  <a class="back" href="../index.html#{meta.get('back', 'top')}"
+  <a class="back" href="../#{meta.get('back', 'top')}"
      onclick="return golgoruBack(event)">← 골고루 홈</a>
   <div class="eyebrow">{meta['eyebrow']}</div>
   <h1>{inline(title)}</h1>
