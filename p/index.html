@@ -117,6 +117,9 @@ function golgoruBack(event) {
   var MAX_LINES = 20;
   var WEIGHT_TOLERANCE = 0.5;
   var NUMBER_RE = /^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/;
+  // Swift PortfolioDraftCodec.symbolPattern 과 같다 — 국내 6자리 코드·거래소
+  // 접두사(NASDAQ:QQQ)·클래스 표기(BRK.B)·코인 티커가 다 통과한다.
+  var SYMBOL_RE = /^[A-Za-z0-9._:-]{1,20}$/;
 
   function decodeShareCode(code) {
     if (code === '') return { ok: false, error: 'empty' };
@@ -146,9 +149,10 @@ function golgoruBack(event) {
     } catch (e) {
       return { ok: false, error: 'malformed' };
     }
-    if (Array.from(name).length > MAX_NAME_LENGTH) return { ok: false, error: 'tooLong' };
+    if (Array.from(name).length > MAX_NAME_LENGTH) return { ok: false, error: 'nameTooLong' };
 
     var lines = [];
+    var seenSymbols = {};
     var rawLines = linesField.split(',');
     for (var i = 0; i < rawLines.length; i++) {
       var lineField = rawLines[i];
@@ -157,8 +161,14 @@ function golgoruBack(event) {
       if (idx === -1) return { ok: false, error: 'malformed' };
       var symbol = lineField.slice(0, idx);
       var weightField = lineField.slice(idx + 1);
-      if (symbol === '' || !NUMBER_RE.test(weightField)) return { ok: false, error: 'malformed' };
-      lines.push({ symbol: symbol, weight: parseFloat(weightField) });
+      if (!SYMBOL_RE.test(symbol) || !NUMBER_RE.test(weightField)) return { ok: false, error: 'malformed' };
+      // "1e30"·"inf"·"-50" 같은 값이 그대로 통과하면 표에 큰 수가 그대로
+      // 찍힌다 — Swift 쪽 가드(> 0, <= 100, 유한값)와 같은 규칙을 쓴다.
+      var weight = parseFloat(weightField);
+      if (!isFinite(weight) || weight <= 0 || weight > 100) return { ok: false, error: 'malformed' };
+      if (seenSymbols[symbol]) return { ok: false, error: 'duplicateSymbol' };
+      seenSymbols[symbol] = true;
+      lines.push({ symbol: symbol, weight: weight });
     }
 
     if (lines.length > MAX_LINES) return { ok: false, error: 'tooManyLines' };
@@ -175,13 +185,23 @@ function golgoruBack(event) {
   function errorText(result) {
     switch (result.error) {
       case 'empty': return '코드가 비어 있습니다.';
-      case 'unsupportedVersion': return '지원하지 않는 코드 버전입니다(' + result.detail + ').';
+      case 'unsupportedVersion':
+        return '지원하지 않는 코드 버전입니다(' + redactedPreview(result.detail) + ').';
       case 'malformed': return '코드 형식이 올바르지 않습니다.';
       case 'tooManyLines': return '종목 수가 너무 많습니다(최대 ' + MAX_LINES + '개).';
       case 'unbalancedWeights': return '비중 합이 100%가 아닙니다(현재 ' + percentText(result.detail) + ').';
       case 'tooLong': return '코드가 너무 깁니다.';
+      case 'nameTooLong': return '이름이 너무 깁니다(최대 ' + MAX_NAME_LENGTH + '자).';
+      case 'duplicateSymbol': return '같은 종목이 두 번 들어 있습니다.';
       default: return '코드를 읽을 수 없습니다.';
     }
+  }
+
+  // 남이 보낸 문자열을 문구에 그대로 되뇌지 않는다 — 코드 전체 길이(최대
+  // 2000자) 안에서 자유로운 값이라 방향 뒤집기 문자(U+202E) 등이 섞일 수
+  // 있다. 앞 8자만 보여준다(앱 AppSharedDraftPreviewModel.redactedPreview 와 같다).
+  function redactedPreview(raw) {
+    return String(raw).slice(0, 8);
   }
 
   // 앱의 AppPortfolioDraftDetailModel.percentText 와 같은 반올림.
@@ -192,8 +212,16 @@ function golgoruBack(event) {
 
   // 개행·제어문자만 지운다. 마크다운·링크 문법은 그대로 두되, textContent 로만
   // 그려서 해석되지 않게 한다(앱 AppSharedDraftPreviewModel.sanitizedName 과 같은 방침).
+  //
+  // 제어문자 범위(\x00-\x1F\x7F)만으로는 부족하다 — Swift 의 CharacterSet
+  // .controlCharacters 는 Cc+Cf 카테고리라 U+202E(오른쪽에서 왼쪽 뒤집기) 같은
+  // 방향 제어 문자도 같이 지운다. 여기서 안 지우면 textContent 로 그려도
+  // 브라우저의 양방향 텍스트 알고리즘이 뒤 글자의 표시 순서를 뒤집을 수 있다
+  // (마크다운 해석과는 다른 경로의 위장이다).
   function sanitizedName(raw) {
-    return raw.replace(/[\x00-\x1F\x7F]/g, '').slice(0, MAX_NAME_LENGTH);
+    return raw
+      .replace(/[\x00-\x1F\x7F\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g, '')
+      .slice(0, MAX_NAME_LENGTH);
   }
 
   function el(tag, className) {
@@ -217,7 +245,7 @@ function golgoruBack(event) {
     container.appendChild(box);
   }
 
-  function renderSuccess(container, result, rawCode) {
+  function renderSuccess(container, result) {
     var name = el('div', 'result-name');
     name.textContent = sanitizedName(result.name);
     container.appendChild(name);
@@ -275,6 +303,13 @@ function golgoruBack(event) {
     var note = el('div', 'open-note');
     note.textContent = '골고루 앱이 설치되어 있으면 눌렀을 때 앱에서 열립니다. 반응이 없으면 이 화면이 그대로 보입니다 — 앱을 내려받은 뒤 코드만 복사해 붙여넣어도 됩니다.';
     container.appendChild(note);
+
+    // 남의 구체적 종목·비중을 앱도 안 깐 사람에게 보여주는 공개 URL 이다 —
+    // 앱의 같은 성격 화면(구성안 목록)이 이 문구를 접지 않고 고정으로 달듯,
+    // 여기도 단다.
+    var disclaimer = el('div', 'open-note');
+    disclaimer.textContent = '참고용이며 투자자문이 아닙니다.';
+    container.appendChild(disclaimer);
   }
 
   function render(code) {
@@ -286,7 +321,7 @@ function golgoruBack(event) {
     }
     var result = decodeShareCode(code);
     if (result.ok) {
-      renderSuccess(app, result, code);
+      renderSuccess(app, result);
     } else {
       renderError(app, result);
     }
