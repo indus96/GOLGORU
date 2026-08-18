@@ -111,6 +111,30 @@ function golgoruBack(event) {
   // 이 함수는 어떤 네트워크 호출도 하지 않는다 — code 값은 화면을 그리는 데만
   // 쓰이고, fetch·이미지·분석 스크립트 어디로도 나가지 않는다.
 
+  // ── 국내 ETF 심볼→이름 표. ──
+  // 공유 코드에는 종목 이름이 없다(코드 길이를 줄이려는 설계, v1.<시장>.<이름>.
+  // <심볼>:<비중> 형식). 이름을 보이게 하려고 심볼을 서버에 물어보면 위 헤더의
+  // "코드는 브라우저 밖으로 안 보낸다"는 약속이 깨진다 — 그래서 표를 이 페이지와
+  // 함께 정적으로 실어 브라우저 안에서만 심볼을 이름으로 바꾼다. 이 fetch 는
+  // 페이지 자신의 정적 파일을 받아 오는 것이지 심볼을 어디로도 보내지 않는다.
+  //
+  // scripts/generate-kr-etf-names.mjs 가 만든다(README 참고) — 손으로 고치지
+  // 않는다. 표에 없는 심볼(미국 ETF, 신규 상장 등)은 이름 없이 심볼 그대로
+  // 보여준다 — 줄 자체가 사라지면 안 된다.
+  var krEtfNames = null; // 아직 못 받았으면 null. 못 받아도 심볼은 그대로 보인다.
+
+  function loadKrEtfNames() {
+    return fetch('./kr-etf-names.json')
+      .then(function (res) { return res.ok ? res.json() : {}; })
+      .then(function (json) { krEtfNames = json; })
+      .catch(function () { krEtfNames = {}; });
+  }
+
+  function symbolDisplayText(symbol) {
+    var name = krEtfNames && krEtfNames[symbol];
+    return name ? name + ' (' + symbol + ')' : symbol;
+  }
+
   var MARKET_LABEL = { kr: '한국', us: '미국', all: '한국+미국' };
   var MAX_CODE_LENGTH = 2000;
   var MAX_NAME_LENGTH = 40;
@@ -270,7 +294,7 @@ function golgoruBack(event) {
     result.lines.forEach(function (line) {
       var row = el('tr');
       var symbolCell = el('td');
-      symbolCell.textContent = line.symbol;
+      symbolCell.textContent = symbolDisplayText(line.symbol);
       var weightCell = el('td');
       weightCell.textContent = percentText(line.weight);
       row.appendChild(symbolCell);
@@ -342,6 +366,11 @@ function golgoruBack(event) {
   window.addEventListener('hashchange', showFromHash);
   document.addEventListener('DOMContentLoaded', function () {
     showFromHash();
+    // 이름 표는 48KB 남짓이라 받는 데 시간이 걸릴 수 있다 — 표를 기다리지
+    // 않고 심볼만으로 먼저 그린 뒤, 표가 도착하면 같은 코드를 한 번 더
+    // 그려 이름을 채운다(코드가 비었거나 잘못됐으면 다시 그려도 결과가
+    // 똑같아 무해하다).
+    loadKrEtfNames().then(showFromHash);
     document.getElementById('codeSubmit').addEventListener('click', function () {
       var code = extractCode(document.getElementById('codeInput').value);
       if (window.location.hash.replace(/^#/, '') === code) {
