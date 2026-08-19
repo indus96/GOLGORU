@@ -1,0 +1,15 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": ["G2HKGKP5BP.com.indus96.golgoru"],
+                "components": [
+                    {
+                        "/": "/p/*",
+                        "comment": "구성안 공유 링크만 앱으로 연다. 문서·홈(/, /docs/*)은 여기 없으니 웹으로 그대로 열린다."
+                    }
+                ]
+            }
+        ]
+    }
+}
