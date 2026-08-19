@@ -4,7 +4,11 @@
         "target": {
             "namespace": "android_app",
             "package_name": "com.indus96.golgoru",
-            "sha256_cert_fingerprints": []
+            "sha256_cert_fingerprints": [
+                "40:B3:49:0E:2B:7D:77:70:44:BB:52:9C:D3:D4:35:50:E1:08:5B:24:D8:3E:A5:80:0B:0F:AE:19:60:1D:F8:7A",
+                "97:B6:8E:34:9F:07:AC:FE:3B:63:22:68:E6:19:05:35:24:80:8F:6C:36:37:78:71:E5:42:92:52:19:D0:6E:37",
+                "D8:9B:B4:0C:C1:AC:04:2F:0D:58:14:48:31:B0:13:91:53:37:E4:D0:1B:B1:2B:89:12:BE:AA:0B:E0:24:83:F6"
+            ]
         }
     }
 ]
