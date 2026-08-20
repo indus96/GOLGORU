@@ -29,7 +29,7 @@
 | [자산 구성 분석](docs/portfolio-analysis.md) | 투자 건강점수 · AI 인사이트 · 배당 · 자산 추정 · 목표 · 개선 제안 |
 | [자산순위](docs/asset-ranking.md) | 계좌별·자산군별·종목별 순위 · 시세 자동 갱신 · 상세 차트 |
 | [자산배분](docs/allocation-rebalancing.md) | 목표 비중 · 실제 비중 차이 · 조정 필요 금액 · 리밸런싱 계획과 체결 기록 |
-| [뉴스 · 리포트](docs/news-reports.md) | 보유·관심 종목 뉴스 · 증권사 리포트 · 투자 이벤트 |
+| [뉴스 · 리포트](docs/news-reports.md) | 보유 종목 뉴스 · 증권사 리포트 · 투자 이벤트 |
 | [구상](docs/ai-review.md) | 살펴보기(편중 진단 → 성향별 목표 제안 → 계좌별 조정안) · 짜보기(ETF 비교 · 시뮬레이션 · 구성 공유) |
 | [증권사 연결](docs/broker-connection.md) | 한투·업비트·바이낸스 잔고 조회 · 연결 확인 · 계좌 자동 채우기 |
 | [데이터와 보안](docs/data-security.md) | 저장 위치 · Keychain · 앱 잠금 · 캐시 보호 |
