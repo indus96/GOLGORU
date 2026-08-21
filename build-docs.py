@@ -318,7 +318,14 @@ def write_sitemap():
     거기만 보게 하는 편이 빠르다. 문서 목록에서 만들므로 문서가 늘어도 빠지지 않는다.
     """
     today = datetime.date.today().isoformat()
-    urls = [f"{SITE}/"] + [f"{SITE}/docs/{name}.html" for name in sorted(DOCS)]
+    # `/c/`(나눔터 둘러보기)는 문서가 아니라 손으로 쓴 페이지라 DOCS 에 없다 —
+    # 여기 직접 넣는다. 실제 내용이 있고 색인될 값이 있는 유일한 비문서 페이지다.
+    # `/p/`(공유 코드 보기)는 넣지 않는다: 내용이 URL 조각(#) 뒤에만 있어 코드마다
+    # 다른 페이지를 색인할 수 없고, 코드 없는 상태로는 안내문 몇 줄뿐이다(noindex).
+    urls = (
+        [f"{SITE}/", f"{SITE}/c/"]
+        + [f"{SITE}/docs/{name}.html" for name in sorted(DOCS)]
+    )
     body = "\n".join(
         f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>" for u in urls)
     pathlib.Path("sitemap.xml").write_text(
