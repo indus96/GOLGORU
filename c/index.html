@@ -23,8 +23,19 @@
   .holding{font-size:13px;color:var(--sub);line-height:1.7;word-break:break-word}
   .foot{display:flex;gap:14px;align-items:baseline;margin-top:14px;
     padding-top:12px;border-top:1px solid var(--line);font-size:13px}
-  .up{color:var(--gold);font-weight:700}
-  .down{color:var(--sub)}
+  .vote{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);cursor:pointer;font:inherit;
+    font-size:13px;color:var(--sub)}
+  .vote:hover{border-color:var(--gold)}
+  .vote[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);font-weight:700}
+  .vote svg{width:15px;height:15px;fill:currentColor;flex:none}
+  .perf{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+  .perf-up{color:#c0392b}
+  .perf-down{color:#2b6cb0}
+  .perf-row{display:flex;align-items:baseline;gap:10px;margin-top:12px}
+  .perf-label{font-size:13px;color:var(--sub)}
+  .spark{width:100%;height:52px;display:block;margin-top:6px}
+  .perf-note{font-size:11px;color:var(--sub);margin-top:4px}
   .taken{margin-left:auto;color:var(--sub);font-size:12px}
   .state{color:var(--sub);padding:26px 0}
   .card-link{display:block;cursor:pointer}
@@ -48,15 +59,13 @@
 </style>
 </head><body>
 
+<!-- nav:start -->
 <nav><div class="wrap nav-in">
-  <!-- 앱 이름은 "골고루" 하나다(/p/ 와 같은 이유 — 로마자를 붙여 쓰면 텍스트로
-       읽을 때 "골고루GOLGORU"가 되어 OAuth 동의 화면 이름과 어긋난다). -->
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
   <a class="brand" href="../">골고루</a>
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
-  <!-- **사이트 전체와 같은 목록이어야 한다.** 여기만 줄이면 헤더가 일부만 있는
-       것처럼 보인다(2026-08-21 실측). 링크가 늘면 세 곳을 같이 고친다:
-       index.html · build-docs.py · p/index.html · 이 파일. -->
   <div class="nav-links">
     <a href="../#about">앱 소개</a>
     <a href="../#principles">원칙</a>
@@ -72,6 +81,7 @@
   </div>
   <a class="cta" href="../#download" data-cta="1">앱 받기</a>
 </div></nav>
+<!-- nav:end -->
 
 <header class="doc-hero"><div class="wrap">
   <a class="back" href="../" onclick="return golgoruBack(event)">← 골고루 홈</a>
@@ -134,6 +144,150 @@
       .catch(function () { names = {}; });
   }
 
+  // 엄지 아이콘. **이모지 문자를 안 쓴다** — 기기·폰트마다 다르게 그려지고 화면
+  // 낭독기가 못 읽는다(앱의 `DraftRowCard` 주석과 같은 규칙). 인라인 SVG 로 그린다.
+  function thumb(down) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M2 10h4v11H2zM21.6 10.3c-.4-.5-1-.8-1.6-.8h-4.6l.7-3.3c.2-.9-.1-1.8-.7-2.4a2.3 2.3 0 0 0-3.6.5L8.6 9.6c-.2.3-.3.6-.3 1v8.3c0 1.2 1 2.1 2.1 2.1h7.2c1 0 1.9-.7 2.1-1.7l1.4-7c.1-.7-.1-1.4-.5-2z');
+    if (down) {
+      // 같은 그림을 뒤집는다 — 두 아이콘이 확실히 짝으로 보인다.
+      svg.setAttribute('transform', 'rotate(180)');
+    }
+    svg.appendChild(path);
+    return svg;
+  }
+
+  function voteButton(down, count, onPress) {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'vote';
+    button.setAttribute('aria-label', down ? '비추천' : '추천');
+    button.appendChild(thumb(down));
+    var label = document.createElement('span');
+    label.appendChild(text(String(count)));
+    button.appendChild(label);
+    button.addEventListener('click', function () { onPress(button, label); });
+    return button;
+  }
+
+  // 「1기기 1표」의 기기 값. 앱은 설치 식별자를 솔트 해시하지만(설계 D절) 브라우저에는
+  // 그런 것이 없어 처음 누를 때 만들어 저장한다 — 서버가 보는 것은 어차피 해시 모양의
+  // 64자 문자열 하나뿐이라 되짚을 것이 없다.
+  function deviceHash() {
+    var key = 'golgoru.community.web.device';
+    var saved = null;
+    try { saved = localStorage.getItem(key); } catch (e) { saved = null; }
+    if (saved && /^[a-f0-9]{64}$/.test(saved)) return saved;
+    var bytes = new Uint8Array(32);
+    crypto.getRandomValues(bytes);
+    var hex = Array.prototype.map.call(bytes, function (b) {
+      return ('0' + b.toString(16)).slice(-2);
+    }).join('');
+    try { localStorage.setItem(key, hex); } catch (e) {}
+    return hex;
+  }
+
+  // 이 브라우저가 무엇에 표를 줬는지. 서버는 알려 주지 않으므로(응답에 voter_hash 가
+  // 안 나간다) 눌린 모양을 유지하려면 여기서 기억해야 한다.
+  function myVote(id, value) {
+    var key = 'golgoru.community.web.votes';
+    var map = {};
+    try { map = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) { map = {}; }
+    if (value === undefined) return map[id] || 0;
+    map[id] = value;
+    try { localStorage.setItem(key, JSON.stringify(map)); } catch (e) {}
+    return value;
+  }
+
+  function voteRow(draft) {
+    var row = document.createElement('div');
+    row.className = 'foot';
+    var mine = myVote(draft.id);
+    var up = voteButton(false, draft.up || 0, function (button, label) { send(1, button, label); });
+    var down = voteButton(true, draft.down || 0, function (button, label) { send(-1, button, label); });
+    up.setAttribute('aria-pressed', mine === 1 ? 'true' : 'false');
+    down.setAttribute('aria-pressed', mine === -1 ? 'true' : 'false');
+
+    function send(value, button) {
+      // 같은 것을 다시 누르면 취소다 — 앱과 같은 규칙(워커가 0 을 받는다).
+      var next = myVote(draft.id) === value ? 0 : value;
+      button.disabled = true;
+      fetch(API + '/drafts/' + encodeURIComponent(draft.id) + '/vote', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ vote: next, deviceHash: deviceHash() }),
+      })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(function (result) {
+          myVote(draft.id, next);
+          up.querySelector('span').textContent = String(result.up);
+          down.querySelector('span').textContent = String(result.down);
+          up.setAttribute('aria-pressed', next === 1 ? 'true' : 'false');
+          down.setAttribute('aria-pressed', next === -1 ? 'true' : 'false');
+        })
+        .catch(function () {})
+        .then(function () { button.disabled = false; });
+    }
+
+    row.appendChild(up);
+    row.appendChild(down);
+    if (draft.taken > 0) {
+      var taken = document.createElement('span');
+      taken.className = 'taken';
+      taken.appendChild(text('가져간 사람 ' + draft.taken));
+      row.appendChild(taken);
+    }
+    return row;
+  }
+
+  // 「지난 1년」. **앱이 올릴 때 계산해 보낸 값이다** — 서버도 이 페이지도 시세를
+  // 모른다. 그래서 올린 시점 기준이고, 그 사실을 아래 한 줄로 밝힌다.
+  function perfBlock(draft) {
+    if (typeof draft.perf !== 'number') return null;
+    var box = document.createElement('div');
+    var row = document.createElement('div');
+    row.className = 'perf-row';
+    var label = document.createElement('span');
+    label.className = 'perf-label';
+    label.appendChild(text('지난 1년'));
+    var value = document.createElement('span');
+    value.className = 'perf ' + (draft.perf < 0 ? 'perf-down' : 'perf-up');
+    value.appendChild(text((draft.perf >= 0 ? '+' : '') + (draft.perf * 100).toFixed(1) + '%'));
+    row.appendChild(label);
+    row.appendChild(value);
+    box.appendChild(row);
+
+    var points = (draft.perfCurve || '').split(',').map(Number).filter(function (n) {
+      return isFinite(n);
+    });
+    if (points.length > 1) {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 'spark');
+      svg.setAttribute('viewBox', '0 0 100 30');
+      svg.setAttribute('preserveAspectRatio', 'none');
+      svg.setAttribute('aria-hidden', 'true');
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      line.setAttribute('fill', 'none');
+      line.setAttribute('stroke', draft.perf < 0 ? '#2b6cb0' : '#c0392b');
+      line.setAttribute('stroke-width', '1.6');
+      line.setAttribute('vector-effect', 'non-scaling-stroke');
+      line.setAttribute('points', points.map(function (p, i) {
+        return (i / (points.length - 1)) * 100 + ',' + (30 - p * 28 - 1);
+      }).join(' '));
+      svg.appendChild(line);
+      box.appendChild(svg);
+    }
+
+    var note = document.createElement('div');
+    note.className = 'perf-note';
+    note.appendChild(text('올린 시점 기준 · 조정종가(배당 재투자 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
+    box.appendChild(note);
+    return box;
+  }
+
   function text(value) {
     // 남이 지은 이름이 들어오는 자리다 — 언제나 텍스트 노드로만 넣는다.
     return document.createTextNode(value);
@@ -183,24 +337,25 @@
       box.appendChild(holding);
     }
 
-    var foot = document.createElement('div');
-    foot.className = 'foot';
-    var up = document.createElement('span');
-    up.className = 'up';
-    up.appendChild(text('추천 ' + (draft.up || 0)));
-    var down = document.createElement('span');
-    down.className = 'down';
-    down.appendChild(text('비추천 ' + (draft.down || 0)));
-    foot.appendChild(up);
-    foot.appendChild(down);
-    if (draft.taken > 0) {
-      var taken = document.createElement('span');
-      taken.className = 'taken';
-      taken.appendChild(text('가져간 사람 ' + draft.taken));
-      foot.appendChild(taken);
-    }
-    box.appendChild(foot);
-    return box;
+    var perf = perfBlock(draft);
+    if (perf) box.appendChild(perf);
+
+    // 카드 전체가 링크라 그 안에 버튼을 넣으면 눌렀을 때 페이지가 같이 넘어간다.
+    // 투표 줄은 링크 **밖**에 두고 카드 하나를 감싸는 상자로 묶는다.
+    var wrapper = document.createElement('div');
+    wrapper.className = 'card';
+    wrapper.style.padding = '0';
+    wrapper.style.overflow = 'hidden';
+    box.className = 'card-link';
+    box.style.border = '0';
+    box.style.display = 'block';
+    box.style.padding = '18px';
+    wrapper.appendChild(box);
+
+    var foot = voteRow(draft);
+    foot.style.margin = '0 18px 16px';
+    wrapper.appendChild(foot);
+    return wrapper;
   }
 
   function render(drafts) {
@@ -247,10 +402,13 @@
     var pieces = [];
     if (draft.nick) pieces.push(draft.nick);
     pieces.push(lines ? lines.length + '종목' : '읽을 수 없는 조합');
-    pieces.push('추천 ' + (draft.up || 0));
-    if (draft.taken > 0) pieces.push('가져간 사람 ' + draft.taken);
+
     by.appendChild(text(pieces.join(' · ')));
     box.appendChild(by);
+
+    var detailPerf = perfBlock(draft);
+    if (detailPerf) box.appendChild(detailPerf);
+    box.appendChild(voteRow(draft));
 
     if (lines) {
       var band = document.createElement('div');

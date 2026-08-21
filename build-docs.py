@@ -28,29 +28,65 @@ DOCS = {
 
 # 홈은 `../`로만 건다. `../index.html`은 같은 내용을 다른 주소로 200을 주는
 # 중복 주소여서, 색인이 "표준 태그가 있는 대체 페이지"로 잡고 크롤링을 낭비한다.
-NAV = """<nav><div class="wrap nav-in">
+# **헤더는 여기 한 곳에서만 정의한다.** 예전에는 index.html·p/·c/·이 파일 넷이
+# 각자 같은 목록을 들고 있어서, 링크를 하나 더하면 어딘가는 빠졌다(2026-08-21
+# 「나눔터」가 실제로 그렇게 빠졌다). 아래 `render_nav` 가 페이지 깊이에 맞는
+# 상대 경로로 찍어 주고, `inject_shared` 가 정적 파일들의 마커 사이를 갈아 끼운다.
+#
+# 빌드 시점에 넣는 것이지 자바스크립트로 그리는 것이 아니다 — JS 로 그리면
+# 스크립트가 막힌 브라우저와 크롤러에 헤더가 통째로 사라진다.
+NAV_LINKS = [
+    ("{root}#about", "앱 소개"),
+    ("{root}#principles", "원칙"),
+    ("{root}#dashboard", "대시보드"),
+    ("{root}#analysis", "자산 분석"),
+    ("{root}#rebalance", "자산배분"),
+    ("{root}#capture", "계좌 채우기"),
+    ("{root}#mac", "맥·아이패드"),
+    ("{root}c/", "나눔터"),
+    ("{root}#download", "다운로드"),
+    ("{root}docs/changelog.html", "버전 기록"),
+]
+
+
+def render_nav(root, cta="다운로드"):
+    """`root` 는 사이트 루트까지의 상대 경로("" 또는 "../")."""
+    links = "\n".join(
+        f'    <a href="{href.format(root=root)}">{label}</a>' for href, label in NAV_LINKS
+    )
+    return f"""<nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
-  <a class="brand" href="../">골고루</a>
-  <!-- 랜딩과 같은 항목을 같은 순서로 둔다 — 문서로 들어오면 헤더가 달라져
-       다른 사이트처럼 보였다. -->
+  <a class="brand" href="{root or './'}">골고루</a>
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
   <div class="nav-links">
-    <a href="../#about">앱 소개</a>
-    <a href="../#principles">원칙</a>
-    <a href="../#dashboard">대시보드</a>
-    <a href="../#analysis">자산 분석</a>
-    <a href="../#rebalance">자산배분</a>
-    <a href="../#capture">계좌 채우기</a>
-    <a href="../#mac">맥·아이패드</a>
-    <a href="../c/">나눔터</a>
-    <a href="../#download">다운로드</a>
-    <a href="changelog.html">버전 기록</a>
+{links}
   </div>
   </div>
-  <a class="cta" href="../#download" data-cta="1">다운로드</a>
+  <a class="cta" href="{root}#download" data-cta="1">{cta}</a>
 </div></nav>"""
+
+
+NAV = render_nav("../")
+
+def inject_shared(path, root, cta="다운로드"):
+    """정적 파일의 `<!-- nav:start -->`~`<!-- nav:end -->` 사이를 헤더로 채운다.
+
+    마커가 없으면 아무것도 안 한다 — 손으로 쓴 페이지를 조용히 망가뜨리지 않는다.
+    """
+    text = pathlib.Path(path).read_text(encoding="utf-8")
+    begin, close = "<!-- nav:start -->", "<!-- nav:end -->"
+    if begin not in text or close not in text:
+        print(f"skip {path} (마커 없음)")
+        return
+    head, rest = text.split(begin, 1)
+    _, tail = rest.split(close, 1)
+    pathlib.Path(path).write_text(
+        head + begin + "\n" + render_nav(root, cta) + "\n" + close + tail, encoding="utf-8"
+    )
+    print(f"nav  {path}")
+
 
 FOOTER = """<footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
@@ -294,3 +330,9 @@ def write_sitemap():
 
 
 write_sitemap()
+
+# 손으로 쓴 페이지 셋도 같은 헤더를 받는다. 이 줄이 "헤더가 네 곳에 흩어져 있다"는
+# 문제의 답이다 — 링크를 더하려면 위 NAV_LINKS 하나만 고치고 이 스크립트를 돌린다.
+inject_shared("index.html", "", cta="앱 받기")
+inject_shared("p/index.html", "../")
+inject_shared("c/index.html", "../", cta="앱 받기")
