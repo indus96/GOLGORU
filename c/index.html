@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>골고루 · 사람들이 짜 본 조합</title>
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
+<meta name="description" content="골고루 사용자들이 짜 본 ETF 조합을 앱 설치 없이 바로 봅니다. 종목과 비중만 공개되고 투자금·평가액은 올라가지 않습니다.">
+<meta property="og:title" content="골고루 · 사람들이 짜 본 조합">
+<meta property="og:description" content="골고루 사용자들이 짜 본 ETF 조합을 앱 설치 없이 바로 봅니다.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://golgoru.app/c/">
+<meta property="og:url" content="https://golgoru.app/c/">
+<link rel="stylesheet" href="../docs/doc.css">
+<style>
+  .lead{color:var(--sub);margin:6px 0 22px}
+  .cards{display:grid;gap:14px}
+  @media (min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card h2{font-size:17px;margin:0;color:var(--ink);word-break:break-word}
+  .by{font-size:12px;color:var(--sub);margin-top:4px}
+  .band{display:flex;height:6px;border-radius:999px;overflow:hidden;margin:14px 0 10px;gap:1px}
+  .band i{display:block}
+  .holding{font-size:13px;color:var(--sub);line-height:1.7;word-break:break-word}
+  .foot{display:flex;gap:14px;align-items:baseline;margin-top:14px;
+    padding-top:12px;border-top:1px solid var(--line);font-size:13px}
+  .up{color:var(--gold);font-weight:700}
+  .down{color:var(--sub)}
+  .taken{margin-left:auto;color:var(--sub);font-size:12px}
+  .state{color:var(--sub);padding:26px 0}
+  .note{font-size:12px;color:var(--sub);margin-top:26px;line-height:1.8}
+</style>
+</head><body>
+
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다(/p/ 와 같은 이유 — 로마자를 붙여 쓰면 텍스트로
+       읽을 때 "골고루GOLGORU"가 되어 OAuth 동의 화면 이름과 어긋난다). -->
+  <a class="brand" href="../">골고루</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
+  <div class="nav-links">
+    <a href="../#about">앱 소개</a>
+    <a href="../#rebalance">자산배분</a>
+    <a href="../docs/ai-review.html">구상 · 짜보기</a>
+    <a href="../#download">다운로드</a>
+    <a href="../docs/changelog.html">버전 기록</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">앱 받기</a>
+</div></nav>
+
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../" onclick="return golgoruBack(event)">← 골고루 홈</a>
+  <h1>사람들이 짜 본 조합</h1>
+  <p class="lead">앱이 없어도 여기서 바로 볼 수 있습니다. 마음에 들면 앱에서 가져가세요.</p>
+</div></header>
+
+<main class="wrap">
+  <div id="state" class="state">불러오는 중…</div>
+  <div id="cards" class="cards"></div>
+  <p class="note">
+    올라온 조합은 <b>종목과 비중만</b> 담습니다. 투자금·주수·평가액은 올라가지 않습니다.
+    참고용이고 투자 권유가 아닙니다.
+  </p>
+</main>
+
+<footer><div class="wrap">
+  <div><a href="../">홈</a> · <a href="../docs/ai-review.html">짜보기</a> · <a href="../docs/privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+</div></footer>
+
+<script src="../site.js"></script>
+<script>
+(function () {
+  // 나눔터 워커. **토큰을 안 싣는다** — 읽기 라우트 둘(GET /drafts, GET /drafts/{id})만
+  // 토큰 없이 열려 있다(2026-08-21). 웹페이지 자바스크립트에 토큰을 박으면 앱
+  // 바이너리에 넣는 것보다 나쁘다: 소스 보기 한 번이면 나오고 검색엔진에도 걸린다.
+  var API = 'https://asset-management-community.indus96-asset-management.workers.dev';
+
+  // 앱의 크기 블록·도넛과 같은 순서·같은 색(AppStyle.weightBlockPalette). 한 조합이
+  // 앱과 웹에서 다른 색으로 보이면 같은 것인지 알아보기 어렵다.
+  var PALETTE = ['#C8A24A', '#C0763A', '#A8703F', '#8C7B6B', '#8A8A5C', '#9A8577'];
+
+  var state = document.getElementById('state');
+  var cards = document.getElementById('cards');
+
+  // 공유 코드 파서. **/p/ 의 것과 같은 규칙이어야 한다**(Swift PortfolioDraftCodec).
+  // 여기서 푸는 것은 종목·비중뿐이고, 투자금은 코드에 애초에 없다.
+  function decode(code) {
+    if (!code || code.indexOf('v1.') !== 0) return null;
+    var parts = code.split('.');
+    if (parts.length < 4) return null;
+    var lines = parts.slice(3).join('.').split(',').map(function (chunk) {
+      var pair = chunk.split(':');
+      if (pair.length !== 2) return null;
+      var weight = parseFloat(pair[1]);
+      if (!isFinite(weight) || weight <= 0) return null;
+      return { symbol: pair[0], weight: weight };
+    });
+    return lines.indexOf(null) === -1 ? lines : null;
+  }
+
+  // 국내 ETF 이름표는 /p/ 가 이미 정적으로 싣고 있다 — 같은 파일을 쓴다.
+  // 못 찾으면 심볼을 그대로 보여준다(앱과 같은 규칙).
+  var names = {};
+  function loadNames() {
+    return fetch('../p/kr-etf-names.json')
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (map) { names = map || {}; })
+      .catch(function () { names = {}; });
+  }
+
+  function text(value) {
+    // 남이 지은 이름이 들어오는 자리다 — 언제나 텍스트 노드로만 넣는다.
+    return document.createTextNode(value);
+  }
+
+  function percent(weight) {
+    var rounded = Math.round(weight * 100) / 100;
+    return (rounded === Math.round(rounded) ? rounded : rounded.toFixed(2)) + '%';
+  }
+
+  function card(draft) {
+    var lines = decode(draft.code);
+    var box = document.createElement('div');
+    box.className = 'card';
+
+    var title = document.createElement('h2');
+    title.appendChild(text(draft.name));
+    box.appendChild(title);
+
+    var by = document.createElement('div');
+    by.className = 'by';
+    var pieces = [];
+    if (draft.nick) pieces.push(draft.nick);
+    pieces.push(lines ? lines.length + '종목' : '읽을 수 없는 조합');
+    by.appendChild(text(pieces.join(' · ')));
+    box.appendChild(by);
+
+    if (lines) {
+      var band = document.createElement('div');
+      band.className = 'band';
+      lines.forEach(function (line, index) {
+        var seg = document.createElement('i');
+        seg.style.width = line.weight + '%';
+        seg.style.background = PALETTE[index % PALETTE.length];
+        band.appendChild(seg);
+      });
+      box.appendChild(band);
+
+      var holding = document.createElement('div');
+      holding.className = 'holding';
+      holding.appendChild(text(lines.map(function (line) {
+        return (names[line.symbol] || line.symbol) + ' ' + percent(line.weight);
+      }).join(' · ')));
+      box.appendChild(holding);
+    }
+
+    var foot = document.createElement('div');
+    foot.className = 'foot';
+    var up = document.createElement('span');
+    up.className = 'up';
+    up.appendChild(text('추천 ' + (draft.up || 0)));
+    var down = document.createElement('span');
+    down.className = 'down';
+    down.appendChild(text('비추천 ' + (draft.down || 0)));
+    foot.appendChild(up);
+    foot.appendChild(down);
+    if (draft.taken > 0) {
+      var taken = document.createElement('span');
+      taken.className = 'taken';
+      taken.appendChild(text('가져간 사람 ' + draft.taken));
+      foot.appendChild(taken);
+    }
+    box.appendChild(foot);
+    return box;
+  }
+
+  function render(drafts) {
+    if (!drafts.length) {
+      // 가짜 데이터를 넣지 않는다(설계 G절) — 비어 있으면 비어 있다고 쓴다.
+      state.textContent = '아직 올라온 조합이 없습니다.';
+      return;
+    }
+    state.textContent = '';
+    drafts.forEach(function (draft) { cards.appendChild(card(draft)); });
+  }
+
+  loadNames()
+    .then(function () { return fetch(API + '/drafts?sort=hot'); })
+    .then(function (response) {
+      if (!response.ok) throw new Error(response.status);
+      return response.json();
+    })
+    .then(function (page) { render(page.drafts || []); })
+    .catch(function () {
+      // 서버가 죽어도 이 페이지 말고는 아무것도 안 죽는다(설계 G절).
+      state.textContent = '지금은 목록을 불러올 수 없습니다. 잠시 뒤에 다시 열어 주세요.';
+    });
+})();
+</script>
+</body></html>
