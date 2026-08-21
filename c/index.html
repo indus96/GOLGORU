@@ -125,7 +125,12 @@
 
   // 앱의 크기 블록·도넛과 같은 순서·같은 색(AppStyle.weightBlockPalette). 한 조합이
   // 앱과 웹에서 다른 색으로 보이면 같은 것인지 알아보기 어렵다.
-  var PALETTE = ['#C8A24A', '#C0763A', '#A8703F', '#8C7B6B', '#8A8A5C', '#9A8577'];
+  var PALETTE = [
+    '#C8A24A', '#C07C3A', '#A87548', '#8D6E63', '#9A8F6F', '#7E6B4F',
+    // 여섯에서 열둘로 늘렸다(2026-08-22) — 10종목이면 일곱 번째부터 색이 처음으로
+    // 되돌아가 도넛과 목록을 색만으로는 못 맞췄다. **앞 여섯은 그대로 둔다.**
+    '#8A8A5C', '#A65A3C', '#6F7F6A', '#96604F', '#7A7188', '#5F7A82',
+  ];
 
   var state = document.getElementById('state');
   var cards = document.getElementById('cards');
