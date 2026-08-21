@@ -27,7 +27,24 @@
   .down{color:var(--sub)}
   .taken{margin-left:auto;color:var(--sub);font-size:12px}
   .state{color:var(--sub);padding:26px 0}
+  .card-link{display:block;cursor:pointer}
+  .card-link:hover{border-color:var(--gold)}
+  .detail .band{height:10px;margin:18px 0 14px}
+  .detail-row{display:flex;gap:10px;align-items:baseline;padding:9px 0;
+    border-bottom:1px solid var(--line);font-size:14px}
+  .detail-row:last-of-type{border-bottom:0}
+  .dot{width:9px;height:9px;border-radius:3px;flex:none;align-self:center}
+  .detail-name{flex:1;min-width:0;color:var(--ink);word-break:break-word}
+  .detail-pct{color:var(--sub);font-variant-numeric:tabular-nums}
+  .code-box{margin-top:18px;padding:14px;border:1px solid var(--line);border-radius:10px;
+    background:var(--bg)}
+  .code-box code{display:block;font-size:12px;word-break:break-all;color:var(--sub);
+    margin:8px 0 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   .note{font-size:12px;color:var(--sub);margin-top:26px;line-height:1.8}
+  .btn{display:inline-block;padding:11px 20px;border-radius:999px;font-weight:600;
+    font-size:14px;cursor:pointer;border:1px solid transparent;font-family:inherit}
+  .btn-primary{background:var(--gold);color:#fff}
+  .btn-primary:hover{background:#b6911f}
 </style>
 </head><body>
 
@@ -37,10 +54,18 @@
   <a class="brand" href="../">골고루</a>
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
+  <!-- **사이트 전체와 같은 목록이어야 한다.** 여기만 줄이면 헤더가 일부만 있는
+       것처럼 보인다(2026-08-21 실측). 링크가 늘면 세 곳을 같이 고친다:
+       index.html · build-docs.py · p/index.html · 이 파일. -->
   <div class="nav-links">
     <a href="../#about">앱 소개</a>
+    <a href="../#principles">원칙</a>
+    <a href="../#dashboard">대시보드</a>
+    <a href="../#analysis">자산 분석</a>
     <a href="../#rebalance">자산배분</a>
-    <a href="../docs/ai-review.html">구상 · 짜보기</a>
+    <a href="../#capture">계좌 채우기</a>
+    <a href="../#mac">맥·아이패드</a>
+    <a href="../c/">나눔터</a>
     <a href="../#download">다운로드</a>
     <a href="../docs/changelog.html">버전 기록</a>
   </div>
@@ -57,6 +82,7 @@
 <main class="wrap">
   <div id="state" class="state">불러오는 중…</div>
   <div id="cards" class="cards"></div>
+  <div id="detail"></div>
   <p class="note">
     올라온 조합은 <b>종목과 비중만</b> 담습니다. 투자금·주수·평가액은 올라가지 않습니다.
     참고용이고 투자 권유가 아닙니다.
@@ -120,8 +146,11 @@
 
   function card(draft) {
     var lines = decode(draft.code);
-    var box = document.createElement('div');
-    box.className = 'card';
+    // 카드를 통째로 눌러 상세로 간다. 경로가 아니라 쿼리인 것은 GitHub Pages 가
+    // 정적 호스팅이라 `/c/{id}` 를 라우팅할 수 없기 때문이다 — 404 우회는 깨지기 쉽다.
+    var box = document.createElement('a');
+    box.className = 'card card-link';
+    box.href = './?id=' + encodeURIComponent(draft.id);
 
     var title = document.createElement('h2');
     title.appendChild(text(draft.name));
@@ -184,16 +213,114 @@
     drafts.forEach(function (draft) { cards.appendChild(card(draft)); });
   }
 
+  function detailRow(line, index) {
+    var row = document.createElement('div');
+    row.className = 'detail-row';
+    var dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.style.background = PALETTE[index % PALETTE.length];
+    var name = document.createElement('span');
+    name.className = 'detail-name';
+    name.appendChild(text(names[line.symbol] || line.symbol));
+    var pct = document.createElement('span');
+    pct.className = 'detail-pct';
+    pct.appendChild(text(percent(line.weight)));
+    row.appendChild(dot);
+    row.appendChild(name);
+    row.appendChild(pct);
+    return row;
+  }
+
+  function renderDetail(draft) {
+    document.title = draft.name + ' · 골고루 나눔터';
+    var lines = decode(draft.code);
+    var box = document.createElement('div');
+    box.className = 'card detail';
+
+    var title = document.createElement('h2');
+    title.style.fontSize = '22px';
+    title.appendChild(text(draft.name));
+    box.appendChild(title);
+
+    var by = document.createElement('div');
+    by.className = 'by';
+    var pieces = [];
+    if (draft.nick) pieces.push(draft.nick);
+    pieces.push(lines ? lines.length + '종목' : '읽을 수 없는 조합');
+    pieces.push('추천 ' + (draft.up || 0));
+    if (draft.taken > 0) pieces.push('가져간 사람 ' + draft.taken);
+    by.appendChild(text(pieces.join(' · ')));
+    box.appendChild(by);
+
+    if (lines) {
+      var band = document.createElement('div');
+      band.className = 'band';
+      lines.forEach(function (line, index) {
+        var seg = document.createElement('i');
+        seg.style.width = line.weight + '%';
+        seg.style.background = PALETTE[index % PALETTE.length];
+        band.appendChild(seg);
+      });
+      box.appendChild(band);
+      lines.forEach(function (line, index) { box.appendChild(detailRow(line, index)); });
+
+      // 「가져가기」는 앱이 한다 — 웹에서 남의 짜보기를 내 목록에 넣을 수는 없다.
+      // 대신 앱의 [코드로 받기] 에 그대로 넣을 수 있는 코드를 준다.
+      var codeBox = document.createElement('div');
+      codeBox.className = 'code-box';
+      var label = document.createElement('div');
+      label.style.fontSize = '13px';
+      label.appendChild(text('앱의 「짜보기 > 코드로 받기」에 이 코드를 넣으면 그대로 가져옵니다.'));
+      var code = document.createElement('code');
+      code.appendChild(text(draft.code));
+      var button = document.createElement('button');
+      button.className = 'btn btn-primary';
+      button.type = 'button';
+      button.textContent = '코드 복사';
+      button.addEventListener('click', function () {
+        navigator.clipboard.writeText(draft.code).then(function () {
+          button.textContent = '복사했습니다';
+        }, function () {
+          button.textContent = '복사하지 못했습니다';
+        });
+      });
+      codeBox.appendChild(label);
+      codeBox.appendChild(code);
+      codeBox.appendChild(button);
+      box.appendChild(codeBox);
+    }
+
+    var back = document.createElement('p');
+    back.style.marginTop = '20px';
+    var backLink = document.createElement('a');
+    backLink.href = './';
+    backLink.textContent = '← 다른 조합 보기';
+    back.appendChild(backLink);
+
+    state.textContent = '';
+    document.getElementById('detail').appendChild(box);
+    document.getElementById('detail').appendChild(back);
+  }
+
+  var id = new URLSearchParams(location.search).get('id');
+
   loadNames()
-    .then(function () { return fetch(API + '/drafts?sort=hot'); })
+    .then(function () {
+      return fetch(API + (id ? '/drafts/' + encodeURIComponent(id) : '/drafts?sort=hot'));
+    })
     .then(function (response) {
       if (!response.ok) throw new Error(response.status);
       return response.json();
     })
-    .then(function (page) { render(page.drafts || []); })
+    .then(function (body) {
+      if (id) renderDetail(body);
+      else render(body.drafts || []);
+    })
     .catch(function () {
       // 서버가 죽어도 이 페이지 말고는 아무것도 안 죽는다(설계 G절).
-      state.textContent = '지금은 목록을 불러올 수 없습니다. 잠시 뒤에 다시 열어 주세요.';
+      state.textContent = id
+        ? '이 조합은 사라졌거나 지금은 볼 수 없습니다.'
+        : '지금은 목록을 불러올 수 없습니다. 잠시 뒤에 다시 열어 주세요.';
     });
 })();
 </script>

@@ -44,6 +44,7 @@ NAV = """<nav><div class="wrap nav-in">
     <a href="../#rebalance">자산배분</a>
     <a href="../#capture">계좌 채우기</a>
     <a href="../#mac">맥·아이패드</a>
+    <a href="../c/">나눔터</a>
     <a href="../#download">다운로드</a>
     <a href="changelog.html">버전 기록</a>
   </div>
