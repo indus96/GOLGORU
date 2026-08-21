@@ -47,6 +47,18 @@
   .dot{width:9px;height:9px;border-radius:3px;flex:none;align-self:center}
   .detail-name{flex:1;min-width:0;color:var(--ink);word-break:break-word}
   .detail-pct{color:var(--sub);font-variant-numeric:tabular-nums}
+  .expo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;
+    padding-top:16px;border-top:1px solid var(--line)}
+  .expo h3{font-size:13px;color:var(--sub);margin:0 0 10px;font-weight:600}
+  .expo-title{font-size:13px;color:var(--sub);margin:0 0 4px}
+  .donut{display:block;width:112px;height:112px;margin:0 auto 10px}
+  .donut text{font-size:9px;font-weight:700;fill:var(--ink)}
+  .expo-row{display:flex;gap:6px;align-items:center;font-size:12px;padding:2px 0}
+  .expo-row .dot{width:7px;height:7px;border-radius:2px}
+  .expo-row b{flex:1;min-width:0;font-weight:400;color:var(--ink);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .expo-row span{color:var(--sub);font-variant-numeric:tabular-nums}
+  .expo-note{font-size:11px;color:var(--sub);margin-top:10px;grid-column:1/-1}
   .code-box{margin-top:18px;padding:14px;border:1px solid var(--line);border-radius:10px;
     background:var(--bg)}
   .code-box code{display:block;font-size:12px;word-break:break-all;color:var(--sub);
@@ -390,6 +402,96 @@
     return row;
   }
 
+  // 「노출·분산」. **앱이 계산해 보낸 값이다** — 국가 비중은 ETF 안에 무엇이 들었는지
+  // 알아야 나오고, 그것을 아는 시장지표 워커는 토큰이 필요하다. 여기서 하는 일은
+  // `한국:51,미국:44|주식:70,채권:30` 을 갈라 그리는 것뿐이다(라벨은 이미 한글).
+  function parseExposure(value) {
+    if (typeof value !== 'string' || value.indexOf('|') === -1) return null;
+    var fields = value.split('|').map(function (field) {
+      if (!field) return [];
+      return field.split(',').map(function (pair) {
+        var at = pair.lastIndexOf(':');
+        var percent = Number(pair.slice(at + 1));
+        if (at < 1 || !isFinite(percent)) return null;
+        return { label: pair.slice(0, at), percent: percent };
+      }).filter(Boolean);
+    });
+    return fields[0].length || fields[1].length ? fields : null;
+  }
+
+  // 앱의 `WeightDonutView` 와 같은 그림 — 12시에서 시작하고, 가운데는 가장 큰 비중.
+  function donut(rows) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'donut');
+    svg.setAttribute('viewBox', '0 0 42 42');
+    svg.setAttribute('aria-hidden', 'true');
+    var circumference = Math.PI * 2 * 15.9;
+    var offset = 0;
+    rows.forEach(function (row, index) {
+      var arc = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      arc.setAttribute('cx', '21'); arc.setAttribute('cy', '21'); arc.setAttribute('r', '15.9');
+      arc.setAttribute('fill', 'none');
+      arc.setAttribute('stroke', PALETTE[index % PALETTE.length]);
+      arc.setAttribute('stroke-width', '8');
+      var length = (row.percent / 100) * circumference;
+      arc.setAttribute('stroke-dasharray', Math.max(length - 0.4, 0) + ' ' + circumference);
+      arc.setAttribute('stroke-dashoffset', -offset);
+      arc.setAttribute('transform', 'rotate(-90 21 21)');
+      offset += length;
+      svg.appendChild(arc);
+    });
+    var center = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    center.setAttribute('x', '21'); center.setAttribute('y', '21');
+    center.setAttribute('text-anchor', 'middle');
+    center.setAttribute('dominant-baseline', 'central');
+    center.appendChild(text(rows.length ? rows[0].percent + '%' : ''));
+    svg.appendChild(center);
+    return svg;
+  }
+
+  function exposureColumn(title, rows) {
+    var box = document.createElement('div');
+    var head = document.createElement('div');
+    head.className = 'expo-title';
+    head.appendChild(text(title));
+    box.appendChild(head);
+    box.appendChild(donut(rows));
+    rows.forEach(function (row, index) {
+      var line = document.createElement('div');
+      line.className = 'expo-row';
+      var dot = document.createElement('span');
+      dot.className = 'dot';
+      dot.style.background = PALETTE[index % PALETTE.length];
+      var label = document.createElement('b');
+      label.appendChild(text(row.label));
+      var pct = document.createElement('span');
+      pct.appendChild(text(row.percent + '%'));
+      line.appendChild(dot);
+      line.appendChild(label);
+      line.appendChild(pct);
+      box.appendChild(line);
+    });
+    return box;
+  }
+
+  function exposureBlock(draft) {
+    var fields = parseExposure(draft.exposure);
+    if (!fields) return null;
+    var box = document.createElement('div');
+    box.className = 'expo';
+    var head = document.createElement('h3');
+    head.textContent = '노출·분산';
+    head.style.gridColumn = '1/-1';
+    box.appendChild(head);
+    if (fields[0].length) box.appendChild(exposureColumn('국가', fields[0]));
+    if (fields[1].length) box.appendChild(exposureColumn('자산군', fields[1]));
+    var note = document.createElement('div');
+    note.className = 'expo-note';
+    note.appendChild(text('국가는 ETF 안을 알 수 있는 종목만 셉니다. 자산군은 종목 이름으로 가릅니다.'));
+    box.appendChild(note);
+    return box;
+  }
+
   function renderDetail(draft) {
     document.title = draft.name + ' · 골고루 나눔터';
     var lines = decode(draft.code);
@@ -425,6 +527,11 @@
       });
       box.appendChild(band);
       lines.forEach(function (line, index) { box.appendChild(detailRow(line, index)); });
+
+      // 앱 상세의 「노출·분산」 카드와 같은 그림. 1.4.0 이전에 올라온 조합에는
+      // 이 값이 없다 — 그때는 이 절이 통째로 안 나온다.
+      var expo = exposureBlock(draft);
+      if (expo) box.appendChild(expo);
 
       // 「가져가기」는 앱이 한다 — 웹에서 남의 짜보기를 내 목록에 넣을 수는 없다.
       // 대신 앱의 [코드로 받기] 에 그대로 넣을 수 있는 코드를 준다.
