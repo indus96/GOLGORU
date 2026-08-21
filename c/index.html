@@ -18,7 +18,7 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
   .card h2{font-size:17px;margin:0;color:var(--ink);word-break:break-word}
   .by{font-size:12px;color:var(--sub);margin-top:4px}
-  .band{display:flex;height:6px;border-radius:999px;overflow:hidden;margin:14px 0 10px;gap:1px}
+  .band{display:flex;height:9px;border-radius:999px;overflow:hidden;margin:14px 0 10px;gap:1px}
   .band i{display:block}
   .holding{font-size:13px;color:var(--sub);line-height:1.7;word-break:break-word}
   .foot{display:flex;gap:14px;align-items:baseline;margin-top:14px;
@@ -40,7 +40,7 @@
   .state{color:var(--sub);padding:26px 0}
   .card-link{display:block;cursor:pointer}
   .card-link:hover{border-color:var(--gold)}
-  .detail .band{height:10px;margin:18px 0 14px}
+  .detail .band{height:16px;margin:18px 0 14px}
   .detail-row{display:flex;gap:10px;align-items:baseline;padding:9px 0;
     border-bottom:1px solid var(--line);font-size:14px}
   .detail-row:last-of-type{border-bottom:0}
@@ -245,14 +245,16 @@
 
   // 「지난 1년」. **앱이 올릴 때 계산해 보낸 값이다** — 서버도 이 페이지도 시세를
   // 모른다. 그래서 올린 시점 기준이고, 그 사실을 아래 한 줄로 밝힌다.
-  function perfBlock(draft) {
+  function perfBlock(draft, withCurve) {
     if (typeof draft.perf !== 'number') return null;
     var box = document.createElement('div');
     var row = document.createElement('div');
     row.className = 'perf-row';
     var label = document.createElement('span');
     label.className = 'perf-label';
-    label.appendChild(text('지난 1년'));
+    // 「지난 1년」이라고 쓰지 않는다 — 실제 구간은 종목 이력이 겹치는 만큼이고
+    // 앱이 보내는 것은 숫자 하나뿐이라 여기서 구간을 알 수 없다.
+    label.appendChild(text('지난 성과'));
     var value = document.createElement('span');
     value.className = 'perf ' + (draft.perf < 0 ? 'perf-down' : 'perf-up');
     value.appendChild(text((draft.perf >= 0 ? '+' : '') + (draft.perf * 100).toFixed(1) + '%'));
@@ -260,9 +262,9 @@
     row.appendChild(value);
     box.appendChild(row);
 
-    var points = (draft.perfCurve || '').split(',').map(Number).filter(function (n) {
-      return isFinite(n);
-    });
+    var points = withCurve
+      ? (draft.perfCurve || '').split(',').map(Number).filter(function (n) { return isFinite(n); })
+      : [];
     if (points.length > 1) {
       var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('class', 'spark');
@@ -281,10 +283,12 @@
       box.appendChild(svg);
     }
 
-    var note = document.createElement('div');
-    note.className = 'perf-note';
-    note.appendChild(text('올린 시점 기준 · 조정종가(배당 재투자 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
-    box.appendChild(note);
+    if (withCurve) {
+      var note = document.createElement('div');
+      note.className = 'perf-note';
+      note.appendChild(text('올린 시점 기준 · 조정종가(배당 재투자 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
+      box.appendChild(note);
+    }
     return box;
   }
 
@@ -337,7 +341,7 @@
       box.appendChild(holding);
     }
 
-    var perf = perfBlock(draft);
+    var perf = perfBlock(draft, false);
     if (perf) box.appendChild(perf);
 
     // 카드 전체가 링크라 그 안에 버튼을 넣으면 눌렀을 때 페이지가 같이 넘어간다.
@@ -406,7 +410,7 @@
     by.appendChild(text(pieces.join(' · ')));
     box.appendChild(by);
 
-    var detailPerf = perfBlock(draft);
+    var detailPerf = perfBlock(draft, true);
     if (detailPerf) box.appendChild(detailPerf);
     box.appendChild(voteRow(draft));
 
