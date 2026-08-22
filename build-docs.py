@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """docs/*.md → docs/*.html (랜딩과 같은 톤의 정적 문서 페이지).
 마크다운은 소스로 두고, 문서를 고치면 `python3 build-docs.py`로 재생성한다."""
-import re, html, glob, os, datetime, pathlib, unicodedata
+import re, html, glob, os, datetime, pathlib, unicodedata, hashlib
 
 # `back`은 랜딩에서 이 문서로 들어오는 섹션이다. 돌아갈 때 그 자리로 보낸다.
 # (JS가 되면 history.back()으로 정확한 스크롤 위치를 복원하고, 이건 그 대비책이다.)
@@ -88,6 +88,27 @@ def render_nav(root, cta="다운로드"):
 
 
 NAV = render_nav("../")
+
+# 공유 자원 캐시 무효화.
+#
+# GitHub Pages 가 site.js·doc.css 를 max-age=14400(4시간)으로 준다. 헤더 구조를
+# 바꾼 날 다시 온 사람은 새 HTML 에 4시간 묵은 CSS/JS 를 받아서, 드롭다운이
+# 스타일 없이 통째로 펼쳐진 헤더를 본다. 내용 해시를 주소에 붙여 파일이 실제로
+# 바뀐 날에만, 바뀐 파일만 새로 받게 한다.
+SHARED_ASSETS = ["site.js", "docs/doc.css"]
+
+
+def stamp_assets(path):
+    text = pathlib.Path(path).read_text(encoding="utf-8")
+    before = text
+    for asset in SHARED_ASSETS:
+        digest = hashlib.sha256(pathlib.Path(asset).read_bytes()).hexdigest()[:8]
+        name = re.escape(os.path.basename(asset))
+        text = re.sub(rf'((?:\.\./)*(?:docs/)?{name})(\?v=[0-9a-f]+)?"',
+                      rf'\g<1>?v={digest}"', text)
+    if text != before:
+        pathlib.Path(path).write_text(text, encoding="utf-8")
+
 
 def inject_shared(path, root, cta="다운로드"):
     """정적 파일의 `<!-- nav:start -->`~`<!-- nav:end -->` 사이를 헤더로 채운다.
@@ -362,3 +383,7 @@ write_sitemap()
 inject_shared("index.html", "", cta="앱 받기")
 inject_shared("p/index.html", "../")
 inject_shared("c/index.html", "../", cta="앱 받기")
+
+for page in ["index.html", "p/index.html", "c/index.html"] + glob.glob("docs/*.html"):
+    stamp_assets(page)
+print("asset stamp  " + ", ".join(SHARED_ASSETS))
