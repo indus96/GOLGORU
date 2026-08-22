@@ -45,6 +45,7 @@ NAV_LINKS = [
     ("{root}#rebalance", "자산배분"),
     ("{root}#capture", "계좌 채우기"),
     ("{root}#mac", "맥·아이패드"),
+    ("{root}docs/portfolio-draft.html", "짜보기"),
     ("{root}c/", "나눔터"),
     ("{root}#download", "다운로드"),
     ("{root}docs/changelog.html", "버전 기록"),
@@ -59,7 +60,7 @@ def render_nav(root, cta="다운로드"):
     return f"""<nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
-  <a class="brand" href="{root or './'}">골고루</a>
+  <a class="brand" href="{root or './'}"><img src="{root}images/app-icon.png" alt="" width="26" height="26">골고루</a>
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
   <div class="nav-links">

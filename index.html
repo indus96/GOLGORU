@@ -42,9 +42,13 @@
   nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
     backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;gap:8px;height:60px}
-  .brand{font-weight:800;font-size:20px;letter-spacing:.5px;color:var(--gold)}
+  .brand{font-weight:800;font-size:20px;letter-spacing:.5px;color:var(--gold);display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  /* 아이콘은 장식이다 — alt 를 비워 둔다. 텍스트로 읽으면 이름은 「골고루」 하나여야
+     한다(OAuth 브랜드 검증이 이름 불일치로 반려된 적이 있다). */
+  .brand img{width:26px;height:26px;border-radius:7px;display:block}
   .brand span{color:var(--ink);font-weight:700;font-size:15px;margin-left:6px}
   .nav-links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--sub)}
+  .nav-links a{white-space:nowrap}
   .nav-links a:hover{color:var(--gold)}
   .cta{background:var(--gold);color:#fff!important;padding:9px 16px;border-radius:999px;
     font-size:14px;font-weight:600;margin-left:20px;white-space:nowrap}
@@ -58,7 +62,7 @@
     border:1px solid var(--line);border-radius:999px}
   .menu-btn:hover{color:var(--gold)}
   .menu .nav-links{margin-left:0}
-  @media(max-width:760px){
+  @media(max-width:1040px){
     .menu-btn{display:block}
     .menu .nav-links{display:none}
     .menu.open .nav-links{display:flex;position:absolute;right:0;top:calc(100% + 10px);
@@ -202,7 +206,7 @@
 <nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
-  <a class="brand" href="./">골고루</a>
+  <a class="brand" href="./"><img src="images/app-icon.png" alt="" width="26" height="26">골고루</a>
   <div class="menu">
     <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
   <div class="nav-links">
@@ -213,6 +217,7 @@
     <a href="#rebalance">자산배분</a>
     <a href="#capture">계좌 채우기</a>
     <a href="#mac">맥·아이패드</a>
+    <a href="docs/portfolio-draft.html">짜보기</a>
     <a href="c/">나눔터</a>
     <a href="#download">다운로드</a>
     <a href="docs/changelog.html">버전 기록</a>
