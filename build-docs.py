@@ -15,6 +15,8 @@ DOCS = {
     "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
     "ai-review":            dict(eyebrow="구상",      hero="../images/app/phone-ai.png",        cls="phone", back="rebalance"),
+    "portfolio-draft":      dict(eyebrow="짜보기·나눔터", hero="../images/portfolio-draft.svg",  cls="wide", back="rebalance",
+                                 lead="사기 전에 구성을 짜 보고, 남이 짜 본 조합도 봅니다."),
     "broker-connection":    dict(eyebrow="증권사 연결", hero="",                                  cls="wide", back="about"),
     "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide", back="about",
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
