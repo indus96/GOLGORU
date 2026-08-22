@@ -25,6 +25,20 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
 .nav-links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--sub)}
 .nav-links a{white-space:nowrap}
 .nav-links a:hover{color:var(--gold)}
+/* 기능 드롭다운. 최상위 링크를 5개로 줄이려고 기능 항목을 접었다. */
+.nav-group{position:relative}
+.nav-group-btn{cursor:pointer;font:inherit;font-size:14px;color:var(--sub);background:none;
+  border:0;padding:0;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-group-btn::after{content:"";width:5px;height:5px;border-right:1.6px solid currentColor;
+  border-bottom:1.6px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.nav-group-btn:hover,.nav-group:hover .nav-group-btn,.nav-group.open .nav-group-btn{color:var(--gold)}
+/* 버튼과 패널 사이 12px 틈으로 마우스가 지나가면 :hover 가 끊긴다. 보이지 않는 다리를 놓는다. */
+.nav-group::before{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
+.nav-sub{display:none;position:absolute;left:-18px;top:calc(100% + 12px);
+  flex-direction:column;gap:14px;min-width:150px;padding:16px 18px;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.10);z-index:30}
+.nav-group:hover .nav-sub,.nav-group.open .nav-sub{display:flex}
 .cta{background:var(--gold);color:#fff!important;padding:9px 16px;border-radius:999px;
   font-size:14px;font-weight:600;margin-left:20px;white-space:nowrap}
 .cta:hover{background:#b6911f}
@@ -37,13 +51,19 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
   border:1px solid var(--line);border-radius:999px}
 .menu-btn:hover{color:var(--gold)}
 .menu .nav-links{margin-left:0}
-@media(max-width:1040px){
+@media(max-width:760px){
   .menu-btn{display:block}
   .menu .nav-links{display:none}
   .menu.open .nav-links{display:flex;position:absolute;right:0;top:calc(100% + 10px);
     flex-direction:column;gap:14px;min-width:170px;padding:16px 18px;
     background:var(--card);border:1px solid var(--line);border-radius:14px;
     box-shadow:0 10px 30px rgba(0,0,0,.10);z-index:30}
+  .menu.open .nav-group{position:static;display:flex;flex-direction:column;gap:14px}
+  .menu.open .nav-group::before{display:none}
+  .menu.open .nav-group-btn{color:var(--ink);font-weight:700;cursor:default}
+  .menu.open .nav-group-btn::after{display:none}
+  .menu.open .nav-sub{display:flex;position:static;min-width:0;padding:0 0 0 12px;
+    background:none;border:0;box-shadow:none}
   .cta{margin-left:12px}
 }
 

@@ -21,6 +21,32 @@ document.querySelectorAll('.menu').forEach(function (menu) {
   });
 });
 
+// 헤더 드롭다운(「기능」). 넓은 화면에서는 :hover 로도 열리지만, 그것만 두면
+// 키보드와 터치에서 못 연다. 좁은 화면에서는 접힌 메뉴 안에 이미 펼쳐져 있으므로
+// 버튼이 아무 일도 하지 않는 게 맞다 — CSS 가 그 상태를 만든다.
+document.querySelectorAll('.nav-group').forEach(function (group) {
+  var button = group.querySelector('.nav-group-btn');
+  if (!button) return;
+  function close() {
+    group.classList.remove('open');
+    button.setAttribute('aria-expanded', 'false');
+  }
+  button.addEventListener('click', function (event) {
+    event.stopPropagation();
+    var open = group.classList.toggle('open');
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  group.querySelectorAll('.nav-sub a').forEach(function (link) {
+    link.addEventListener('click', close);
+  });
+  document.addEventListener('click', function (event) {
+    if (!group.contains(event.target)) close();
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') close();
+  });
+});
+
 // 헤더 버튼은 접속한 기기에 맞춰 바뀐다.
 //
 // 기본 상태는 "다운로드 → #download" 다. 스크립트가 없거나 기기를 못 가려도

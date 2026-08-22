@@ -39,24 +39,40 @@ DOCS = {
 # 스크립트가 막힌 브라우저와 크롤러에 헤더가 통째로 사라진다.
 NAV_LINKS = [
     ("{root}#about", "앱 소개"),
+    # 기능 항목은 드롭다운 하나로 접는다. 펼쳐 두면 링크가 11개가 되어 한 줄을
+    # 넘겼고, 「맥·아이패드」처럼 최상위에 있을 무게가 아닌 것도 섞여 있었다.
+    ("기능", [
+        ("{root}#dashboard", "대시보드"),
+        ("{root}#analysis", "자산 분석"),
+        ("{root}#rebalance", "자산배분"),
+        ("{root}#capture", "계좌 채우기"),
+        ("{root}docs/portfolio-draft.html", "짜보기"),
+        ("{root}#mac", "맥·아이패드"),
+    ]),
     ("{root}#principles", "원칙"),
-    ("{root}#dashboard", "대시보드"),
-    ("{root}#analysis", "자산 분석"),
-    ("{root}#rebalance", "자산배분"),
-    ("{root}#capture", "계좌 채우기"),
-    ("{root}#mac", "맥·아이패드"),
-    ("{root}docs/portfolio-draft.html", "짜보기"),
     ("{root}c/", "나눔터"),
     ("{root}#download", "다운로드"),
-    ("{root}docs/changelog.html", "버전 기록"),
+    # 「버전 기록」은 푸터에만 둔다 — 헤더에 있을 만큼 자주 보는 문서가 아니다.
 ]
+
+
+def render_nav_item(href, label, root):
+    if isinstance(label, list):
+        subs = "\n".join(
+            f'      <a href="{h.format(root=root)}">{t}</a>' for h, t in label
+        )
+        return (
+            f'    <div class="nav-group">\n'
+            f'      <button class="nav-group-btn" type="button" aria-expanded="false">{href}</button>\n'
+            f'      <div class="nav-sub">\n{subs}\n      </div>\n'
+            f'    </div>'
+        )
+    return f'    <a href="{href.format(root=root)}">{label}</a>'
 
 
 def render_nav(root, cta="다운로드"):
     """`root` 는 사이트 루트까지의 상대 경로("" 또는 "../")."""
-    links = "\n".join(
-        f'    <a href="{href.format(root=root)}">{label}</a>' for href, label in NAV_LINKS
-    )
+    links = "\n".join(render_nav_item(href, label, root) for href, label in NAV_LINKS)
     return f"""<nav><div class="wrap nav-in">
   <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
        "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
