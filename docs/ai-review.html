@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>골고루 · 구상 — 살펴보기 · 짜보기</title>
+<title>골고루 · 계획 — 진단과 목표</title>
 <meta property="og:site_name" content="골고루">
 <meta name="application-name" content="골고루">
-<meta name="description" content="구상 탭은 둘로 갈립니다 — 지금 가진 자산을 살펴보고, 아직 사지 않은 구성을 미리 짜 봅니다.">
-<meta property="og:title" content="골고루 · 구상 — 살펴보기 · 짜보기">
-<meta property="og:description" content="구상 탭은 둘로 갈립니다 — 지금 가진 자산을 살펴보고, 아직 사지 않은 구성을 미리 짜 봅니다.">
+<meta name="description" content="계획 탭은 자산군 큰 그림을 정하는 자리입니다. 지금 가진 자산을 진단하고, 성향에 맞는 목표를 제안받아 적용합니다.">
+<meta property="og:title" content="골고루 · 계획 — 진단과 목표">
+<meta property="og:description" content="계획 탭은 자산군 큰 그림을 정하는 자리입니다. 지금 가진 자산을 진단하고, 성향에 맞는 목표를 제안받아 적용합니다.">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://golgoru.app/docs/ai-review.html">
 <meta property="og:url" content="https://golgoru.app/docs/ai-review.html">
@@ -41,40 +41,42 @@
 <header class="doc-hero"><div class="wrap">
   <a class="back" href="../#rebalance"
      onclick="return golgoruBack(event)">← 골고루 홈</a>
-  <div class="eyebrow">구상</div>
-  <h1>구상 — 살펴보기 · 짜보기</h1>
-  <p class="lead"><strong>구상</strong> 탭은 둘로 갈립니다 — 지금 가진 자산을 살펴보고, 아직 사지 않은 구성을 미리 짜 봅니다.</p>
-  <div class="hero-img phone"><img src="../images/app/phone-ai.png" alt="구상 — 살펴보기 · 짜보기 화면"></div>
+  <div class="eyebrow">계획</div>
+  <h1>계획 — 진단과 목표</h1>
+  <p class="lead"><strong>계획</strong> 탭은 <strong>자산군 큰 그림</strong>을 정하는 자리입니다. 지금 가진 자산을 진단하고, 성향에 맞는 목표를 제안받아 적용합니다.</p>
+  <div class="hero-img phone"><img src="../images/app/phone-ai.png" alt="계획 — 진단과 목표 화면"></div>
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
 <blockquote><strong>지원 방식:</strong> 둘러보기 · 앱에 직접 입력</blockquote>
-<div class="tablewrap"><table><thead><tr><th></th><th>하는 일</th></tr></thead><tbody><tr><td><strong>살펴보기</strong></td><td>지금 가진 자산을 자동으로 분석해 편중을 진단하고, 성향에 맞는 목표와 계좌별 조정안을 냅니다</td></tr><tr><td><strong>짜보기</strong></td><td>아직 사지 않은 구성을 미리 짜 봅니다 — ETF를 찾아 비교하고, 투자금을 넣어 주수를 보고, 남에게 넘깁니다</td></tr><tr><td><strong>나눔터</strong></td><td>짜보기 안의 탭입니다. 다른 사람이 짜 본 조합을 보고, 마음에 들면 내 짜보기로 가져옵니다</td></tr></tbody></table></div>
+<p>종목 · 계좌별 목표는 여기가 아니라 <strong>자산</strong> 탭에서 고칩니다. 목표 비중을 두 곳에 따로 저장하기 때문에, 어느 쪽을 고치는 중인지 헷갈리면 「고쳤는데 안 바뀐다」가 납니다.</p>
+<div class="tablewrap"><table><thead><tr><th></th><th>하는 일</th><th>어디에</th></tr></thead><tbody><tr><td><strong>자산 진단</strong></td><td>입력 없이 지금 자산을 분석해 편중 · 부족을 진단합니다</td><td>계획 탭</td></tr><tr><td><strong>목표 제안</strong></td><td>성향에 맞는 자산군 목표를 제안하고, 적용하면 계속 점검합니다</td><td>계획 탭</td></tr><tr><td><strong>짜보기</strong></td><td>아직 사지 않은 구성을 미리 짜 봅니다</td><td>계획 → 짜보기</td></tr><tr><td><strong>나눔터</strong></td><td>남이 짜 본 조합을 보고 내 짜보기로 가져옵니다</td><td>계획 → 짜보기 → 가져오기</td></tr></tbody></table></div>
 <p>앱은 계산해 보여줄 뿐 <strong>주문을 넣지 않습니다.</strong> 매매는 사용자가 증권사에서 직접 합니다.</p>
-<figure><img src="../images/news-ai.svg" alt="뉴스와 구상"></figure>
-<h2>살펴보기 — 지금 가진 자산</h2>
+<figure><img src="../images/news-ai.svg" alt="계획 — 진단과 목표"></figure>
+<h2>진단 — 지금 가진 자산</h2>
 <p>숫자를 직접 설계하지 않습니다. <strong>성향 하나만 고르고, 적용 · 수정 · 무시만</strong> 하면 됩니다.</p>
 <h3>화면 순서</h3>
-<ol><li><strong>자산 구성</strong> — 입력 없이 보유 종목을 자산군(주식 · 채권 · 현금 · 코인 · 금)과 국가(미국 · 한국 · 기타)로 자동 분류해 <strong>도넛 하나와 색 점 범례</strong>로 보여줍니다. 해외 자산은 기준환율로 원화 환산해 비중을 냅니다. 나라별 비중은 <strong>나라별로 보기</strong>에서 봅니다.</li><li><strong>가장 먼저 볼 것</strong> — 편중 · 부족 가운데 <strong>가장 심한 하나만</strong> 문장으로 크게 보여줍니다. 나머지는 <strong>다른 진단 N가지</strong>로 접혀 있습니다.</li><li><strong>AI 목표 제안</strong> — <strong>어떻게 바꿀지 보기</strong>를 눌러야 펼쳐집니다. 투자 성향(보수 · 중립 · 공격) 칩을 바꾸면 목표가 통째로 다시 계산됩니다.</li><li><strong>계좌별 리밸런싱</strong> — "무엇을 어느 계좌에서 얼마나 사고팔면" 목표에 가까워지는지, <strong>자산군 → 계좌 → 종목(수량 · 분할 회차)</strong> 순서로 제안합니다.</li></ol>
-<blockquote><strong>1.3.0에서 간결해졌습니다.</strong> 같은 모양의 막대가 열다섯 줄 넘게 깔려 있던 것을 도넛 하나와 1순위 진단으로 줄이고, 나라별 비중 · 나머지 진단 · 목표 제안은 눌러야 열리게 바꿨습니다. 별점은 초보에게 읽히지 않아 <strong>숫자와 기준을 문장으로</strong> 풉니다.</blockquote>
+<ol><li><strong>자산 구성</strong> — 입력 없이 보유 종목을 자산군(주식 · 채권 · 현금 · 코인 · 금)과 국가(미국 · 한국 · 기타)로 자동 분류해 <strong>도넛 하나와 색 점 범례</strong>로 보여줍니다. 해외 자산은 기준환율로 원화 환산해 비중을 냅니다. 나라별 비중은 <strong>나라별로 보기</strong>에서 봅니다.</li><li><strong>가장 먼저 볼 것</strong> — 편중 · 부족 가운데 <strong>가장 심한 하나만</strong> 문장으로 크게 보여줍니다. 나머지는 <strong>다른 진단 N가지</strong>로 접혀 있습니다.</li><li><strong>목표 제안</strong> — <strong>목표 제안 보기</strong>를 눌러야 펼쳐집니다. 투자 성향(안정 · 중립 · 공격) 칩을 바꾸면 목표가 통째로 다시 계산됩니다. 목표 줄마다 <strong>퍼센트와 금액을 같이</strong> 적습니다 — 「목표 15%」만으로는 얼마인지 모릅니다.</li></ol>
+<blockquote><strong>2.0에서 이름이 바뀌었습니다.</strong> 「AI 자산 진단」 · 「AI 목표 제안」에서 AI 를 뗐습니다 — 이 화면의 숫자는 전부 정해진 규칙으로 계산하고, 공개 앱에는 AI 설명 기능이 없습니다. 탭 이름도 「구상」에서 「계획」으로 바꿨습니다.</blockquote>
 <h3>목표를 적용한 뒤 — 모니터링</h3>
 <p>목표를 적용하면 화면이 <strong>모니터링 모드</strong>로 바뀝니다.</p>
-<ul><li>적용한 목표가 <strong>기준선</strong>이 되어, 이후에는 목표 대비 현재 비중을 비교해서 보여줍니다.</li><li><strong>허용오차(±3 · 5 · 10%p)</strong> 를 정하고, 그 범위를 벗어난 자산군만 조정 대상으로 잡습니다.</li><li>범위를 벗어난 곳만 <strong>자동으로 펼쳐져</strong> 국가 → 계좌 → 종목(수량 · 분할)까지 내려갑니다. 범위 안은 <code>✓ 범위 안</code> 한 줄로 접힙니다.</li><li>상위(자산군)가 범위 안이어도 <strong>그 안의 국가 비중이 틀어졌으면 펼쳐집니다</strong>.</li><li><code>목표 수정</code>으로 목표만 바꾸거나, <code>목표 다시 받기</code>로 처음부터 새로 제안받을 수 있습니다.</li></ul>
+<ul><li>적용한 목표가 <strong>기준선</strong>이 되어, 이후에는 목표 대비 현재 비중을 비교해서 보여줍니다.</li><li><strong>조정 기준</strong>(설정 &gt; 내 자산)을 벗어난 자산군만 조정 대상으로 잡습니다. 이 기준은 앱 전체에 하나뿐입니다 — 자산 탭의 %p 배지와 조정안이 같은 값을 씁니다.</li><li>범위를 벗어난 곳만 <strong>자동으로 펼쳐져</strong> 국가 → 계좌 → 종목(수량 · 분할)까지 내려갑니다. 범위 안은 <code>✓ 범위 안</code> 한 줄로 접힙니다.</li><li>상위(자산군)가 범위 안이어도 <strong>그 안의 국가 비중이 틀어졌으면 펼쳐집니다</strong>.</li><li><code>목표 수정</code>으로 목표만 바꾸거나, <code>목표 다시 받기</code>로 처음부터 새로 제안받을 수 있습니다.</li></ul>
 <h3>목표 제안 방식</h3>
 <ul><li><strong>성향 칩</strong>(보수 · 중립 · 공격)으로 목표를 고릅니다. 숫자를 직접 입력하지 않습니다.</li><li>목표는 <strong>방어자산 하한(현금 · 채권)과 위험자산 상한(코인 · 금 · 단일 국가)</strong> 같은 일반적 분산 원칙에 비춰 제안하며, 주식 비중은 나머지로 자동 계산됩니다.</li><li><strong>적용 / 수정 / 무시</strong> 중에서 고릅니다. 수정하면 현금 · 채권 · 금 · 코인 목표를 직접 조정할 수 있고, 나머지는 자동으로 다시 맞춰집니다.</li></ul>
-<h3>리밸런싱 원칙</h3>
-<ul><li><strong>계좌 경계 안에서</strong> 조정합니다 — 계좌 간 종목 이동 없이, 각 계좌의 자산으로만 사고팝니다.</li><li>한 종목에 몰아주지 않고 <strong>여러 계좌 · 여러 종목에 비중대로 분산</strong>합니다.</li><li>목표에서 줄이려는 자산군만 매도합니다(작은 차이는 매매하지 않는 허용오차 적용).</li><li>보유가 없는 자산군은 특정 종목을 찍어 추천하지 않고 <strong>카테고리(예: 채권 ETF)로만</strong> 안내합니다.</li></ul>
+<h3>실제 종목 · 수량은 자산 탭에서</h3>
+<p>계획 탭은 <strong>자산군까지만</strong> 말합니다. 「채권을 15%까지 늘리세요」가 여기 일이고, 「어느 계좌에서 무엇을 몇 주」는 자산 탭의 <strong>조정안</strong>이 정합니다.</p>
+<ul><li><strong>계좌 경계 안에서</strong> 조정합니다 — 계좌 간 종목 이동 없이, 각 계좌의 자산으로만 사고팝니다.</li><li>보유가 없는 자산군은 특정 종목을 찍어 추천하지 않고 <strong>카테고리(예: 채권 ETF)로만</strong> 안내합니다.</li></ul>
 <h3>갱신 시점</h3>
 <ul><li>툴바의 새로고침 버튼이나 <strong>화면을 아래로 당겨</strong> 진단을 다시 계산할 수 있습니다.</li><li>자산 데이터를 새로 읽으면 진단 · 목표 · 리밸런싱이 자동으로 다시 계산됩니다.</li><li>시세는 따로 갱신되지만 <strong>목표 숫자는 시세가 움직일 때마다 흔들리지 않습니다</strong> — 자산 데이터를 새로 읽은 시점과 사용자가 새로고침한 시점을 기준으로 계산합니다.</li></ul>
 <h2>짜보기 · 나눔터는 따로 적었습니다</h2>
-<p>구상 탭의 나머지 절반 — <strong>짜보기</strong>(아직 사지 않은 구성을 짜 보는 자리)와 <strong>나눔터</strong>(남이 짜 본 조합을 보는 자리)는 화면 그림과 함께 <a href="portfolio-draft.html">짜보기 · 나눔터</a>에 따로 적었습니다.</p>
+<p>계획 탭 아래의 <strong>포트폴리오 짜보기</strong> 카드를 누르면 들어갑니다 — 아직 사지 않은 구성을 짜 보는 자리이고, 그 안의 <strong>가져오기</strong>로 나눔터에 들어갑니다. 화면 그림과 함께 <a href="portfolio-draft.html">짜보기 · 나눔터</a>에 적었습니다.</p>
 <h2>안내</h2>
 <ul><li>여기서 제시하는 목표 · 조정 · 비교는 <strong>개인 맞춤 투자자문이 아니라 일반적 분산 원칙에 비춘 참고치</strong>입니다. 최종 판단과 주문은 사용자가 직접 합니다.</li><li>부동산(집 · 전세보증금 등)은 리밸런싱 대상에서 제외하고 참고로만 표시합니다.</li><li>지난 성과는 미래 수익을 보장하지 않습니다.</li></ul>
 <h2>프라이버시 원칙</h2>
-<ul><li><strong>자산 정보가 기기 밖으로 나가지 않습니다.</strong> 진단 · 목표 · 리밸런싱과 짜보기의 주수 · 합성보수 · 지난 성과 계산은 전부 앱 안에서 처리하며, 이 화면은 외부 AI(LLM)를 쓰지 않습니다.</li><li>ETF를 찾고 비교할 때 밖으로 나가는 것은 <strong>검색어와 종목 심볼</strong>뿐입니다 — 투자금 · 비중 · 보유 자산은 보내지 않습니다.</li><li>공유 링크의 구성은 주소의 <code>#</code> 뒤에 실려 <strong>서버로 전송되지 않습니다.</strong></li><li>살펴보기는 <strong>오프라인에서도 그대로 동작</strong>합니다(짜보기의 종목 검색과 시세는 네트워크가 필요합니다).</li></ul>
+<ul><li><strong>자산 정보가 기기 밖으로 나가지 않습니다.</strong> 진단 · 목표 · 조정안과 짜보기의 주수 · 합성보수 · 지난 성과 계산은 전부 앱 안에서 처리하며, 이 화면은 외부 AI(LLM)를 쓰지 않습니다.</li><li>ETF를 찾고 비교할 때 밖으로 나가는 것은 <strong>검색어와 종목 심볼</strong>뿐입니다 — 투자금 · 비중 · 보유 자산은 보내지 않습니다.</li><li>공유 링크의 구성은 주소의 <code>#</code> 뒤에 실려 <strong>서버로 전송되지 않습니다.</strong></li><li>진단과 목표는 <strong>오프라인에서도 그대로 동작</strong>합니다(짜보기의 종목 검색과 시세는 네트워크가 필요합니다).</li></ul>
 </div></main>
 <section class="more-docs"><div class="wrap narrow">
   <h2>다른 문서</h2>
-  <div class="doc-cards"><a class="doc-card" href="dashboard.html">대시보드</a><a class="doc-card" href="portfolio-analysis.html">자산 분석</a><a class="doc-card" href="asset-ranking.html">자산순위</a><a class="doc-card" href="allocation-rebalancing.html">자산배분</a><a class="doc-card" href="news-reports.html">뉴스·리포트</a><span class="doc-card current">구상</span><a class="doc-card" href="portfolio-draft.html">짜보기·나눔터</a><a class="doc-card" href="broker-connection.html">증권사 연결</a><a class="doc-card" href="data-security.html">데이터·보안</a><a class="doc-card" href="getting-started.html">시작하기</a><a class="doc-card" href="privacy.html">개인정보</a><a class="doc-card" href="changelog.html">버전 기록</a></div>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">홈</a><a class="doc-card" href="portfolio-analysis.html">구성 리포트</a><a class="doc-card" href="asset-ranking.html">자산</a><a class="doc-card" href="allocation-rebalancing.html">조정안</a><a class="doc-card" href="news-reports.html">뉴스·리포트</a><span class="doc-card current">계획</span><a class="doc-card" href="portfolio-draft.html">짜보기·나눔터</a><a class="doc-card" href="broker-connection.html">증권사 연결</a><a class="doc-card" href="data-security.html">데이터·보안</a><a class="doc-card" href="getting-started.html">시작하기</a><a class="doc-card" href="privacy.html">개인정보</a><a class="doc-card" href="changelog.html">버전 기록</a></div>
 </div></section>
 <footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>

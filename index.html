@@ -6,7 +6,7 @@
 <!-- 검증이 동의 화면 이름과 정확히 대조하므로 앱 이름만 둔다.
      설명은 description·og:description이 맡는다. -->
 <title>골고루</title>
-<meta name="description" content="골고루는 흩어진 계좌를 한눈에 모으고 목표 자산배분과의 차이를 계산하는 iPhone · iPad · Mac용 개인 자산관리 앱입니다.">
+<meta name="description" content="골고루는 흩어진 계좌를 한눈에 모으고 목표 비중과의 차이를 계산하는 iPhone · iPad · Mac · Android 자산관리 앱입니다.">
 <meta property="og:title" content="골고루">
 <!-- 소유권 확인:
      - Search Console 도메인 속성(DNS TXT)이 기준이다. OAuth 브랜드 검증이
@@ -263,10 +263,10 @@
       로그인 없이 둘러보거나, 자산을 <b>앱에 직접 입력</b>하거나, 증권사 화면을 캡처해 가져오세요.
       자산 데이터는 기기 안에 머뭅니다.</p>
     <div class="chips">
-      <span class="chip">📊 자산 현황·순위</span>
+      <span class="chip">📊 자산 현황</span>
       <span class="chip">🩺 투자 건강점수</span>
       <span class="chip">⚖️ 목표 배분 차이</span>
-      <span class="chip">📰 뉴스·구상</span>
+      <span class="chip">📰 뉴스·계획</span>
     </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">App Store에서 받기</a>
@@ -274,7 +274,7 @@
     </div>
     <p class="hero-note">iPhone · iPad · Mac 지원 · 무료 · 안드로이드는 준비 중입니다</p>
   </div>
-  <div class="hero-shot"><img src="images/dashboard.svg" alt="골고루 대시보드 화면"></div>
+  <div class="hero-shot"><img src="images/dashboard.svg" alt="골고루 홈 화면"></div>
 </div></header>
 
 <section id="about"><div class="wrap">
@@ -286,7 +286,7 @@
   </h2>
   <p class="sub" style="max-width:760px">
     <b>골고루</b>는 iPhone · iPad · Mac에서 쓰는 <b>개인 자산관리 앱</b>입니다.
-    여러 계좌에 흩어진 자산을 한 화면에 모아 보여주고, 사용자가 정한 목표 자산배분과
+    여러 계좌에 흩어진 자산을 한 화면에 모아 보여주고, 사용자가 정한 목표 비중과
     실제 보유 비중의 차이를 계산해 무엇부터 조정할지 알려줍니다.
   </p>
   <p class="sub" style="max-width:760px">
@@ -340,28 +340,29 @@
   <p class="sub">아래는 각 화면의 구성을 그대로 옮긴 예시입니다. 세부 안내는 각 섹션의 문서 링크에서 볼 수 있습니다.</p>
 
   <div class="feat">
-    <div class="shot phone"><img src="images/app/phone-dashboard.png" alt="대시보드 — 실제 화면(총자산·현금 가림)"></div>
+    <div class="shot phone"><img src="images/app/phone-dashboard.png" alt="홈 — 실제 화면(총자산·오늘 변동·지금 할 일)"></div>
     <div class="txt">
-      <h3>대시보드</h3>
+      <h3>홈</h3>
       <ul>
-        <li>총자산과 현금 비중을 한눈에 — 둘러보기든 앱 입력이든 같은 화면</li>
-        <li>자산군별 구성 비중 바 · 시장지표 11종(환율·금리·유가·주가지수)</li>
-        <li>목표 비중과 가장 벌어진 항목 · 계좌 순위 · 뉴스 요약</li>
+        <li>총자산 · 오늘 변동 · 수익과 자산군 구성 바를 한 장에</li>
+        <li><b>지금 할 일</b> 한 장 — 목표에서 가장 벌어진 것 하나. 할 일이 없으면 카드도 사라집니다</li>
+        <li>시장은 세 칸만 — 열려 있는 장의 지수 둘과 환율. 나머지는 눌러 들어갑니다</li>
+        <li>뉴스 두 줄 — 제목과 출처만, 누르면 기사로</li>
       </ul>
-      <a class="more" href="docs/dashboard.html">대시보드 문서 →</a>
+      <a class="more" href="docs/dashboard.html">홈 문서 →</a>
     </div>
   </div>
 
   <div class="feat rev" id="analysis">
     <div class="shot phone"><img src="images/app/phone-analysis.png" alt="자산 구성 분석 — 요약 탭(실제 화면, 금액 가림)"></div>
     <div class="txt">
-      <h3>자산 구성 분석</h3>
+      <h3>구성 리포트</h3>
       <ul>
         <li>투자 건강점수 100점 · 감점/가점 사유를 함께</li>
-        <li>AI 인사이트 · 집중도 · 국가·산업 배분 · 배당(지난 1년 실지급 기준)</li>
+        <li>눈에 띄는 것 · 집중도 · 국가·산업 배분 · 배당(지난 1년 실지급 기준)</li>
         <li>1·3·5·10년 자산 추정 · 목표 달성 · 개선 제안</li>
       </ul>
-      <a class="more" href="docs/portfolio-analysis.html">자산 구성 분석 문서 →</a>
+      <a class="more" href="docs/portfolio-analysis.html">구성 리포트 문서 →</a>
     </div>
   </div>
 
@@ -369,7 +370,7 @@
     <div class="shot phone">
       <div class="gallery" data-gallery>
         <div class="frames">
-          <img src="images/app/phone-ranking.png" alt="자산순위 — 종목별 평가액과 수익">
+          <img src="images/app/phone-ranking.png" alt="자산 — 계좌별 평가액·수익·목표 차이">
           <img src="images/app/stock-chart.png" alt="종목 상세 — 차트 탭(캔들·이동평균·매물대)">
           <img src="images/app/stock-analysis.png" alt="종목 상세 — 분석 탭(기술 지표·재무제표)">
           <img src="images/app/stock-news.png" alt="종목 상세 — 뉴스 탭">
@@ -379,27 +380,27 @@
       </div>
     </div>
     <div class="txt">
-      <h3>자산순위 · 종목 상세</h3>
+      <h3>자산 · 종목 상세</h3>
       <ul>
-        <li>계좌별·자산군별·종목별 순위와 자동 갱신 시세</li>
-        <li>종목을 탭하면 <b>차트·분석·뉴스·메모</b> 4탭 상세</li>
+        <li>계좌별 · 항목별 목록 한 벌 — 한 줄에 평가액 · 수익 · 목표 차이(%p)를 같이</li>
+        <li>계좌를 누르면 계좌 상세, 종목을 누르면 <b>차트·분석·뉴스·메모</b> 4탭</li>
         <li>기술 지표·재무제표(SEC·DART·네이버)·ETF 구성</li>
       </ul>
-      <a class="more" href="docs/asset-ranking.html">자산순위 문서 →</a>
+      <a class="more" href="docs/asset-ranking.html">자산 문서 →</a>
     </div>
   </div>
 
   <div class="feat rev" id="rebalance">
-    <div class="shot phone"><img src="images/app/phone-allocation.png" alt="자산배분 — 목표 대비 차이와 조정 필요 금액"></div>
+    <div class="shot phone"><img src="images/app/phone-allocation.png" alt="조정안 — 목표 대비 차이와 옮길 금액"></div>
     <div class="txt">
-      <h3>자산배분</h3>
+      <h3>조정안</h3>
       <ul>
-        <li>목표 비중과 실제 비중의 차이를 계좌별·자산군별로 계산</li>
-        <li>조정 필요 금액과 벗어난 정도를 한눈에 — 무엇부터 손볼지 정하는 화면</li>
-        <li>직접 입력 방식에서는 앱 안에서 목표 비중을 바로 편집</li>
-        <li>리밸런싱 계획을 만들어 저장 — 증권사 앱에서 실행하고 체크하면 보유와 기록이 맞춰집니다</li>
+        <li>목표에서 벌어진 것만 모아 <b>얼마를 어느 쪽으로 옮기면 되는지</b>만 적습니다</li>
+        <li>기준은 앱 전체에 하나 — 자산 목록의 %p 배지와 같은 값을 씁니다</li>
+        <li>계좌 편집에서 수량 · 평단 · 현금 · 목표 비중을 한 화면에서</li>
+        <li>나눠서 사고팔 계획을 세우고, 증권사 앱에서 실행한 뒤 체크하면 보유가 맞춰집니다</li>
       </ul>
-      <a class="more" href="docs/allocation-rebalancing.html">자산배분 문서 →</a>
+      <a class="more" href="docs/allocation-rebalancing.html">조정안 문서 →</a>
     </div>
   </div>
 
@@ -408,22 +409,23 @@
       <div class="gallery" data-gallery>
         <div class="frames">
           <img src="images/app/phone-news.png" alt="뉴스 — 보유 종목 기사">
-          <img src="images/app/phone-ai.png" alt="구상 — 자동 분석과 편중 진단, 성향별 목표 제안">
+          <img src="images/app/phone-ai.png" alt="계획 — 자동 분석과 편중 진단, 성향별 목표 제안">
         </div>
         <div class="dots" aria-hidden="true"></div>
       </div>
     </div>
     <div class="txt">
-      <h3>뉴스 · 구상(살펴보기 · 짜보기)</h3>
+      <h3>뉴스 · 계획</h3>
       <ul>
-        <li>보유 종목 뉴스 · 증권사 리포트 · 투자 이벤트</li>
-        <li>살펴보기: 자산 구성을 도넛 하나로 → 가장 먼저 볼 진단 하나 → 성향별 목표 제안 → 계좌별 조정안</li>
+        <li>보유 종목 뉴스 · 증권사 리포트 — 읽은 것은 사라지지 않고 흐려집니다</li>
+        <li>계획: 자산 구성을 도넛 하나로 → 가장 먼저 볼 진단 하나 → 성향별 목표 제안</li>
+        <li>계획은 <b>자산군 큰 그림</b>까지 — 종목 · 계좌별 목표는 자산 탭에서 고칩니다</li>
         <li>짜보기: 아직 사지 않은 구성을 미리 — ETF를 찾아 비교하고, 투자금을 넣어 주수를 보고, 링크·코드·카드로 넘깁니다</li>
         <li>나눔터: 다른 사람이 짜 본 조합을 보고 마음에 들면 가져옵니다 — <a href="c/">앱 없이 여기서도</a> 볼 수 있습니다</li>
         <li>계산은 전부 기기 안에서 · 외부 AI로 자산 정보를 보내지 않습니다</li>
         <li>참고용이며 투자자문이 아닙니다</li>
       </ul>
-      <a class="more" href="docs/ai-review.html">구상 문서 →</a>
+      <a class="more" href="docs/ai-review.html">계획 문서 →</a>
     </div>
   </div>
 
@@ -460,22 +462,23 @@
     기능이 빠지는 화면은 없습니다 — 같은 데이터를 더 넓게 볼 뿐입니다.
     아래는 실제 화면이며, 숫자는 예시 데이터입니다.</p>
 
-  <div class="mac-shot"><img src="images/app/mac-dashboard.png" alt="맥 대시보드 — 사이드바와 히어로 카드 레이아웃"></div>
-  <p class="sub">대시보드는 총자산 히어로 아래로 시장지표·자산 구성·뉴스 요약이 3단으로 놓입니다.
-    iPhone에서 스크롤로 훑던 것을 한 화면에서 봅니다.</p>
+  <div class="mac-shot"><img src="images/app/mac-dashboard.png" alt="맥 홈 — 사이드바와 히어로 카드 레이아웃"></div>
+  <p class="sub">홈은 총자산 아래로 상위 계좌·목표와 차이·시장·뉴스가 카드로 놓입니다.
+    폰에서는 뺀 목록 둘을 여기서는 되살립니다 — 맥은 한 화면에 여러 개를 놓고 보는 기계라
+    탭을 오가는 비용이 더 큽니다.</p>
 
-  <div class="mac-shot"><img src="images/app/ipad-ranking.png" alt="아이패드 자산순위 — 2단 카드 그리드"></div>
-  <p class="sub">자산순위는 계좌 카드가 2단 이상 그리드로 배치되고,
-    계좌를 펼쳐도 카드 안에서 열려 화면 전체가 흔들리지 않습니다.</p>
+  <div class="mac-shot"><img src="images/app/ipad-ranking.png" alt="아이패드 자산 — 2단 카드 그리드"></div>
+  <p class="sub">자산은 계좌 카드가 2단 이상 그리드로 배치되고, 폰과 달리
+    <b>제자리에서 펼쳐집니다</b> — 계좌를 하나 볼 때마다 화면을 밀고 들어갔다 나올 이유가 없습니다.</p>
 
-  <div class="mac-shot"><img src="images/app/ipad-allocation.png" alt="아이패드 자산배분 — 계좌 카드와 목표 대비 차이"></div>
-  <p class="sub">자산배분도 계좌 카드가 나란히 놓입니다. 계좌를 펼치면 그 안에서
-    종목별 목표·실제 비중과 조정 금액이 열려, 어느 계좌부터 손볼지 한눈에 비교됩니다.</p>
+  <div class="mac-shot"><img src="images/app/ipad-allocation.png" alt="아이패드 뉴스 — 목록과 본문을 한 화면에"></div>
+  <p class="sub">뉴스는 왼쪽 목록·오른쪽 본문으로 나뉩니다. 기사 하나 볼 때마다
+    시트가 화면을 덮을 이유가 없습니다. 종목 상세도 차트를 왼쪽에 크게 두고 숫자를 옆으로 뺍니다.</p>
 
   <div class="mac-note">
     <span>🖥 사이드바 내비게이션</span>
-    <span>📊 대시보드 3단 배치</span>
-    <span>🗂 자산순위 카드 그리드</span>
+    <span>📊 홈 카드 배치</span>
+    <span>🗂 자산 카드 그리드</span>
     <span>📐 읽기 편한 폭 제한</span>
     <span>🙈 금액 가리기</span>
     <span>🧩 iPhone과 동일 기능</span>
@@ -513,7 +516,7 @@
   <h2>App Store에 공개되었습니다</h2>
   <div class="status"><ul>
     <li class="ok">iPhone · iPad App Store 공개</li>
-    <li class="ok">자산 현황·순위·배분 차이·뉴스·구상</li>
+    <li class="ok">자산 현황 · 목표와의 차이 · 조정안 · 뉴스 · 계획</li>
     <li class="ok">자산 구성 분석(건강점수·배당·추정·개선 제안)</li>
     <li class="ok">두 가지 시작 방식(둘러보기·앱에 직접 입력)과 캡처로 종목 가져오기</li>
     <li class="ok">증권사 잔고 조회와 계좌 자동 채우기</li>
