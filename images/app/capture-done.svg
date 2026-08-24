@@ -2,7 +2,7 @@
   <rect width="320" height="620" fill="#FAF7F2"/>
 
   <text x="20" y="42" font-size="11" fill="#948A72">‹ 설정</text>
-  <text x="20" y="76" font-size="21" font-weight="800" fill="#3A3A3A">원장 편집</text>
+  <text x="20" y="76" font-size="21" font-weight="800" fill="#3A3A3A">계좌</text>
 
   <rect x="16" y="96" width="288" height="34" rx="10" fill="#FDF6E3"/>
   <text x="30" y="118" font-size="11" font-weight="700" fill="#8A6D14">4개 종목을 연금저축에 넣었습니다</text>
@@ -11,37 +11,29 @@
   <rect x="16" y="166" width="288" height="252" rx="14" fill="#FFFFFF" stroke="#EEE7D8"/>
 
   <g>
-    <rect x="30" y="180" width="30" height="30" rx="8" fill="#EFF3F8"/>
-    <text x="45" y="200" text-anchor="middle" font-size="12">📊</text>
-    <text x="68" y="194" font-size="12" font-weight="700" fill="#3A3A3A">TIGER 미국S&amp;P500</text>
-    <text x="68" y="209" font-size="10" fill="#948A72">142주 · 18,240원</text>
+    <text x="30" y="194" font-size="12" font-weight="700" fill="#3A3A3A">TIGER 미국S&amp;P500</text>
+    <text x="30" y="209" font-size="10" fill="#948A72">142주 · 18,240원</text>
     <text x="290" y="201" text-anchor="end" font-size="11" font-weight="700" fill="#3A3A3A">₩2,590,080</text>
   </g>
   <line x1="30" y1="224" x2="290" y2="224" stroke="#EEE7D8"/>
 
   <g>
-    <rect x="30" y="236" width="30" height="30" rx="8" fill="#F6E7E7"/>
-    <text x="45" y="256" text-anchor="middle" font-size="12">📈</text>
-    <text x="68" y="250" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 200TR</text>
-    <text x="68" y="265" font-size="10" fill="#948A72">100주 · 14,870원</text>
+    <text x="30" y="250" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 200TR</text>
+    <text x="30" y="265" font-size="10" fill="#948A72">100주 · 14,870원</text>
     <text x="290" y="257" text-anchor="end" font-size="11" font-weight="700" fill="#3A3A3A">₩1,487,000</text>
   </g>
   <line x1="30" y1="280" x2="290" y2="280" stroke="#EEE7D8"/>
 
   <g>
-    <rect x="30" y="292" width="30" height="30" rx="8" fill="#EFF3F8"/>
-    <text x="45" y="312" text-anchor="middle" font-size="12">📊</text>
-    <text x="68" y="306" font-size="12" font-weight="700" fill="#3A3A3A">TIGER 미국나스닥100</text>
-    <text x="68" y="321" font-size="10" fill="#948A72">38주 · 21,905원</text>
+    <text x="30" y="306" font-size="12" font-weight="700" fill="#3A3A3A">TIGER 미국나스닥100</text>
+    <text x="30" y="321" font-size="10" fill="#948A72">38주 · 21,905원</text>
     <text x="290" y="313" text-anchor="end" font-size="11" font-weight="700" fill="#3A3A3A">₩832,390</text>
   </g>
   <line x1="30" y1="336" x2="290" y2="336" stroke="#EEE7D8"/>
 
   <g>
-    <rect x="30" y="348" width="30" height="30" rx="8" fill="#EFF3F8"/>
-    <text x="45" y="368" text-anchor="middle" font-size="12">📊</text>
-    <text x="68" y="362" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 미국S&amp;P500</text>
-    <text x="68" y="377" font-size="10" fill="#948A72">173주 · 14,260원</text>
+    <text x="30" y="362" font-size="12" font-weight="700" fill="#3A3A3A">KODEX 미국S&amp;P500</text>
+    <text x="30" y="377" font-size="10" fill="#948A72">173주 · 14,260원</text>
     <text x="290" y="369" text-anchor="end" font-size="11" font-weight="700" fill="#3A3A3A">₩2,466,980</text>
   </g>
   <line x1="30" y1="392" x2="290" y2="392" stroke="#EEE7D8"/>

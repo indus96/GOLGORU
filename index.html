@@ -354,13 +354,24 @@
   </div>
 
   <div class="feat rev" id="analysis">
-    <div class="shot phone"><img src="images/app/phone-analysis.png" alt="자산 구성 분석 — 요약 탭(실제 화면, 금액 가림)"></div>
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="images/app/phone-analysis.png" alt="구성 리포트 — 요약 탭(건강점수·총자산·눈에 띄는 것)">
+          <img src="images/app/analysis-structure.png" alt="구성 리포트 — 구성 탭(노출·분산·배당·종류별)">
+          <img src="images/app/analysis-performance.png" alt="구성 리포트 — 수익 탭(기간 수익·최대 낙폭)">
+          <img src="images/app/analysis-projection.png" alt="구성 리포트 — 추정 탭(1·3·5·10년 자산 추정)">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
     <div class="txt">
       <h3>구성 리포트</h3>
       <ul>
+        <li>네 탭으로 갈립니다 — <b>요약 · 구성 · 수익 · 추정</b></li>
         <li>투자 건강점수 100점 · 감점/가점 사유를 함께</li>
-        <li>눈에 띄는 것 · 집중도 · 국가·산업 배분 · 배당(지난 1년 실지급 기준)</li>
-        <li>1·3·5·10년 자산 추정 · 목표 달성 · 개선 제안</li>
+        <li>노출·분산(통화·국가·산업) · 배당(지난 1년 실지급 기준) · 종류별 목록</li>
+        <li>기간 수익과 최대 낙폭 · 1·3·5·10년 자산 추정과 목표 달성</li>
       </ul>
       <a class="more" href="docs/portfolio-analysis.html">구성 리포트 문서 →</a>
     </div>
@@ -408,23 +419,36 @@
     <div class="shot phone">
       <div class="gallery" data-gallery>
         <div class="frames">
-          <img src="images/app/phone-news.png" alt="뉴스 — 보유 종목 기사">
-          <img src="images/app/phone-draft.png" alt="짜보기 — 만들어 둔 조합 목록과 나눔터">
+          <img src="images/app/phone-draft.png" alt="짜보기 — 내 조합 세그먼트">
+          <img src="images/app/phone-community.png" alt="짜보기 — 나눔터 세그먼트">
         </div>
         <div class="dots" aria-hidden="true"></div>
       </div>
     </div>
     <div class="txt">
-      <h3>뉴스 · 짜보기</h3>
+      <h3>짜보기</h3>
       <ul>
-        <li>보유 종목 뉴스 · 증권사 리포트 — 읽은 것은 사라지지 않고 흐려집니다</li>
-        <li>짜보기: 아직 사지 않은 구성을 미리 — ETF를 찾아 비교하고, 투자금을 넣어 주수를 보고, 링크·코드·카드로 넘깁니다</li>
-        <li>나눔터: 다른 사람이 짜 본 조합을 보고 마음에 들면 가져옵니다 — <a href="c/">앱 없이 여기서도</a> 볼 수 있습니다</li>
+        <li>아직 사지 않은 구성을 미리 — ETF를 찾아 나란히 비교하고, 투자금을 넣어 주수와 남는 현금을 봅니다</li>
+        <li>마음에 들면 <b>내 자산에 넣기</b>로 진짜 계좌가 됩니다 — 그전까지는 실제 돈이 움직이지 않습니다</li>
+        <li>링크 · 코드 · 그림 카드로 넘깁니다. 투자금은 안 담깁니다</li>
         <li>탭 하나에 세그먼트 하나 — <b>내 조합 · 나눔터</b>가 전부입니다</li>
-        <li>계산은 전부 기기 안에서 · 외부 AI로 자산 정보를 보내지 않습니다</li>
-        <li>참고용이며 투자자문이 아닙니다</li>
+        <li>계산은 전부 기기 안에서 · 참고용이며 투자자문이 아닙니다</li>
       </ul>
       <a class="more" href="docs/portfolio-draft.html">짜보기 문서 →</a>
+    </div>
+  </div>
+
+  <div class="feat rev">
+    <div class="shot phone"><img src="images/app/phone-news.png" alt="뉴스 — 보유 종목 기사와 증권사 리포트"></div>
+    <div class="txt">
+      <h3>뉴스</h3>
+      <ul>
+        <li>보유 종목에 걸린 기사만 모읍니다 — <b>뉴스 · 리포트</b> 두 갈래</li>
+        <li>읽은 것은 사라지지 않고 <b>흐려집니다</b>. 닫으면 자동으로 읽음</li>
+        <li>종목 칩 줄 대신 「내 보유 종목」 드롭다운 하나</li>
+        <li>증권사 리포트는 원문 PDF를 앱 안에서 바로 엽니다</li>
+      </ul>
+      <a class="more" href="docs/news-reports.html">뉴스 문서 →</a>
     </div>
   </div>
 
@@ -461,16 +485,17 @@
     기능이 빠지는 화면은 없습니다 — 같은 데이터를 더 넓게 볼 뿐입니다.
     아래는 실제 화면이며, 숫자는 예시 데이터입니다.</p>
 
-  <div class="mac-shot"><img src="images/app/mac-dashboard.png" alt="맥 홈 — 사이드바와 히어로 카드 레이아웃"></div>
-  <p class="sub">홈은 총자산 아래로 상위 계좌·목표와 차이·시장·뉴스가 카드로 놓입니다.
-    폰에서는 뺀 목록 둘을 여기서는 되살립니다 — 맥은 한 화면에 여러 개를 놓고 보는 기계라
+  <div class="mac-shot"><img src="images/app/ipad-home.png" alt="아이패드 홈 — 사이드바와 카드 배치"></div>
+  <p class="sub">사이드바는 <b>홈 · 자산 · 짜보기 · 뉴스 · 설정</b>입니다. 홈은 총자산 아래로
+    지금 할 일·상위 계좌·자산배분 차이·시장·뉴스가 카드로 놓입니다.
+    폰에서는 뺀 목록 둘을 여기서는 되살립니다 — 한 화면에 여러 개를 놓고 보는 기계라
     탭을 오가는 비용이 더 큽니다.</p>
 
-  <div class="mac-shot"><img src="images/app/ipad-ranking.png" alt="아이패드 자산 — 2단 카드 그리드"></div>
-  <p class="sub">자산은 계좌 카드가 2단 이상 그리드로 배치되고, 폰과 달리
-    <b>제자리에서 펼쳐집니다</b> — 계좌를 하나 볼 때마다 화면을 밀고 들어갔다 나올 이유가 없습니다.</p>
+  <div class="mac-shot"><img src="images/app/ipad-ranking.png" alt="아이패드 자산 — 합계·세그먼트·정렬이 한 줄에"></div>
+  <p class="sub">자산은 합계와 세그먼트·계좌 수·정렬이 <b>한 줄에</b> 들어갑니다.
+    폰에서는 세 줄로 쌓이던 것입니다.</p>
 
-  <div class="mac-shot"><img src="images/app/ipad-allocation.png" alt="아이패드 뉴스 — 목록과 본문을 한 화면에"></div>
+  <div class="mac-shot"><img src="images/app/ipad-news.png" alt="아이패드 뉴스 — 목록과 본문을 한 화면에"></div>
   <p class="sub">뉴스는 왼쪽 목록·오른쪽 본문으로 나뉩니다. 기사 하나 볼 때마다
     시트가 화면을 덮을 이유가 없습니다. 종목 상세도 차트를 왼쪽에 크게 두고 숫자를 옆으로 뺍니다.</p>
 
