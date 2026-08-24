@@ -16,8 +16,10 @@ DOCS = {
     "asset-ranking":        dict(eyebrow="자산",      hero="../images/app/stock-analysis.png",     cls="phone", back="analysis"),
     "allocation-rebalancing":dict(eyebrow="조정안",   hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
-    "ai-review":            dict(eyebrow="계획",      hero="../images/app/phone-ai.png",        cls="phone", back="rebalance"),
-    "portfolio-draft":      dict(eyebrow="짜보기·나눔터", hero="../images/portfolio-draft.svg",  cls="wide", back="rebalance",
+    # 2.0에서 화면은 뺐지만 주소는 살려 둔다 — 밖에서 걸어 둔 링크가 깨지지 않게.
+    "ai-review":            dict(eyebrow="계획",      hero="",                                  cls="wide", back="rebalance",
+                                 lead="2.0에서 뺀 화면입니다. 짜보기 탭과 자산 탭이 나눠 맡습니다."),
+    "portfolio-draft":      dict(eyebrow="짜보기",    hero="../images/app/phone-draft.png",     cls="phone", back="rebalance",
                                  lead="사기 전에 구성을 짜 보고, 남이 짜 본 조합도 봅니다."),
     # 2.0에서 기능은 뺐지만 주소는 살려 둔다 — 밖에서 걸어 둔 링크가 깨지지 않게.
     "broker-connection":    dict(eyebrow="증권사 연결", hero="",                                  cls="wide", back="about",
