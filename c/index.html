@@ -439,12 +439,21 @@
     if (typeof value !== 'string' || value.indexOf('|') === -1) return null;
     var fields = value.split('|').map(function (field) {
       if (!field) return [];
-      return field.split(',').map(function (pair) {
+      var parsed = field.split(',').map(function (pair) {
         var at = pair.lastIndexOf(':');
         var percent = Number(pair.slice(at + 1));
         if (at < 1 || !isFinite(percent)) return null;
         return { label: pair.slice(0, at), percent: percent };
       }).filter(Boolean);
+      // 같은 라벨은 합친다 — 옛 빌드가 올린 값에는 「한국」이 두 조각으로 들어
+      // 있다(앱과 같은 방어, 2026-08-27).
+      var byLabel = {};
+      parsed.forEach(function (slice) {
+        byLabel[slice.label] = (byLabel[slice.label] || 0) + slice.percent;
+      });
+      return Object.keys(byLabel).map(function (label) {
+        return { label: label, percent: Math.min(byLabel[label], 100) };
+      }).sort(function (a, b) { return b.percent - a.percent || (a.label < b.label ? -1 : 1); });
     });
     return fields[0].length || fields[1].length ? fields : null;
   }
