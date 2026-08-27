@@ -508,7 +508,9 @@
     head.className = 'expo-title';
     head.appendChild(text(title));
     box.appendChild(head);
-    box.appendChild(donut(rows));
+    // 조각이 하나면 링을 안 그린다 — 100% 한 덩어리 링은 아무 말도 안 한다
+    // (앱 allocationDonut 과 같은 규칙). 범례 한 줄이 다 말한다.
+    if (rows.length > 1) box.appendChild(donut(rows));
     rows.forEach(function (row, index) {
       var line = document.createElement('div');
       line.className = 'expo-row';
