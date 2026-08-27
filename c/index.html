@@ -455,7 +455,21 @@
         return { label: label, percent: Math.min(byLabel[label], 100) };
       }).sort(function (a, b) { return b.percent - a.percent || (a.label < b.label ? -1 : 1); });
     });
-    return fields[0].length || fields[1].length ? fields : null;
+    // 세 번째 칸(업종)은 2026-08-27 에 붙었다 — 옛 값은 두 칸뿐이라 빈 칸으로 채운다.
+    while (fields.length < 3) fields.push([]);
+    return fields[0].length || fields[1].length || fields[2].length ? fields : null;
+  }
+
+  // 국가 > 자산군 > 업종 순서로 **갈리는 그림 둘**을 고른다(앱과 같은 규칙,
+  // 2026-08-27) — 「한국 100%」 한 덩어리 도넛은 아무 말도 안 하므로 조각이 둘
+  // 이상인 그룹이 먼저 서고, 모자라면 한 조각짜리로 채운다.
+  function exposureDisplayIndices(fields) {
+    var qualified = [], single = [];
+    fields.forEach(function (rows, index) {
+      if (rows.length >= 2) qualified.push(index);
+      else if (rows.length === 1) single.push(index);
+    });
+    return qualified.concat(single).slice(0, 2);
   }
 
   // 앱의 `WeightDonutView` 와 같은 그림 — 12시에서 시작하고, 가운데는 가장 큰 비중.
@@ -522,8 +536,10 @@
     head.textContent = '노출·분산';
     head.style.gridColumn = '1/-1';
     box.appendChild(head);
-    if (fields[0].length) box.appendChild(exposureColumn('국가', fields[0]));
-    if (fields[1].length) box.appendChild(exposureColumn('자산군', fields[1]));
+    var titles = ['국가', '자산군', '업종'];
+    exposureDisplayIndices(fields).forEach(function (index) {
+      box.appendChild(exposureColumn(titles[index], fields[index]));
+    });
     var note = document.createElement('div');
     note.className = 'expo-note';
     note.appendChild(text('국가는 ETF 안을 알 수 있는 종목만 셉니다. 자산군은 종목 이름으로 가릅니다.'));
