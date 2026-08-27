@@ -50,7 +50,7 @@
 <blockquote>최종 수정일: 2026-08-21</blockquote>
 <h2>앱이 다루는 정보</h2>
 <h3>자산 정보</h3>
-<p>계좌명, 보유 종목, 수량, 평균 단가, 현금 잔액, 자산배분 목표 비중.</p>
+<p>계좌명, 보유 종목, 수량, 평균 단가, 현금 잔액, 목표 비중.</p>
 <p>사용자가 고른 방식에 따라 아래 중 한 곳에 저장됩니다.</p>
 <div class="tablewrap"><table><thead><tr><th>시작 방식</th><th>저장 위치</th><th>지원 기기</th></tr></thead><tbody><tr><td>둘러보기</td><td>저장하지 않음 (예시 데이터)</td><td>전체</td></tr><tr><td>앱에 직접 입력</td><td>사용자 기기 내부 저장소 (Apple 기기는 본인 iCloud에도 동기화, Android는 기기 간 공유를 켠 경우 본인 Google 드라이브)</td><td>전체</td></tr><tr><td>Google Sheets 연동 (1.0까지)</td><td>사용자 본인의 Google 스프레드시트</td><td>iPhone · iPad · Mac</td></tr><tr><td>짜보기 구성안 (1.3.0부터)</td><td>사용자 기기 내부 저장소 (Apple 기기는 본인 iCloud에도 미러링)</td><td>전체</td></tr></tbody></table></div>
 <p>세 경우 모두 <strong>앱 제공자의 서버에는 저장되지 않습니다.</strong></p>
@@ -66,8 +66,8 @@
 <ul><li>요청 권한: <code>https://www.googleapis.com/auth/spreadsheets.readonly</code> — 사용자가 지정한 스프레드시트를 <strong>읽기만</strong> 합니다. 수정하거나 삭제하지 않습니다.</li><li>사용 목적: 사용자의 <code>App_Data_*</code> 시트에서 자산 현황을 읽어 앱 화면에 표시</li><li>액세스 토큰은 기기의 Keychain에만 저장되며 외부로 전송되지 않습니다.</li><li>앱은 사용자의 Google Drive 파일 목록을 조회하지 않습니다. 사용자가 스프레드시트 주소를 직접 입력하므로 파일 검색 권한이 필요하지 않습니다.</li></ul>
 <p>골고루가 Google API로부터 받은 정보의 사용과 다른 앱으로의 전송은 <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API 서비스 사용자 데이터 정책</a>을 준수하며, 여기에는 제한 사용(Limited Use) 요건이 포함됩니다.</p>
 <h3>증권사 API 키</h3>
-<p>사용자가 증권사 잔고 조회를 연결한 경우에만 해당합니다.</p>
-<p>API 키는 기기에만 저장되며 앱 제공자의 서버로 전송되지 않습니다 — Apple 기기는 Keychain에, Android는 기기 보안 칩이 보관하는 키로 암호화해 앱 전용 저장소에 둡니다. 증권사 서버와의 통신은 기기에서 직접 이루어집니다.</p>
+<p><strong>2.0에서 증권사 연결 기능을 뺐습니다.</strong> 공개 앱은 증권사 API 키를 받지도, 보관하지도, 증권사 서버로 통신하지도 않습니다. 보유 종목은 사용자가 직접 입력하거나 <strong>증권사 앱 화면을 캡처해</strong> 채웁니다 — 글자 인식은 기기 안에서만 돌아가고 캡처 이미지는 어디로도 나가지 않습니다.</p>
+<p>2.0 이전 버전에서 저장한 키가 기기에 남아 있다면, 앱을 지우면 함께 지워집니다.</p>
 <p>이 앱은 증권사 API를 <strong>잔고 조회 용도로만</strong> 사용합니다. 주문을 넣지 않습니다.</p>
 <h2>외부로 전송되는 정보</h2>
 <p>앱은 시세·뉴스를 위해 자체 서버리스 함수(Cloudflare Workers)를 사용합니다. 전송되는 내용은 아래로 한정됩니다.</p>
@@ -92,7 +92,7 @@
 </div></main>
 <section class="more-docs"><div class="wrap narrow">
   <h2>다른 문서</h2>
-  <div class="doc-cards"><a class="doc-card" href="dashboard.html">대시보드</a><a class="doc-card" href="portfolio-analysis.html">자산 분석</a><a class="doc-card" href="asset-ranking.html">자산순위</a><a class="doc-card" href="allocation-rebalancing.html">자산배분</a><a class="doc-card" href="news-reports.html">뉴스·리포트</a><a class="doc-card" href="ai-review.html">구상</a><a class="doc-card" href="portfolio-draft.html">짜보기·나눔터</a><a class="doc-card" href="broker-connection.html">증권사 연결</a><a class="doc-card" href="data-security.html">데이터·보안</a><a class="doc-card" href="getting-started.html">시작하기</a><span class="doc-card current">개인정보</span><a class="doc-card" href="changelog.html">버전 기록</a></div>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">홈</a><a class="doc-card" href="portfolio-analysis.html">구성 리포트</a><a class="doc-card" href="asset-ranking.html">자산</a><a class="doc-card" href="allocation-rebalancing.html">조정안</a><a class="doc-card" href="news-reports.html">뉴스·리포트</a><a class="doc-card" href="ai-review.html">계획</a><a class="doc-card" href="portfolio-draft.html">짜보기</a><a class="doc-card" href="broker-connection.html">증권사 연결</a><a class="doc-card" href="data-security.html">데이터·보안</a><a class="doc-card" href="getting-started.html">시작하기</a><span class="doc-card current">개인정보</span><a class="doc-card" href="changelog.html">버전 기록</a></div>
 </div></section>
 <footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>

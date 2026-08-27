@@ -9,15 +9,21 @@ import re, html, glob, os, datetime, pathlib, unicodedata, hashlib
 SITE = "https://golgoru.app"
 
 DOCS = {
-    "dashboard":            dict(eyebrow="대시보드",   hero="../images/app/phone-dashboard.png", cls="phone", back="dashboard"),
-    "portfolio-analysis":   dict(eyebrow="자산 분석",  hero="../images/app/phone-analysis.png",  cls="phone", back="analysis"),
-    "asset-ranking":        dict(eyebrow="자산순위",   hero="../images/app/stock-analysis.png",     cls="phone", back="analysis"),
-    "allocation-rebalancing":dict(eyebrow="자산배분",  hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
+    # eyebrow 는 2.0 화면 이름이다. **파일 이름(주소)은 안 바꾼다** — 밖에서 걸어 둔
+    # 링크와 앱 안 도움말이 이 주소를 쓴다.
+    "dashboard":            dict(eyebrow="홈",        hero="../images/app/phone-dashboard.png", cls="phone", back="dashboard"),
+    "portfolio-analysis":   dict(eyebrow="구성 리포트", hero="../images/app/phone-analysis.png",  cls="phone", back="analysis"),
+    "asset-ranking":        dict(eyebrow="자산",      hero="../images/app/stock-analysis.png",     cls="phone", back="analysis"),
+    "allocation-rebalancing":dict(eyebrow="조정안",   hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
     "news-reports":         dict(eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
-    "ai-review":            dict(eyebrow="구상",      hero="../images/app/phone-ai.png",        cls="phone", back="rebalance"),
-    "portfolio-draft":      dict(eyebrow="짜보기·나눔터", hero="../images/portfolio-draft.svg",  cls="wide", back="rebalance",
+    # 2.0에서 화면은 뺐지만 주소는 살려 둔다 — 밖에서 걸어 둔 링크가 깨지지 않게.
+    "ai-review":            dict(eyebrow="계획",      hero="",                                  cls="wide", back="rebalance",
+                                 lead="2.0에서 뺀 화면입니다. 짜보기 탭과 자산 탭이 나눠 맡습니다."),
+    "portfolio-draft":      dict(eyebrow="짜보기",    hero="../images/app/phone-draft.png",     cls="phone", back="rebalance",
                                  lead="사기 전에 구성을 짜 보고, 남이 짜 본 조합도 봅니다."),
-    "broker-connection":    dict(eyebrow="증권사 연결", hero="",                                  cls="wide", back="about"),
+    # 2.0에서 기능은 뺐지만 주소는 살려 둔다 — 밖에서 걸어 둔 링크가 깨지지 않게.
+    "broker-connection":    dict(eyebrow="증권사 연결", hero="",                                  cls="wide", back="about",
+                                 lead="2.0에서 뺀 기능입니다. 캡처로 가져오기가 대신합니다."),
     "data-security":        dict(eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide", back="about",
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
     "getting-started":      dict(eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide", back="download",
