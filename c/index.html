@@ -38,6 +38,12 @@
   .perf-note{font-size:11px;color:var(--sub);margin-top:4px}
   .taken{margin-left:auto;color:var(--sub);font-size:12px}
   .state{color:var(--sub);padding:26px 0}
+  /* 주제 칩. 워커의 topic 태그로 목록을 거른다 — 태그 없던 업로드는 「전체」에만 보인다. */
+  .topics{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+  .topics button{font:inherit;font-size:13px;color:var(--sub);background:var(--card);
+    border:1px solid var(--line);padding:6px 13px;border-radius:999px;cursor:pointer}
+  .topics button:hover{border-color:var(--gold);color:var(--gold)}
+  .topics button.on{background:var(--gold);border-color:var(--gold);color:#fff}
   .card-link{display:block;cursor:pointer}
   .card-link:hover{border-color:var(--gold)}
   .detail .band{height:16px;margin:18px 0 14px}
@@ -107,6 +113,7 @@
 </div></header>
 
 <main class="wrap">
+  <div id="topics" class="topics"></div>
   <div id="state" class="state">불러오는 중…</div>
   <div id="cards" class="cards"></div>
   <div id="detail"></div>
@@ -636,25 +643,67 @@
     document.getElementById('detail').appendChild(back);
   }
 
-  var id = new URLSearchParams(location.search).get('id');
+  var params = new URLSearchParams(location.search);
+  var id = params.get('id');
+
+  // 주제 칩. 코드(pension…)는 서버와 약속이고 표시 이름은 여기서 든다.
+  // 주제 페이지(/docs/portfolio-*.html)가 ?topic= 으로 바로 걸러 들어올 수 있다.
+  var TOPICS = [
+    ['', '전체'], ['pension', '연금'], ['isa', 'ISA'],
+    ['monthly', '월배당'], ['us', '미국지수'], ['kr', '국내지수'],
+  ];
+  var topic = params.get('topic') || '';
+  if (!TOPICS.some(function (t) { return t[0] === topic; })) topic = '';
+
+  function loadList() {
+    state.textContent = '불러오는 중…';
+    cards.textContent = '';
+    return fetch(API + '/drafts?sort=hot' + (topic ? '&topic=' + encodeURIComponent(topic) : ''))
+      .then(function (response) {
+        if (!response.ok) throw new Error(response.status);
+        return response.json();
+      })
+      .then(function (body) { render(body.drafts || []); })
+      .catch(function () {
+        state.textContent = '지금은 목록을 불러올 수 없습니다. 잠시 뒤에 다시 열어 주세요.';
+      });
+  }
+
+  function buildTopics() {
+    var bar = document.getElementById('topics');
+    TOPICS.forEach(function (entry) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.textContent = entry[1];
+      if (entry[0] === topic) chip.className = 'on';
+      chip.addEventListener('click', function () {
+        topic = entry[0];
+        bar.querySelectorAll('button').forEach(function (other, index) {
+          other.className = TOPICS[index][0] === topic ? 'on' : '';
+        });
+        // 뒤로 가기로 이 필터 상태에 돌아올 수 있게 주소에도 남긴다.
+        history.replaceState(null, '', topic ? './?topic=' + topic : './');
+        loadList();
+      });
+      bar.appendChild(chip);
+    });
+  }
 
   loadNames()
     .then(function () {
-      return fetch(API + (id ? '/drafts/' + encodeURIComponent(id) : '/drafts?sort=hot'));
-    })
-    .then(function (response) {
-      if (!response.ok) throw new Error(response.status);
-      return response.json();
-    })
-    .then(function (body) {
-      if (id) renderDetail(body);
-      else render(body.drafts || []);
-    })
-    .catch(function () {
-      // 서버가 죽어도 이 페이지 말고는 아무것도 안 죽는다(설계 G절).
-      state.textContent = id
-        ? '이 조합은 사라졌거나 지금은 볼 수 없습니다.'
-        : '지금은 목록을 불러올 수 없습니다. 잠시 뒤에 다시 열어 주세요.';
+      if (id) {
+        return fetch(API + '/drafts/' + encodeURIComponent(id))
+          .then(function (response) {
+            if (!response.ok) throw new Error(response.status);
+            return response.json();
+          })
+          .then(renderDetail)
+          .catch(function () {
+            state.textContent = '이 조합은 사라졌거나 지금은 볼 수 없습니다.';
+          });
+      }
+      buildTopics();
+      return loadList();
     });
 })();
 </script>
