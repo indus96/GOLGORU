@@ -309,21 +309,12 @@
   </p>
 
   <h3 style="margin-top:28px;font-size:19px;font-weight:800">Google 계정을 어떻게 사용하나요?</h3>
-  <p style="margin-top:10px;color:var(--hint);font-size:14px">
-    <b>1.2.0부터 공개 앱에는 Google 로그인이 없습니다.</b> Google Sheets 연동을 뺐기 때문입니다.
-    아래 설명은 1.0 버전에 해당합니다.</p>
   <p class="sub" style="max-width:760px">
-    자산 데이터를 <b>Google Sheets에 보관하고 싶은 사용자</b>를 위해 Google 로그인을 제공합니다.
-    사용자가 앱에 직접 입력한 스프레드시트 주소의 <code>App_Data_*</code> 시트에서
-    계좌·보유 종목·수량·평균 단가·목표 비중을 <b>읽기만</b> 합니다.
+    <b>사용하지 않습니다.</b> 공개 앱에는 로그인이 없고, 모든 기능을 계정 없이 씁니다.
+    예전 1.0 버전에 있던 Google Sheets 읽기 연동
+    (<b>spreadsheets.readonly</b> 권한 하나, 사용자가 입력한 시트를 읽기만)은
+    1.2.0부터 뺐습니다.
   </p>
-  <ul class="purpose">
-    <li>요청 권한은 <b>https://www.googleapis.com/auth/spreadsheets.readonly</b> 하나입니다.</li>
-    <li>앱은 사용자의 시트를 수정·생성·삭제하지 않습니다.</li>
-    <li>Google Drive의 파일 목록을 조회하지 않습니다. 사용자가 시트 주소를 직접 입력합니다.</li>
-    <li>읽은 자산 데이터는 기기 안에서만 계산에 쓰이며 앱 제공자 서버로 전송되지 않습니다.</li>
-    <li>Google 로그인 없이도 <b>둘러보기</b>와 <b>앱에 직접 입력</b> 방식으로 앱 전체를 쓸 수 있습니다.</li>
-  </ul>
   <p class="sub" style="max-width:760px">
     자세한 처리 내용은 <a href="docs/privacy.html" style="color:var(--gold);font-weight:600">개인정보처리방침</a>에,
     사용 방법은 <a href="docs/getting-started.html" style="color:var(--gold);font-weight:600">시작하기</a>에 있습니다.
