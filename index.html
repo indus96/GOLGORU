@@ -6,14 +6,14 @@
 <!-- 검증이 동의 화면 이름과 정확히 대조하므로 앱 이름만 둔다.
      설명은 description·og:description이 맡는다. -->
 <title>골고루</title>
-<meta name="description" content="골고루는 흩어진 계좌를 한눈에 모으고 목표 비중과의 차이를 계산하는 iPhone · iPad · Mac · Android 자산관리 앱입니다.">
+<meta name="description" content="골고루는 흩어진 계좌를 한눈에 모으고 목표 비중과의 차이를 계산하는 iPhone · iPad · Mac · Android 자산관리 앱입니다. 로그인 없이 쓰고, 자산 데이터는 기기 안에만 둡니다.">
 <meta property="og:title" content="골고루">
 <!-- 소유권 확인:
      - Search Console 도메인 속성(DNS TXT)이 기준이다. OAuth 브랜드 검증이
        URL 접두어 속성을 인정하지 않아 golgoru.app 도메인으로 옮겼다.
      - google55f1f992344ab417.html(HTML 파일 방식)은 예전 github.io 속성용으로
        남겨둔다. 지우면 그 속성의 확인이 풀린다. -->
-<meta property="og:description" content="흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다. iPhone · iPad · Mac.">
+<meta property="og:description" content="내 자산은 내 기기에만 — 로그인 없이 흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다. iPhone · iPad · Mac.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://golgoru.app/">
 <!-- 앱 이름을 기계가 읽는 자리에도 정확히 한 가지로 둔다.
@@ -263,11 +263,12 @@
          읽을 때 두 문장이 붙어 나와 동의 화면 이름과 일치하지 않는다.
          (주석 안에 태그 표기를 쓰지 않는다 — 단순 파서가 주석을 중간에 끊는다.) -->
     <h1>골고루</h1>
-    <p class="tagline">흩어진 계좌를 한눈에.</p>
+    <p class="tagline">내 자산은 내 기기에만.</p>
     <p class="lead">흩어진 계좌를 한눈에 모으고, 목표 배분과의 차이를 계산합니다.
-      로그인 없이 둘러보거나, 자산을 <b>앱에 직접 입력</b>하거나, 증권사 화면을 캡처해 가져오세요.
-      자산 데이터는 기기 안에 머뭅니다.</p>
+      <b>로그인도, 서버에 올라가는 자산 데이터도 없습니다.</b>
+      둘러보기로 시작하거나, 직접 입력하거나, 증권사 화면을 캡처해 가져오세요.</p>
     <div class="chips">
+      <span class="chip">🔒 로그인 없음</span>
       <span class="chip">📊 자산 현황</span>
       <span class="chip">🩺 투자 건강점수</span>
       <span class="chip">⚖️ 목표 배분 차이</span>
