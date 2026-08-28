@@ -48,10 +48,10 @@ NAV_LINKS = [
     # 기능 항목은 드롭다운 하나로 접는다. 펼쳐 두면 링크가 11개가 되어 한 줄을
     # 넘겼고, 「맥·아이패드」처럼 최상위에 있을 무게가 아닌 것도 섞여 있었다.
     ("기능", [
-        ("{root}#dashboard", "대시보드"),
-        ("{root}#analysis", "자산 분석"),
-        ("{root}#rebalance", "자산배분"),
-        ("{root}#capture", "계좌 채우기"),
+        ("{root}#dashboard", "홈"),
+        ("{root}#analysis", "구성 리포트"),
+        ("{root}#rebalance", "조정안"),
+        ("{root}#capture", "캡처로 채우기"),
         ("{root}docs/portfolio-draft.html", "짜보기"),
         ("{root}#mac", "맥·아이패드"),
     ]),
