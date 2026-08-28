@@ -126,8 +126,10 @@
   .dl-plat{font-size:15px;font-weight:700}
   .dl-state{font-size:13px;opacity:.85}
   .dl-off .dl-plat,.dl-off .dl-state{color:var(--hint)}
-  .hero-shot img{width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(58,58,58,.10))}
-  @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-shot{order:-1}}
+  .hero-shot img{width:100%;max-width:300px;height:auto;display:block;margin:0 auto;
+    border-radius:26px;box-shadow:0 18px 44px rgba(58,58,58,.16)}
+  @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-shot{order:-1}
+    .hero-shot img{max-width:240px}}
 
   /* section shell */
   section{padding:56px 0}
@@ -237,10 +239,10 @@
     <div class="nav-group">
       <button class="nav-group-btn" type="button" aria-expanded="false">기능</button>
       <div class="nav-sub">
-      <a href="#dashboard">대시보드</a>
-      <a href="#analysis">자산 분석</a>
-      <a href="#rebalance">자산배분</a>
-      <a href="#capture">계좌 채우기</a>
+      <a href="#dashboard">홈</a>
+      <a href="#analysis">구성 리포트</a>
+      <a href="#rebalance">조정안</a>
+      <a href="#capture">캡처로 채우기</a>
       <a href="docs/portfolio-draft.html">짜보기</a>
       <a href="#mac">맥·아이패드</a>
       </div>
@@ -277,7 +279,7 @@
     </div>
     <p class="hero-note">iPhone · iPad · Mac 지원 · 무료 · 안드로이드는 준비 중입니다</p>
   </div>
-  <div class="hero-shot"><img src="images/dashboard.svg" alt="골고루 홈 화면"></div>
+  <div class="hero-shot"><img src="images/app/phone-dashboard.png" alt="골고루 홈 화면 — 총자산·지금 할 일·시장"></div>
 </div></header>
 
 <section id="about"><div class="wrap">
@@ -296,6 +298,11 @@
     계좌와 보유 종목은 <b>앱에 직접 입력</b>합니다. 증권사 앱 화면을 <b>캡처해 붙여넣으면</b>
     종목·수량·평단을 읽어 채워 주고, 확인한 뒤 저장합니다. 입력한 원장은 같은 Apple 계정의
     iPhone · iPad · Mac에서 함께 봅니다. 로그인이나 계정 만들기는 필요하지 않습니다.
+  </p>
+  <p class="sub" style="max-width:760px">
+    2.0부터는 <b>짜보기</b>로 아직 사지 않은 조합을 미리 시뮬레이션하고,
+    <b>나눔터</b>에서 남이 짜 본 조합을 보거나 내 조합을 나눌 수 있습니다.
+    나눔터에 올라가는 것은 구성과 비중뿐이며, 금액과 계좌는 담기지 않습니다.
   </p>
   <p class="sub" style="max-width:760px">
     개발자는 개인 개발자 indus96이며, 문의는 indus96@gmail.com 으로 받습니다.
@@ -326,14 +333,14 @@
 <section id="principles"><div class="wrap">
   <div class="label">핵심 원칙</div>
   <h2>단순 조회가 아니라, 신뢰할 수 있는 도구</h2>
-  <p class="sub">데이터를 소유하지 않고, 계산은 기기 안에서, 연동은 읽기만. 세 가지 원칙 위에 모든 기능이 놓입니다.</p>
+  <p class="sub">데이터를 소유하지 않고, 계산은 기기 안에서, 나눔은 구성만. 세 가지 원칙 위에 모든 기능이 놓입니다.</p>
   <div class="cards3">
     <div class="pcard"><div class="ic">📒</div><h3>데이터는 사용자 것</h3>
-      <p>앱은 데이터를 소유하지 않습니다. 기기 안 또는 사용자 시트에만 있고, 앱 제공자 서버에는 저장되지 않습니다.</p></div>
+      <p>앱은 데이터를 소유하지 않습니다. 기기 안과 같은 Apple 계정의 iCloud 동기화에만 있고, 앱 제공자 서버에는 저장되지 않습니다.</p></div>
     <div class="pcard"><div class="ic">🔒</div><h3>기기 안 계산</h3>
       <p>자산 금액·환산·배분 계산은 모두 앱 내부에서 수행합니다. 자산 데이터가 외부 서버로 전송되지 않습니다.</p></div>
-    <div class="pcard"><div class="ic">🔍</div><h3>읽기 전용 연동</h3>
-      <p>증권사는 잔고 조회만 씁니다. 앱이 주문을 넣지 않습니다.</p></div>
+    <div class="pcard"><div class="ic">🤝</div><h3>나눔은 구성만</h3>
+      <p>나눔터에 올릴 때 구성 종목과 비중만 나갑니다. 금액·계좌는 담기지 않고, 올린 사람은 별명으로만 보입니다.</p></div>
   </div>
 </div></section>
 
@@ -491,10 +498,10 @@
   <div class="mac-shot">
     <div class="gallery" data-gallery>
       <div class="frames">
-        <img src="images/app/mac-dashboard.png" alt="맥 홈 — 사이드바와 카드 배치(다크 모드)">
-        <img src="images/app/ipad-home.png" alt="아이패드 홈 — 같은 배치를 라이트 모드로">
-        <img src="images/app/ipad-ranking.png" alt="아이패드 자산 — 합계·세그먼트·정렬이 한 줄에">
-        <img src="images/app/ipad-news.png" alt="아이패드 뉴스 — 목록과 본문을 한 화면에">
+        <img src="images/app/mac-home.png" alt="맥 홈 — 사이드바와 카드 배치">
+        <img src="images/app/mac-assets.png" alt="맥 자산 — 계좌 카드 그리드">
+        <img src="images/app/mac-draft.png" alt="맥 짜보기 — 내 조합과 나눔터">
+        <img src="images/app/mac-news.png" alt="맥 뉴스 — 왼쪽 목록, 오른쪽 본문">
       </div>
       <div class="dots" aria-hidden="true"></div>
     </div>
@@ -504,8 +511,8 @@
     폰에서는 뺀 목록 둘을 여기서는 되살립니다.
     자산은 합계와 세그먼트·계좌 수·정렬이 <b>한 줄에</b> 들어가고,
     뉴스는 왼쪽 목록·오른쪽 본문으로 나뉩니다. 종목 상세도 차트를 왼쪽에 크게 두고
-    숫자를 옆으로 뺍니다. 맥 화면은 다크, 아이패드는 라이트 모드입니다 —
-    설정에서 시스템 · 라이트 · 다크 중에 고릅니다.</p>
+    숫자를 옆으로 뺍니다. 아이패드도 같은 배치입니다 —
+    화면 모드는 설정에서 시스템 · 라이트 · 다크 중에 고릅니다.</p>
 
   <div class="mac-note">
     <span>🖥 사이드바 내비게이션</span>
@@ -547,17 +554,15 @@
   <div class="label">현재 상태</div>
   <h2>App Store에 공개되었습니다</h2>
   <div class="status"><ul>
-    <li class="ok">iPhone · iPad App Store 공개</li>
-    <li class="ok">자산 현황 · 목표와의 차이 · 조정안 · 뉴스 · 짜보기</li>
-    <li class="ok">자산 구성 분석(건강점수·배당·추정·개선 제안)</li>
-    <li class="ok">두 가지 시작 방식(둘러보기·앱에 직접 입력)과 캡처로 종목 가져오기</li>
-    <li class="ok">증권사 잔고 조회와 계좌 자동 채우기</li>
+    <li class="ok">2.0.0 공개 — iPhone · iPad App Store</li>
+    <li class="ok">2.0 전면 개편 — 홈 · 자산 · 짜보기 · 뉴스 네 탭으로 재구성</li>
+    <li class="ok">짜보기 — ETF·개별 종목 시뮬레이션과 지난 성과</li>
+    <li class="ok">나눔터 — 남이 짜 본 조합 보기 · 내 조합 올리기</li>
+    <li class="ok">구성 리포트 — 건강점수 · 노출·분산 · 배당 · 추정</li>
+    <li class="ok">캡처로 종목 가져오기 · 기기 간 동기화</li>
     <li class="ok">맥·아이패드 와이드 레이아웃</li>
-    <li class="ok">Mac App Store 공개</li>
-    <li class="ok">1.2.0 공개 — 캡처로 종목 가져오기 · 기기 간 동기화 · 글자 크기 3단계</li>
-    <li class="ok">1.3.0 공개 — 짜보기(ETF 비교·시뮬레이션·구성 공유)</li>
-    <li class="soon">1.4.0 준비 중 — 나눔터(남이 짜 본 조합 보기·올리기)</li>
-    <li class="soon">Android 버전</li>
+    <li class="soon">Mac App Store 2.0.0 — 심사 중(현재 1.4.0 공개)</li>
+    <li class="soon">Android 버전 — 비공개 테스트 진행 중</li>
   </ul></div>
   <!-- 새 버전이 심사 중일 때 "그게 뭔데"로 이어지는 길. 이게 없으면 위 한 줄이
        무슨 기능인지 알 방법이 없다. -->
