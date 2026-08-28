@@ -13,6 +13,7 @@ ISA(개인종합자산관리계좌)에서 국내 상장 ETF 로 굴리는 포트
 | 조합 | 구성 | 보기 |
 | --- | --- | --- |
 | ISA 균형 | TIGER 미국S&P500 40% · KODEX 200 30% · KODEX 단기채권 30% | [나눔터에서 보기](https://golgoru.app/c/?id=0921d191182e) |
+| ISA 배당 | TIGER 미국배당다우존스 40% · TIGER 코스피고배당 30% · KODEX 단기채권 30% | [나눔터에서 보기](https://golgoru.app/c/?id=7b7913cfda1e) |
 
 조합은 계속 추가됩니다 — 전체 목록은 [나눔터의 이 주제 모아보기](../c/?topic=isa)에서 봅니다.
 
