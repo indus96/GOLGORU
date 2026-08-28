@@ -28,6 +28,18 @@ DOCS = {
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
     "getting-started":      dict(eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide", back="download",
                                  lead="둘러보기와 앱에 직접 입력 중에서 고르고, 증권사 화면 캡처로 종목을 채웁니다."),
+    # 나눔터 주제 페이지 — 검색으로 들어오는 입구다(성장 문서 1-2). 조합을 시딩할
+    # 때마다 표에 줄을 더한다. 조합 상세는 /c/?id= 로 연결된다.
+    "portfolio-pension":    dict(eyebrow="나눔터",    hero="../images/app/phone-community.png", cls="phone", back="rebalance",
+                                 lead="연금저축·퇴직연금 DC·IRP 에서 ETF 로 굴리는 조합 예시 모음입니다."),
+    "portfolio-isa":        dict(eyebrow="나눔터",    hero="../images/app/phone-community.png", cls="phone", back="rebalance",
+                                 lead="ISA 계좌에서 국내 상장 ETF 로 굴리는 조합 예시 모음입니다."),
+    "portfolio-monthly-dividend": dict(eyebrow="나눔터", hero="../images/app/phone-community.png", cls="phone", back="rebalance",
+                                 lead="매달 분배금이 들어오는 월배당 ETF 조합 예시 모음입니다."),
+    "portfolio-us-index":   dict(eyebrow="나눔터",    hero="../images/app/phone-community.png", cls="phone", back="rebalance",
+                                 lead="S&P500·나스닥100 을 국내 상장 ETF 로 담는 조합 예시 모음입니다."),
+    "portfolio-kr-index":   dict(eyebrow="나눔터",    hero="../images/app/phone-community.png", cls="phone", back="rebalance",
+                                 lead="코스피200 중심의 국내지수 ETF 조합 예시 모음입니다."),
     "privacy":              dict(eyebrow="개인정보",   hero="", cls="wide", back="about",
                                  lead="앱은 자산 데이터를 제공자 서버에 저장하지 않습니다."),
     "changelog":            dict(eyebrow="버전 기록",  hero="", cls="wide", back="download",
