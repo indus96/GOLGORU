@@ -39,7 +39,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
   background:var(--card);border:1px solid var(--line);border-radius:14px;
   box-shadow:0 10px 30px rgba(0,0,0,.10);z-index:30}
 .nav-group:hover .nav-sub,.nav-group.open .nav-sub{display:flex}
-.cta{background:var(--gold);color:#fff!important;padding:9px 16px;border-radius:999px;
+.cta{background:var(--gold);color:#fff!important;padding:9px 16px;border-radius:12px;
   font-size:14px;font-weight:600;margin-left:20px;white-space:nowrap}
 .cta:hover{background:#b6911f}
 /* 모바일 메뉴. <details>로도 만들어 봤지만 닫힌 <details>는 브라우저가 내용을
@@ -48,7 +48,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
 .menu{margin-left:auto;position:relative}
 .menu-btn{display:none;cursor:pointer;font:inherit;font-size:14px;font-weight:600;
   color:var(--sub);background:none;padding:8px 12px;
-  border:1px solid var(--line);border-radius:999px}
+  border:1px solid var(--line);border-radius:12px}
 .menu-btn:hover{color:var(--gold)}
 .menu .nav-links{margin-left:0}
 @media(max-width:760px){
@@ -73,7 +73,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
 .back{display:inline-block;font-size:14px;color:var(--hint);margin-bottom:16px}
 .back:hover{color:var(--gold)}
 .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.5px;
-  color:var(--gold);background:var(--gold-soft);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+  color:var(--gold);background:var(--gold-soft);padding:6px 12px;border-radius:10px;margin-bottom:16px}
 .doc-hero h1{font-size:clamp(28px,4.4vw,42px);line-height:1.2;font-weight:800;letter-spacing:-.4px}
 .doc-hero .lead{margin-top:16px;font-size:17px;color:var(--sub);max-width:640px}
 .hero-img{margin-top:30px}
@@ -128,7 +128,7 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-si
 .more-docs{border-top:1px solid var(--line);padding:32px 0 8px;margin-top:40px}
 .more-docs h2{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px}
 .doc-cards{display:flex;flex-wrap:wrap;gap:8px}
-.doc-card{display:inline-block;font-size:14px;padding:9px 15px;border-radius:999px;
+.doc-card{display:inline-block;font-size:14px;padding:9px 15px;border-radius:12px;
   border:1px solid var(--line);background:var(--card);color:var(--sub)}
 a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
 .doc-card.current{background:var(--gold-soft);border-color:var(--gold);
