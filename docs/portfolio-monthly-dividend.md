@@ -14,6 +14,7 @@
 | --- | --- | --- |
 | 월배당 입문 | TIGER 미국배당다우존스 40% · TIGER 리츠부동산인프라 30% · KODEX 종합채권(AA-이상)액티브 30% | [나눔터에서 보기](https://golgoru.app/c/?id=d5bd2ae728c1) |
 | 월배당 분산 | TIGER 리츠부동산인프라 40% · TIGER 미국배당다우존스 30% · TIGER 은행고배당플러스TOP10 30% | [나눔터에서 보기](https://golgoru.app/c/?id=ec4f1895d087) |
+| 월배당 안정 | TIGER 미국배당다우존스 40% · 맥쿼리인프라 30% · KODEX 종합채권(AA-이상)액티브 30% | [나눔터에서 보기](https://golgoru.app/c/?id=0734544e6526) |
 | 월배당 짜보기 | 한국 상장 3종목 | [나눔터에서 보기](https://golgoru.app/c/?id=4534d5761c3c) |
 
 조합은 계속 추가됩니다 — 전체 목록은 [나눔터의 이 주제 모아보기](../c/?topic=monthly)에서 봅니다.
