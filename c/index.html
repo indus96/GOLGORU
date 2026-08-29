@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="../docs/doc.css?v=433f997a">
 <style>
   .lead{color:var(--sub);margin:6px 0 22px}
+  /* 목록이 JS 로 늦게 채워져도 footer 가 첫 화면에 안 보이게 자리를 미리 잡는다(CLS) */
+  main.wrap{min-height:70vh}
   .cards{display:grid;gap:14px}
   @media (min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
@@ -39,7 +41,7 @@
   .taken{margin-left:auto;color:var(--sub);font-size:12px}
   .state{color:var(--sub);padding:26px 0}
   /* 주제 칩. 워커의 topic 태그로 목록을 거른다 — 태그 없던 업로드는 「전체」에만 보인다. */
-  .topics{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+  .topics{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px;min-height:36px}
   .topics button{font:inherit;font-size:13px;color:var(--sub);background:var(--card);
     border:1px solid var(--line);padding:6px 13px;border-radius:10px;cursor:pointer}
   .topics button:hover{border-color:var(--gold);color:var(--gold)}
