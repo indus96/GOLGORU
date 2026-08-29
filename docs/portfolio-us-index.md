@@ -14,6 +14,7 @@ S&P500 · 나스닥100 같은 **미국 대표 지수**를 국내 상장 ETF 로 
 | 미국지수 기본 | TIGER 미국S&P500 60% · TIGER 미국나스닥100 40% | [나눔터에서 보기](https://golgoru.app/c/?id=3e67c81783e9) |
 | 미국지수+채권 | TIGER 미국S&P500 50% · TIGER 미국채10년선물 30% · TIGER 미국나스닥100 20% | [나눔터에서 보기](https://golgoru.app/c/?id=d5b15fb9be79) |
 | 나스닥 집중 | TIGER 미국나스닥100 70% · TIGER 미국S&P500 30% | [나눔터에서 보기](https://golgoru.app/c/?id=eb95cd04675f) |
+| 미국 반도체 가미 | TIGER 미국S&P500 50% · TIGER 미국나스닥100 30% · TIGER 미국필라델피아반도체나스닥 20% | [나눔터에서 보기](https://golgoru.app/c/?id=26c1e3caf881) |
 | 장기 해외주식 짜보기 | 한국 상장 4종목 | [나눔터에서 보기](https://golgoru.app/c/?id=6d6cbeaadf73) |
 
 조합은 계속 추가됩니다 — 전체 목록은 [나눔터의 이 주제 모아보기](../c/?topic=us)에서 봅니다.
