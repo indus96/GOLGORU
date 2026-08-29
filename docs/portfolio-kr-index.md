@@ -13,6 +13,7 @@
 | --- | --- | --- |
 | 코스피200 기본 | KODEX 200 70% · KODEX 단기채권 30% | [나눔터에서 보기](https://golgoru.app/c/?id=cb5a148a9b57) |
 | 국내 대형+배당 | KODEX 200 50% · TIGER 코스피고배당 30% · KODEX 단기채권 20% | [나눔터에서 보기](https://golgoru.app/c/?id=69443c37330c) |
+| 코스피+코스닥 | KODEX 200 60% · KODEX 코스닥150 40% | [나눔터에서 보기](https://golgoru.app/c/?id=ae45a0469ac8) |
 | 국내주식 짜보기 | 한국 개별 종목 5개 | [나눔터에서 보기](https://golgoru.app/c/?id=29e0d31308e9) |
 
 조합은 계속 추가됩니다 — 전체 목록은 [나눔터의 이 주제 모아보기](../c/?topic=kr)에서 봅니다.
