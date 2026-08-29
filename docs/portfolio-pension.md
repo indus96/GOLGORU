@@ -16,6 +16,7 @@
 | 연금저축 미국 60/40 | 연금저축 | TIGER 미국S&P500 40% · KODEX 종합채권(AA-이상)액티브 40% · TIGER 미국나스닥100 20% | [나눔터에서 보기](https://golgoru.app/c/?id=d5f14d71688f) |
 | 연금저축 배당성장 | 연금저축 | TIGER 미국배당다우존스 50% · TIGER 미국S&P500 30% · KODEX 종합채권(AA-이상)액티브 20% | [나눔터에서 보기](https://golgoru.app/c/?id=def571ea753e) |
 | IRP 안정 성장 | IRP | KODEX 종합채권(AA-이상)액티브 40% · TIGER 미국S&P500 35% · TIGER 미국배당다우존스 25% | [나눔터에서 보기](https://golgoru.app/c/?id=a6a886057a09) |
+| 퇴직연금 DC 70/30 | 퇴직연금 DC | TIGER 미국S&P500 40% · KODEX 200 30% · KODEX 종합채권(AA-이상)액티브 30% | [나눔터에서 보기](https://golgoru.app/c/?id=ad6dbd0e913d) |
 | 개인연금 짜보기 | 연금저축 | 한국 상장 5종목 | [나눔터에서 보기](https://golgoru.app/c/?id=5bfd29ae1f53) |
 | 퇴직연금 짜보기 | 퇴직연금 DC | 한국 상장 6종목 | [나눔터에서 보기](https://golgoru.app/c/?id=98b3b2ac1fd3) |
 
