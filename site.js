@@ -92,3 +92,28 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
     link.removeAttribute('target');
   });
 })();
+
+// 데모 영상은 화면에 들어올 때 재생한다.
+//
+// autoplay 속성만으로는 안 됐다 — preload="metadata" 와 겹치면 브라우저가 데이터를
+// 덜 받아 둔 채 자동재생 시점을 놓치고, 그 뒤로 다시 시도하지 않는다(실측:
+// 자동재생 정책은 통과하는데 play() 를 직접 부르면 그제야 돈다).
+//
+// 보이는 동안만 돌리는 것이 바람직하기도 하다 — 안 보는 영상이 배터리와 데이터를
+// 쓸 이유가 없다. 재생 실패(절전 모드 등)는 조용히 넘긴다: poster 가 남아 있어
+// 화면이 비지 않는다.
+(function () {
+  var videos = document.querySelectorAll('video[data-autoplay-in-view]');
+  if (!videos.length) return;
+  if (!('IntersectionObserver' in window)) {
+    videos.forEach(function (v) { v.play().catch(function () {}); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) e.target.play().catch(function () {});
+      else e.target.pause();
+    });
+  }, { threshold: 0.35 });
+  videos.forEach(function (v) { io.observe(v); });
+})();
