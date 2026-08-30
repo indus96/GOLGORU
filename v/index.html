@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>골고루 · 영상으로 보기</title>
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
+<meta name="description" content="골고루를 짧은 영상으로 봅니다. ETF 수수료 비교부터 남이 짜 본 연금저축 조합 가져오기까지, 한 편에 30초입니다.">
+<meta property="og:title" content="골고루 · 영상으로 보기">
+<meta property="og:description" content="골고루를 짧은 영상으로 봅니다. 한 편에 30초입니다.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://golgoru.app/video/golgoru-community-demo.jpg">
+<link rel="canonical" href="https://golgoru.app/v/">
+<meta property="og:url" content="https://golgoru.app/v/">
+<link rel="stylesheet" href="../docs/doc.css?v=e7f052b3">
+<style>
+  .lead{color:var(--sub);margin:6px 0 0}
+  /* 영상이 늦게 잡혀도 푸터가 첫 화면에 안 올라오게 자리를 미리 잡는다(CLS) */
+  main.wrap{min-height:70vh}
+
+  .eps{display:grid;gap:34px;margin:26px 0 30px}
+  @media (min-width:860px){.eps{grid-template-columns:repeat(2,1fr);gap:34px 30px}}
+
+  .ep{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:16px;display:flex;flex-direction:column}
+  /* 세로 영상은 넓은 화면에서 카드를 통째로 늘려 버린다. 폭을 묶고 가운데 둔다. */
+  .ep video{display:block;width:100%;max-width:270px;margin:0 auto;
+    aspect-ratio:9/16;background:#000;border-radius:12px}
+  .ep h2{font-size:17px;margin:16px 0 0;color:var(--ink)}
+  .ep .meta{font-size:12px;color:var(--sub);margin-top:5px}
+  .ep p{font-size:14px;color:var(--sub);line-height:1.75;margin:10px 0 0}
+  .ep .links{margin-top:auto;padding-top:14px;font-size:13px}
+  .ep .links a{color:var(--sub)}
+  .ep .links a:hover{color:var(--gold)}
+
+  .badge{display:inline-block;font-size:11px;font-weight:700;color:var(--gold);
+    border:1px solid var(--gold);border-radius:10px;padding:2px 8px;vertical-align:2px;margin-right:6px}
+
+  .follow{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px}
+  .follow a{display:inline-flex;align-items:center;gap:7px;font-size:14px;
+    padding:9px 15px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink)}
+  .follow a:hover{border-color:var(--gold);color:var(--gold)}
+  .follow svg{width:16px;height:16px;fill:currentColor;flex:none}
+</style>
+</head><body>
+
+<!-- nav:start -->
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../images/app-icon.png" alt="" width="26" height="26">골고루</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
+  <div class="nav-links">
+    <a href="../#about">앱 소개</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">기능</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">홈</a>
+      <a href="../#analysis">구성 리포트</a>
+      <a href="../#rebalance">조정안</a>
+      <a href="../#capture">캡처로 채우기</a>
+      <a href="../docs/portfolio-draft.html">짜보기</a>
+      <a href="../#mac">맥·아이패드</a>
+      </div>
+    </div>
+    <a href="../#principles">원칙</a>
+    <a href="../c/">나눔터</a>
+    <a href="../v/">영상</a>
+    <a href="../#download">다운로드</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">앱 받기</a>
+</div></nav>
+<!-- nav:end -->
+
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../">← 골고루 홈</a>
+  <h1>영상으로 보기</h1>
+  <p class="lead">한 편에 30초. 골고루로 무엇을 하는지 화면 그대로 담았습니다.</p>
+</div></header>
+
+<main class="wrap">
+  <div class="follow">
+    <a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"></path><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"></path><circle cx="18.41" cy="5.59" r="1.44"></circle></svg>
+      인스타그램 @golgoru.app
+    </a>
+    <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.09 0 12 0 12s0 3.91.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.91 24 12 24 12s0-3.91-.5-5.8zM9.55 15.57V8.43L15.82 12z"></path></svg>
+      유튜브 @golgoru_app
+    </a>
+  </div>
+
+  <div class="eps">
+    <!-- 새 편은 이 자리(맨 위)에 붙인다 — 최신 편이 먼저 보이게. -->
+
+    <article class="ep">
+      <video src="../video/golgoru-community-demo.mp4" poster="../video/golgoru-community-demo.jpg"
+             controls muted playsinline preload="none"
+             aria-label="나눔터에서 연금저축 조합을 가져와 비중을 고치는 과정"></video>
+      <h2><span class="badge">2편</span>남들은 연금저축 뭐로 굴릴까?</h2>
+      <div class="meta">31초 · 나눔터 · 2026년 8월</div>
+      <p>나눔터에 올라온 연금저축 조합을 열어 종목과 비중, 국가·자산군 분산, 지난 성과까지
+        보고, 마음에 드는 것을 그대로 내 조합으로 가져옵니다. 채권을 줄이고 미국 주식을
+        늘리자 성과가 다시 계산됩니다.</p>
+      <div class="links"><a href="../c/">나눔터에서 직접 보기 →</a></div>
+    </article>
+
+    <article class="ep">
+      <video src="../video/golgoru-draft-demo.mp4" poster="../video/golgoru-draft-demo.jpg"
+             controls muted playsinline preload="none"
+             aria-label="짜보기로 ETF 조합을 만드는 과정 — 비교·비중·분산·지난 성과·공유 카드"></video>
+      <h2><span class="badge">1편</span>같은 나스닥 ETF인데 보수가 50배 차이?</h2>
+      <div class="meta">36초 · 짜보기 · 2026년 8월</div>
+      <p>같은 지수를 따라가는 ETF를 나란히 놓고 총보수·배당률·순자산·추적오차를 봅니다.
+        고른 종목으로 조합을 짜고 비중을 정하면 분산과 지난 성과가 따라 나오고,
+        그림 카드 한 장으로 넘길 수 있습니다.</p>
+      <div class="links"><a href="../docs/portfolio-draft.html">짜보기 문서 →</a></div>
+    </article>
+  </div>
+
+  <p class="note">
+    영상 속 조합과 수치는 <b>참고용 예시</b>입니다. 특정 종목의 매수 권유나 투자자문이 아니며,
+    지난 성과가 앞으로의 수익을 보장하지 않습니다.
+  </p>
+</main>
+
+<footer><div class="wrap">
+  <div><a href="../">홈</a> · <a href="../c/">나눔터</a> · <a href="../docs/privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+</div></footer>
+
+<script src="../site.js?v=7d5b0fac"></script>
+</body></html>

@@ -122,6 +122,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);
 footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-size:13px;margin-top:40px}
 .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .foot-in a:hover{color:var(--gold)}
+/* SNS 는 링크 줄을 늘리지 않고 아래 한 줄로 내린다 — 좌우 정렬이 무너진다. */
+.foot-sns{flex-basis:100%;color:var(--hint)}
 
 /* 다른 문서 — 문서끼리 오갈 수 있게 본문 아래에 둔다.
    상단 내비게이션은 랜딩 앵커로만 가서 문서 간 이동 수단이 없었다. */
