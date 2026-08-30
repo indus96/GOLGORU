@@ -69,6 +69,7 @@ NAV_LINKS = [
     ]),
     ("{root}#principles", "원칙"),
     ("{root}c/", "나눔터"),
+    ("{root}v/", "영상"),
     ("{root}#download", "다운로드"),
     # 「버전 기록」은 푸터에만 둔다 — 헤더에 있을 만큼 자주 보는 문서가 아니다.
 ]
@@ -148,7 +149,8 @@ def inject_shared(path, root, cta="다운로드"):
 
 FOOTER = """<footer><div class="wrap foot-in">
   <div>© 2026 골고루 · 내 자산을 골고루.</div>
-  <div><a href="../">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+  <div><a href="../">홈</a> · <a href="getting-started.html">시작하기</a> · <a href="../v/">영상</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">인스타그램</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">유튜브</a></div>
 </div></footer>"""
 
 
@@ -376,12 +378,12 @@ def write_sitemap():
     거기만 보게 하는 편이 빠르다. 문서 목록에서 만들므로 문서가 늘어도 빠지지 않는다.
     """
     today = datetime.date.today().isoformat()
-    # `/c/`(나눔터 둘러보기)는 문서가 아니라 손으로 쓴 페이지라 DOCS 에 없다 —
-    # 여기 직접 넣는다. 실제 내용이 있고 색인될 값이 있는 유일한 비문서 페이지다.
+    # `/c/`(나눔터)와 `/v/`(영상)는 문서가 아니라 손으로 쓴 페이지라 DOCS 에 없다 —
+    # 여기 직접 넣는다. 색인될 값이 있는 비문서 페이지는 이 둘뿐이다.
     # `/p/`(공유 코드 보기)는 넣지 않는다: 내용이 URL 조각(#) 뒤에만 있어 코드마다
     # 다른 페이지를 색인할 수 없고, 코드 없는 상태로는 안내문 몇 줄뿐이다(noindex).
     urls = (
-        [f"{SITE}/", f"{SITE}/c/"]
+        [f"{SITE}/", f"{SITE}/c/", f"{SITE}/v/"]
         + [f"{SITE}/docs/{name}.html" for name in sorted(DOCS)]
     )
     body = "\n".join(
@@ -401,7 +403,8 @@ write_sitemap()
 inject_shared("index.html", "", cta="앱 받기")
 inject_shared("p/index.html", "../")
 inject_shared("c/index.html", "../", cta="앱 받기")
+inject_shared("v/index.html", "../", cta="앱 받기")
 
-for page in ["index.html", "p/index.html", "c/index.html"] + glob.glob("docs/*.html"):
+for page in ["index.html", "p/index.html", "c/index.html", "v/index.html"] + glob.glob("docs/*.html"):
     stamp_assets(page)
 print("asset stamp  " + ", ".join(SHARED_ASSETS))
