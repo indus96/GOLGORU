@@ -152,9 +152,12 @@
     padding:44px 0;border-top:1px solid var(--line)}
   .feat.rev .txt{order:2}
   .feat .shot img{width:100%;height:auto;border-radius:14px}
-  /* 세로 아이폰 스크린샷은 폭을 제한하고 가운데 정렬 */
-  .feat .shot.phone img{max-width:300px;display:block;margin:0 auto;border-radius:26px;
+  /* 세로 아이폰 스크린샷은 폭을 제한하고 가운데 정렬. 데모 영상도 같은 규격이라
+     스크린샷과 영상이 한 줄에서 같은 크기로 선다. */
+  .feat .shot.phone img,
+  .feat .shot.phone video{max-width:300px;display:block;margin:0 auto;border-radius:26px;
     box-shadow:0 18px 44px rgba(58,58,58,.16)}
+  .feat .shot.phone video{width:100%;height:auto;background:var(--bg)}
   .feat h3{font-size:22px;font-weight:800;margin-bottom:12px}
   .feat ul{list-style:none;display:flex;flex-direction:column;gap:9px}
   .feat li{position:relative;padding-left:22px;font-size:15px;color:var(--sub)}
@@ -419,13 +422,14 @@
 
   <div class="feat">
     <div class="shot phone">
-      <div class="gallery" data-gallery>
-        <div class="frames">
-          <img src="images/app/phone-draft.png" alt="짜보기 — 내 조합 세그먼트">
-          <img src="images/app/phone-community.png" alt="짜보기 — 나눔터 세그먼트">
-        </div>
-        <div class="dots" aria-hidden="true"></div>
-      </div>
+      <!-- 정지 화면 대신 실제 조작을 보여준다 — 짜보기는 "무엇이 보이나"보다
+           "어떻게 만드나"가 핵심이라 캡처 두 장으로는 안 전해진다.
+           소리가 없으므로 muted·자막 내장. playsinline 이 없으면 iOS 사파리가
+           전체화면으로 낚아채고, poster 가 없으면 로드 전에 검은 칸이 남는다. -->
+      <video src="video/golgoru-draft-demo.mp4" poster="video/golgoru-draft-demo.jpg"
+             autoplay muted loop playsinline preload="metadata"
+             aria-label="짜보기로 ETF 조합을 만드는 과정 — 비교·비중·분산·지난 성과·공유 카드">
+      </video>
     </div>
     <div class="txt">
       <h3>짜보기</h3>
