@@ -302,23 +302,69 @@
     return row;
   }
 
-  // 「지난 1년」. **앱이 올릴 때 계산해 보낸 값이다** — 서버도 이 페이지도 시세를
-  // 모른다. 그래서 올린 시점 기준이고, 그 사실을 아래 한 줄로 밝힌다.
+  // 경과를 달·해로 접는다 — 「올린 뒤 128일」은 안 읽힌다(앱과 같은 규칙).
+  function elapsedText(days) {
+    if (days < 30) { return Math.max(days, 0) + '일'; }
+    if (days < 365) { return Math.floor(days / 30) + '개월'; }
+    var years = Math.floor(days / 365);
+    var months = Math.floor((days % 365) / 30);
+    return months === 0 ? years + '년' : years + '년 ' + months + '개월';
+  }
+
+  function signedPercent(value) {
+    var percent = value * 100;
+    if (Math.round(percent * 10) / 10 === 0) { return '0.0%'; }
+    return (percent > 0 ? '+' : '−') + Math.abs(percent).toFixed(1) + '%';
+  }
+
+  // **「올린 뒤 성과」가 큰 글씨 자리를 가져간다.** 여기 있던 「지난 성과」는 올린
+  // 사람이 마음에 드는 구성을 고른 **뒤에** 과거를 돌아본 값이라 구조적으로
+  // 부풀려진다 — 실측으로 25건 평균이 +151.3% 인데 올린 뒤 실제는 −1.28% 였다
+  // (2026-09-06). 큰 글씨는 고를 수 없는 쪽이 가져가야 한다(앱과 같은 규칙).
+  //
+  // 값은 **서버가 하루 한 번 세서** 칼럼으로 실어 준다. 이 페이지도 서버도
+  // 여전히 시세를 직접 받지 않는다.
   function perfBlock(draft, withCurve) {
-    if (typeof draft.perf !== 'number') return null;
     var box = document.createElement('div');
+    var tracked = typeof draft.trackedReturn === 'number' ? draft.trackedReturn : null;
+    var days = typeof draft.trackedDays === 'number'
+      ? draft.trackedDays
+      : Math.floor((Date.now() - Number(draft.createdAt)) / 86400000);
+    var isShort = days < 90;
+
     var row = document.createElement('div');
     row.className = 'perf-row';
     var label = document.createElement('span');
     label.className = 'perf-label';
-    // 「지난 1년」이라고 쓰지 않는다 — 실제 구간은 종목 이력이 겹치는 만큼이고
-    // 앱이 보내는 것은 숫자 하나뿐이라 여기서 구간을 알 수 없다.
-    label.appendChild(text('지난 성과'));
-    var value = document.createElement('span');
-    value.className = 'perf ' + (draft.perf < 0 ? 'perf-down' : 'perf-up');
-    value.appendChild(text((draft.perf >= 0 ? '+' : '') + (draft.perf * 100).toFixed(1) + '%'));
+    label.appendChild(text('올린 뒤 ' + elapsedText(days)));
     row.appendChild(label);
-    row.appendChild(value);
+
+    if (tracked !== null) {
+      var value = document.createElement('span');
+      // 짧으면 큰 글씨를 안 준다 — 숫자는 보여주되 성적표처럼 안 읽히게 한다.
+      value.className = (isShort ? 'perf-label ' : 'perf ') + (tracked < 0 ? 'perf-down' : 'perf-up');
+      value.style.fontWeight = '700';
+      value.appendChild(text(signedPercent(tracked)));
+      row.appendChild(value);
+
+      var bench = typeof draft.trackedBench === 'number' ? draft.trackedBench : null;
+      if (isShort) {
+        var short = document.createElement('span');
+        short.className = 'perf-label';
+        short.appendChild(text('아직 짧습니다'));
+        row.appendChild(short);
+      } else if (bench !== null) {
+        var excess = document.createElement('span');
+        excess.className = 'perf-label ' + (tracked - bench < 0 ? 'perf-down' : 'perf-up');
+        excess.appendChild(text('지수 대비 ' + signedPercent(tracked - bench) + 'p'));
+        row.appendChild(excess);
+      }
+    } else {
+      var pending = document.createElement('span');
+      pending.className = 'perf-label';
+      pending.appendChild(text('아직 셀 수 없습니다'));
+      row.appendChild(pending);
+    }
     box.appendChild(row);
 
     var points = withCurve
@@ -332,7 +378,7 @@
       svg.setAttribute('aria-hidden', 'true');
       var line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
       line.setAttribute('fill', 'none');
-      line.setAttribute('stroke', draft.perf < 0 ? '#2b6cb0' : '#c0392b');
+      line.setAttribute('stroke', (draft.perf || 0) < 0 ? '#2b6cb0' : '#c0392b');
       line.setAttribute('stroke-width', '1.6');
       line.setAttribute('vector-effect', 'non-scaling-stroke');
       line.setAttribute('points', points.map(function (p, i) {
@@ -345,8 +391,20 @@
     if (withCurve) {
       var note = document.createElement('div');
       note.className = 'perf-note';
-      note.appendChild(text('올린 시점 기준 · 조정종가(배당 재투자 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
+      note.appendChild(text(
+        isShort
+          ? '아직 90일이 안 됐습니다 — 이 구간은 실력보다 시장이 움직인 몫이 큽니다. 지난 값이며 앞으로를 보장하지 않습니다.'
+          : '어제 종가 기준 · 올린 날 비중대로 사서 그대로 뒀다고 봅니다 · 조정종가(배당 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
       box.appendChild(note);
+
+      // **백테스트는 지우지 않고 참고로 내린다** — 지우면 왜 숫자가 초라해졌는지
+      // 알 수 없고, 남겨 두면 두 값의 차이가 그 자체로 설명이 된다.
+      if (typeof draft.perf === 'number') {
+        var backtest = document.createElement('div');
+        backtest.className = 'perf-note';
+        backtest.appendChild(text('올릴 때 지난 1년 백테스트 ' + signedPercent(draft.perf)));
+        box.appendChild(backtest);
+      }
     }
     return box;
   }
