@@ -324,18 +324,37 @@
 
   // 지수 이름은 **market 필드가 아니라 종목으로** 정한다 — 필드가 틀린 실물이
   // 있었다(market=US 인데 코드에는 KR). 워커의 benchmarkFor 와 같은 규칙이다.
-  function benchmarkName(draft) {
+  // 국내 상장 비중(0…1). 워커의 benchmarkFor·앱의 BenchmarkMix 와 같은 규칙이다 —
+  // 숫자를 낸 쪽과 이름을 붙이는 쪽이 다른 비중을 쓰면 이름이 거짓말이 된다.
+  function koreanWeight(draft) {
     var lines = decode(draft.code) || [];
-    if (!lines.length) return '지수';
+    var total = 0;
     var korean = 0;
     for (var i = 0; i < lines.length; i += 1) {
       var parts = lines[i].symbol.split(':');
       var code = parts.length === 2 ? parts[1] : lines[i].symbol;
-      if (/^[0-9A-Z]{6}$/.test(code)) korean += 1;
+      total += lines[i].weight;
+      if (/^[0-9A-Z]{6}$/.test(code)) korean += lines[i].weight;
     }
-    if (korean === lines.length) return '코스피200';
-    if (korean === 0) return 'S&P500';
-    return '지수';
+    return total > 0 ? korean / total : null;
+  }
+
+  function benchmarkName(draft) {
+    var share = koreanWeight(draft);
+    if (share === null) return '지수';
+    if (share === 1) return '코스피200';
+    if (share === 0) return 'S&P500';
+    // 섞인 조합은 **비중대로 섞은 합성 지수**를 댄다 — 한쪽만 대면 나머지
+    // 절반이 공짜로 이기거나 진다(2026-09-06).
+    return '섞은 지수';
+  }
+
+  /** 「섞은 지수 = 코스피200 60% · S&P500 40%」. 안 섞였으면 null. */
+  function blendNote(draft) {
+    var share = koreanWeight(draft);
+    if (share === null || share === 1 || share === 0) return null;
+    var kr = Math.round(share * 100);
+    return '섞은 지수 = 코스피200 ' + kr + '% · S&P500 ' + (100 - kr) + '%';
   }
 
   function signedPercent(value) {
@@ -422,6 +441,15 @@
     // 읽히는데, 옆에 지수가 서면 「시장이 빠졌고 이건 덜 빠졌다」로 읽힌다.
     if (tracked !== null && bench !== null) {
       box.appendChild(comparisonLine(tracked - bench, name));
+      // 섞은 지수는 **무엇을 얼마나 섞었는지 반드시 적는다** — 이름만 보고는
+      // 무엇과 견줬는지 알 수 없다.
+      var mix = blendNote(draft);
+      if (mix) {
+        var mixLine = document.createElement('div');
+        mixLine.className = 'perf-note';
+        mixLine.appendChild(text(mix));
+        box.appendChild(mixLine);
+      }
     }
 
     var points = withCurve
