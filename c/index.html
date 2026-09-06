@@ -311,6 +311,22 @@
     return months === 0 ? years + '년' : years + '년 ' + months + '개월';
   }
 
+  // 지수 이름은 **market 필드가 아니라 종목으로** 정한다 — 필드가 틀린 실물이
+  // 있었다(market=US 인데 코드에는 KR). 워커의 benchmarkFor 와 같은 규칙이다.
+  function benchmarkName(draft) {
+    var lines = decode(draft.code) || [];
+    if (!lines.length) return '지수';
+    var korean = 0;
+    for (var i = 0; i < lines.length; i += 1) {
+      var parts = lines[i].symbol.split(':');
+      var code = parts.length === 2 ? parts[1] : lines[i].symbol;
+      if (/^[0-9A-Z]{6}$/.test(code)) korean += 1;
+    }
+    if (korean === lines.length) return '코스피200';
+    if (korean === 0) return 'S&P500';
+    return '지수';
+  }
+
   function signedPercent(value) {
     var percent = value * 100;
     if (Math.round(percent * 10) / 10 === 0) { return '0.0%'; }
@@ -334,11 +350,6 @@
 
     var row = document.createElement('div');
     row.className = 'perf-row';
-    var label = document.createElement('span');
-    label.className = 'perf-label';
-    label.appendChild(text('올린 뒤 ' + elapsedText(days)));
-    row.appendChild(label);
-
     if (tracked !== null) {
       var value = document.createElement('span');
       // 짧으면 큰 글씨를 안 준다 — 숫자는 보여주되 성적표처럼 안 읽히게 한다.
@@ -347,13 +358,15 @@
       value.appendChild(text(signedPercent(tracked)));
       row.appendChild(value);
 
+      // **지수를 반드시 같이 보여준다.** 수익률만 있으면 「이 조합 나쁨」으로
+      // 읽히는데, 옆에 지수가 서면 「시장이 빠졌고 이건 덜 빠졌다」로 읽힌다.
       var bench = typeof draft.trackedBench === 'number' ? draft.trackedBench : null;
-      if (isShort) {
-        var short = document.createElement('span');
-        short.className = 'perf-label';
-        short.appendChild(text('아직 짧습니다'));
-        row.appendChild(short);
-      } else if (bench !== null) {
+      if (bench !== null) {
+        var benchSpan = document.createElement('span');
+        benchSpan.className = 'perf-label';
+        benchSpan.appendChild(text(benchmarkName(draft) + ' ' + signedPercent(bench)));
+        row.appendChild(benchSpan);
+
         var excess = document.createElement('span');
         excess.className = 'perf-label ' + (tracked - bench < 0 ? 'perf-down' : 'perf-up');
         excess.appendChild(text('지수 대비 ' + signedPercent(tracked - bench) + 'p'));
@@ -366,6 +379,11 @@
       row.appendChild(pending);
     }
     box.appendChild(row);
+
+    var period = document.createElement('div');
+    period.className = 'perf-note';
+    period.appendChild(text('올린 뒤 ' + elapsedText(days) + (isShort ? ' · 아직 짧습니다' : '')));
+    box.appendChild(period);
 
     var points = withCurve
       ? (draft.perfCurve || '').split(',').map(Number).filter(function (n) { return isFinite(n); })
