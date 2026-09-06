@@ -352,8 +352,9 @@
     row.className = 'perf-row';
     if (tracked !== null) {
       var value = document.createElement('span');
-      // 짧으면 큰 글씨를 안 준다 — 숫자는 보여주되 성적표처럼 안 읽히게 한다.
-      value.className = (isShort ? 'perf-label ' : 'perf ') + (tracked < 0 ? 'perf-down' : 'perf-up');
+      // **기간과 무관하게 같은 크기다.** 짧을 때만 작게 두면 3개월 동안 카드가
+      // 미완성처럼 보인다(사용자 판단 2026-09-06).
+      value.className = 'perf ' + (tracked < 0 ? 'perf-down' : 'perf-up');
       value.style.fontWeight = '700';
       value.appendChild(text(signedPercent(tracked)));
       row.appendChild(value);
@@ -382,7 +383,8 @@
 
     var period = document.createElement('div');
     period.className = 'perf-note';
-    period.appendChild(text('올린 뒤 ' + elapsedText(days) + (isShort ? ' · 아직 짧습니다' : '')));
+    // 「아직 짧습니다」를 따로 안 붙인다 — 「올린 뒤 7일」이 이미 그 말을 한다.
+    period.appendChild(text('올린 뒤 ' + elapsedText(days)));
     box.appendChild(period);
 
     var points = withCurve
