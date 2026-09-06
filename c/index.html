@@ -36,6 +36,17 @@
   .perf-down{color:#2b6cb0}
   .perf-row{display:flex;align-items:baseline;gap:10px;margin-top:12px}
   .perf-label{font-size:13px;color:var(--sub)}
+  /* 문장으로 방향을 준다 — 「−0.6%p」로 쓰면 한 줄에 마이너스가 셋이다. */
+  .perf-compare{margin-top:6px;font-size:13px;color:var(--sub)}
+  .perf-compare strong{font-weight:700}
+  /* 상세의 비교 막대. 가운데가 0, 왼쪽이 손실이다. */
+  .bars{margin-top:12px;display:grid;gap:6px;max-width:460px}
+  .bar-row{display:grid;grid-template-columns:66px 1fr 56px;align-items:center;gap:10px;
+    font-size:12px;color:var(--sub)}
+  .bar-track{position:relative;height:8px;border-radius:4px;background:var(--line)}
+  .bar-fill{position:absolute;top:0;height:8px;border-radius:4px}
+  .bar-value{text-align:right;font-variant-numeric:tabular-nums}
+  .bar-value.strong{font-weight:700}
   .spark{width:100%;height:52px;display:block;margin-top:6px}
   .perf-note{font-size:11px;color:var(--sub);margin-top:4px}
   .taken{margin-left:auto;color:var(--sub);font-size:12px}
@@ -333,6 +344,28 @@
     return (percent > 0 ? '+' : '−') + Math.abs(percent).toFixed(1) + '%';
   }
 
+  // 「코스피200보다 0.6%p 뒤졌습니다」. 차이가 반올림해서 0.0%p 면 숫자를 안 쓴다 —
+  // 「0.0%p 앞섰습니다」는 앞섰다고 말하면서 앞선 양이 없어 모순이다. 앱과 같은 규칙.
+  // **숫자에만 색을 입힌다.** 문장 전체를 칠하면 바로 위 「−2.1%」는 숫자만
+  // 파란데 아래 줄은 통째로 붉어 두 줄이 다른 규칙으로 읽힌다(사용자 지적
+  // 2026-09-06). 「비슷했습니다」에는 칠할 숫자가 없어 회색 한 줄로 남는다.
+  function comparisonLine(excess, name) {
+    var percent = Math.round(excess * 1000) / 10;
+    var line = document.createElement('div');
+    line.className = 'perf-compare';
+    if (percent === 0) {
+      line.appendChild(text(name + '과 비슷했습니다'));
+      return line;
+    }
+    line.appendChild(text(name + '보다 '));
+    var amount = document.createElement('strong');
+    amount.className = percent > 0 ? 'perf-up' : 'perf-down';
+    amount.appendChild(text(Math.abs(percent).toFixed(1) + '%p'));
+    line.appendChild(amount);
+    line.appendChild(text(' ' + (percent > 0 ? '앞섰습니다' : '뒤졌습니다')));
+    return line;
+  }
+
   // **「올린 뒤 성과」가 큰 글씨 자리를 가져간다.** 여기 있던 「지난 성과」는 올린
   // 사람이 마음에 드는 구성을 고른 **뒤에** 과거를 돌아본 값이라 구조적으로
   // 부풀려진다 — 실측으로 25건 평균이 +151.3% 인데 올린 뒤 실제는 −1.28% 였다
@@ -343,49 +376,53 @@
   function perfBlock(draft, withCurve) {
     var box = document.createElement('div');
     var tracked = typeof draft.trackedReturn === 'number' ? draft.trackedReturn : null;
+    var bench = typeof draft.trackedBench === 'number' ? draft.trackedBench : null;
     var days = typeof draft.trackedDays === 'number'
       ? draft.trackedDays
       : Math.floor((Date.now() - Number(draft.createdAt)) / 86400000);
-    var isShort = days < 90;
+    var name = benchmarkName(draft);
+    // 「아직 짧습니다」를 따로 안 붙인다 — 「올린 뒤 7일」이 이미 그 말을 한다.
+    var elapsed = '올린 뒤 ' + elapsedText(days);
 
-    var row = document.createElement('div');
-    row.className = 'perf-row';
-    if (tracked !== null) {
+    if (tracked === null) {
+      var pendingRow = document.createElement('div');
+      pendingRow.className = 'perf-row';
+      var pending = document.createElement('span');
+      pending.className = 'perf-label';
+      pending.appendChild(text(elapsed + ' · 아직 셀 수 없습니다'));
+      pendingRow.appendChild(pending);
+      box.appendChild(pendingRow);
+    } else if (withCurve) {
+      // **상세는 그림이다.** 한 조합만 보는 자리라 같은 자로 그린 막대 둘이
+      // 숫자를 읽기 전에 우열을 말해 준다.
+      var head = document.createElement('div');
+      head.className = 'perf-note';
+      head.style.marginTop = '12px';
+      head.appendChild(text(elapsed));
+      box.appendChild(head);
+      box.appendChild(compareBars(tracked, bench, name));
+    } else {
+      // **목록은 문장이다.** 카드 열두 장에 막대를 깔면 막대밭이 된다.
+      var row = document.createElement('div');
+      row.className = 'perf-row';
       var value = document.createElement('span');
       // **기간과 무관하게 같은 크기다.** 짧을 때만 작게 두면 3개월 동안 카드가
       // 미완성처럼 보인다(사용자 판단 2026-09-06).
       value.className = 'perf ' + (tracked < 0 ? 'perf-down' : 'perf-up');
-      value.style.fontWeight = '700';
       value.appendChild(text(signedPercent(tracked)));
       row.appendChild(value);
-
-      // **지수를 반드시 같이 보여준다.** 수익률만 있으면 「이 조합 나쁨」으로
-      // 읽히는데, 옆에 지수가 서면 「시장이 빠졌고 이건 덜 빠졌다」로 읽힌다.
-      var bench = typeof draft.trackedBench === 'number' ? draft.trackedBench : null;
-      if (bench !== null) {
-        var benchSpan = document.createElement('span');
-        benchSpan.className = 'perf-label';
-        benchSpan.appendChild(text(benchmarkName(draft) + ' ' + signedPercent(bench)));
-        row.appendChild(benchSpan);
-
-        var excess = document.createElement('span');
-        excess.className = 'perf-label ' + (tracked - bench < 0 ? 'perf-down' : 'perf-up');
-        excess.appendChild(text('지수 대비 ' + signedPercent(tracked - bench) + 'p'));
-        row.appendChild(excess);
-      }
-    } else {
-      var pending = document.createElement('span');
-      pending.className = 'perf-label';
-      pending.appendChild(text('아직 셀 수 없습니다'));
-      row.appendChild(pending);
+      var label = document.createElement('span');
+      label.className = 'perf-label';
+      label.appendChild(text(elapsed));
+      row.appendChild(label);
+      box.appendChild(row);
     }
-    box.appendChild(row);
 
-    var period = document.createElement('div');
-    period.className = 'perf-note';
-    // 「아직 짧습니다」를 따로 안 붙인다 — 「올린 뒤 7일」이 이미 그 말을 한다.
-    period.appendChild(text('올린 뒤 ' + elapsedText(days)));
-    box.appendChild(period);
+    // **지수를 반드시 같이 보여준다.** 수익률만 있으면 「이 조합 나쁨」으로
+    // 읽히는데, 옆에 지수가 서면 「시장이 빠졌고 이건 덜 빠졌다」로 읽힌다.
+    if (tracked !== null && bench !== null) {
+      box.appendChild(comparisonLine(tracked - bench, name));
+    }
 
     var points = withCurve
       ? (draft.perfCurve || '').split(',').map(Number).filter(function (n) { return isFinite(n); })
@@ -412,9 +449,7 @@
       var note = document.createElement('div');
       note.className = 'perf-note';
       note.appendChild(text(
-        isShort
-          ? '아직 90일이 안 됐습니다 — 이 구간은 실력보다 시장이 움직인 몫이 큽니다. 지난 값이며 앞으로를 보장하지 않습니다.'
-          : '어제 종가 기준 · 올린 날 비중대로 사서 그대로 뒀다고 봅니다 · 조정종가(배당 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
+        '어제 종가 기준 · 올린 날 비중대로 사서 그대로 뒀다고 봅니다 · 조정종가(배당 반영) · 지난 값이며 앞으로를 보장하지 않습니다.'));
       box.appendChild(note);
 
       // **백테스트는 지우지 않고 참고로 내린다** — 지우면 왜 숫자가 초라해졌는지
@@ -427,6 +462,44 @@
       }
     }
     return box;
+  }
+
+  // 「이 조합」과 지수를 **같은 자로** 그린 막대 둘. 눈금은 ±10%p 가 기본이고
+  // 그보다 큰 값이 나오면 그 값에 맞춰 늘린다 — 큰 쪽이 언제나 절반을 꽉
+  // 채우면 −2.6% 도 바닥까지 내려간 그림이 되어 색이 숫자와 딴말을 한다.
+  function compareBars(value, bench, name) {
+    var scale = Math.max(Math.abs(value), Math.abs(bench === null ? 0 : bench), 0.10);
+    var bars = document.createElement('div');
+    bars.className = 'bars';
+    bars.appendChild(bar('이 조합', value, scale, true));
+    if (bench !== null) { bars.appendChild(bar(name, bench, scale, false)); }
+    return bars;
+  }
+
+  function bar(label, amount, scale, strong) {
+    var row = document.createElement('div');
+    row.className = 'bar-row';
+    var head = document.createElement('span');
+    head.appendChild(text(label));
+    row.appendChild(head);
+
+    var track = document.createElement('div');
+    track.className = 'bar-track';
+    var fill = document.createElement('div');
+    fill.className = 'bar-fill';
+    var half = Math.min(50, Math.max(0.6, (Math.abs(amount) / scale) * 50));
+    fill.style.width = half + '%';
+    fill.style.left = amount < 0 ? (50 - half) + '%' : '50%';
+    fill.style.background = strong ? (amount < 0 ? '#2b6cb0' : '#c0392b') : 'var(--hint)';
+    track.appendChild(fill);
+    row.appendChild(track);
+
+    var value = document.createElement('span');
+    value.className = 'bar-value' + (strong ? ' strong' : '');
+    if (strong) { value.style.color = amount < 0 ? '#2b6cb0' : '#c0392b'; }
+    value.appendChild(text(signedPercent(amount)));
+    row.appendChild(value);
+    return row;
   }
 
   function text(value) {
