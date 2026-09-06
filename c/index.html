@@ -488,6 +488,11 @@
     wrapper.className = 'card';
     wrapper.style.padding = '0';
     wrapper.style.overflow = 'hidden';
+    // **투표 줄을 카드 아래에 붙인다.** 격자가 칸 높이를 맞춰 주는데 내용
+    // 길이가 제각각이라, 그냥 두면 구분선과 버튼이 카드마다 다른 높이에 선다.
+    wrapper.style.display = 'flex';
+    wrapper.style.flexDirection = 'column';
+    wrapper.style.height = '100%';
     box.className = 'card-link';
     box.style.border = '0';
     box.style.display = 'block';
@@ -495,7 +500,8 @@
     wrapper.appendChild(box);
 
     var foot = voteRow(draft);
-    foot.style.margin = '0 18px 16px';
+    // 위쪽 margin 이 auto — 남는 높이를 전부 먹어 줄을 바닥으로 민다.
+    foot.style.margin = 'auto 18px 16px';
     wrapper.appendChild(foot);
     return wrapper;
   }
