@@ -37,7 +37,8 @@
   .perf-row{display:flex;align-items:baseline;gap:10px;margin-top:12px}
   .perf-label{font-size:13px;color:var(--sub)}
   /* 문장으로 방향을 준다 — 「−0.6%p」로 쓰면 한 줄에 마이너스가 셋이다. */
-  .perf-compare{margin-top:6px;font-size:13px;font-weight:700}
+  .perf-compare{margin-top:6px;font-size:13px;color:var(--sub)}
+  .perf-compare strong{font-weight:700}
   /* 상세의 비교 막대. 가운데가 0, 왼쪽이 손실이다. */
   .bars{margin-top:12px;display:grid;gap:6px;max-width:460px}
   .bar-row{display:grid;grid-template-columns:66px 1fr 56px;align-items:center;gap:10px;
@@ -345,11 +346,24 @@
 
   // 「코스피200보다 0.6%p 뒤졌습니다」. 차이가 반올림해서 0.0%p 면 숫자를 안 쓴다 —
   // 「0.0%p 앞섰습니다」는 앞섰다고 말하면서 앞선 양이 없어 모순이다. 앱과 같은 규칙.
-  function comparisonSentence(excess, name) {
+  // **숫자에만 색을 입힌다.** 문장 전체를 칠하면 바로 위 「−2.1%」는 숫자만
+  // 파란데 아래 줄은 통째로 붉어 두 줄이 다른 규칙으로 읽힌다(사용자 지적
+  // 2026-09-06). 「비슷했습니다」에는 칠할 숫자가 없어 회색 한 줄로 남는다.
+  function comparisonLine(excess, name) {
     var percent = Math.round(excess * 1000) / 10;
-    if (percent === 0) { return name + '과 비슷했습니다'; }
-    return name + '보다 ' + Math.abs(percent).toFixed(1) + '%p '
-      + (percent > 0 ? '앞섰습니다' : '뒤졌습니다');
+    var line = document.createElement('div');
+    line.className = 'perf-compare';
+    if (percent === 0) {
+      line.appendChild(text(name + '과 비슷했습니다'));
+      return line;
+    }
+    line.appendChild(text(name + '보다 '));
+    var amount = document.createElement('strong');
+    amount.className = percent > 0 ? 'perf-up' : 'perf-down';
+    amount.appendChild(text(Math.abs(percent).toFixed(1) + '%p'));
+    line.appendChild(amount);
+    line.appendChild(text(' ' + (percent > 0 ? '앞섰습니다' : '뒤졌습니다')));
+    return line;
   }
 
   // **「올린 뒤 성과」가 큰 글씨 자리를 가져간다.** 여기 있던 「지난 성과」는 올린
@@ -407,12 +421,7 @@
     // **지수를 반드시 같이 보여준다.** 수익률만 있으면 「이 조합 나쁨」으로
     // 읽히는데, 옆에 지수가 서면 「시장이 빠졌고 이건 덜 빠졌다」로 읽힌다.
     if (tracked !== null && bench !== null) {
-      var excess = Math.round((tracked - bench) * 1000) / 10;
-      var compare = document.createElement('div');
-      compare.className = 'perf-compare'
-        + (excess === 0 ? '' : (excess > 0 ? ' perf-up' : ' perf-down'));
-      compare.appendChild(text(comparisonSentence(tracked - bench, name)));
-      box.appendChild(compare);
+      box.appendChild(comparisonLine(tracked - bench, name));
     }
 
     var points = withCurve
