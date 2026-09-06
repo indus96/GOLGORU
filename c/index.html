@@ -324,37 +324,38 @@
 
   // 지수 이름은 **market 필드가 아니라 종목으로** 정한다 — 필드가 틀린 실물이
   // 있었다(market=US 인데 코드에는 KR). 워커의 benchmarkFor 와 같은 규칙이다.
-  // 국내 상장 비중(0…1). 워커의 benchmarkFor·앱의 BenchmarkMix 와 같은 규칙이다 —
-  // 숫자를 낸 쪽과 이름을 붙이는 쪽이 다른 비중을 쓰면 이름이 거짓말이 된다.
-  function koreanWeight(draft) {
-    var lines = decode(draft.code) || [];
-    var total = 0;
+  // 국내 비중(정수 퍼센트). **상장국이 아니라 국가 노출로 센다**(2026-09-06) —
+  // 「퇴직연금 짜보기」는 여섯 줄이 전부 국내 상장 ETF 지만 안을 열면 미국이 60% 다.
+  // 상장국으로 세면 코스피200 하나를 대게 되고, 그건 미국에 걸린 몫을 국내 지수로
+  // 재는 것이다. 숫자를 낸 워커·앱과 같은 칸·같은 반올림을 읽는다.
+  function koreanPercent(draft) {
+    var fields = parseExposure(draft.exposure);
+    var country = fields ? fields[0] : null;
+    if (!country || !country.length) return null;
     var korean = 0;
-    for (var i = 0; i < lines.length; i += 1) {
-      var parts = lines[i].symbol.split(':');
-      var code = parts.length === 2 ? parts[1] : lines[i].symbol;
-      total += lines[i].weight;
-      if (/^[0-9A-Z]{6}$/.test(code)) korean += lines[i].weight;
+    var total = 0;
+    for (var i = 0; i < country.length; i += 1) {
+      total += country[i].percent;
+      if (country[i].label === '한국') korean += country[i].percent;
     }
-    return total > 0 ? korean / total : null;
+    return total > 0 ? Math.round((korean / total) * 100) : null;
   }
 
   function benchmarkName(draft) {
-    var share = koreanWeight(draft);
-    if (share === null) return '지수';
-    if (share === 1) return '코스피200';
-    if (share === 0) return 'S&P500';
-    // 섞인 조합은 **비중대로 섞은 합성 지수**를 댄다 — 한쪽만 대면 나머지
-    // 절반이 공짜로 이기거나 진다(2026-09-06).
+    var percent = koreanPercent(draft);
+    if (percent === null) return '지수';
+    if (percent >= 100) return '코스피200';
+    if (percent <= 0) return 'S&P500';
+    // 섞였으면 **비중대로 섞은 합성 지수**를 댄다 — 한쪽만 대면 나머지 몫이
+    // 공짜로 이기거나 진다.
     return '섞은 지수';
   }
 
-  /** 「섞은 지수 = 코스피200 60% · S&P500 40%」. 안 섞였으면 null. */
+  /** 「섞은 지수 = 코스피200 40% · S&P500 60%」. 안 섞였으면 null. */
   function blendNote(draft) {
-    var share = koreanWeight(draft);
-    if (share === null || share === 1 || share === 0) return null;
-    var kr = Math.round(share * 100);
-    return '섞은 지수 = 코스피200 ' + kr + '% · S&P500 ' + (100 - kr) + '%';
+    var percent = koreanPercent(draft);
+    if (percent === null || percent >= 100 || percent <= 0) return null;
+    return '섞은 지수 = 코스피200 ' + percent + '% · S&P500 ' + (100 - percent) + '%';
   }
 
   function signedPercent(value) {
