@@ -62,7 +62,10 @@
   .detail .band{height:16px;margin:18px 0 14px}
   .detail-row{display:flex;gap:10px;align-items:baseline;padding:9px 0;
     border-bottom:1px solid var(--line);font-size:14px}
-  .detail-row:last-of-type{border-bottom:0}
+  /* **:last-of-type 은 못 쓴다** — 종목 줄 뒤에 「노출·분산」 블록(div)이 따라붙어
+     마지막 div 는 그쪽이다. 그래서 마지막 줄이 밑줄을 그대로 갖고, 노출 블록의
+     윗줄과 겹쳐 선이 둘로 보였다(사용자 지적 2026-09-07). 그리는 쪽이 표시한다. */
+  .detail-row.is-last{border-bottom:0}
   .dot{width:9px;height:9px;border-radius:3px;flex:none;align-self:center}
   .detail-name{flex:1;min-width:0;color:var(--ink);word-break:break-word}
   .detail-pct{color:var(--sub);font-variant-numeric:tabular-nums}
@@ -788,7 +791,11 @@
         band.appendChild(seg);
       });
       box.appendChild(band);
-      lines.forEach(function (line, index) { box.appendChild(detailRow(line, index)); });
+      lines.forEach(function (line, index) {
+        var row = detailRow(line, index);
+        if (index === lines.length - 1) row.classList.add('is-last');
+        box.appendChild(row);
+      });
 
       // 앱 상세의 「노출·분산」 카드와 같은 그림. 1.4.0 이전에 올라온 조합에는
       // 이 값이 없다 — 그때는 이 절이 통째로 안 나온다.
