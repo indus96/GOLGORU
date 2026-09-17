@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Data and security</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="Your asset data stays on your device or in your own sheet, and credentials live only in the device keychain.">
+<meta property="og:title" content="Golgoru · Data and security">
+<meta property="og:description" content="Your asset data stays on your device or in your own sheet, and credentials live only in the device keychain.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/data-security.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/data-security.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/data-security.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/data-security.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/data-security.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/data-security.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#about"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Data · security</div>
+  <h1>Data and security</h1>
+  <p class="lead">Your asset data stays on your device or in your own sheet, and credentials live only in the device keychain.</p>
+  <div class="hero-img wide"><img src="../../images/data-flow.svg" alt="Data and security screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> everything</blockquote>
+<h2>Where it is stored</h2>
+<p>Where your data lives depends on how you started. <strong>Either way, it is never stored on our servers.</strong></p>
+<div class="tablewrap"><table><thead><tr><th>How you started</th><th>Where it lives</th><th>Devices</th></tr></thead><tbody><tr><td>Sample</td><td>Not stored (example data)</td><td>All</td></tr><tr><td>Entered in the app</td><td>Device storage (on Apple devices also synced to your own iCloud; on Android, to your own Google Drive if you turn sharing on)</td><td>All</td></tr><tr><td>Google Sheets link (up to 1.0)</td><td>Your own spreadsheet</td><td>iPhone · iPad · Mac</td></tr><tr><td>Portfolios you built (from 1.3.0)</td><td>Device storage (mirrored to your own iCloud on Apple devices)</td><td>All</td></tr></tbody></table></div>
+<h3>Assets you enter in the app</h3>
+<p>Accounts, holdings, cash and target weights are stored on the device as JSON, in <strong>an app-only area other apps cannot read</strong>.</p>
+<p>On Apple devices it also syncs to <strong>your own iCloud</strong> so your iPhone, iPad and Mac see the same ledger. That area belongs to your Apple account and we cannot reach it. A device not signed in to iCloud simply does not sync.</p>
+<p>On Android the same happens <strong>only if you turn device sharing on</strong> — the ledger and any rebalancing in progress are saved to your own Google Drive as two files. It is off by default, and the only permission the app asks for is <code>drive.file</code>, which means <strong>it cannot see anything outside the files it created.</strong></p>
+<p>Editing on two devices at once loses nothing. Changes to different accounts or holdings are both kept, and you are asked which to keep <strong>only when the same holding was changed differently</strong>.</p>
+<div class="tablewrap"><table><thead><tr><th>Device</th><th>How it is protected</th></tr></thead><tbody><tr><td>iPhone · iPad · Mac</td><td>App sandbox plus file protection — <strong>unreadable while the device is locked</strong></td></tr><tr><td>Android</td><td>App-private storage — other apps cannot reach it and it is left out of device backups. With device sharing on, also your own Google Drive</td></tr></tbody></table></div>
+<p>This data is never sent <strong>to our servers</strong>. With sync on, it goes only to your own iCloud or Google Drive. You can delete it in settings, and deleting the app takes it with it.</p>
+<h3>Portfolios you built (from 1.3.0)</h3>
+<p>These are mixes you have not bought, so they are <strong>kept separately</strong> from your ledger — as files in the same app-only area, with the same file protection.</p>
+<ul><li><strong>Apple devices</strong> — mirrored to your own iCloud so iPhone, iPad and Mac see the same list.</li><li><strong>Android</strong> — on the device only.</li><li>A <strong>share link carries the portfolio after the <code>#</code></strong> in the address. URL fragments are never sent to a server, so they are neither stored nor logged.</li><li>A code someone sends you joins your list <strong>only when you press save</strong>, and the app re-checks every value first.</li></ul>
+<h3>Google Sheets link (iPhone · iPad · Mac)</h3>
+<p>The Android app has no sheet link — it works with the sample or with assets you enter. The one place Android asks for a Google sign-in is turning device sharing on, and that asks for <code>drive.file</code> only (see above).</p>
+<p>The app reads only the normalized <code>App_Data_*</code> tabs in your spreadsheet.</p>
+<pre><code>your original sheet (budget, portfolio, whatever)
+  → Google Sheets formulas / IMPORTRANGE
+  → App_Data_Assets · App_Data_Allocation · App_Data_Watchlist · App_Data_Events
+  → the app reads them and calculates on the device</code></pre>
+<ul><li>The <code>App_Data_*</code> tabs are created in one go from <strong>a copy of the template</strong> we provide.</li><li>The only permission requested is <code>spreadsheets.readonly</code> — the app never edits or deletes your sheet.</li><li>It does not list your Google Drive. You paste the spreadsheet address yourself.</li></ul>
+<h2>Safeguards</h2>
+<div class="tablewrap"><table><thead><tr><th>Safeguard</th><th>What it means</th></tr></thead><tbody><tr><td>Google sign-in</td><td><code>spreadsheets.readonly</code> — read only, never write. <strong>Removed from the public app in 1.2.0</strong></td></tr><tr><td>Credential storage</td><td><strong>2.0 removed broker connections</strong> — there is no API key to take. Holdings are typed in or filled from a brokerage screenshot (text recognition runs on the device)</td></tr><tr><td>App lock</td><td>Unlock with biometrics (fingerprint, face), or your device lock (PIN, pattern, password) when there are none. It locks again after a trip to the background</td></tr><tr><td>Local cache protection</td><td>Snapshot caches also sit in the app-only area and can be deleted in settings</td></tr><tr><td>Minimal outbound data</td><td>News, prices, financial statements and dividend lookups send the holding identifier only — never quantities, amounts or accounts. ETF search and comparison send <strong>the search term and the symbol</strong> only, never your amount or weights</td></tr><tr><td>No asset data to outside AI</td><td>Diagnosis, goal suggestions and rebalancing maths are all rule-based logic inside the app. The public app <strong>uses no AI at all</strong></td></tr><tr><td>Masked logs</td><td>Tokens and account numbers never appear in logs or on screen</td></tr></tbody></table></div>
+<h2>When something fails</h2>
+<ul><li>If sheets, news or market indicators fail to load, the app falls back to the last good cache.</li><li>If only some market indicators fail, the ones that arrived are updated and the rest keep their previous values.</li></ul>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><span class="doc-card current">Data · security</span><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>

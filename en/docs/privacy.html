@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Privacy policy</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="Golgoru (“the app”) does not store your asset data on our servers. This page explains what the app handles, where it is kept, and what leaves the device.">
+<meta property="og:title" content="Golgoru · Privacy policy">
+<meta property="og:description" content="Golgoru (“the app”) does not store your asset data on our servers. This page explains what the app handles, where it is kept, and what leaves the device.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/privacy.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/privacy.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/privacy.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/privacy.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/privacy.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#about"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Privacy</div>
+  <h1>Privacy policy</h1>
+  <p class="lead">Golgoru (“the app”) does not store your asset data on our servers. This page explains what the app handles, where it is kept, and what leaves the device.</p>
+  
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote>Last updated: 2026-08-21</blockquote>
+<h2>What the app handles</h2>
+<h3>Asset information</h3>
+<p>Account names, holdings, quantities, average costs, cash balances and target weights.</p>
+<p>Depending on how you started, they are stored in one of these places.</p>
+<div class="tablewrap"><table><thead><tr><th>How you started</th><th>Where it is stored</th><th>Devices</th></tr></thead><tbody><tr><td>Sample</td><td>Not stored (example data)</td><td>All</td></tr><tr><td>Entered in the app</td><td>Your device's storage (on Apple devices also synced to your own iCloud; on Android, to your own Google Drive if you turn device sharing on)</td><td>All</td></tr><tr><td>Google Sheets link (up to 1.0)</td><td>Your own Google spreadsheet</td><td>iPhone · iPad · Mac</td></tr><tr><td>Portfolios you built (from 1.3.0)</td><td>Your device's storage (mirrored to your own iCloud on Apple devices)</td><td>All</td></tr></tbody></table></div>
+<p>In every case, <strong>nothing is stored on our servers.</strong></p>
+<p>Device storage means the app-only area the platform provides — the app sandbox on Apple devices, app-private storage on Android (other apps cannot read it, and it is excluded from device backups).</p>
+<p>On Apple devices, a ledger entered with “enter my assets” also syncs to <strong>your own iCloud</strong> so your iPhone and iPad can see it together. We cannot reach that area, and a device not signed in to iCloud does not sync. On Android this happens <strong>only if you turn device sharing on</strong>, storing the ledger in your own Google Drive as two files (<code>golgoru-ledger.json</code> — accounts and holdings; <code>golgoru-rebalancing.json</code> — rebalancing in progress). It is off by default. The only permission the app asks for is <code>drive.file</code>, which lets it see <strong>only the files it created</strong> — it cannot even tell whether other files in your Drive exist. We cannot reach those files.</p>
+<h3>Portfolios you built (from 1.3.0)</h3>
+<p>A mix you have not bought (its name, holdings, weights and amount) is stored on the device <strong>separately</strong> from your ledger. On Apple devices it is mirrored to your own iCloud so iPhone, iPad and Mac see the same list; we cannot reach that area. On Android it stays on the device.</p>
+<p>A <strong>share link carries the portfolio after the <code>#</code></strong> in the address. URL fragments <strong>are never sent to a server</strong>, so nothing is stored on our servers and nothing appears in access logs. It joins the other person's device only when <strong>they press save</strong>.</p>
+<h3>Google account information</h3>
+<p><strong>Since 1.2.0 the public app has no Google sign-in.</strong> The Google Sheets link was removed; what follows applies to version 1.0.</p>
+<p>Google sign-in was used only when you chose the Google Sheets link. <strong>The Android app has no sheet link</strong> — it offers the sample and manual entry only, so the sheet material below does not apply to Android.</p>
+<p>The one place Android asks for a Google sign-in is <strong>turning device sharing on</strong>, and the permission requested there is <code>https://www.googleapis.com/auth/drive.file</code> alone — it reads, creates and edits <strong>only files the app created</strong>. It does not touch other files in your Drive and cannot list them. Leave sharing off and no sign-in happens.</p>
+<ul><li>Permission requested: <code>https://www.googleapis.com/auth/spreadsheets.readonly</code> — it <strong>only reads</strong> the spreadsheet you point it at. It never edits or deletes.</li><li>Purpose: reading your assets from your <code>App_Data_*</code> sheets to show them in the app.</li><li>The access token is kept only in the device keychain and is never transmitted.</li><li>The app does not list your Google Drive files. You enter the spreadsheet address yourself, so no file-search permission is needed.</li></ul>
+<p>Golgoru's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+<h3>Broker API keys</h3>
+<p><strong>2.0 removed broker connections.</strong> The public app neither receives nor stores broker API keys and never talks to a broker's servers. Holdings are entered by you or filled <strong>from a screenshot of your brokerage app</strong> — the text recognition runs on the device, and the image never leaves it.</p>
+<p>If a key saved by a version before 2.0 is still on the device, deleting the app removes it.</p>
+<p>The app used broker APIs <strong>for reading balances only</strong>. It never placed orders.</p>
+<h2>What leaves the device</h2>
+<p>The app uses its own serverless functions (Cloudflare Workers) for prices and news. What is sent is limited to this.</p>
+<div class="tablewrap"><table><thead><tr><th>Feature</th><th>What is sent</th><th>What is not</th></tr></thead><tbody><tr><td>Prices · charts</td><td>The holding symbol</td><td>Quantities, amounts, accounts</td></tr><tr><td>Market indicators</td><td>The indicator code only</td><td>Any asset information</td></tr><tr><td>News · reports</td><td>Holding names, search keywords</td><td>Quantities, amounts, accounts</td></tr><tr><td>ETF search · comparison (1.3.0)</td><td>The search term, the symbol</td><td>Amounts, weights, what you hold</td></tr></tbody></table></div>
+<p><strong>Money figures are never sent to our servers.</strong> As the table shows, what goes out is a symbol and a search term — never your total, your position values or an account balance. Amounts, currency conversion and weights are all calculated on the device.</p>
+<p><strong>The exception is your own storage.</strong> A ledger entered with “enter my assets” syncs to <strong>your own iCloud</strong> on Apple devices, and to <strong>your own Google Drive on Android if you turned device sharing on</strong>, so your devices can see it together. Both belong to your account and <strong>we cannot reach them.</strong> Without an iCloud sign-in, or with device sharing off on Android, no sync happens.</p>
+<p><strong>Asset information is never sent to an outside AI (LLM).</strong> Diagnosis, goal suggestions and rebalancing maths are all rule-based logic inside the app.</p>
+<p>The public app has no AI features at all. Since 1.2.0 the app fetches news straight from Google News and opens articles at their original page — nothing is sent anywhere to be translated or summarized.</p>
+<p><strong>Importing holdings from a screenshot does not transmit the image either.</strong> Reading the text from what you pasted is done by the operating system on the device (Apple Vision). The image is discarded as soon as it is read and never stored.</p>
+<h2>Keeping and deleting</h2>
+<ul><li>Data on the device sits in the app-only area, where other apps cannot read it. Apple devices apply file protection, so it is unreadable while the device is locked; Android keeps it in app-private storage and excludes it from device backups.</li><li>Settings can delete the local cache and the ledger you entered.</li><li>Deleting the app deletes everything it stored on the device.</li><li>Disconnecting the Google Sheets link (Apple devices only) removes the stored token from the keychain. The sheet itself is yours, so the app does not delete it.</li><li>You can revoke the app's access at any time on the <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google account permissions page</a>.</li></ul>
+<h2>Sharing with third parties</h2>
+<p>We do not sell or pass your asset information or Google account information to third parties. The app collects no advertising identifier and carries no analytics SDK.</p>
+<h2>Children's privacy</h2>
+<p>The app is not directed at children under 14 and does not knowingly collect their personal information.</p>
+<h2>Investment notice</h2>
+<p>The analysis and suggestions the app provides are for reference only — they are not investment advice or a recommendation. Every investment decision, and its outcome, is yours.</p>
+<h2>Contact</h2>
+<p>indus96@gmail.com</p>
+<h2>Changes</h2>
+<p>If this policy changes, the last-updated date on this page is updated, and important changes are announced inside the app.</p>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><span class="doc-card current">Privacy</span></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Adjustment plan</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="Works out the gap between your target weights and what you actually hold, and shows only what to move and how much. You get there from the “adjustment…">
+<meta property="og:title" content="Golgoru · Adjustment plan">
+<meta property="og:description" content="Works out the gap between your target weights and what you actually hold, and shows only what to move and how much. You get there from the “adjustment…">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/allocation-rebalancing.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/allocation-rebalancing.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/allocation-rebalancing.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/allocation-rebalancing.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/allocation-rebalancing.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/allocation-rebalancing.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#rebalance"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Adjustment plan</div>
+  <h1>Adjustment plan</h1>
+  <p class="lead">Works out the gap between your target weights and what you actually hold, and shows only <strong>what to move and how much</strong>. You get there from the “adjustment plan” row on the <a href="asset-ranking.html">Assets</a> screen, or “see the adjustment plan” in an account.</p>
+  <div class="hero-img phone"><img src="../../images/app/phone-allocation.png" alt="Adjustment plan screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> the sample · your own assets (editing target weights only when you enter your own assets)</blockquote>
+<h2>What you see</h2>
+<p>One card per class. On the bar, <strong>the dark tick is the target and the filled colour is where you are</strong>.</p>
+<ul><li>Above the target it says <strong>trim</strong>; below it, <strong>add</strong> — with the amount.</li><li>The target and current figures <strong>carry amounts</strong> — <code>Target 35% · ₩17.5M</code> / <code>Now 40% · ₩20M</code>. With percentages alone, nothing on screen says 35% of what.</li><li><strong>Classes inside the range fold into one line</strong> — <code>Cash target 10% · ₩5M · same as now</code>.</li><li>The order is fixed, biggest gap first. There is no sort to choose.</li><li>Tapping an adjustment row opens <strong>that holding's screen</strong> — deciding how much to trim means looking at today's price.</li></ul>
+<h2>One threshold, in one place</h2>
+<p><strong>The threshold lives at Settings &amp;gt; My assets &amp;gt; Adjust when off by</strong>, and nowhere else. The <code>pp</code> badge on the Assets screen and the list here use <strong>the same value</strong>. Set per screen, you end up with “three need adjusting but nothing is marked”.</p>
+<h2>One account at a time</h2>
+<p>Coming in from an account shows <strong>only that account</strong>. Tapping into your brokerage account and being told about your fund account breaks the thread. Inside an account the holding is pinned down, so it goes as far as <strong>share counts</strong> — <code>about 2.5 of 12 shares</code>. <strong>See the full plan</strong> at the bottom widens it again.</p>
+<h2>After you trade</h2>
+<p><strong>The app does not place orders.</strong> Update the <strong>quantity and average cost in account editing</strong> to match what you bought or sold in your brokerage app. The plan recalculates the moment you do.</p>
+<h2>Editing target weights</h2>
+<p>When you <strong>enter your own assets</strong>, the <strong>account editing</strong> screen changes quantity, average cost, target weight and cash balance in one place. Open it with <strong>Edit</strong> in the account, or from Settings &amp;gt; My assets &amp;gt; Accounts.</p>
+<ul><li>Add holdings by search; anything search does not carry (cash · deposits · savings plans · real estate · bonds · funds) is picked from a list.</li><li><strong>Cash takes a target weight too</strong> — put a target % on the cash row and it counts in the total.</li><li>If you changed target weights, the account has to add up to 100% to save (changing quantities alone has no such limit).</li><li>Holdings with no target still appear, at 0%.</li><li>To move several accounts' targets at once, use <strong>adjust weights across accounts</strong> at the bottom of Settings &amp;gt; My assets &amp;gt; Accounts.</li></ul>
+<h2>When another device got there first</h2>
+<p>If the same holding was changed differently on two devices, saving asks <strong>which one to keep</strong>. Changes to different holdings are already merged, so you are only asked about what really diverged. You cannot close without choosing — that would leave the edit neither saved nor discarded.</p>
+<h2>Rebalancing plan</h2>
+<p><strong>The app does not place orders.</strong> It builds a plan of what to buy and sell, and you place the orders yourself in your brokerage app. Check off what you ran and your holdings and records line up.</p>
+<h3>1. Build the plan</h3>
+<p>Pick the holdings, choose <strong>how many rounds</strong> (1 · 3 · 5) and <strong>the interval</strong> (at once · 1 day · 7 days · a month · your own), and it works out quantities and amounts per sell and buy leg, down to the cash you would have left.</p>
+<ul><li>Sells are worked out first to raise the money, and the buys are filled from it.</li><li>It only adjusts <strong>inside one account</strong>. Nothing moves between accounts.</li></ul>
+<h3>2. Save it → in progress</h3>
+<p><strong>Save the plan</strong> and it stays on the adjustment screen as an <strong>in progress</strong> banner. It survives quitting the app, and tapping the banner reopens it any time.</p>
+<p>If you set an interval, a <strong>notification arrives at 9:05 in the morning</strong> on each round's due date. Tapping it opens that plan (you have to allow notifications once for this).</p>
+<h3>3. Run it and check it off</h3>
+<p>Place the orders in your brokerage app, come back, and check them.</p>
+<ul><li>Tap <strong>done</strong> on a holding, or <strong>check the whole round</strong> if you ran the round in one go.</li><li>Checking <strong>updates your quantity, average cost and cash</strong> (when you enter your own assets). Skip it and your ledger keeps the old quantity, so the next plan is built on holdings that are wrong.</li><li>Average cost is re-weighted on buys only; sells leave it alone. The app cannot know your fill price, so it records <strong>the plan's expected price</strong>.</li><li>Check every line in a round and it moves to the next; finish them all and the banner goes away.</li></ul>
+<h3>4. Look back</h3>
+<p><strong>Records</strong> on the adjustment screen stacks them by plan. Date, account, count and the sell/buy totals are folded up; open one and you see the round, price and amount. Scheduled notifications are listed there too, and tapping one goes to its plan.</p>
+<p>Records are kept <strong>on this device only</strong> (checked something by mistake? press and hold to delete).</p>
+<h2>What the weight divides by</h2>
+<p>The denominator for your actual weight is <strong>the account total including its cash</strong>. Leave cash out and holding a lot of it makes your stock weights look higher than they are.</p>
+<p><em>This screen works out the gap. You place the orders yourself, at your broker.</em></p>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><span class="doc-card current">Adjustment plan</span><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>

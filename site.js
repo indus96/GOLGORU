@@ -60,7 +60,11 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
   var touch = navigator.maxTouchPoints > 1;
   var isIOS = /iPhone|iPod|iPad/.test(ua) || (/Macintosh/.test(ua) && touch);
 
-  var APPLE = 'https://apps.apple.com/kr/app/id6797157864';
+  // 영문 페이지는 나라 없는 주소로 보낸다 — `/kr/` 는 한국 스토어를 박아 두는 주소라
+  // 해외에서 열면 제 나라 스토어로 못 간다. `lang` 은 생성기가 페이지마다 박아 둔다.
+  var EN = document.documentElement.lang === 'en';
+  var APPLE = EN ? 'https://apps.apple.com/app/id6797157864'
+                 : 'https://apps.apple.com/kr/app/id6797157864';
   // 맥도 같은 앱 레코드다(Catalyst) — 주소가 같아서 스토어 앱이 알아서 맥 버전을 연다.
   var isMac = /Macintosh/.test(ua) && !touch;
   var target = (isIOS || isMac) ? APPLE : null;
@@ -68,7 +72,7 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
 
   document.querySelectorAll('[data-cta]').forEach(function (cta) {
     cta.href = target;
-    cta.textContent = '앱 받기';
+    cta.textContent = EN ? 'Get the app' : '앱 받기';
     cta.setAttribute('data-store', 'apple');
     cta.setAttribute('rel', 'noopener');
   });

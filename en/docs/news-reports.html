@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · News · reports</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="News and broker reports, gathered around what you hold.">
+<meta property="og:title" content="Golgoru · News · reports">
+<meta property="og:description" content="News and broker reports, gathered around what you hold.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/news-reports.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/news-reports.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/news-reports.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/news-reports.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/news-reports.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/news-reports.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#rebalance"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">News · reports</div>
+  <h1>News · reports</h1>
+  <p class="lead">News and broker reports, gathered around what you hold.</p>
+  <div class="hero-img phone"><img src="../../images/app/phone-news.png" alt="News · reports screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> the sample · your own assets</blockquote>
+<h2>News</h2>
+<ul><li>Shows <strong>macro news</strong> and <strong>news about your holdings</strong>, tagged with the holdings they touch.</li><li>When one article touches several holdings, the tags are merged and it appears once.</li><li>The public app fetches news <strong>straight from Google News</strong>. That means <strong>no translation of English articles</strong> — translation was something our server did, and it went away when that channel closed.</li><li>The <strong>my holdings</strong> dropdown at the top picks whose articles you see. It already defaults to your holdings, so most of the time there is nothing to change.</li></ul>
+<h2>Reading an article</h2>
+<ul><li>Tap an article and the text is extracted and laid out to read. You can grow and shrink the type right there, and <strong>Open the original site</strong> at the bottom takes you to the page it came from.</li><li><strong>Articles you read do not disappear — they fade.</strong> You can see how far you got and still find them again. Pull down for new ones.</li><li>If the text cannot be fetched, the app says so and offers <strong>Try again</strong> and <strong>Open in a browser</strong>.</li></ul>
+<h2>Broker reports</h2>
+<ul><li>Collects <strong>company reports</strong> and <strong>industry reports</strong> for what you hold.</li><li>ETFs are matched to industry reports; ETFs and funds are left out of company reports.</li><li>They open in the in-app PDF viewer. On Mac and iPad the document sits beside the list.</li></ul>
+<h2>Privacy</h2>
+<ul><li>Only the holding keywords go out with a news request — <strong>amounts and account details are never sent</strong>.</li></ul>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><span class="doc-card current">News · reports</span><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>
