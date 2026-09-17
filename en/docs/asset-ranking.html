@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Assets · holding detail</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="What you own and how far it sits from your target weights, on one screen. There used to be two screens — a ranking and an allocation view — showing the…">
+<meta property="og:title" content="Golgoru · Assets · holding detail">
+<meta property="og:description" content="What you own and how far it sits from your target weights, on one screen. There used to be two screens — a ranking and an allocation view — showing the…">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/asset-ranking.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/asset-ranking.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/asset-ranking.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/asset-ranking.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/asset-ranking.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/asset-ranking.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#analysis"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Assets</div>
+  <h1>Assets · holding detail</h1>
+  <p class="lead">What you own and how far it sits from your target weights, <strong>on one screen</strong>. There used to be two screens — a ranking and an allocation view — showing the same list with different number columns, and it was never obvious which one to look at.</p>
+  <div class="hero-img phone"><img src="../../images/app/stock-analysis.png" alt="Assets · holding detail screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> the sample · your own assets</blockquote>
+<figure><img src="../../images/asset-ranking.svg" alt="How the Assets screen is laid out"></figure>
+<h2>What is on it</h2>
+<ol><li>The <strong>total and gain</strong> sit on one line at the top.</li><li>Choose <strong>by account / by holding</strong>. By account groups them; by holding flattens them — a holding spread over several accounts is merged into one row that names the accounts.</li><li>Sorting is <strong>by amount · by gain · by name</strong>. Tap the same one again to flip to ascending.</li><li>Accounts and holdings that drifted carry a badge next to the name, like <strong><code>+5.0 pp</code></strong>. The threshold is set under Settings &amp;gt; My assets &amp;gt; <strong>Adjust when off by</strong>, and the whole app uses that one value.</li><li>The <strong>adjustment plan</strong> row above the list shows <a href="allocation-rebalancing.html">what to move and how much</a>.</li></ol>
+<p>Tap a row for the account detail. <strong>Edit</strong> there changes quantity · average cost · target weight · cash, and tapping a holding shows its price and chart.</p>
+<blockquote>On Mac and iPad the accounts sit <strong>already expanded</strong>, side by side. There is nothing to tap into.</blockquote>
+<h2>How it works</h2>
+<ul><li><strong>Merging</strong> — the same holding is summed across accounts, and cash-like assets are summed into one.</li><li><strong>Prices refresh themselves</strong> — while you are looking at the app, prices refresh every 60 seconds. Pull down and they arrive at once regardless; when every market you hold is closed nothing can change, so nothing is fetched (crypto keeps refreshing around the clock). Values and weights recalculate immediately, but the average cost and quantity in your ledger do not move.</li><li><strong>The chart source is picked for you</strong> — Korean listing codes and exchange prefixes use Yahoo Finance (.KS/.KQ fallback), plain tickers use the Upbit KRW market (crypto), and fund standard codes (K + 11 digits) use KOFIA reference prices.</li><li><strong>Dollar holdings</strong> — the original dollar value, the rate applied and the won figure the app worked out are shown together. When there is no rate yet, it says so rather than treating it as zero.</li></ul>
+<h2>Holding detail — chart · analysis · news · notes</h2>
+<p>Tap a holding and four tabs open under its name and price.</p>
+<ul><li><strong>Chart</strong> — candles or a line, moving averages 5 · 20 · 200, and a volume profile. There are no period buttons: <strong>drag sideways</strong> for earlier stretches, and pinch to zoom. The source is the same as above.</li><li><strong>Analysis</strong> — technical indicators worked out from prices already fetched, plus financial statements.</li><li><strong>Technical indicators</strong> — where the price sits · moving-average order · disparity · period returns · annual volatility · max drawdown · volume ratio. A line that cannot be calculated is hidden rather than filled with a zero that would read as fact.</li><li><strong>Summary</strong> — rule-based sentences that only describe what is observed (instant, offline, and never a buy or sell call).</li><li><strong>Financial statements</strong> — income, balance sheet and cash flow, annual or quarterly. Foreign names come from SEC EDGAR; Korean ones from Naver Finance and DART filings (all free, no keys).</li><li><strong>ETFs</strong> — instead of statements you get the fee, base index, net assets, top holdings and sector weights.</li><li><strong>Trading flow</strong> — foreign ownership and the last 30 trading days of foreign and institutional net buying as bars (above the zero line is net buying, below is net selling). Source: Naver Finance.</li><li><strong>Shareholders</strong> — the largest shareholder and related parties, plus 5%-or-more holders such as the National Pension Service. It comes from DART filings, so it is <strong>as of the filing date</strong> and may differ from today. Trading flow and shareholders are <strong>Korean listings only</strong> — the foreign/institutional split and large-holding disclosures are features of the Korean market, so the cards do not appear for foreign names.</li><li><strong>News</strong> — news about that holding (the same source as <a href="news-reports.html">news · reports</a>).</li><li><strong>Notes</strong> — your own record per holding. Why you bought, where your stop is, what to watch, with a date. You can pick the date yourself, so an old trade can be written up later, and notes can be edited or deleted. You can also record a <strong>buy price · target · stop</strong>. Your average cost and the current price are shown above and a single tap drops either into the buy price; targets and stops can be entered <strong>as a percentage</strong> instead of a price (measured from your average cost, or the current price when you hold none — it is saved as the converted price). A target or stop you noted appears in the list with <strong>how far the price still has to go (%)</strong>, and is highlighted as “reached” or “broken” when it gets there. <strong>The chart draws the target and stop</strong> as dashed lines like the average-cost line (with several notes, the highest target and the lowest stop are drawn). Turn on <strong>target · stop alerts</strong> in Settings &amp;gt; App and you are told when the price arrives (prices only come in while the app is open, so it fires while you are looking at it). Notes are kept <strong>on your device</strong>, survive “clear cache”, and are shared between your own devices over iCloud.</li></ul>
+<p>The chart also carries an <strong>average-cost line</strong>. The buy average worked out from the quantity and unit price in your ledger is laid over the chart as a teal dashed line, so you can see at a glance whether today's price is above or below it. When a holding is split across accounts, it is quantity-weighted. If the ledger currency differs from the chart currency, the line is not drawn — converting it would put it in the wrong place. Your average cost and the move against it also appear as numbers on the <strong>I hold</strong> card.</p>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><span class="doc-card current">Assets</span><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>

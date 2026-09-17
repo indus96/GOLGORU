@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Portfolio report</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="The screen behind See details on the total-assets card. It goes past “what do I own” and tries to answer “is this portfolio healthy?” and “what should I…">
+<meta property="og:title" content="Golgoru · Portfolio report">
+<meta property="og:description" content="The screen behind See details on the total-assets card. It goes past “what do I own” and tries to answer “is this portfolio healthy?” and “what should I…">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/portfolio-analysis.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/portfolio-analysis.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/portfolio-analysis.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/portfolio-analysis.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/portfolio-analysis.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/portfolio-analysis.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#analysis"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Portfolio report</div>
+  <h1>Portfolio report</h1>
+  <p class="lead">The screen behind <strong>See details</strong> on the total-assets card. It goes past “what do I own” and tries to answer <strong>“is this portfolio healthy?”</strong> and <strong>“what should I do next?”</strong></p>
+  <div class="hero-img phone"><img src="../../images/app/phone-analysis.png" alt="Portfolio report screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> the sample · your own assets</blockquote>
+<p>It splits into four tabs, and the first one is built to be read in about thirty seconds.</p>
+<div class="tablewrap"><table><thead><tr><th>Tab</th><th>What it holds</th></tr></thead><tbody><tr><td><strong>Summary</strong></td><td>Portfolio health score · what stands out · overall gain</td></tr><tr><td><strong>Composition</strong></td><td>Concentration · country and sector spread · dividends · by kind</td></tr><tr><td><strong>Returns</strong></td><td>Period returns · max drawdown · risk profile · gains by holding</td></tr><tr><td><strong>Projection</strong></td><td>1 · 3 · 5 · 10-year projections · goal progress · what to improve</td></tr></tbody></table></div>
+<figure><img src="../../images/portfolio-analysis.svg" alt="Portfolio report — summary tab"></figure>
+<h2>Portfolio health score</h2>
+<p>Scores the portfolio out of <strong>100</strong> and names the three biggest reasons it went up or down.</p>
+<ul><li><strong>Eight measures</strong> — holding spread · class spread · cash weight · currency spread · return · volatility · sticking to targets · goal progress.</li><li><strong>Spread is measured by lopsidedness, not by counting.</strong> Ten holdings split evenly and “one at 90% plus nine others” do not score the same (effective holding count).</li><li><strong>Measures without data are dropped and the rest normalized.</strong> Having no history yet does not cost you points.</li><li><strong>Structural risk is capped, not averaged away.</strong> If one holding passes 30%, the total is limited even when everything else is perfect.</li><li><strong>When the history is only a few days old, it says so.</strong> With no total-asset history, volatility and drawdown drop out of the maximum entirely, so the first few days are measured differently — without saying that, you get “80 yesterday, 72 today”.</li></ul>
+<h2>What stands out</h2>
+<p>Pulls the measures together into sentences about what is worth noticing now.</p>
+<ul><li>A rule engine produces <strong>at most three</strong> sentences, ordered by severity, and only one per kind (concentration, cash, and so on).</li><li>For example: <em>“Cash is 3% — too little room to adjust.”</em> · <em>“The top three holdings are 52% of everything.”</em></li><li>They come from <strong>a rule engine inside the app</strong> — the public app calls no outside AI, and your asset data never leaves the device (see <a href="data-security.html">data · security</a>).</li></ul>
+<h2>Concentration · country · sector · dividends</h2>
+<figure><img src="../../images/analysis-composition.svg" alt="Portfolio report — composition tab"></figure>
+<ul><li><strong>Concentration</strong> — how much of your assets sit in your largest holdings. It reads like <em>top 1: 12% · top 5: 42% · top 10: 61%</em>. The <strong>effective spread</strong> shown beside it means <em>“if the weights were even, how many holdings would this be like?”</em> (bigger is better spread — the more one holding dominates, the smaller this gets, however many holdings you have). Cash, savings and real estate are left out; only tradable holdings count.</li><li><strong>Country</strong> — taken from the listing exchange, except for ETFs, which are counted by <strong>what they invest in</strong> (a Korea-listed US index ETF counts as the US).</li><li><strong>Sector</strong> — from the sector of individual stocks. ETFs and funds drop out because their contents are unknown, so <strong>the coverage is shown alongside</strong>: what share of your assets the number was measured over.</li><li><strong>Dividends</strong> — an expected yearly dividend and yield based on <strong>what was actually paid over the last 12 months</strong> (not a forecast). Only holdings with dividend data are counted, and the yield divides by those holdings' value, so the coverage is shown too.</li></ul>
+<h2>Projections · goal progress</h2>
+<ul><li><strong>1 · 3 · 5 · 10 years</strong> — future assets from what you hold now plus what you add each month. At each point it splits <strong>what you put in (now plus contributions) from what the return added</strong>, so compounding is something you can see.</li><li><strong>Deposits and returns are kept apart.</strong> Money you paid in is taken out of the growth rate, so adding money is never mistaken for performance.</li><li><strong>Change the scenario and the monthly amount</strong> and all four numbers move at once (conservative 4% · neutral 7% · optimistic 10%).</li><li><strong>Goal progress</strong> — set a target amount (or a FIRE goal) under Settings &amp;gt; My assets &amp;gt; Target assets and you get how far along you are and when you might arrive, as a <strong>range of years</strong> (“2031–2037”). Set a target date and the progress feeds the health score too.</li><li>Every projection is a calculation from assumptions and does not guarantee a return.</li></ul>
+<h2>What to improve</h2>
+<ul><li>When a class steps outside its <strong>guardrails</strong> (a cash floor; ceilings for a single holding, a class, and crypto), it proposes the smallest move back.</li><li>It shows <strong>the health score if you applied it</strong> (“83 → 89”).</li><li>It will not tell you to sell with nowhere to put the money — advice that only piles up cash is not advice.</li><li>Account- and holding-level gaps continue in the <a href="allocation-rebalancing.html">adjustment plan</a>. The actual trading you do yourself, in your brokerage app.</li></ul>
+<h2>Worth knowing</h2>
+<ul><li>Dividend, country and sector data is fetched once a day and cached. On a first launch it fills in a moment later.</li></ul>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><span class="doc-card current">Portfolio report</span><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>

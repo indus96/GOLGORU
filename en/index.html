@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 이 파일은 `/index.html`(한국어)의 영문판이다. **본문 글만 다르다** —
+     스타일은 `../landing.css`, 갤러리 스크립트는 `../landing.js` 로 둘이 같은
+     파일을 쓴다. 한쪽 화면을 고치면 다른 쪽도 같이 고친다. -->
+<title>Golgoru</title>
+<meta name="description" content="Golgoru brings accounts scattered across brokers into one screen and works out how far you are from your target weights. iPhone · iPad · Mac · Android. No sign-in, and your asset data stays on your device.">
+<meta property="og:title" content="Golgoru">
+<meta property="og:description" content="Your assets stay on your device — no sign-in. See scattered accounts in one place and how far they drifted from your targets. iPhone · iPad · Mac · Android.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://golgoru.app/en/">
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta property="og:image" content="https://golgoru.app/images/og-cover.png">
+<link rel="canonical" href="https://golgoru.app/en/">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../landing.css?v=512bd2c0">
+</head>
+<body>
+
+<!-- nav:start -->
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="./"><img src="../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="#dashboard">Home</a>
+      <a href="#analysis">Portfolio report</a>
+      <a href="#rebalance">Adjustment plan</a>
+      <a href="#capture">Screenshot import</a>
+      <a href="docs/portfolio-draft.html">Build</a>
+      <a href="#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="#principles">Principles</a>
+    <a href="#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<!-- nav:end -->
+
+<header class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">iPhone · iPad · Mac · Android app</span>
+    <h1>Golgoru</h1>
+    <p class="tagline">Your assets stay on your device.</p>
+    <p class="lead">See accounts scattered across brokers in one place, and how far they sit from the mix you set.
+      <b>No sign-in, and no asset data leaving for a server.</b>
+      Start with the sample, type your own in, or paste a screenshot from your brokerage app.</p>
+    <div class="chips">
+      <span class="chip">🔒 No sign-in</span>
+      <span class="chip">📊 What you own</span>
+      <span class="chip">🩺 Portfolio health score</span>
+      <span class="chip">⚖️ Gap to your targets</span>
+      <span class="chip">📰 News · Build</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://apps.apple.com/app/id6797157864" data-store="apple" target="_blank" rel="noopener">Get it on the App Store</a>
+      <a class="btn btn-ghost" href="docs/getting-started.html">Getting started</a>
+    </div>
+    <p class="hero-note">iPhone · iPad · Mac · Android · free</p>
+  </div>
+  <div class="hero-shot"><img src="../images/app/phone-dashboard.png" alt="Golgoru home — total assets, what to do now, markets"></div>
+</div></header>
+
+<section id="about"><div class="wrap">
+  <div class="label">About</div>
+  <h2 style="display:flex;align-items:center;gap:14px">
+    <img src="../images/app-icon.png" alt="Golgoru app icon"
+         style="width:52px;height:52px;border-radius:12px">
+    What is Golgoru?
+  </h2>
+  <p class="sub" style="max-width:760px">
+    <b>Golgoru</b> is a <b>personal asset tracker</b> for iPhone, iPad, Mac and Android.
+    It gathers what you hold across separate accounts into one screen, and works out the gap
+    between the weights you set and what you actually hold — so you can see what to move first.
+  </p>
+  <p class="sub" style="max-width:760px">
+    You <b>type your accounts and holdings in</b>. Paste a <b>screenshot</b> from your brokerage app
+    and it reads the names, quantities and average costs for you to check and save. What you entered
+    is shared across the iPhone, iPad and Mac on your Apple account. There is no account to create
+    and nothing to sign in to.
+  </p>
+  <p class="sub" style="max-width:760px">
+    From 2.0 you can also <b>build</b> a mix you have not bought yet and try it out, and use the
+    <b>community</b> to see what other people put together or share your own. Only the holdings and
+    weights go up — never the amounts or the accounts.
+  </p>
+  <p class="sub" style="max-width:760px">
+    Golgoru is made by indus96, an independent developer. Questions: indus96@gmail.com
+  </p>
+
+  <h3 style="margin-top:28px;font-size:19px;font-weight:800">How does it use my Google account?</h3>
+  <p class="sub" style="max-width:760px">
+    <b>It does not.</b> The public app has no sign-in and every feature works without an account.
+    The Google Sheets read-only link that version 1.0 had
+    (a single <b>spreadsheets.readonly</b> permission, reading a sheet you pointed it at)
+    was removed in 1.2.0.
+  </p>
+  <p class="sub" style="max-width:760px">
+    What happens to your data is in the <a href="docs/privacy.html" style="color:var(--gold);font-weight:600">privacy policy</a>;
+    how to use it is in <a href="docs/getting-started.html" style="color:var(--gold);font-weight:600">getting started</a>.
+  </p>
+</div></section>
+
+<section id="principles"><div class="wrap">
+  <div class="label">Principles</div>
+  <h2>Not just a viewer — something you can trust</h2>
+  <p class="sub">We do not own your data, the numbers are worked out on your device, and sharing carries the shape only. Everything else sits on those three.</p>
+  <div class="cards3">
+    <div class="pcard"><div class="ic">📒</div><h3>The data is yours</h3>
+      <p>The app does not own your data. It lives on your device and in your own iCloud sync — never on our servers.</p></div>
+    <div class="pcard"><div class="ic">🔒</div><h3>Worked out on device</h3>
+      <p>Amounts, currency conversion and weights are all calculated inside the app. Your asset data is not sent anywhere.</p></div>
+    <div class="pcard"><div class="ic">🤝</div><h3>Share the shape only</h3>
+      <p>Posting to the community carries the holdings and weights. Amounts and accounts stay behind, and you appear under a nickname.</p></div>
+  </div>
+</div></section>
+
+<section id="dashboard"><div class="wrap">
+  <div class="label">Features</div>
+  <h2>Every feature, on the real screen</h2>
+  <p class="sub">These are the actual screens, with example numbers. Each section links to its page.</p>
+
+  <div class="feat">
+    <div class="shot phone"><img src="../images/app/phone-dashboard.png" alt="Home — total assets, today's change, what to do now"></div>
+    <div class="txt">
+      <h3>Home</h3>
+      <ul>
+        <li>Total assets · today's change · gain and the class mix, on one card</li>
+        <li><b>What to do now</b> — the single biggest drift. When there is nothing, the card goes away</li>
+        <li>Markets in three cells — two indexes from whichever market is open, plus the exchange rate</li>
+        <li>Two news lines — headline and source; tap to read</li>
+      </ul>
+      <a class="more" href="docs/dashboard.html">Home page →</a>
+    </div>
+  </div>
+
+  <div class="feat rev" id="analysis">
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="../images/app/phone-analysis.png" alt="Portfolio report — summary tab">
+          <img src="../images/app/analysis-structure.png" alt="Portfolio report — composition tab">
+          <img src="../images/app/analysis-performance.png" alt="Portfolio report — returns tab">
+          <img src="../images/app/analysis-projection.png" alt="Portfolio report — projection tab">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="txt">
+      <h3>Portfolio report</h3>
+      <ul>
+        <li>Four tabs — <b>summary · composition · returns · projection</b></li>
+        <li>A health score out of 100, with what added and what took away</li>
+        <li>Exposure (currency · country · sector) · dividends (last 12 months paid) · by kind</li>
+        <li>Period returns and max drawdown · 1 · 3 · 5 · 10-year projections and goal progress</li>
+      </ul>
+      <a class="more" href="docs/portfolio-analysis.html">Portfolio report page →</a>
+    </div>
+  </div>
+
+  <div class="feat">
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="../images/app/phone-ranking.png" alt="Assets — value, gain and gap by account">
+          <img src="../images/app/stock-chart.png" alt="Holding detail — chart tab">
+          <img src="../images/app/stock-analysis.png" alt="Holding detail — analysis tab">
+          <img src="../images/app/stock-news.png" alt="Holding detail — news tab">
+          <img src="../images/app/stock-note.png" alt="Holding detail — notes tab">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="txt">
+      <h3>Assets · holding detail</h3>
+      <ul>
+        <li>One list, by account or by holding — value, gain and the gap (pp) on the same row</li>
+        <li>Tap an account for its detail, a holding for <b>chart · analysis · news · notes</b></li>
+        <li>Technical indicators, financial statements (SEC · DART · Naver), ETF holdings</li>
+      </ul>
+      <a class="more" href="docs/asset-ranking.html">Assets page →</a>
+    </div>
+  </div>
+
+  <div class="feat rev" id="rebalance">
+    <div class="shot phone"><img src="../images/app/phone-allocation.png" alt="Adjustment plan — the gap and what to move"></div>
+    <div class="txt">
+      <h3>Adjustment plan</h3>
+      <ul>
+        <li>Only what drifted, and <b>how much to move which way</b> — nothing else</li>
+        <li>One threshold for the whole app — the same value as the pp badge in your asset list</li>
+        <li>Quantity · average cost · cash · target weight, all on one editing screen</li>
+        <li>Plan the buys and sells in rounds; run them in your brokerage app, check them off, and your holdings line up</li>
+      </ul>
+      <a class="more" href="docs/allocation-rebalancing.html">Adjustment plan page →</a>
+    </div>
+  </div>
+
+  <div class="feat">
+    <div class="shot phone">
+      <video src="../video/golgoru-draft-demo.mp4" poster="../video/golgoru-draft-demo.jpg"
+             autoplay muted loop playsinline preload="metadata" data-autoplay-in-view
+             aria-label="Building an ETF mix — compare, weight, spread, past performance, share card">
+      </video>
+    </div>
+    <div class="txt">
+      <h3>Build</h3>
+      <ul>
+        <li>Try a mix before you buy it — find <b>ETFs and individual stocks</b>, put them side by side, enter an amount and see the share counts and what is left over</li>
+        <li>Like it? <b>Add it to my assets</b> and it becomes a real account — until then no money moves</li>
+        <li>Hand it over as a link, a code or a picture card. The amount never goes with it</li>
+        <li>Tap a holding and the <b>chart</b> opens — the same screen as in the Assets tab</li>
+        <li>One tab, one switch — <b>my portfolios · community</b></li>
+        <li>Everything is worked out on device · for reference, not investment advice</li>
+      </ul>
+      <a class="more" href="docs/portfolio-draft.html">Build page →</a>
+    </div>
+  </div>
+
+  <div class="feat rev">
+    <div class="shot phone"><img src="../images/app/phone-news.png" alt="News — articles about your holdings"></div>
+    <div class="txt">
+      <h3>News</h3>
+      <ul>
+        <li>Only articles that touch what you hold — <b>news · reports</b></li>
+        <li>What you read does not disappear, it <b>fades</b>. Closing marks it read</li>
+        <li>One “my holdings” dropdown instead of a row of chips</li>
+        <li>Broker reports open their original PDF inside the app</li>
+      </ul>
+      <a class="more" href="docs/news-reports.html">News page →</a>
+    </div>
+  </div>
+
+  <div class="feat rev" id="capture">
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="../images/app/capture-menu.svg" alt="Ledger editing — import from a screenshot">
+          <img src="../images/app/capture-review.svg" alt="Check what was read — quantities and costs are editable">
+          <img src="../images/app/capture-name.svg" alt="Pick the holding name — search fixes a cut-off name">
+          <img src="../images/app/capture-done.svg" alt="Holdings applied to the account">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="txt">
+      <h3>Fill an account from a screenshot</h3>
+      <ul>
+        <li>Paste a holdings screen from your brokerage app and it reads names, quantities and average costs</li>
+        <li>Names cut off by the screen width are matched by search; when several fit, you pick</li>
+        <li>Nothing is saved straight away — you check and fix what was read first</li>
+        <li>Existing holdings are overwritten; holdings absent from the screenshot are left alone</li>
+      </ul>
+      <a class="more" href="docs/getting-started.html">Getting started page →</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="mac"><div class="wrap">
+  <div class="label">Mac · iPad</div>
+  <h2>The same app, opened out for a wide screen</h2>
+  <p class="sub">iPhone, iPad and Mac are one SwiftUI codebase.
+    A narrow screen folds into a tab bar; a wide one opens into a sidebar and multiple panes.
+    No screen loses a feature — the same data just gets more room.
+    These are real screens with example numbers.</p>
+
+  <div class="mac-shot">
+    <div class="gallery" data-gallery>
+      <div class="frames">
+        <img src="../images/app/mac-home.png" alt="Mac home — sidebar and cards">
+        <img src="../images/app/mac-assets.png" alt="Mac assets — list on the left, chart and holdings on the right">
+        <img src="../images/app/mac-draft.png" alt="Mac build — my portfolios and the community">
+        <img src="../images/app/mac-news.png" alt="Mac news — list on the left, article on the right">
+      </div>
+      <div class="dots" aria-hidden="true"></div>
+    </div>
+  </div>
+  <p class="sub">The sidebar is <b>Home · Assets · Build · News · Settings</b>.
+    Home puts what to do now, your largest accounts, the gap to your targets, markets and news
+    into cards under the total — the two lists dropped on the phone come back here.
+    Assets fits the total, the switch, the account count and the sort <b>on one row</b>,
+    and News splits into a list on the left and the article on the right. Holding detail puts the
+    chart large on the left with the numbers beside it. iPad lays out the same way —
+    and the appearance (system · light · dark) is set in Settings.</p>
+
+  <div class="mac-note">
+    <span>🖥 Sidebar navigation</span>
+    <span>📊 Home cards</span>
+    <span>🗂 Asset card grid</span>
+    <span>📐 Readable line width</span>
+    <span>🙈 Hide amounts</span>
+    <span>🧩 Same features as iPhone</span>
+  </div>
+</div></section>
+
+<section id="download"><div class="wrap">
+  <div class="label">Download</div>
+  <h2>On iPhone · iPad · Mac · Android</h2>
+  <p class="sub">Start with the sample, no sign-in. When you like it, type your assets in or paste a
+    screenshot from your brokerage app and the holdings fill themselves.</p>
+  <div class="dl-row">
+    <a class="dl dl-on" href="https://apps.apple.com/app/id6797157864" data-store="apple" target="_blank" rel="noopener">
+      <span class="dl-plat">iPhone · iPad</span>
+      <span class="dl-state">Get it on the App Store</span>
+    </a>
+    <a class="dl dl-on" href="https://apps.apple.com/app/id6797157864" data-store="apple" target="_blank" rel="noopener">
+      <span class="dl-plat">Mac</span>
+      <span class="dl-state">Get it on the Mac App Store</span>
+    </a>
+    <a class="dl dl-on" href="https://play.google.com/store/apps/details?id=com.indus96.golgoru" data-store="android" target="_blank" rel="noopener">
+      <span class="dl-plat">Android</span>
+      <span class="dl-state">Get it on Google Play</span>
+    </a>
+  </div>
+  <div class="hero-actions" style="margin-top:18px">
+    <a class="btn btn-ghost" href="docs/getting-started.html">Getting started</a>
+  </div>
+</div></section>
+
+<section id="status"><div class="wrap">
+  <div class="label">Where it stands</div>
+  <h2>Out on all three platforms</h2>
+  <div class="status"><ul>
+    <li class="ok">2.4.0 — iPhone · iPad · Mac App Store</li>
+    <li class="ok">2.4.0 — Android Google Play</li>
+    <li class="ok">2.0 rebuild — Home · Assets · Build · News, four tabs</li>
+    <li class="ok">Build — ETF and single-stock simulation with past performance</li>
+    <li class="ok">Community — see what others put together · post your own</li>
+    <li class="ok">Portfolio report — health score · exposure · dividends · projection</li>
+    <li class="ok">Import holdings from a screenshot · sync between devices</li>
+    <li class="ok">Wide layout for Mac and iPad</li>
+    <li class="soon">2.5.0 — dollar holdings, period returns, screenshot import (coming)</li>
+  </ul></div>
+</div></section>
+
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div>
+    <a href="docs/getting-started.html">Getting started</a> ·
+    <a href="docs/privacy.html">Privacy policy</a> ·
+    <a href="docs/data-security.html">Data and security</a> ·
+    <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="foot-sns">
+    <a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram @golgoru.app</a> ·
+    <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube @golgoru_app</a> ·
+    <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X @golgoru_app</a>
+  </div>
+</div></footer>
+
+<script src="../landing.js?v=e1fb5b7d" defer></script>
+<script src="../site.js?v=3bf37522" defer></script>
+</body>
+</html>

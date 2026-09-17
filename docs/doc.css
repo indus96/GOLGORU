@@ -135,3 +135,12 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--hint);font-si
 a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
 .doc-card.current{background:var(--gold-soft);border-color:var(--gold);
   color:var(--gold);font-weight:700}
+
+/* 언어 전환. CTA 옆에 작게 둔다 — 누를 일이 드물어 CTA 와 같은 무게로 두면
+   「앱 받기」가 묻힌다(영문판 2026-09-17). */
+.lang{margin-left:10px;font-size:13px;color:var(--sub);white-space:nowrap;
+  border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+.lang:hover{color:var(--gold);border-color:var(--gold)}
+@media (max-width:760px){
+  .lang{margin-left:8px;padding:5px 8px;font-size:12px}
+}
