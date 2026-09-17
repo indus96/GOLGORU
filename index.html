@@ -264,7 +264,7 @@
 
 <header class="hero" id="top"><div class="wrap hero-grid">
   <div>
-    <span class="eyebrow">iPhone · iPad · Mac 앱</span>
+    <span class="eyebrow">iPhone · iPad · Mac · Android 앱</span>
     <!-- h1은 앱 이름만 담는다. 태그라인을 줄바꿈 태그로 이어 붙이면 텍스트로
          읽을 때 두 문장이 붙어 나와 동의 화면 이름과 일치하지 않는다.
          (주석 안에 태그 표기를 쓰지 않는다 — 단순 파서가 주석을 중간에 끊는다.) -->
@@ -284,7 +284,7 @@
       <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">App Store에서 받기</a>
       <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
     </div>
-    <p class="hero-note">iPhone · iPad · Mac 지원 · 무료 · 안드로이드는 준비 중입니다</p>
+    <p class="hero-note">iPhone · iPad · Mac · Android 지원 · 무료</p>
   </div>
   <div class="hero-shot"><img src="images/app/phone-dashboard.png" alt="골고루 홈 화면 — 총자산·지금 할 일·시장"></div>
 </div></header>
@@ -529,7 +529,7 @@
 
 <section id="download"><div class="wrap">
   <div class="label">다운로드</div>
-  <h2>iPhone · iPad · Mac에서</h2>
+  <h2>iPhone · iPad · Mac · Android에서</h2>
   <p class="sub">로그인 없이 둘러보기부터 시작하세요. 마음에 들면 자산을 직접 입력하거나
     증권사 화면을 캡처해 붙여넣으면 종목이 자동으로 채워집니다.</p>
   <!-- 준비 중인 플랫폼은 링크를 걸지 않는다. 죽은 링크는 앱이 없는 것처럼 보인다. -->
@@ -542,10 +542,12 @@
       <span class="dl-plat">Mac</span>
       <span class="dl-state">Mac App Store에서 받기</span>
     </a>
-    <span class="dl dl-off">
+    <!-- 안드로이드는 2026-09-17 에 Play 프로덕션으로 열렸다. `data-store="android"` 는
+         site.js 가 안드로이드 기기에서만 market:// 로 바꿔치는 표식이다(데스크톱은 웹). -->
+    <a class="dl dl-on" href="https://play.google.com/store/apps/details?id=com.indus96.golgoru" data-store="android" target="_blank" rel="noopener">
       <span class="dl-plat">Android</span>
-      <span class="dl-state">준비 중입니다</span>
-    </span>
+      <span class="dl-state">Google Play에서 받기</span>
+    </a>
   </div>
   <div class="hero-actions" style="margin-top:18px">
     <a class="btn btn-ghost" href="docs/getting-started.html">시작하기 안내</a>
@@ -555,17 +557,17 @@
 
 <section id="status"><div class="wrap">
   <div class="label">현재 상태</div>
-  <h2>App Store에 공개되었습니다</h2>
+  <h2>세 플랫폼에 공개되었습니다</h2>
   <div class="status"><ul>
-    <li class="ok">2.0.0 공개 — iPhone · iPad App Store</li>
+    <li class="ok">2.4.0 공개 — iPhone · iPad · Mac App Store</li>
+    <li class="ok">2.4.0 공개 — Android Google Play</li>
     <li class="ok">2.0 전면 개편 — 홈 · 자산 · 짜보기 · 뉴스 네 탭으로 재구성</li>
     <li class="ok">짜보기 — ETF·개별 종목 시뮬레이션과 지난 성과</li>
     <li class="ok">나눔터 — 남이 짜 본 조합 보기 · 내 조합 올리기</li>
     <li class="ok">구성 리포트 — 건강점수 · 노출·분산 · 배당 · 추정</li>
     <li class="ok">캡처로 종목 가져오기 · 기기 간 동기화</li>
     <li class="ok">맥·아이패드 와이드 레이아웃</li>
-    <li class="soon">Mac App Store 2.0.0 — 심사 중(현재 1.4.0 공개)</li>
-    <li class="soon">Android 버전 — 비공개 테스트 진행 중</li>
+    <li class="soon">2.5.0 — 달러 자산·기간 수익·캡처 개선 (준비 중)</li>
   </ul></div>
   <!-- 새 버전이 심사 중일 때 "그게 뭔데"로 이어지는 길. 이게 없으면 위 한 줄이
        무슨 기능인지 알 방법이 없다. -->
