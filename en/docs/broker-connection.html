@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Brokerage connection</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="Golgoru reads your Korea Investment account balances (holdings · quantities · average prices · cash) and fills the accounts you manage with Enter my…">
+<meta property="og:title" content="Golgoru · Brokerage connection">
+<meta property="og:description" content="Golgoru reads your Korea Investment account balances (holdings · quantities · average prices · cash) and fills the accounts you manage with Enter my…">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/broker-connection.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/broker-connection.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/broker-connection.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/broker-connection.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/broker-connection.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/broker-connection.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#about"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Brokerage connection</div>
+  <h1>Brokerage connection</h1>
+  <p class="lead">Golgoru reads your Korea Investment account balances (holdings · quantities · average prices · cash) and fills the accounts you manage with <strong>Enter my assets</strong>. Besides regular brokerage accounts it finds and links pension savings, IRP and retirement (DC) accounts too.</p>
+  
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>From 3.0</strong> · <strong>Korea Investment &amp; Securities only</strong> · <strong>Reads balances only — it never places orders.</strong> Available on iPhone · iPad · Mac. Android is on the way.</blockquote>
+<p>Golgoru does not trade for you. Make the trades your adjustment plan suggests <strong>in the Korea Investment app</strong>. Afterwards, read the balances again in Golgoru and your accounts match the real numbers.</p>
+<h2>What you need</h2>
+<div class="tablewrap"><table><thead><tr><th>What</th><th>Where</th></tr></thead><tbody><tr><td>Start with <strong>Enter my assets</strong></td><td>Settings &gt; My assets &gt; Start with (you can't link in Sample mode)</td></tr><tr><td>App key · app secret</td><td>Issued <strong>to you</strong> on KIS Developers — Korea Investment issues <strong>one per account</strong></td></tr><tr><td>First 8 digits of the account number</td><td>Account details in the Korea Investment app</td></tr></tbody></table></div>
+<h2>Linking</h2>
+<ol><li>Sign in to <strong>KIS Developers</strong> (Korea Investment's open API portal), apply for API access and get a <strong>live</strong> app key and app secret.</li><li>In Golgoru open <strong>Settings &gt; Brokerage connections &gt; Korea Investment · Live</strong>.</li><li>Enter the app key, app secret and the first 8 digits of the account number.</li><li>Turn on <strong>"This key is mine, issued for an account in my own name"</strong> and <strong>save</strong>.</li><li>Tap <strong>check the connection</strong> — it asks the Korea Investment server for an access token.</li><li><strong>Find and link accounts</strong> looks up every account opened with that key (brokerage · pension savings · IRP · retirement DC …). For each one, <strong>link</strong> it to an existing Golgoru account or <strong>add it as a new account</strong> — a new account is filled from the balances right away.</li></ol>
+<p>If you have several accounts, each has its own app key: use <strong>Add a key group</strong> for the others. Give each group a name you'll recognise (e.g. ISA · Pension).</p>
+<p>You can also start from account editing: in <strong>Settings &gt; My assets &gt; Accounts</strong>, <strong>long-press</strong> an account and choose <strong>Find and link an account at Korea Investment (Live)</strong> — it links what it finds to that account and fills it in.</p>
+<h2>Matching balances again</h2>
+<ul><li>Open an account on the <strong>Assets tab</strong>: the top shows the link and when it was last synced. Tap it to see what differs from the brokerage (quantities · average prices · cash) — nothing changes until you tap <strong>Apply</strong>.</li><li>In account editing, long-press the account and choose <strong>Import from linked Korea Investment (…) · Pension savings</strong>.</li><li>If you ran an adjustment plan in the Korea Investment app, use <strong>Finish round N from brokerage balances</strong> — instead of ticking orders off one by one, it uses what <strong>actually filled</strong>.</li></ul>
+<h2>Keys and privacy</h2>
+<ul><li>The app key, app secret and account number are stored <strong>only in this device's Keychain</strong> and need Face ID (or the device passcode) to read.</li><li>Balances are read <strong>directly from the device to Korea Investment</strong>. They never pass through a Golgoru server, and the developer never receives your keys, accounts or balances.</li><li>The link itself doesn't store your account number — only which key and account type go with which Golgoru account.</li><li>Links stay <strong>on this device</strong>. Keys live only on the device, so a link travelling to another device would look connected without a key there. To use it on another device, enter the key on that device.</li><li><strong>Don't enter someone else's app key.</strong> Handing over or borrowing an app key can count as lending an access medium, which Korea's Electronic Financial Transactions Act prohibits.</li></ul>
+<h2>What it doesn't do</h2>
+<ul><li>Orders or reserved orders — Golgoru never trades for you.</li><li>Brokerages other than Korea Investment, or paper-trading accounts.</li><li>Linking in Sample mode.</li></ul>
+<p>The analysis and adjustment plans in Golgoru are for reference only and are not investment advice.</p>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><span class="doc-card current">Brokerage connection</span><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>

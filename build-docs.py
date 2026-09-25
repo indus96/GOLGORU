@@ -39,9 +39,9 @@ DOCS = {
                                  lead="2.0에서 뺀 화면입니다. 짜보기 탭과 자산 탭이 나눠 맡습니다."),
     "portfolio-draft":      dict(en=dict(eyebrow="Build", lead="Try a mix before you buy it, and look at what other people put together."), eyebrow="짜보기",    hero="../images/app/phone-draft.png",     cls="phone", back="rebalance",
                                  lead="사기 전에 구성을 짜 보고, 남이 짜 본 조합도 봅니다."),
-    # 2.0에서 기능은 뺐지만 주소는 살려 둔다 — 밖에서 걸어 둔 링크가 깨지지 않게.
-    "broker-connection":    dict(eyebrow="증권사 연결", hero="",                                  cls="wide", back="about",
-                                 lead="2.0에서 뺀 기능입니다. 캡처로 가져오기가 대신합니다."),
+    # 2.0에서 뺐다가 3.0 에 한투 조회 연동으로 돌아왔다. 주소는 그대로다.
+    "broker-connection":    dict(en=dict(eyebrow="Brokerage connection", lead="Read your Korea Investment balances to fill your accounts. Golgoru never places orders."), eyebrow="증권사 연결", hero="",                                  cls="wide", back="about",
+                                 lead="한국투자증권 잔고를 읽어 계좌를 채웁니다. 주문은 내지 않습니다."),
     "data-security":        dict(en=dict(eyebrow="Data · security", lead="Your asset data stays on your device or in your own sheet, and credentials live only in the device keychain."), eyebrow="데이터·보안", hero="../images/data-flow.svg",           cls="wide", back="about",
                                  lead="자산 데이터는 기기 안이나 내 시트에만 있고, 자격증명은 기기 Keychain에만 둡니다."),
     "getting-started":      dict(en=dict(eyebrow="Getting started", lead="Pick between looking around and entering your own assets, then fill in holdings from a brokerage screenshot."), eyebrow="시작하기",   hero="../images/data-flow.svg",           cls="wide", back="download",
