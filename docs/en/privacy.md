@@ -3,7 +3,7 @@
 Golgoru (“the app”) does not store your asset data on our servers.
 This page explains what the app handles, where it is kept, and what leaves the device.
 
-> Last updated: 2026-08-21
+> Last updated: 2026-09-26
 
 ## What the app handles
 
@@ -66,15 +66,36 @@ Golgoru's use and transfer of information received from Google APIs adheres to t
 [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
 including the Limited Use requirements.
 
-### Broker API keys
+### Broker API keys (from 3.0)
 
-**2.0 removed broker connections.** The public app neither receives nor stores broker API keys and never talks
-to a broker's servers. Holdings are entered by you or filled **from a screenshot of your brokerage app** —
-the text recognition runs on the device, and the image never leaves it.
+**From 3.0 the app can read your Korea Investment & Securities balance.** If you don't use it, no key is taken.
 
-If a key saved by a version before 2.0 is still on the device, deleting the app removes it.
+- The app key, app secret and first 8 digits of the account number are stored **only on this device** —
+  the keychain on Apple devices (Face ID or the device passcode to read it), encrypted with the Android Keystore
+  on Android. They are not synced to iCloud or Google Drive.
+- Balances are read **straight from the device to the broker's servers.** Nothing passes through our servers,
+  and we never receive your keys, account number or balance.
+- Broker APIs are used **for reading balances only.** The app never places orders.
+- Deleting the keys in **Settings > Broker connection** removes them from the device. On Android, deleting the
+  app removes them too; on Apple devices the keychain can outlive the app, so delete them in Settings first.
 
-The app used broker APIs **for reading balances only**. It never placed orders.
+Holdings can also be entered by you or filled **from a screenshot of your brokerage app** — the text recognition
+runs on the device, and the image never leaves it.
+
+### Anonymous usage statistics (from 3.0)
+
+To learn which screens get used and where people get stuck, the app sends an **anonymous usage log** to our
+server (Cloudflare Workers · D1). No outside analytics SDK is used.
+
+| What is sent | What is not |
+| --- | --- |
+| A random install ID made on first launch (stored on the server only as a hash), platform, app version | Name, email, advertising ID, device identifiers |
+| The name and result of screens opened and features used (e.g. `tab.view` · `briefing.digest` · success/failure), counts | Amounts, holdings, quantities, account names or numbers, anything you typed |
+
+- **Turn off “Send usage statistics” in Settings** and nothing more is sent; records not yet sent are discarded.
+- The server rejects values that don't fit the expected shape (long text, amounts and so on).
+- Records are kept for **one year**, then deleted automatically.
+- The install ID disappears when you delete the app; a reinstall makes a new one that is not linked to the old records.
 
 ## What leaves the device
 
@@ -87,8 +108,10 @@ What is sent is limited to this.
 | Market indicators | The indicator code only | Any asset information |
 | News · reports | Holding names, search keywords | Quantities, amounts, accounts |
 | ETF search · comparison (1.3.0) | The search term, the symbol | Amounts, weights, what you hold |
+| Morning briefing (3.0) | Title · address · short excerpt of the articles to summarize, names of your top holdings, the install ID | Quantities, amounts, accounts |
+| Usage statistics (3.0) | The items in the “Anonymous usage statistics” table above | Amounts, holdings, accounts, anything you typed |
 
-**Money figures are never sent to our servers.** As the table shows, what goes out is a symbol and a search term —
+**Money figures are never sent to our servers.** As the table shows, what goes out is a symbol, a holding name, a search term or article details —
 never your total, your position values or an account balance. Amounts, currency conversion and weights are all
 calculated on the device.
 
@@ -100,8 +123,15 @@ device sharing off on Android, no sync happens.
 **Asset information is never sent to an outside AI (LLM).** Diagnosis, goal suggestions and rebalancing maths are
 all rule-based logic inside the app.
 
-The public app has no AI features at all. Since 1.2.0 the app fetches news straight from Google News and opens
-articles at their original page — nothing is sent anywhere to be translated or summarized.
+The app fetches news straight from Google News. **Only the morning briefing (3.0) uses AI** — to boil news and
+reports on your holdings down to three lines, it sends each article's title, address and a short excerpt to our
+server, which summarizes it with Cloudflare Workers AI. The overall summary also carries the **names** of your top
+holdings (never quantities or amounts).
+
+- The holding names and article addresses in a request are **not stored** once the summary is made.
+- The resulting **article summaries** are kept for **30 days**, keyed by a hash of the article address, so the same
+  article isn't summarized again for someone else — who asked is not recorded.
+- To count the free allowance, **a hash of the install ID, the date and a request count** are kept for **7 days**.
 
 **Importing holdings from a screenshot does not transmit the image either.** Reading the text from what you
 pasted is done by the operating system on the device (Apple Vision). The image is discarded as soon as it is
@@ -113,6 +143,9 @@ read and never stored.
   Apple devices apply file protection, so it is unreadable while the device is locked;
   Android keeps it in app-private storage and excludes it from device backups.
 - Settings can delete the local cache and the ledger you entered.
+- The only things kept on our server are the anonymous usage log (one year), allowance counts (7 days) and article
+  summaries (30 days), deleted automatically every day once their time is up. The install ID is stored only as a
+  hash and cannot identify you.
 - Deleting the app deletes everything it stored on the device.
 - Disconnecting the Google Sheets link (Apple devices only) removes the stored token from the keychain.
   The sheet itself is yours, so the app does not delete it.
@@ -122,7 +155,9 @@ read and never stored.
 ## Sharing with third parties
 
 We do not sell or pass your asset information or Google account information to third parties.
-The app collects no advertising identifier and carries no analytics SDK.
+The app collects no advertising identifier and carries no analytics SDK. The anonymous usage statistics and
+briefing summaries in 3.0 are handled only on servers we run (Cloudflare) — Cloudflare sees your IP address while
+handling a request, but we do not store it.
 
 ## Children's privacy
 

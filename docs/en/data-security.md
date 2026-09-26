@@ -72,12 +72,13 @@ your original sheet (budget, portfolio, whatever)
 | Safeguard | What it means |
 | --- | --- |
 | Google sign-in | `spreadsheets.readonly` — read only, never write. **Removed from the public app in 1.2.0** |
-| Credential storage | **2.0 removed broker connections** — there is no API key to take. Holdings are typed in or filled from a brokerage screenshot (text recognition runs on the device) |
+| Credential storage | **From 3.0** the Korea Investment & Securities app key, app secret and account number stay **only on this device** — the keychain on Apple devices (Face ID · passcode), Android Keystore encryption on Android. Balances are read straight from the device to the broker, never through our servers ([Broker connection](broker-connection.html)) |
 | App lock | Unlock with biometrics (fingerprint, face), or your device lock (PIN, pattern, password) when there are none. It locks again after a trip to the background |
 | Local cache protection | Snapshot caches also sit in the app-only area and can be deleted in settings |
 | Minimal outbound data | News, prices, financial statements and dividend lookups send the holding identifier only — never quantities, amounts or accounts. ETF search and comparison send **the search term and the symbol** only, never your amount or weights |
-| No asset data to outside AI | Diagnosis, goal suggestions and rebalancing maths are all rule-based logic inside the app. The public app **uses no AI at all** |
+| No asset data to outside AI | Diagnosis, goal suggestions and rebalancing maths are all rule-based logic inside the app. AI is used **only to summarize articles for the morning briefing (3.0)**, and even then only article details and the **names** of your top holdings go (no quantities or amounts) |
 | Masked logs | Tokens and account numbers never appear in logs or on screen |
+| Anonymous usage statistics (3.0) | Only screen and feature names and results go, under a random install ID — never amounts, holdings, accounts or anything you typed, and you can turn it off in Settings. Deleted after a year ([privacy policy](privacy.html)) |
 
 ## When something fails
 
