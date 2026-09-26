@@ -106,9 +106,9 @@ What is sent is limited to this.
 | --- | --- | --- |
 | Prices · charts | The holding symbol | Quantities, amounts, accounts |
 | Market indicators | The indicator code only | Any asset information |
-| News · reports | Holding names, search keywords | Quantities, amounts, accounts |
+| News · reports · filings | Holding names and stock codes, search keywords | Quantities, amounts, accounts |
 | ETF search · comparison (1.3.0) | The search term, the symbol | Amounts, weights, what you hold |
-| Morning briefing (3.0) | Title · address · short excerpt of the articles to summarize, names of your top holdings, the install ID | Quantities, amounts, accounts |
+| Morning briefing (3.0) | Title · address · short excerpt of the articles or filings to summarize, names of your top holdings, the install ID | Quantities, amounts, accounts |
 | Usage statistics (3.0) | The items in the “Anonymous usage statistics” table above | Amounts, holdings, accounts, anything you typed |
 
 **Money figures are never sent to our servers.** As the table shows, what goes out is a symbol, a holding name, a search term or article details —
@@ -123,8 +123,8 @@ device sharing off on Android, no sync happens.
 **Asset information is never sent to an outside AI (LLM).** Diagnosis, goal suggestions and rebalancing maths are
 all rule-based logic inside the app.
 
-The app fetches news straight from Google News. **Only the morning briefing (3.0) uses AI** — to boil news and
-reports on your holdings down to three lines, it sends each article's title, address and a short excerpt to our
+The app fetches news straight from Google News. **Only the morning briefing (3.0) uses AI** — to boil news,
+filings and reports on your holdings down to three lines, it sends each article's title, address and a short excerpt to our
 server, which summarizes it with Cloudflare Workers AI. The overall summary also carries the **names** of your top
 holdings (never quantities or amounts).
 

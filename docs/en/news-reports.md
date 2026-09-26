@@ -1,17 +1,17 @@
-# News · reports
+# News · reports · filings
 
 > **Works with:** the sample · your own assets
 
-News and broker reports, gathered around what you hold.
+News, broker reports and DART filings, gathered around what you hold.
 
 ## Briefing (3.0)
 
 **Briefing**, first in the News tab, boils the latest on each of your holdings down to three lines.
 
-- For each holding it gathers up to **3 news articles since yesterday morning and 2 reports from the last three days**.
+- For each holding it gathers up to **3 news articles since yesterday morning, plus 3 filings and 2 reports from the last three days**.
   Holdings with the largest value come first.
 - **Today's summary** at the top groups the news on your top holdings by theme, at a glance.
-- Tap a card to open the original article or report.
+- Tap a card to open the original article, filing or report.
 - **Free use gives you today's summary once a day, covering your top 5 holdings.** Once you have it, it stays for
   the rest of the day. The three-line summary for each article keeps coming without a limit to worry about.
 - Summaries are written by AI. They can be wrong or leave things out, so check the original before an important decision.
@@ -42,9 +42,17 @@ News and broker reports, gathered around what you hold.
 - They open in the in-app PDF viewer.
   On Mac and iPad the document sits beside the list.
 
+## Filings (3.0)
+
+- The **Reports/Filings** tab mixes the **last two weeks of filings** for your Korean holdings in with the reports,
+  newest first. Filings carry a "Filing" label, and the dropdown at the top narrows them to one holding.
+- Filings come from the Financial Supervisory Service's **DART Open API**. The insider and major-shareholder
+  ownership reports that arrive by the dozen each day are left out.
+- Tap one to open the original on DART.
+
 ## Privacy
 
-- Only the holding keywords go out with a news request — **amounts and account details are never sent**.
-- The briefing sends the title, address and a short excerpt of each article to summarize, plus the **names** of your
+- Only holding keywords go out with a news request, and only stock codes with a report or filing request — **amounts and account details are never sent**.
+- The briefing sends the title, address and a short excerpt of each article or filing to summarize, plus the **names** of your
   top holdings, to the summary server. Quantities and amounts never go, and the holding names and article addresses
   are not kept once the summary is made. The [privacy policy](privacy.html) has the details.
