@@ -72,7 +72,7 @@ your original sheet (budget, portfolio, whatever)
 | Safeguard | What it means |
 | --- | --- |
 | Google sign-in | `spreadsheets.readonly` — read only, never write. **Removed from the public app in 1.2.0** |
-| Credential storage | **From 3.0** the Korea Investment & Securities app key, app secret and account number stay **only on this device** — the keychain on Apple devices (Face ID · passcode), Android Keystore encryption on Android. Balances are read straight from the device to the broker, never through our servers ([Broker connection](broker-connection.html)) |
+| Credential storage | The public app takes no broker keys from 3.0.1. The 3.0.0 feature that kept Korea Investment & Securities keys **only on this device** (keychain · Android Keystore) was removed, and 3.0.1 deletes leftover keys on first launch ([Broker connection](broker-connection.html)) |
 | App lock | Unlock with biometrics (fingerprint, face), or your device lock (PIN, pattern, password) when there are none. It locks again after a trip to the background |
 | Local cache protection | Snapshot caches also sit in the app-only area and can be deleted in settings |
 | Minimal outbound data | News, prices, financial statements and dividend lookups send the holding identifier only — never quantities, amounts or accounts. ETF search and comparison send **the search term and the symbol** only, never your amount or weights |

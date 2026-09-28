@@ -1,5 +1,9 @@
 # Brokerage connection
 
+> **The public app no longer has this from 3.0.1.** Korea Investment & Securities does not allow account linking
+> in apps from non-financial companies, so it was removed. 3.0.1 deletes saved keys on first launch and keeps the
+> accounts, holdings and quantities you already filled in. What follows describes 3.0.0.
+
 > **From 3.0** · **Korea Investment & Securities only** · **Reads balances only — it never places orders.**
 > Available on iPhone · iPad · Mac · Android.
 

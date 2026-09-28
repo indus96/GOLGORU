@@ -66,9 +66,11 @@ Golgoru's use and transfer of information received from Google APIs adheres to t
 [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
 including the Limited Use requirements.
 
-### Broker API keys (from 3.0)
+### Broker API keys (3.0.0 only)
 
-**From 3.0 the app can read your Korea Investment & Securities balance.** If you don't use it, no key is taken.
+**This feature is gone from 3.0.1.** The Korea Investment & Securities balance connection in 3.0.0 was removed,
+and 3.0.1 deletes any saved keys and account links on this device the first time it opens. Below is how 3.0.0
+handled the keys.
 
 - The app key, app secret and first 8 digits of the account number are stored **only on this device** —
   the keychain on Apple devices (Face ID or the device passcode to read it), encrypted with the Android Keystore
@@ -76,8 +78,7 @@ including the Limited Use requirements.
 - Balances are read **straight from the device to the broker's servers.** Nothing passes through our servers,
   and we never receive your keys, account number or balance.
 - Broker APIs are used **for reading balances only.** The app never places orders.
-- Deleting the keys in **Settings > Broker connection** removes them from the device. On Android, deleting the
-  app removes them too; on Apple devices the keychain can outlive the app, so delete them in Settings first.
+- Updating to 3.0.1 deletes the keys from the device.
 
 Holdings can also be entered by you or filled **from a screenshot of your brokerage app** — the text recognition
 runs on the device, and the image never leaves it.
