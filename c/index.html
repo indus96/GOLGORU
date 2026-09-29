@@ -228,8 +228,9 @@
     var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', 'M2 10h4v11H2zM21.6 10.3c-.4-.5-1-.8-1.6-.8h-4.6l.7-3.3c.2-.9-.1-1.8-.7-2.4a2.3 2.3 0 0 0-3.6.5L8.6 9.6c-.2.3-.3.6-.3 1v8.3c0 1.2 1 2.1 2.1 2.1h7.2c1 0 1.9-.7 2.1-1.7l1.4-7c.1-.7-.1-1.4-.5-2z');
     if (down) {
-      // 같은 그림을 뒤집는다 — 두 아이콘이 확실히 짝으로 보인다.
-      svg.setAttribute('transform', 'rotate(180)');
+      // 같은 그림을 뒤집는다 — 두 아이콘이 확실히 짝으로 보인다. **path 에 건다** — 바깥 <svg> 의
+      // transform 속성은 SVG2 라 iOS 사파리가 무시해, 모바일에서 비추천도 👍 로 보였다(2026-09-29).
+      path.setAttribute('transform', 'rotate(180 12 12)');
     }
     svg.appendChild(path);
     return svg;
