@@ -63,6 +63,9 @@
 <h3>Portfolios you built (from 1.3.0)</h3>
 <p>A mix you have not bought (its name, holdings, weights and amount) is stored on the device <strong>separately</strong> from your ledger. On Apple devices it is mirrored to your own iCloud so iPhone, iPad and Mac see the same list; we cannot reach that area. On Android it stays on the device.</p>
 <p>A <strong>share link carries the portfolio after the <code>#</code></strong> in the address. URL fragments <strong>are never sent to a server</strong>, so nothing is stored on our servers and nothing appears in access logs. It joins the other person's device only when <strong>they press save</strong>.</p>
+<h3>Community</h3>
+<p><strong>Portfolios you post to the community are stored on our server (Cloudflare D1) and anyone can see them.</strong> Only the mix (holdings · weights), its name (up to 40 characters), the nickname the app gives you and the return curve go up — never amounts or accounts.</p>
+<ul><li>Up/down votes, reports and takes are stored with a random per-device value (hashed) so each device counts once. Who pressed what is never shown.</li><li>For analysis we record <strong>when a portfolio was viewed, posted, voted on, taken or reported</strong> and the kind of client (app · mobile web · desktop web). These records carry no device value, so they cannot tell who did it.</li><li>You can delete a post from the device that made it. Posts with enough reports are hidden from the list.</li></ul>
 <h3>Google account information</h3>
 <p><strong>Since 1.2.0 the public app has no Google sign-in.</strong> The Google Sheets link was removed; what follows applies to version 1.0.</p>
 <p>Google sign-in was used only when you chose the Google Sheets link. <strong>The Android app has no sheet link</strong> — it offers the sample and manual entry only, so the sheet material below does not apply to Android.</p>

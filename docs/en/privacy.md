@@ -42,6 +42,18 @@ A **share link carries the portfolio after the `#`** in the address. URL fragmen
 so nothing is stored on our servers and nothing appears in access logs. It joins the other person's device only
 when **they press save**.
 
+### Community
+
+**Portfolios you post to the community are stored on our server (Cloudflare D1) and anyone can see them.** Only the
+mix (holdings · weights), its name (up to 40 characters), the nickname the app gives you and the return curve go up —
+never amounts or accounts.
+
+- Up/down votes, reports and takes are stored with a random per-device value (hashed) so each device counts once.
+  Who pressed what is never shown.
+- For analysis we record **when a portfolio was viewed, posted, voted on, taken or reported** and the kind of client
+  (app · mobile web · desktop web). These records carry no device value, so they cannot tell who did it.
+- You can delete a post from the device that made it. Posts with enough reports are hidden from the list.
+
 ### Google account information
 
 **Since 1.2.0 the public app has no Google sign-in.** The Google Sheets link was removed; what follows applies
