@@ -38,6 +38,16 @@ cash, and tapping a holding shows its price and chart.
 - **Dollar holdings** — the original dollar value, the rate applied and the won figure the app worked out
   are shown together. When there is no rate yet, it says so rather than treating it as zero.
 
+## Sharing an account's mix
+
+> Available from 3.1.0.
+
+Tap **Share** at the top right of an account to send its **current mix** as the same card, link or code you get when sharing a portfolio.
+
+- **No amounts or quantities** — only holdings and weights (adding up to 100%). Cash and assets without a price (property, deposits) are left out.
+- The card is titled with the account name. If the name says something you'd rather keep private, check the preview before sending.
+- It leaves out the past-performance curve: running today's mix backwards tends to look better than reality.
+
 ## Holding detail — chart · analysis · news · notes
 
 Tap a holding and four tabs open under its name and price.

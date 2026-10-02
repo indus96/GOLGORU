@@ -29,6 +29,17 @@ With a wide screen the total stretches sideways and the **largest accounts** and
 **target gaps** lists come back as cards. These are machines for seeing several things
 at once, so moving between tabs costs more than it does on a phone.
 
+## Home screen widget
+
+> Available from 3.1.0. iPhone · iPad · Android (not on Mac).
+
+Puts **To do now** on your phone's home screen: the holding furthest from target, the gap in percentage points, and
+the target bar (gold is now, the dark tick is the target). It comes in small and medium sizes; tap it to open the app.
+
+- **No amounts.** Other people can see a home screen, so it shows names and weights only.
+- The widget never goes online by itself; it redraws with what changed when you open the app.
+- To add it: long-press the home screen, choose **Add widget** (on Android, **Widgets**) and pick Golgoru.
+
 ## Worth knowing
 
 - Dollar holdings are converted to won with the USD/KRW value from market indicators,
