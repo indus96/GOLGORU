@@ -1,0 +1,42 @@
+# 나눔터 조합 정적 페이지(/c/d/)를 매일 다시 만든다 — 새로 올라온 조합은 페이지가 생기고,
+# 지워지거나 숨겨진 조합은 페이지가 지워진다. 공개 API 만 읽는다(키 · 토큰 없음).
+# 조합 페이지가 바뀐 날만 master 에 커밋한다(사이트맵 날짜만 바뀐 날은 건너뛴다).
+# 문서 브랜치(golgoru-*-docs)를 master 에 합칠 때는 먼저 master 를 문서 브랜치로 merge 한다 — 이 봇 커밋 때문에
+# ff-only 가 안 될 수 있다.
+name: commons-pages
+
+on:
+  schedule:
+    - cron: "0 20 * * *"   # 한국 05:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commons-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build commons pages
+        run: python3 build-docs.py --commons
+      - name: Commit when commons pages changed
+        run: |
+          git add -A c/d
+          if git diff --cached --quiet -- c/d; then
+            echo "조합 페이지 변화 없음"
+            exit 0
+          fi
+          git add sitemap.xml
+          git -c user.name="golgoru-bot" -c user.email="golgoru-bot@users.noreply.github.com" \
+            commit -m "나눔터 조합 페이지 갱신 ($(date -u +%F))"
+          git push origin HEAD:master
