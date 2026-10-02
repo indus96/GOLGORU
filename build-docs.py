@@ -58,6 +58,11 @@ DOCS = {
                                  lead="S&P500·나스닥100 을 국내 상장 ETF 로 담는 조합 예시 모음입니다."),
     "portfolio-kr-index":   dict(eyebrow="나눔터",    hero="../images/app/phone-community.png", cls="phone", back="rebalance",
                                  lead="코스피200 중심의 국내지수 ETF 조합 예시 모음입니다."),
+    # 안내 글 — 연금 · IRP 에 적립하는 자산배분 투자자가 검색하는 질문에 답한다(2026-10-02).
+    "guide-irp-risk-70":    dict(eyebrow="안내",      hero="../images/app/phone-allocation.png", cls="phone", back="rebalance",
+                                 lead="IRP · DC 는 위험자산을 70%까지만 담습니다. 무엇이 위험자산인지, 넘으면 어떻게 되는지, 목표 비중으로 미리 맞추는 법."),
+    "guide-pension-rebalancing": dict(eyebrow="안내",  hero="../images/app/phone-allocation.png", cls="phone", back="rebalance",
+                                 lead="연금계좌 ETF 리밸런싱을 언제, 얼마나 할지 — 날짜 · 차이 기준, 적립금으로 팔지 않고 맞추기, 주수 계산."),
     "privacy":              dict(en=dict(eyebrow="Privacy", lead="The app does not store your asset data on our servers."), eyebrow="개인정보",   hero="", cls="wide", back="about",
                                  lead="앱은 자산 데이터를 제공자 서버에 저장하지 않습니다."),
     "changelog":            dict(eyebrow="버전 기록",  hero="", cls="wide", back="download",
@@ -462,6 +467,177 @@ if __name__ == "__main__":
         build(slug, meta, "en")
 
 
+# ── 나눔터 조합 정적 페이지(/c/d/<id>.html) ─────────────────────────────────────
+#
+# 나눔터(/c/)는 JS 로 목록을 불러오는 한 장짜리라, 조합 하나하나가 검색에 따로 걸리지 않는다
+# (주소가 `?id=` 이고 내용이 늦게 그려진다 — 네이버는 거의 못 읽는다). 조합마다 **내용이 HTML 에
+# 들어 있는** 페이지를 만들어 둔다. 「올린 뒤 성과 · 지수 비교」는 매일 바뀌는 값이라 여기 굳히지 않고
+# 살아 있는 나눔터로 넘긴다. 백테스트(지난 1년)는 싣지 않는다 — 고른 뒤 돌아본 값이라 부풀려진다
+# (25건 평균 +151% · 올린 뒤 −1.3%, 2026-09-06). 지워진 · 숨겨진 조합은 다시 만들 때 파일도 지운다.
+# `python3 build-docs.py --commons` 로 공개 API 를 읽어 다시 만든다(키 · 토큰 없음).
+COMMONS_API = "https://asset-management-community.indus96-asset-management.workers.dev"
+COMMONS_TOPICS = {"pension": "연금", "isa": "ISA", "monthly": "월배당", "us": "미국지수", "kr": "국내지수"}
+
+
+def fetch_commons(limit=500):
+    import json, urllib.request, urllib.parse
+    drafts, cursor = [], None
+    while len(drafts) < limit:
+        url = f"{COMMONS_API}/drafts?sort=hot" + (f"&cursor={urllib.parse.quote(cursor)}" if cursor else "")
+        req = urllib.request.Request(url, headers={"User-Agent": "golgoru-site-build"})
+        page = json.load(urllib.request.urlopen(req, timeout=20))
+        drafts += page.get("drafts", [])
+        cursor = page.get("cursor")
+        if not cursor or not page.get("drafts"):
+            break
+    return drafts
+
+
+def commons_lines(draft):
+    """`code` 끝 마디가 `종목:비중,…` 이다. 이름은 워커가 붙여 준 `names` 에서."""
+    names = dict(pair.split("=", 1) for pair in (draft.get("names") or "").split("|") if "=" in pair)
+    lines = []
+    for item in draft["code"].rsplit(".", 1)[-1].split(","):
+        symbol, _, weight = item.rpartition(":")  # 미국은 `NASDAQ:QQQ:40` — 비중은 끝 마디
+        if symbol and weight:
+            lines.append((symbol, names.get(symbol, symbol), float(weight)))
+    return sorted(lines, key=lambda line: -line[2])
+
+
+def commons_exposure(draft):
+    """`한국:51,미국:43|주식:70,채권:30|정보기술:56,…` → [(국가, …), (자산, …), (업종, …)]."""
+    labels = ["국가", "자산", "업종"]
+    parts = (draft.get("exposure") or "").split("|")
+    return [(labels[i], part.replace(",", " · ").replace(":", " ") + "%") for i, part in enumerate(parts[:3]) if part]
+
+
+def esc(text):
+    return html.escape(str(text), quote=True)
+
+
+def commons_page(draft):
+    lines = commons_lines(draft)
+    topic = COMMONS_TOPICS.get(draft.get("topic") or "", "")
+    market = "한국 상장" if draft.get("market") == "KR" else "미국 상장"
+    name = draft["name"]
+    top = " · ".join(f"{n} {w:g}%" for _, n, w in lines[:3])
+    more = f" 외 {len(lines) - 3}종목" if len(lines) > 3 else ""
+    desc = f"{topic + ' ' if topic else ''}{market} ETF {len(lines)}종목 조합 — {top}{more}. 골고루 사용자가 짜 본 조합으로, 종목과 비중만 공개됩니다."
+    canonical = f"{SITE}/c/d/{draft['id']}.html"
+    rows = "\n".join(
+        f"<tr><td>{esc(n)}</td><td>{esc(s)}</td><td style=\"text-align:right\">{w:g}%</td></tr>" for s, n, w in lines)
+    exposure = "".join(f"<li><strong>{k}</strong> {esc(v)}</li>" for k, v in commons_exposure(draft))
+    live = f"../?id={draft['id']}"
+    return f"""<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(name)} — ETF 구성 · 비중 | 골고루 나눔터</title>
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
+<meta name="description" content="{esc(desc)}">
+<meta property="og:title" content="{esc(name)} — ETF 구성 · 비중">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:type" content="article">
+<link rel="canonical" href="{canonical}">
+<meta property="og:url" content="{canonical}">
+<link rel="stylesheet" href="../../docs/doc.css">
+</head><body>
+{render_nav("../../", assets="../../")}
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="./">← 나눔터 조합 모음</a>
+  <div class="eyebrow">나눔터{' · ' + topic if topic else ''} · {market}</div>
+  <h1>{esc(name)}</h1>
+  <p class="lead">{esc(draft.get('nick') or '익명')} 님이 짜 본 ETF {len(lines)}종목 조합 · 추천 {draft.get('up', 0)} · 가져간 사람 {draft.get('taken', 0)}</p>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<h2>구성</h2>
+<div class="tablewrap"><table><thead><tr><th>종목</th><th>코드</th><th style="text-align:right">비중</th></tr></thead>
+<tbody>
+{rows}
+</tbody></table></div>
+{f'<h2>어디에 담겼나</h2><ul>{exposure}</ul>' if exposure else ''}
+<h2>이 조합으로 해 볼 수 있는 것</h2>
+<ul>
+<li><a href="{live}">나눔터에서 보기</a> — 올린 뒤 성과, 지수와 비교, 추천 · 비추천.</li>
+<li>골고루 앱에서 가져오면 투자금을 넣어 <strong>종목별 몇 주</strong>를 살지 계산하고, 내 계좌의 목표 비중으로 쓸 수 있습니다.</li>
+</ul>
+<p><a class="cta" href="../../#download">골고루 받기</a></p>
+<p style="color:var(--hint);font-size:13px">사용자가 올린 조합이며 투자 권유가 아닙니다. 투자금 · 평가액은 올라가지 않고 종목과 비중만 공개됩니다.</p>
+</div></main>
+<footer><div class="wrap foot-in">
+  <div>© 2026 골고루 · 고루 나눠 담기</div>
+  <div><a href="../../">홈</a> · <a href="../">나눔터</a> · <a href="../../docs/portfolio-draft.html">짜보기 안내</a> · <a href="../../docs/privacy.html">개인정보처리방침</a></div>
+</div></footer>
+<script src="../../site.js" defer></script>
+</body></html>
+"""
+
+
+def commons_index(drafts):
+    groups = {}
+    for draft in drafts:
+        groups.setdefault(COMMONS_TOPICS.get(draft.get("topic") or "", "그 밖의 조합"), []).append(draft)
+    order = list(COMMONS_TOPICS.values()) + ["그 밖의 조합"]
+    sections = []
+    for label in [o for o in order if o in groups]:
+        items = "\n".join(
+            f'<li><a href="{d["id"]}.html">{esc(d["name"])}</a> — '
+            f'{esc(" · ".join(f"{n} {w:g}%" for _, n, w in commons_lines(d)[:3]))}</li>'
+            for d in groups[label])
+        sections.append(f"<h2>{label}</h2>\n<ul>\n{items}\n</ul>")
+    canonical = f"{SITE}/c/d/"
+    desc = "연금저축 · IRP · ISA · 월배당 · 미국지수 · 국내지수 — 골고루 사용자들이 짜 본 ETF 조합의 구성과 비중을 주제별로 모았습니다."
+    return f"""<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ETF 조합 모음 — 연금 · ISA · 배당 | 골고루 나눔터</title>
+<meta property="og:site_name" content="골고루">
+<meta name="description" content="{esc(desc)}">
+<meta property="og:title" content="ETF 조합 모음 — 골고루 나눔터">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:type" content="website">
+<link rel="canonical" href="{canonical}">
+<meta property="og:url" content="{canonical}">
+<link rel="stylesheet" href="../../docs/doc.css">
+</head><body>
+{render_nav("../../", assets="../../")}
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../">← 나눔터</a>
+  <div class="eyebrow">나눔터</div>
+  <h1>ETF 조합 모음</h1>
+  <p class="lead">{esc(desc)}</p>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+{chr(10).join(sections)}
+<p style="color:var(--hint);font-size:13px">사용자가 올린 조합이며 투자 권유가 아닙니다.</p>
+</div></main>
+<footer><div class="wrap foot-in">
+  <div>© 2026 골고루 · 고루 나눠 담기</div>
+  <div><a href="../../">홈</a> · <a href="../">나눔터</a> · <a href="../../docs/privacy.html">개인정보처리방침</a></div>
+</div></footer>
+<script src="../../site.js" defer></script>
+</body></html>
+"""
+
+
+def build_commons():
+    out = pathlib.Path("c/d")
+    out.mkdir(parents=True, exist_ok=True)
+    drafts = [d for d in fetch_commons() if d.get("id") and d.get("code") and d.get("name")]
+    keep = {f"{d['id']}.html" for d in drafts} | {"index.html"}
+    for old in out.glob("*.html"):
+        if old.name not in keep:
+            old.unlink()
+    for draft in drafts:
+        (out / f"{draft['id']}.html").write_text(commons_page(draft), encoding="utf-8")
+    (out / "index.html").write_text(commons_index(drafts), encoding="utf-8")
+    print(f"built c/d/ — 조합 {len(drafts)}개")
+
+
+if __name__ == "__main__" and "--commons" in __import__("sys").argv:
+    build_commons()
+
+
 def write_sitemap():
     """색인 대상 주소를 한 곳에 모아 준다.
 
@@ -476,6 +652,9 @@ def write_sitemap():
     urls = (
         [f"{SITE}/", f"{SITE}/c/", f"{SITE}/v/"]
         + [f"{SITE}/docs/{name}.html" for name in sorted(DOCS)]
+        # 나눔터 조합 페이지(`--commons` 로 만든 것) — 있는 파일만.
+        + ([f"{SITE}/c/d/"] if pathlib.Path("c/d/index.html").exists() else [])
+        + [f"{SITE}/c/d/{p.name}" for p in sorted(pathlib.Path("c/d").glob("*.html")) if p.name != "index.html"]
         # 영문판 — 낸 문서만 넣는다. 안 낸 것을 적으면 색인이 404 를 물고 온다.
         + [f"{SITE}/en/"]
         + [f"{SITE}/en/docs/{name}.html"
