@@ -57,6 +57,24 @@ If the same holding was changed differently on two devices, saving asks **which 
 Changes to different holdings are already merged, so you are only asked about what really diverged.
 You cannot close without choosing — that would leave the edit neither saved nor discarded.
 
+## Split this month's contribution
+
+> Available from 3.1.0. The card shows on Home once an account has target weights.
+
+For accounts you top up every month (pension savings · IRP · ISA), this answers “where should this
+month's ₩500,000 go?”. Tap **Split this month's contribution** on Home, pick an account and enter the amount:
+
+- It works from the total **including** the new money and fills the **underweight holdings first**. **Nothing is sold.**
+- Each line shows the weight now → after buying, next to the target; whatever can't buy a whole share stays as cash.
+- Even an account that's exactly on target splits the new money by its target weights — the adjustment plan
+  works from today's total, so it would have nothing to buy here.
+
+You place the orders in your brokerage app. If you enter your own assets, tap **Bought — add to holdings**
+afterwards: the shares are added (average price is weighted) and anything left over becomes that account's cash.
+
+Turn on **Remind me every month** and pick a day (1–28) to get a reminder at 9 a.m. that day.
+The account, amount and day are stored on this device only.
+
 ## Rebalancing plan
 
 **The app does not place orders.** It builds a plan of what to buy and sell, and you place the orders

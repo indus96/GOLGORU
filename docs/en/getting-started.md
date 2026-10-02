@@ -1,7 +1,8 @@
 # Getting started
 
-Golgoru lets you choose where your asset data lives.
-You pick on first launch and can change it in settings any time.
+Golgoru opens **straight into sample assets** the first time. Tap **Enter my assets** in the
+“Looking at sample assets” banner at the top of Home to switch to your own accounts.
+You can also change it in settings any time. (From 3.1.0 — before that you picked one of the two on first launch.)
 
 | How to start | Good if | What you need |
 | --- | --- | --- |
@@ -13,12 +14,30 @@ You pick on first launch and can change it in settings any time.
 Every screen works on example assets, with no sign-in and nothing to type.
 Home, Assets, the adjustment plan, the portfolio report, News and Build (my portfolios · community) all run.
 
-The numbers here are not real. When you like what you see, switch in settings.
+The numbers here are not real. When you like what you see, tap **Enter my assets** in the banner at the top of Home.
 
 ## Enter my assets
 
 You keep accounts and holdings inside the app. The data is stored on the device, and devices signed in to
 the same Apple account see it together over iCloud.
+
+### Start from a target mix
+
+> Available from 3.1.0.
+
+If typing weights into empty fields is hard, pick one on the first screen (make an account):
+
+- **Target mix templates** — four well-known allocations translated into Korean-listed ETFs:
+  Pension 70/30 (within the IRP · DC risky-asset limit), stocks 60 · bonds 40, All weather, US index growth.
+- **Take one from the community** — mixes other people posted, by **Popular** or by topic:
+  **Pension · ISA · Monthly dividend · US index · Korea index**.
+
+Picking one makes an account with those weights as its targets. Enter an amount (iPhone · iPad · Mac) and
+the shares are filled in too; leave it empty and only the targets are set — fill holdings later with
+**Import from a screenshot** below or **Split this month's contribution** in the adjustment plan.
+Templates are examples, not investment advice.
+
+### Entering it yourself
 
 1. Under Settings &gt; My assets, change “start with” to **Manual entry**.
    (On Android this is the **Manage** tab &gt; Data. Read “Settings” as “Manage” for the paths below.)
