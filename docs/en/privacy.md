@@ -3,7 +3,7 @@
 Golgoru (“the app”) does not store your asset data on our servers.
 This page explains what the app handles, where it is kept, and what leaves the device.
 
-> Last updated: 2026-09-26
+> Last updated: 2026-10-03
 
 ## What the app handles
 
@@ -146,6 +146,17 @@ holdings (never quantities or amounts).
   article isn't summarized again for someone else — who asked is not recorded.
 - To count the free allowance, **a hash of the install ID, the date and a request count** are kept for **7 days**.
 
+**App integrity check (from 3.1.1)** — so the briefing allowance is used only by the genuine Golgoru app, the app
+proves it is the real app on a normal device with the operating system's check (Apple App Attest · Google Play
+Integrity). Apple and Google check the device and app; our server receives only the result.
+
+- What our server keeps: **a hash of the install ID, the platform, the check method, the first and last check
+  time**, and on Apple devices the check's **public key** (it does not identify the device). Deleted after a year
+  without a check.
+- No asset information, holdings or amounts are used in the check.
+- Requests without a passed check may have their allowance counted by **a hash of the IP address** (kept 7 days,
+  like the allowance above).
+
 **Importing holdings from a screenshot does not transmit the image either.** Reading the text from what you
 pasted is done by the operating system on the device (Apple Vision). The image is discarded as soon as it is
 read and never stored.
@@ -156,8 +167,8 @@ read and never stored.
   Apple devices apply file protection, so it is unreadable while the device is locked;
   Android keeps it in app-private storage and excludes it from device backups.
 - Settings can delete the local cache and the ledger you entered.
-- The only things kept on our server are the anonymous usage log (one year), allowance counts (7 days) and article
-  summaries (30 days), deleted automatically every day once their time is up. The install ID is stored only as a
+- The only things kept on our server are the anonymous usage log (one year), allowance counts (7 days), article
+  summaries (30 days) and app integrity check records (a year after the last check), deleted automatically every day once their time is up. The install ID is stored only as a
   hash and cannot identify you.
 - Deleting the app deletes everything it stored on the device.
 - Disconnecting the Google Sheets link (Apple devices only) removes the stored token from the keychain.
@@ -170,7 +181,8 @@ read and never stored.
 We do not sell or pass your asset information or Google account information to third parties.
 The app collects no advertising identifier and carries no analytics SDK. The anonymous usage statistics and
 briefing summaries in 3.0 are handled only on servers we run (Cloudflare) — Cloudflare sees your IP address while
-handling a request, but we do not store it.
+handling a request, but we do not store the address itself (only the hash from the app integrity check, for 7 days).
+The app integrity check itself is handled by Apple's and Google's operating-system services.
 
 ## Children's privacy
 
