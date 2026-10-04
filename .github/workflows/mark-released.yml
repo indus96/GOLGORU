@@ -1,0 +1,41 @@
+# 애플 심사가 끝나 App Store 에 새 버전이 뜨면 새소식의 「애플은 심사 중」을 「출시」로 바꾼다(scripts/mark-released.py).
+# App Store 공개 조회만 읽는다(키 · 토큰 없음). 바꾼 게 있는 날만 master 에 커밋한다.
+# 문서 브랜치(golgoru-*-docs)를 master 에 합칠 때는 먼저 master 를 문서 브랜치로 merge 한다 — 이 봇 커밋 때문에
+# ff-only 가 안 될 수 있다(commons-pages 와 같다).
+name: mark-released
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # 매시 17분
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mark-released
+  cancel-in-progress: false
+
+jobs:
+  mark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Mark released versions
+        run: python3 scripts/mark-released.py
+      - name: Rebuild and commit when the changelog changed
+        run: |
+          if git diff --quiet -- docs/changelog.md; then
+            echo "새소식 변화 없음"
+            exit 0
+          fi
+          python3 build-docs.py
+          git add -A docs sitemap.xml
+          git -c user.name="golgoru-bot" -c user.email="golgoru-bot@users.noreply.github.com" \
+            commit -m "새소식 — App Store 출시 반영(자동)"
+          git push origin HEAD:master
