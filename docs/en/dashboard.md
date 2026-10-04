@@ -29,16 +29,26 @@ With a wide screen the total stretches sideways and the **largest accounts** and
 **target gaps** lists come back as cards. These are machines for seeing several things
 at once, so moving between tabs costs more than it does on a phone.
 
-## Home screen widget
+## Home screen widget "Up next"
 
-> Available from 3.1.0. iPhone · iPad · Android (not on Mac).
+> iPhone · iPad · Android from 3.1.0, Mac from 3.2.0.
 
-Puts **To do now** on your phone's home screen: the holding furthest from target, the gap in percentage points, and
-the target bar (gold is now, the dark tick is the target). It comes in small and medium sizes; tap it to open the app.
+Puts the one thing to do next on your home screen. It checks these in order and shows the first that applies.
 
-- **No amounts.** Other people can see a home screen, so it shows names and weights only.
-- The widget never goes online by itself; it redraws with what changed when you open the app.
-- To add it: long-press the home screen, choose **Add widget** (on Android, **Widgets**) and pick Golgoru.
+1. **Rebalancing round** — days to the next round of a split rebalancing (**D-4** · **Today**) and how many orders.
+   If you have reserved orders at your broker, the day they go out comes first. With several accounts waiting, the
+   soonest one is large and the rest are listed with their dates.
+2. **Contribution day** — with the [contribution split](allocation-rebalancing.html) reminder on, it counts down from
+   a week before.
+3. **Holding furthest from target** — otherwise, the gap in percentage points and the target bar (gold is now, the
+   dark tick is the target).
+
+Tap it to go straight to that task — the rebalancing round, the contribution split or the account. It comes in small
+and medium sizes; medium lists the orders or each account's date on the right.
+
+- **No amounts or quantities.** Other people can see a home screen, so it shows names, weights and dates only.
+- The widget never goes online by itself. It redraws when you open the app and counts the days down at midnight on its own.
+- To add it: long-press the home screen and choose **Add widget** (Android: **Widgets**; Mac: right-click the desktop › **Edit Widgets**), then pick Golgoru.
 
 ## Worth knowing
 
