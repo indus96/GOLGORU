@@ -18,7 +18,7 @@ Afterwards, read the balances again in Golgoru and your accounts match the real 
 
 | What | Where |
 | --- | --- |
-| Start with **Enter my assets** | Settings > My assets > Start with (you can't link in Sample mode) |
+| Start with **Enter my assets** | Settings > Data > Start with (you can't link in Sample mode) |
 | App key · app secret | Issued **to you** on KIS Developers — Korea Investment issues **one per account** |
 | First 8 digits of the account number | Account details in the Korea Investment app |
 
@@ -39,9 +39,9 @@ Give each group a name you'll recognise (e.g. ISA · Pension).
 
 You can also start from account editing — it links what it finds to that account and fills it in.
 
-- **iPhone · iPad · Mac**: in **Settings > My assets > Accounts**, **long-press** an account and choose
+- **iPhone · iPad · Mac**: in **⋯ > Edit** at the top right, **long-press** an account and choose
   **Find and link an account at Korea Investment (Live)**
-- **Android**: in **Settings > Edit accounts · holdings**, tap **⋯** next to the account and choose
+- **Android**: in **⋯ > Edit** at the top right, tap **⋯** next to the account and choose
   **Find and link an account at KIS Live**
 
 ## Matching balances again

@@ -39,7 +39,7 @@ Templates are examples, not investment advice.
 
 ### Entering it yourself
 
-1. Under Settings &gt; My assets, change “start with” to **Manual entry**.
+1. Under Settings &gt; Data, change “start with” to **Manual entry**.
    (On Android this is the **Manage** tab &gt; Data. Read “Settings” as “Manage” for the paths below.)
 2. Open **Accounts** on the same screen.
 3. Add an account — type a name, press **Add**, and it appears (for example: brokerage, pension).
@@ -84,7 +84,7 @@ Instead of typing holdings one at a time, paste a screenshot from your brokerage
 quantities and average costs for you. No broker API key, and it works with any broker.
 
 1. In your brokerage app, capture the screen that shows your holdings list.
-2. Under Settings &gt; My assets &gt; Accounts, tap an account and open **Import from a screenshot**.
+2. In **⋯ &gt; Edit** at the top right, tap an account and open **Import from a screenshot**.
 3. Press **Paste** and what it read appears as a list.
    On a Mac, `⌘ ⇧ 4` saves to a file rather than the clipboard — then use **Pick from files** and choose that image.
 4. Check the values and fix anything on the spot.

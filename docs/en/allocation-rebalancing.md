@@ -21,7 +21,7 @@ One card per class. On the bar, **the dark tick is the target and the filled col
 
 ## One threshold, in one place
 
-**The threshold lives at Settings &gt; My assets &gt; Adjust when off by**, and nowhere else.
+**The threshold lives at Settings &gt; Data &gt; Adjust when off by**, and nowhere else.
 The `pp` badge on the Assets screen and the list here use **the same value**.
 Set per screen, you end up with “three need adjusting but nothing is marked”.
 
@@ -41,15 +41,15 @@ what you bought or sold in your brokerage app. The plan recalculates the moment 
 
 When you **enter your own assets**, the **account editing** screen changes quantity, average cost,
 target weight and cash balance in one place. Open it with **Edit** in the account, or from
-Settings &gt; My assets &gt; Accounts.
+**⋯ &gt; Edit** at the top right.
 
 - Add holdings by search; anything search does not carry (cash · deposits · savings plans · real estate ·
   bonds · funds) is picked from a list.
 - **Cash takes a target weight too** — put a target % on the cash row and it counts in the total.
 - If you changed target weights, the account has to add up to 100% to save (changing quantities alone has no such limit).
 - Holdings with no target still appear, at 0%.
-- To move several accounts' targets at once, use **adjust weights across accounts** at the bottom of
-  Settings &gt; My assets &gt; Accounts.
+- To move several accounts' targets at once, use **⋯ &gt; Bulk** at the top right
+  (reduce · add · make cash).
 
 ## When another device got there first
 

@@ -17,7 +17,7 @@ different number columns, and it was never obvious which one to look at.
 3. Sorting is **by amount · by gain · by name**.
    Tap the same one again to flip to ascending.
 4. Accounts and holdings that drifted carry a badge next to the name, like **`+5.0 pp`**.
-   The threshold is set under Settings &gt; My assets &gt; **Adjust when off by**, and the whole app uses that one value.
+   The threshold is set under Settings &gt; Data &gt; **Adjust when off by**, and the whole app uses that one value.
 5. The **adjustment plan** row above the list shows [what to move and how much](allocation-rebalancing.md).
 
 Tap a row for the account detail. **Edit** there changes quantity · average cost · target weight ·

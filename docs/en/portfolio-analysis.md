@@ -67,7 +67,7 @@ Pulls the measures together into sentences about what is worth noticing now.
   money is never mistaken for performance.
 - **Change the scenario and the monthly amount** and all four numbers move at once
   (conservative 4% · neutral 7% · optimistic 10%).
-- **Goal progress** — set a target amount (or a FIRE goal) under Settings &gt; My assets &gt; Target assets and
+- **Goal progress** — set a target amount (or a FIRE goal) with **Set · Change** at the top right of the goal card and
   you get how far along you are and when you might arrive, as a **range of years** (“2031–2037”).
   Set a target date and the progress feeds the health score too.
 - Every projection is a calculation from assumptions and does not guarantee a return.
