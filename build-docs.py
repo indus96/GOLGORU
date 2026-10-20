@@ -33,6 +33,8 @@ DOCS = {
     "portfolio-analysis":   dict(en=dict(eyebrow="Portfolio report"), eyebrow="구성 리포트", hero="../images/app/phone-analysis.png",  cls="phone", back="analysis"),
     "asset-ranking":        dict(en=dict(eyebrow="Assets"), eyebrow="자산",      hero="../images/app/stock-analysis.png",     cls="phone", back="analysis"),
     "allocation-rebalancing":dict(en=dict(eyebrow="Adjustment plan"), eyebrow="조정안",   hero="../images/app/phone-allocation.png", cls="phone", back="rebalance"),
+    "market-temperature":   dict(en=dict(eyebrow="Market temperature", lead="Is the market cold, normal or hot compared with the last 10 years — and how did your portfolio move with it?"), eyebrow="시장 온도", hero="../images/app/phone-market-temperature.png", cls="phone", back="dashboard",
+                                 lead="지금 시장이 지난 10년과 견줘 차가운지 · 뜨거운지, 그때 내 자산은 어떻게 움직였는지."),
     "news-reports":         dict(en=dict(eyebrow="News · reports"), eyebrow="뉴스·리포트", hero="../images/app/phone-news.png",     cls="phone", back="rebalance"),
     # 2.0에서 화면은 뺐지만 주소는 살려 둔다 — 밖에서 걸어 둔 링크가 깨지지 않게.
     "ai-review":            dict(eyebrow="계획",      hero="",                                  cls="wide", back="rebalance",

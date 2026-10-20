@@ -12,13 +12,15 @@ a few seconds. Lists live on their own tabs, not here.
    They blur, and show only while you press and hold.
 2. **The class bar** — real estate · overseas ETFs · funds · savings · cash · stocks in one row.
    **See details** underneath opens the [portfolio report](portfolio-analysis.md).
-3. **What to do now** — appears only when something has drifted from its target by more than
+3. **Market temperature** — whether the Korean and US markets are cold, normal or hot (from 3.5.0). Tap for each gauge's
+   trend and how your portfolio moved with it ([market temperature](market-temperature.md)).
+4. **What to do now** — appears only when something has drifted from its target by more than
    your threshold (5 pp by default). **Go adjust** opens the [adjustment plan](allocation-rebalancing.md).
    **When there is nothing to adjust, the card does not appear at all.**
-4. **Markets** — three cells. The exchange rate always keeps its place, and the first two follow
+5. **Markets** — three cells. The exchange rate always keeps its place, and the first two follow
    whichever market is open — KOSPI · KOSDAQ while Korea trades, Nasdaq 100 · S&P 500 while the US does.
    **More** shows all eleven, treasury yields and oil included.
-5. **News** — two recent headlines. Tap to read; **More** goes to the [news tab](news-reports.md).
+6. **News** — two recent headlines. Tap to read; **More** goes to the [news tab](news-reports.md).
 
 The account list and the list of gaps live on the [Assets tab](asset-ranking.md).
 The first screen does not repeat the same list.
