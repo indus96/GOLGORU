@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Market temperature</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="A card above &quot;Adjust&quot; on Home that shows whether the Korean and US markets are cold, normal or hot right now. It is not a call on tops or bottoms — it is…">
+<meta property="og:title" content="Golgoru · Market temperature">
+<meta property="og:description" content="A card above &quot;Adjust&quot; on Home that shows whether the Korean and US markets are cold, normal or hot right now. It is not a call on tops or bottoms — it is…">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/market-temperature.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/market-temperature.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/market-temperature.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/market-temperature.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/market-temperature.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/market-temperature.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#dashboard"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Market temperature</div>
+  <h1>Market temperature</h1>
+  <p class="lead">A card above "Adjust" on Home that shows whether the Korean and US markets are <strong>cold, normal or hot</strong> right now. It is not a call on tops or bottoms — it is a reference thermometer for "is this an extreme stretch compared with the last 10 years?" It is not investment advice, and the app never says buy or sell — only <strong>head back to the targets you set</strong>.</p>
+  <div class="hero-img phone"><img src="../../images/app/phone-market-temperature.png" alt="Market temperature screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> the sample · your own assets · from 3.5.0 (iPhone · iPad · Mac · Android)</blockquote>
+<h2>How it is measured</h2>
+<p>For each gauge, the app looks at where today's value sits <strong>within the last 10 years</strong> (0–100), then averages by question. A country's temperature is the <strong>average of its questions</strong>, not of its gauges — so a question with more gauges does not weigh more. Below 33 is cold, above 66 is hot. When it has moved more than 6 points since three months ago, ↑ warming or ↓ cooling is added.</p>
+<div class="tablewrap"><table><thead><tr><th>Country</th><th>Question</th><th>What it looks at</th></tr></thead><tbody><tr><td>Korea</td><td>Have prices run up?</td><td>KOSPI vs its 200-day average, and how far below its 1-year high</td></tr><tr><td>Korea</td><td>Are people scared?</td><td>KOSPI 20-day volatility (bigger swings are colder)</td></tr><tr><td>Korea</td><td>Are people buying on margin?</td><td>Margin loans ÷ market cap, their one-month change, forced-sale share (more is colder)</td></tr><tr><td>Korea</td><td>Is money coming in or out?</td><td>One-month change in brokerage deposits and in foreign ownership</td></tr><tr><td>US</td><td>Have prices run up?</td><td>S&amp;P 500 vs its 200-day average, Nasdaq 100 vs its 1-year high</td></tr><tr><td>US</td><td>Are people scared?</td><td>VIX and the high-yield spread (higher is colder)</td></tr><tr><td>US</td><td>Are Korean investors piling in?</td><td>20-day net buying of US stocks settled by Korean investors</td></tr></tbody></table></div>
+<p>Sources: Yahoo Finance (indexes), FRED (VIX · high-yield spread), KOFIA FreeSIS (margin · deposits · forced sales · foreign ownership), Korea Securities Depository open data (US stock settlement). They change once a day; the app refreshes every 6 hours. For VIX and the high-yield spread the app shows the source and the 10-year rank instead of the raw number.</p>
+<h2>The Home card</h2>
+<ul><li>One word per country — <strong>cold · normal · hot</strong> — and a three-cell bar.</li><li>If your risk share is <strong>more than 5 pp above target while the market is hot, or more than 5 pp below while it is cold</strong>, a line appears that opens the <a href="allocation-rebalancing.html">adjustment plan</a>. Otherwise it says nothing.</li></ul>
+<h2>Tap it — Korea · US · Yours</h2>
+<p><strong>Korea · US</strong> give a one-line verdict, the temperature and index over 3 months · 1 year · 5 years (press and slide on the chart to see a day), and each question's three-month trend with its gauges in plain words.</p>
+<p><strong>Yours</strong> puts the market and your portfolio on the same date axis.</p>
+<ol><li><strong>Your return</strong> — your return from the same starting day (bold gold) and KOSPI · S&amp;P 500 (dotted), with the chosen <strong>gauge</strong> (red line) laid over them. The red and blue bands behind are that gauge's hot and cold zones. Return is counted from <strong>unrealised gain</strong>, so money you add does not show up as profit. Switch to <strong>Size</strong> to see your total and the money you put in (dotted).</li><li><strong>Your mix</strong> — risk · cash · target, recorded once a day; it becomes a trend after a few days.</li><li><strong>What moves with your portfolio</strong> — the correlation (−1 to +1) between each gauge and your return, using <strong>week-to-week changes</strong>. Tap a row to chart that gauge above. It needs a few weeks of history, and it does not mean one causes the other.</li></ol>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><span class="doc-card current">Market temperature</span><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="broker-connection.html">Brokerage connection</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>
