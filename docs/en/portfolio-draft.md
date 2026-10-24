@@ -140,6 +140,9 @@ curve. You choose the period.
 says as much. Spans **shorter than 90 days are not calculated**, and **spans shorter than a year
 get no annualized return.**
 
+**Compare with rebalancing** underneath shows the same mix left alone vs. rebalanced yearly, every 6 months,
+quarterly or whenever it drifts off target ([Try rebalancing](allocation-rebalancing.md), since 3.7.0).
+
 ### 7. Hand it to someone
 
 **Share** in the detail screen sends it three ways. This is a different thing from posting to the

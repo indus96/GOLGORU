@@ -86,6 +86,17 @@
 <h3>4. Look back</h3>
 <p><strong>Records</strong> on the adjustment screen stacks them by plan. Date, account, count and the sell/buy totals are folded up; open one and you see the round, price and amount. Scheduled notifications are listed there too, and tapping one goes to its plan.</p>
 <p>Records are kept <strong>on this device only</strong> (checked something by mistake? press and hold to delete).</p>
+<h2>Try rebalancing</h2>
+<blockquote>Since 3.7.0 · also in the sample.</blockquote>
+<p>See side by side how your current target weights would have done over the <strong>last 1, 3 or 5 years</strong> under different rebalancing rules. It is there to give you a feel for how often rebalancing paid off — it does not suggest new weights.</p>
+<figure><img src="../../images/app/phone-rebalance-simulation.png" alt="Try rebalancing — return curves for five rules, a one-line summary and a comparison table"></figure>
+<p><strong>Where to open it</strong></p>
+<ul><li><strong>Account detail</strong> — “Try rebalancing” under the holding blocks.</li><li><strong>Assets</strong> — “Try rebalancing all assets” at the bottom of the account list. Each account's (target weight × account value) is added up into one mix, assuming money can move between accounts. Accounts without targets count at their current weights.</li><li><strong>Build detail</strong> — “Compare with rebalancing” under past performance.</li><li>On Mac · iPad the Assets tab opens it in the right-hand pane instead of a sheet.</li></ul>
+<p><strong>Five rules</strong> — <strong>Leave as is</strong> (buy at the weights and hold — the same maths as past performance) as the baseline, then back to target <strong>yearly, every 6 months, quarterly</strong>, or <strong>whenever any holding drifts off target by the threshold</strong> (the same threshold as the adjustment plan, 5pp by default).</p>
+<p><strong>What you see</strong></p>
+<ul><li>Five cumulative return curves — tap the legend to keep just one.</li><li>A one-line summary — the rule with the best return for its worst drop (annual return ÷ max drawdown) and how many times it rebalanced. If the five end within 1pp of each other it says rebalancing made little difference; if leaving it alone earned the most, it says how far the weights drifted in exchange.</li><li>A table — total, worst drop, times, and <strong>traded</strong> (the amount moved at each rebalance ÷ assets, added up — higher means more fees and tax).</li><li>“How far it drifted from target” — the gap of the holding furthest from target over time, with the threshold line.</li></ul>
+<p><strong>How it is calculated</strong> — weekly, dividends reinvested (adjusted prices), in KRW, without fees or taxes. Assets with no daily price (cash, real estate, savings) and Upbit coins (no dividend-adjusted price) are left out and the rest re-weighted to 100%. If the other holdings have more than a year of prices, <strong>holdings with less than a year are left out too</strong> — otherwise one recent listing would cut “5 years” down to six months. Anything left out is listed on screen.</p>
+<p>It recalculates what already happened; it is not a forecast or investment advice.</p>
 <h2>What the weight divides by</h2>
 <p>The denominator for your actual weight is <strong>the account total including its cash</strong>. Leave cash out and holding a lot of it makes your stock weights look higher than they are.</p>
 <p><em>This screen works out the gap. You place the orders yourself, at your broker.</em></p>

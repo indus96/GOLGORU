@@ -116,6 +116,45 @@ too, and tapping one goes to its plan.
 
 Records are kept **on this device only** (checked something by mistake? press and hold to delete).
 
+## Try rebalancing
+
+> Since 3.7.0 · also in the sample.
+
+See side by side how your current target weights would have done over the **last 1, 3 or 5 years**
+under different rebalancing rules. It is there to give you a feel for how often rebalancing paid off —
+it does not suggest new weights.
+
+![Try rebalancing — return curves for five rules, a one-line summary and a comparison table](../../images/app/phone-rebalance-simulation.png)
+
+**Where to open it**
+
+- **Account detail** — “Try rebalancing” under the holding blocks.
+- **Assets** — “Try rebalancing all assets” at the bottom of the account list. Each account's
+  (target weight × account value) is added up into one mix, assuming money can move between accounts.
+  Accounts without targets count at their current weights.
+- **Build detail** — “Compare with rebalancing” under past performance.
+- On Mac · iPad the Assets tab opens it in the right-hand pane instead of a sheet.
+
+**Five rules** — **Leave as is** (buy at the weights and hold — the same maths as past performance) as the baseline,
+then back to target **yearly, every 6 months, quarterly**, or **whenever any holding drifts off target by the threshold**
+(the same threshold as the adjustment plan, 5pp by default).
+
+**What you see**
+
+- Five cumulative return curves — tap the legend to keep just one.
+- A one-line summary — the rule with the best return for its worst drop (annual return ÷ max drawdown) and how many times it
+  rebalanced. If the five end within 1pp of each other it says rebalancing made little difference; if leaving it alone earned
+  the most, it says how far the weights drifted in exchange.
+- A table — total, worst drop, times, and **traded** (the amount moved at each rebalance ÷ assets, added up — higher means more fees and tax).
+- “How far it drifted from target” — the gap of the holding furthest from target over time, with the threshold line.
+
+**How it is calculated** — weekly, dividends reinvested (adjusted prices), in KRW, without fees or taxes.
+Assets with no daily price (cash, real estate, savings) and Upbit coins (no dividend-adjusted price) are left out and the rest
+re-weighted to 100%. If the other holdings have more than a year of prices, **holdings with less than a year are left out too** —
+otherwise one recent listing would cut “5 years” down to six months. Anything left out is listed on screen.
+
+It recalculates what already happened; it is not a forecast or investment advice.
+
 ## What the weight divides by
 
 The denominator for your actual weight is **the account total including its cash**.

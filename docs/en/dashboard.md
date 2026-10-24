@@ -21,22 +21,36 @@ a few seconds. Lists live on their own tabs, not here.
 5. **Markets** — three cells. The exchange rate always keeps its place, and the first two follow
    whichever market is open — KOSPI · KOSDAQ while Korea trades, Nasdaq 100 · S&P 500 while the US does.
    **More** shows all eleven, treasury yields and oil included.
-6. **News** — two recent headlines. Tap to read; **More** goes to the [news tab](news-reports.md).
+   On Mac · iPad there are two rows — the other market's two indices and the US 10-year Treasury are added, each with a mini chart (from 3.7.0).
+6. **News** — two recent headlines (three on Mac · iPad). Tap to read; **More** goes to the [news tab](news-reports.md).
 
 The account list and the list of gaps live on the [Assets tab](asset-ranking.md).
 The first screen does not repeat the same list.
 
 ## On Mac · iPad
 
-With a wide screen the total stretches sideways and the **largest accounts** and
-**target gaps** lists come back as cards. These are machines for seeing several things
-at once, so moving between tabs costs more than it does on a phone.
+With a wide screen the large total sits next to tiles for **what to do now · market temperature · largest accounts ·
+target gaps**, with Markets (two rows, mini charts) and News (three) side by side underneath. These are machines for seeing
+several things at once, so moving between tabs costs more than it does on a phone.
 
-## Home screen widget "Up next"
+![Mac home — tiles next to the total treemap, Markets and News below](../../images/app/mac-home.png)
 
-> iPhone · iPad · Android from 3.1.0, Mac from 3.2.0.
+## Home screen widget
 
-Puts the one thing to do next on your home screen. It checks these in order and shows the first that applies.
+> iPhone · iPad · Android from 3.1.0, Mac from 3.2.0. Choosing what it shows from 3.7.0.
+
+Long-press the widget and choose **Edit Widget** (Android: when you place it, or long-press it again) to pick what it shows.
+
+| Shows | What you get |
+| --- | --- |
+| **Automatic** (default) | Your mix normally; up next when a rebalancing round or contribution day is near |
+| **Your mix** | The same blocks as the home treemap — size is share, colour is today's move, with the time of the prices (“as of 15:30”) |
+| **Market temperature** | Whether Korea and the US are cold, normal or hot, a small triangle under the bar for where it is now, cooling or warming |
+| **Up next** | The first that applies, in the order below |
+
+### Up next
+
+It checks these in order and shows the first that applies.
 
 1. **Rebalancing round** — days to the next round of a split rebalancing (**D-4** · **Today**) and how many orders.
    If you have reserved orders at your broker, the day they go out comes first. With several accounts waiting, the
@@ -49,7 +63,7 @@ Puts the one thing to do next on your home screen. It checks these in order and 
 Tap it to go straight to that task — the rebalancing round, the contribution split or the account. It comes in small
 and medium sizes; medium lists the orders or each account's date on the right.
 
-- **No amounts or quantities.** Other people can see a home screen, so it shows names, weights and dates only.
+- **No amounts or quantities.** Other people can see a home screen, so it shows names, weights, moves and dates only.
 - The widget never goes online by itself. It redraws when you open the app and counts the days down at midnight on its own.
 - To add it: long-press the home screen and choose **Add widget** (Android: **Widgets**; Mac: right-click the desktop › **Edit Widgets**), then pick Golgoru.
 
