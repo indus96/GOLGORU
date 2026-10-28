@@ -12,7 +12,7 @@ a few seconds. Lists live on their own tabs, not here.
    They blur, and show only while you press and hold.
 2. **The mix treemap** — a block per class, sized by share (from 3.6.0). **Colour is today's move** — red up, blue down, deeper for
    bigger moves; real estate · savings · cash (no daily price) stay beige. After a month of history you can switch between Today and 1M,
-   and the 1-month view also shows how each share changed. Tap a block or **See details** for the [portfolio report](portfolio-analysis.md).
+   and the 1-month view also shows how each share changed. When everything is one type (all ETFs, say), the blocks split by **holding** instead (from 3.7.1). Tap a block or **See details** for the [portfolio report](portfolio-analysis.md).
 3. **Market temperature** — whether the Korean and US markets are cold, normal or hot (from 3.5.0). Tap for each gauge's
    trend and how your portfolio moved with it ([market temperature](market-temperature.md)).
 4. **What to do now** — appears only when something has drifted from its target by more than
