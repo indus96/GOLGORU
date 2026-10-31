@@ -33,6 +33,14 @@
   .stores span.soon{font-size:14px;color:var(--hint);padding:7px 0}
   .links{margin-top:10px;font-size:13px;color:var(--hint)}
   .links a{text-decoration:underline;text-underline-offset:2px;margin-right:12px}
+  details.shots{margin-top:12px}
+  details.shots summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--gold);list-style:none;display:inline-flex;align-items:center;gap:6px}
+  details.shots summary::-webkit-details-marker{display:none}
+  details.shots summary::after{content:"";width:6px;height:6px;border-right:1.8px solid currentColor;border-bottom:1.8px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:transform .15s}
+  details.shots[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+  .strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 2px 6px;-webkit-overflow-scrolling:touch}
+  .strip img{height:360px;width:auto;border-radius:14px;border:1px solid var(--line);scroll-snap-align:start;flex:none;background:var(--bg)}
+  @media (max-width:520px){.strip img{height:300px}}
   footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--hint);font-size:13px}
   @media (max-width:520px){.app{flex-direction:column}.app img.icon{width:60px;height:60px;border-radius:14px}}
 </style>
@@ -56,6 +64,7 @@
       <div class="meta">iPhone · iPad · Mac · Android</div>
       <div class="stores"><a href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener">App Store</a><a href="https://play.google.com/store/apps/details?id=com.indus96.golgoru" target="_blank" rel="noopener">Google Play</a></div>
       <div class="links"><a href="../">제품 소개</a><a href="../docs/privacy.html">개인정보 처리방침</a></div>
+      <details class="shots"><summary>화면 보기</summary><div class="strip"><img src="../images/family/golgoru/1.jpg" alt="골고루 화면 1" loading="lazy" width="166" height="360"><img src="../images/family/golgoru/2.jpg" alt="골고루 화면 2" loading="lazy" width="166" height="360"><img src="../images/family/golgoru/3.jpg" alt="골고루 화면 3" loading="lazy" width="166" height="360"><img src="../images/family/golgoru/4.jpg" alt="골고루 화면 4" loading="lazy" width="166" height="360"><img src="../images/family/golgoru/5.jpg" alt="골고루 화면 5" loading="lazy" width="166" height="360"></div></details>
     </div>
   </article>
   <article class="app">
@@ -66,6 +75,7 @@
       <div class="meta">iPhone · Android</div>
       <div class="stores"><a href="https://apps.apple.com/kr/app/id6803049427" target="_blank" rel="noopener">App Store</a><span class="soon" data-play="com.indus96.medicalclaim">Google Play 준비 중</span></div>
       <div class="links"><a href="medical-claim/privacy.html">개인정보 처리방침</a><a href="medical-claim/support.html">지원</a></div>
+      <details class="shots"><summary>화면 보기</summary><div class="strip"><img src="../images/family/medical-claim/1.jpg" alt="복지비 청구 화면 1" loading="lazy" width="166" height="360"><img src="../images/family/medical-claim/2.jpg" alt="복지비 청구 화면 2" loading="lazy" width="166" height="360"><img src="../images/family/medical-claim/3.jpg" alt="복지비 청구 화면 3" loading="lazy" width="166" height="360"><img src="../images/family/medical-claim/4.jpg" alt="복지비 청구 화면 4" loading="lazy" width="166" height="360"><img src="../images/family/medical-claim/5.jpg" alt="복지비 청구 화면 5" loading="lazy" width="166" height="360"></div></details>
     </div>
   </article>
   <article class="app">
@@ -76,6 +86,7 @@
       <div class="meta">iPhone · Android</div>
       <div class="stores"><a href="https://apps.apple.com/kr/app/id6823171086" target="_blank" rel="noopener">App Store</a><span class="soon" data-play="com.indus96.metronome">Google Play 준비 중</span></div>
       <div class="links"><a href="metronome/privacy.html">개인정보 처리방침</a><a href="metronome/support.html">지원</a></div>
+      <details class="shots"><summary>화면 보기</summary><div class="strip"><img src="../images/family/metronome/1.jpg" alt="메트로놈 - 템포 트레이너 화면 1" loading="lazy" width="166" height="360"><img src="../images/family/metronome/2.jpg" alt="메트로놈 - 템포 트레이너 화면 2" loading="lazy" width="166" height="360"><img src="../images/family/metronome/3.jpg" alt="메트로놈 - 템포 트레이너 화면 3" loading="lazy" width="166" height="360"><img src="../images/family/metronome/4.jpg" alt="메트로놈 - 템포 트레이너 화면 4" loading="lazy" width="166" height="360"></div></details>
     </div>
   </article>
   <article class="app">
@@ -86,6 +97,7 @@
       <div class="meta">iPhone · Android</div>
       <div class="stores"><span class="soon" data-appstore="6828151139">곧 App Store에서 받을 수 있어요</span></div>
       <div class="links"><a href="mwotaji/privacy.html">개인정보 처리방침</a><a href="mwotaji/support.html">지원</a></div>
+      <details class="shots"><summary>화면 보기</summary><div class="strip"><img src="../images/family/mwotaji/1.jpg" alt="뭐타지 화면 1" loading="lazy" width="166" height="360"><img src="../images/family/mwotaji/2.jpg" alt="뭐타지 화면 2" loading="lazy" width="166" height="360"><img src="../images/family/mwotaji/3.jpg" alt="뭐타지 화면 3" loading="lazy" width="166" height="360"></div></details>
     </div>
   </article>
 </section>
