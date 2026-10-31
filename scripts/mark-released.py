@@ -8,6 +8,7 @@ App Store 공개 조회(itunes lookup — 키 · 토큰 없음)가 돌려주는 
 
 앱 소개(apps/index.html · en/apps/index.html)도 같이 본다 — 아직 안 나온 앱은 `data-appstore="앱 ID"` 를 단
 「준비 중」 자리로 두고, 그 ID 가 App Store 에 뜨면 App Store 버튼으로 바꾸고 `data-appstore-tag` 알약을 지운다.
+Play 도 같다 — `data-play="패키지"` 자리는 Play 공개 페이지가 열리면(비공개 테스트에서는 404) Google Play 버튼이 된다.
 """
 from __future__ import annotations
 
@@ -15,6 +16,7 @@ import json
 import pathlib
 import re
 import sys
+import urllib.error
 import urllib.request
 
 APP_ID = "6797157864"  # 골고루(공개판). 앱 식별자일 뿐 비밀이 아니다.
@@ -24,11 +26,33 @@ APP_PAGES = {ROOT / "apps" / "index.html": "https://apps.apple.com/kr/app/id{id}
              ROOT / "en" / "apps" / "index.html": "https://apps.apple.com/app/id{id}"}
 SOON = re.compile(r'<span class="soon" data-appstore="(\d+)">[^<]*</span>')
 TAG = r'<span class="tag" data-appstore-tag="{id}">[^<]*</span>'
+PLAY_SOON = re.compile(r'<span class="soon" data-play="([\w.]+)">[^<]*</span>')
 
 
 def is_live(app_id: str) -> bool:
     with urllib.request.urlopen(f"https://itunes.apple.com/lookup?id={app_id}&country=kr", timeout=20) as response:
         return bool(json.load(response).get("results"))
+
+
+def is_on_play(package: str) -> bool:
+    request = urllib.request.Request(f"https://play.google.com/store/apps/details?id={package}&hl=ko&gl=KR",
+                                     headers={"user-agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            return response.status == 200
+    except urllib.error.HTTPError:
+        return False
+
+
+def release_play(text: str, on_play) -> str:
+    """「Google Play 준비 중」 자리 중 프로덕션에 나간 앱을 버튼으로 바꾼다."""
+    for package in set(PLAY_SOON.findall(text)):
+        if not on_play(package):
+            continue
+        button = (f'<a href="https://play.google.com/store/apps/details?id={package}" '
+                  f'target="_blank" rel="noopener">Google Play</a>')
+        text = re.sub(r'<span class="soon" data-play="' + re.escape(package) + r'">[^<]*</span>', button, text)
+    return text
 
 
 def release_apps(text: str, link: str, live) -> str:
@@ -61,7 +85,7 @@ def main() -> int:
             continue
         html = page.read_text()
         try:
-            updated = release_apps(html, link, is_live)
+            updated = release_play(release_apps(html, link, is_live), is_on_play)
         except Exception as error:  # 조회 실패는 다음 시각에 다시
             print(f"앱 소개 조회 실패 — {error}")
             continue
@@ -92,6 +116,9 @@ if __name__ == "__main__":
         assert release_apps(page, "https://x/id{id}", lambda _: False) == page
         done = release_apps(page, "https://x/id{id}", lambda _: True)
         assert 'href="https://x/id123"' in done and "data-appstore" not in done, done
+        play = '<a href="a">App Store</a><span class="soon" data-play="com.x.y">준비 중</span>'
+        assert release_play(play, lambda _: False) == play
+        assert 'details?id=com.x.y' in release_play(play, lambda _: True) and "data-play" not in release_play(play, lambda _: True)
         print("ok")
         raise SystemExit(0)
     raise SystemExit(main())
