@@ -47,10 +47,11 @@ when **they press save**.
 Budget records (date, amount, category, memo) and your categories, budgets, repeating records and pockets are saved
 **on your device**, one file per year. On Apple devices they also sync through **your own iCloud** (CloudKit private
 database) so your iPhone, iPad and Mac show the same budget; the app provider cannot access it. Devices not signed in to
-iCloud do not sync.
+iCloud do not sync. On Android they sync only if you turn on Settings › Sync between devices (Google Drive) — as one file,
+"골고루-가계부.json", in **your own Google Drive**, using the permission that sees only files this app created (`drive.file`).
 
 - Budget records are **never sent to the app provider's servers, the AI briefing or the Community.**
-- Importing a card-history screenshot sends no image — text is read on the device by the operating system (Apple Vision),
+- Importing a card-history screenshot sends no image — text is read on the device (Apple Vision on Apple devices, the on-device ML Kit model on Android),
   and the image is not stored.
 - The budget shown in Sample mode is example data; edits made there live in a temporary folder and disappear when the app restarts.
 - Settings › Budget › Export as CSV lets you take your records out as a file; you choose where it goes.
