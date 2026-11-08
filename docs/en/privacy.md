@@ -3,7 +3,7 @@
 Golgoru (“the app”) does not store your asset data on our servers.
 This page explains what the app handles, where it is kept, and what leaves the device.
 
-> Last updated: 2026-10-03
+> Last updated: 2026-11-08
 
 ## What the app handles
 
@@ -41,6 +41,19 @@ we cannot reach that area. On Android it stays on the device.
 A **share link carries the portfolio after the `#`** in the address. URL fragments **are never sent to a server**,
 so nothing is stored on our servers and nothing appears in access logs. It joins the other person's device only
 when **they press save**.
+
+### Budget (from 4.0)
+
+Budget records (date, amount, category, memo) and your categories, budgets, repeating records and pockets are saved
+**on your device**, one file per year. On Apple devices they also sync through **your own iCloud** (CloudKit private
+database) so your iPhone, iPad and Mac show the same budget; the app provider cannot access it. Devices not signed in to
+iCloud do not sync.
+
+- Budget records are **never sent to the app provider's servers, the AI briefing or the Community.**
+- Importing a card-history screenshot sends no image — text is read on the device by the operating system (Apple Vision),
+  and the image is not stored.
+- The budget shown in Sample mode is example data; edits made there live in a temporary folder and disappear when the app restarts.
+- Settings › Budget › Export as CSV lets you take your records out as a file; you choose where it goes.
 
 ### Community
 
