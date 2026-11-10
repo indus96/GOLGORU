@@ -63,6 +63,13 @@ It checks these in order and shows the first that applies.
 Tap it to go straight to that task — the rebalancing round, the contribution split or the account. It comes in small
 and medium sizes; medium lists the orders or each account's date on the right.
 
+The **large size** (from 4.0.0, iPhone · iPad · Mac) shows your mix and up next together without choosing, plus market
+temperature when there is room. On iPad and Mac, extra large puts your mix and up next side by side.
+
+The **budget widget** (from 4.0.0) is separate — this month's remaining budget with a bar, and **+** opens a new record.
+Wider sizes show your top three categories as chips; tap one to record in that category ([Budget](budget.html)).
+**It is the only widget that shows amounts**, so whether to place it is up to you.
+
 - **No amounts or quantities.** Other people can see a home screen, so it shows names, weights, moves and dates only.
 - The widget never goes online by itself. It redraws when you open the app and counts the days down at midnight on its own.
 - To add it: long-press the home screen and choose **Add widget** (Android: **Widgets**; Mac: right-click the desktop › **Edit Widgets**), then pick Golgoru.

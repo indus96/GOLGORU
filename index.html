@@ -42,6 +42,7 @@
       <a href="#dashboard">홈</a>
       <a href="#analysis">구성 리포트</a>
       <a href="#rebalance">조정안</a>
+      <a href="#budget">가계부</a>
       <a href="#capture">캡처로 채우기</a>
       <a href="docs/portfolio-draft.html">짜보기</a>
       <a href="#mac">맥·아이패드</a>
@@ -76,6 +77,7 @@
       <span class="chip">🩺 투자 건강점수</span>
       <span class="chip">⚖️ 목표 배분 차이</span>
       <span class="chip">📰 뉴스·짜보기</span>
+      <span class="chip">💳 가계부</span>
     </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://apps.apple.com/kr/app/id6797157864" data-store="apple" target="_blank" rel="noopener">App Store에서 받기</a>
@@ -107,6 +109,10 @@
     2.0부터는 <b>짜보기</b>로 아직 사지 않은 조합을 미리 시뮬레이션하고,
     <b>나눔터</b>에서 남이 짜 본 조합을 보거나 내 조합을 나눌 수 있습니다.
     나눔터에 올라가는 것은 구성과 비중뿐이며, 금액과 계좌는 담기지 않습니다.
+  </p>
+  <p class="sub" style="max-width:760px">
+    4.0부터는 <b>가계부</b> 탭이 생겼습니다. 쓴 돈과 자산으로 보낸 돈을 나눠 적고, 카드 내역 캡처로 한 번에 가져옵니다.
+    가계부 기록도 기기와 내 iCloud에만 있고 서버로 가지 않습니다.
   </p>
   <p class="sub" style="max-width:760px">
     개발자는 개인 개발자 indus96이며, 문의는 indus96@gmail.com 으로 받습니다.
@@ -249,7 +255,33 @@
     </div>
   </div>
 
-  <div class="feat rev">
+  <div class="feat rev" id="budget">
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="images/app/phone-budget.png" alt="가계부 — 이번 달 들어온 돈 · 쓴 돈 · 자산으로 · 통장에 남음">
+          <img src="images/app/phone-budget-category.png" alt="가계부 항목별 — 쓴 돈 블록과 항목 예산">
+          <img src="images/app/phone-budget-record.png" alt="가계부 기록 — 지출 · 수입 · 자산으로, 항목과 반복">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="txt">
+      <h3>가계부 <span style="font-size:13px;color:var(--gold)">4.0 새 탭</span></h3>
+      <ul>
+        <li><b>쓴 돈 · 들어온 돈 · 자산으로 보낸 돈</b>을 나눠 적습니다 — 저축 · 투자가 지출로 섞이지 않습니다</li>
+        <li>이번 달 남은 예산 · 하루 평균 · 예산보다 많이 쓴 항목을 한 장에, 항목별은 블록으로</li>
+        <li>항목 예산 · 반복 기록(매주 · 매달 · 매년) · 주머니(모으고 빼는 봉투)</li>
+        <li><b>카드 내역 캡처</b>를 붙여넣으면 여러 줄을 한 번에 가져옵니다 — 이미 적은 줄은 꺼 둡니다</li>
+        <li>메모를 치면 지난 기록에서 항목을 골라 줍니다 · 설정에서 CSV로 내보내기</li>
+        <li><b>가계부 위젯</b> — 남은 예산을 보고 「+」로 바로 기록</li>
+        <li>기록은 기기와 내 iCloud(안드로이드는 켠 경우 내 드라이브)에만 — 서버 · AI로 보내지 않습니다</li>
+      </ul>
+      <a class="more" href="docs/budget.html">가계부 문서 →</a>
+    </div>
+  </div>
+
+  <div class="feat">
     <div class="shot phone"><img src="images/app/phone-news.png" alt="뉴스 — 보유 종목 기사와 증권사 리포트"></div>
     <div class="txt">
       <h3>뉴스</h3>
@@ -358,15 +390,15 @@
   <div class="label">현재 상태</div>
   <h2>세 플랫폼에 공개되었습니다</h2>
   <div class="status"><ul>
-    <li class="ok">2.4.0 공개 — iPhone · iPad · Mac App Store</li>
-    <li class="ok">2.4.0 공개 — Android Google Play</li>
+    <li class="ok">4.0.0 공개 — iPhone · iPad · Mac App Store</li>
+    <li class="ok">4.0.0 공개 — Android Google Play</li>
     <li class="ok">2.0 전면 개편 — 홈 · 자산 · 짜보기 · 뉴스 네 탭으로 재구성</li>
     <li class="ok">짜보기 — ETF·개별 종목 시뮬레이션과 지난 성과</li>
     <li class="ok">나눔터 — 남이 짜 본 조합 보기 · 내 조합 올리기</li>
     <li class="ok">구성 리포트 — 건강점수 · 노출·분산 · 배당 · 추정</li>
     <li class="ok">캡처로 종목 가져오기 · 기기 간 동기화</li>
     <li class="ok">맥·아이패드 와이드 레이아웃</li>
-    <li class="soon">2.5.0 — 달러 자산·기간 수익·캡처 개선 (준비 중)</li>
+    <li class="ok">4.0 — 가계부 탭 · 가계부 위젯 · 위젯 큰 크기</li>
   </ul></div>
   <!-- 새 버전이 심사 중일 때 "그게 뭔데"로 이어지는 길. 이게 없으면 위 한 줄이
        무슨 기능인지 알 방법이 없다. -->

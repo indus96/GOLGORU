@@ -39,6 +39,7 @@
       <a href="#dashboard">Home</a>
       <a href="#analysis">Portfolio report</a>
       <a href="#rebalance">Adjustment plan</a>
+      <a href="#budget">Budget</a>
       <a href="#capture">Screenshot import</a>
       <a href="docs/portfolio-draft.html">Build</a>
       <a href="#mac">Mac · iPad</a>
@@ -68,6 +69,7 @@
       <span class="chip">🩺 Portfolio health score</span>
       <span class="chip">⚖️ Gap to your targets</span>
       <span class="chip">📰 News · Build</span>
+      <span class="chip">💳 Budget</span>
     </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://apps.apple.com/app/id6797157864" data-store="apple" target="_blank" rel="noopener">Get it on the App Store</a>
@@ -100,6 +102,10 @@
     From 2.0 you can also <b>build</b> a mix you have not bought yet and try it out, and use the
     <b>community</b> to see what other people put together or share your own. Only the holdings and
     weights go up — never the amounts or the accounts.
+  </p>
+  <p class="sub" style="max-width:760px">
+    From 4.0 there is a <b>Budget</b> tab. Record spending apart from money sent to your accounts, and bring in card
+    statements from a screenshot. Budget records also stay on your device and your iCloud, never our servers.
   </p>
   <p class="sub" style="max-width:760px">
     Golgoru is made by indus96, an independent developer. Questions: indus96@gmail.com
@@ -236,7 +242,33 @@
     </div>
   </div>
 
-  <div class="feat rev">
+  <div class="feat rev" id="budget">
+    <div class="shot phone">
+      <div class="gallery" data-gallery>
+        <div class="frames">
+          <img src="../images/app/phone-budget.png" alt="Budget — this month's income, spending, sent to accounts and what is left">
+          <img src="../images/app/phone-budget-category.png" alt="Budget by category — spending blocks and category budgets">
+          <img src="../images/app/phone-budget-record.png" alt="Budget record — spending, income or to accounts, with category and repeat">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="txt">
+      <h3>Budget <span style="font-size:13px;color:var(--gold)">new tab in 4.0</span></h3>
+      <ul>
+        <li>Record <b>spending, income and money sent to your accounts</b> separately — saving and investing never count as spending</li>
+        <li>This month's remaining budget, daily average and over-budget categories on one card; categories as blocks</li>
+        <li>Category budgets · repeating records (weekly · monthly · yearly) · pockets (envelopes that collect and spend)</li>
+        <li>Paste <b>card statement screenshots</b> to bring in many rows at once — rows you already have are left off</li>
+        <li>Memos suggest a category from your past records · CSV export in Settings</li>
+        <li><b>Budget widget</b> — see what is left and tap + to record</li>
+        <li>Records stay on your device and your iCloud (Android: your Drive, if you turn it on) — never our servers or AI</li>
+      </ul>
+      <a class="more" href="docs/budget.html">Budget page →</a>
+    </div>
+  </div>
+
+  <div class="feat">
     <div class="shot phone"><img src="../images/app/phone-news.png" alt="News — articles about your holdings"></div>
     <div class="txt">
       <h3>News</h3>
@@ -340,15 +372,15 @@
   <div class="label">Where it stands</div>
   <h2>Out on all three platforms</h2>
   <div class="status"><ul>
-    <li class="ok">2.4.0 — iPhone · iPad · Mac App Store</li>
-    <li class="ok">2.4.0 — Android Google Play</li>
+    <li class="ok">4.0.0 — iPhone · iPad · Mac App Store</li>
+    <li class="ok">4.0.0 — Android Google Play</li>
     <li class="ok">2.0 rebuild — Home · Assets · Build · News, four tabs</li>
     <li class="ok">Build — ETF and single-stock simulation with past performance</li>
     <li class="ok">Community — see what others put together · post your own</li>
     <li class="ok">Portfolio report — health score · exposure · dividends · projection</li>
     <li class="ok">Import holdings from a screenshot · sync between devices</li>
     <li class="ok">Wide layout for Mac and iPad</li>
-    <li class="soon">2.5.0 — dollar holdings, period returns, screenshot import (coming)</li>
+    <li class="ok">4.0 — Budget tab · budget widget · large widgets</li>
   </ul></div>
 </div></section>
 

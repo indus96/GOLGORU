@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golgoru · Budget</title>
+<meta property="og:site_name" content="Golgoru">
+<meta name="application-name" content="Golgoru">
+<meta name="description" content="The third tab is Budget. It is not just a list of what you spent — it shows how the money that came in this month split into spending, money sent to your…">
+<meta property="og:title" content="Golgoru · Budget">
+<meta property="og:description" content="The third tab is Budget. It is not just a list of what you spent — it shows how the money that came in this month split into spending, money sent to your…">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/en/docs/budget.html">
+<meta property="og:url" content="https://golgoru.app/en/docs/budget.html">
+<link rel="alternate" hreflang="ko" href="https://golgoru.app/docs/budget.html">
+<link rel="alternate" hreflang="en" href="https://golgoru.app/en/docs/budget.html">
+<link rel="alternate" hreflang="x-default" href="https://golgoru.app/docs/budget.html">
+<link rel="stylesheet" href="../../docs/doc.css?v=132868b7">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../../images/app-icon.png" alt="" width="26" height="26">Golgoru</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">Menu</button>
+  <div class="nav-links">
+    <a href="../#about">About</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">Features</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">Home</a>
+      <a href="../#analysis">Portfolio report</a>
+      <a href="../#rebalance">Adjustment plan</a>
+      <a href="../#budget">Budget</a>
+      <a href="../#capture">Screenshot import</a>
+      <a href="../docs/portfolio-draft.html">Build</a>
+      <a href="../#mac">Mac · iPad</a>
+      </div>
+    </div>
+    <a href="../#principles">Principles</a>
+    <a href="../#download">Download</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">Get the app</a>
+  <a class="lang" href="../../docs/budget.html" hreflang="ko"
+     >한국어</a>
+</div></nav>
+<header class="doc-hero"><div class="wrap">
+  <a class="back" href="../#budget"
+     onclick="return golgoruBack(event)">← Golgoru home</a>
+  <div class="eyebrow">Budget</div>
+  <h1>Budget</h1>
+  <p class="lead">The third tab is <strong>Budget</strong>. It is not just a list of what you spent — it shows how the money that came in this month split into <strong>spending, money sent to your accounts, and what is left in the bank</strong>. Money sent to savings, pension or brokerage accounts is recorded as <strong>To assets</strong>, so it never mixes with spending.</p>
+  <div class="hero-img phone"><img src="../../images/app/phone-budget.png" alt="Budget screen"></div>
+</div></header>
+<main class="doc-body"><div class="wrap narrow">
+<blockquote><strong>Works with:</strong> the sample · your own assets · from 4.0.0 (iPhone · iPad · Mac · Android)</blockquote>
+<h2>Recording</h2>
+<p>Tap <strong>+</strong> at the bottom right (or + on the Home budget card, or the budget widget).</p>
+<ul><li><strong>Spending · Income · To assets</strong>, an amount, a memo and a date.</li><li><strong>Category</strong> — pick it from the chips. Type a memo and it picks the category you used last time for the same memo, and offers memo suggestions.</li><li><strong>Repeat</strong> — none · weekly · monthly · yearly, based on the date you picked (the 31st falls on the last day of shorter months; 29 February falls on the 28th in other years). Repeated records carry a small tag, and editing one lets you stop the repeat from then on.</li></ul>
+<h2>The month</h2>
+<ul><li>The top card — days left, <strong>remaining budget</strong>, income and a bar of how it split into spending · to assets · left in the bank.</li><li>Daily average spending and <strong>categories over budget</strong> and by how much.</li><li>Records by day below, and for the current month, repeats still to come.</li><li>Use ‹ › at the top to see earlier months.</li></ul>
+<h2>By category</h2>
+<ul><li>Spending as <strong>category blocks</strong> — size is share, and a category over budget gets an orange outline.</li><li>Grouped into <strong>Fixed</strong> (the same each month) and <strong>Living</strong> (changes month to month), each with spent / budget.</li><li><strong>To assets</strong> lists what went to accounts and pockets next to the plan — rows with a repeat show as planned, others as not yet.</li><li>Tap a category for a <strong>6-month bar chart</strong> and its records, and record straight into it.</li></ul>
+<h2>Pockets</h2>
+<p>Pockets are envelopes for a purpose — travel, gifts, the car.</p>
+<ul><li>Choose the <strong>categories that fill it</strong> (To assets categories) and <strong>the ones that draw from it</strong> (spending categories), plus a starting balance and date.</li><li>Balance = starting balance + money in − money spent. Each pocket shows this year's in and out and its balance.</li><li><strong>Check against the bank</strong> — enter your bank balance and it shows only the difference from the pocket total (the number stays on this device).</li></ul>
+<h2>Import from card screenshots</h2>
+<p><strong>Import from card screenshots</strong> on the Budget tab → screenshots of a card or budgeting app's transaction list (several at once), a file on Mac, or paste.</p>
+<ul><li>It reads date, merchant and amount lines into a list. Turn rows on or off, change categories, then <strong>Save N</strong>.</li><li>Across several screenshots, dates carry over and overlapping rows are counted once.</li><li>Rows you <strong>already recorded</strong> (same day, same amount) are left off.</li><li>The text is read <strong>on your device</strong> (Apple Vision on Apple devices, the on-device ML Kit model on Android). Images are never sent or stored.</li><li>If a card app marks a refund only with the word for "cancelled" (no minus sign), it may read as spending — just turn that row off.</li></ul>
+<h2>Home and widget</h2>
+<ul><li>The <strong>budget card</strong> on Home — this month's income, spending, to assets and left in the bank, with + to record.</li><li>The <strong>budget widget</strong> — remaining budget (or spending, without a budget) and a bar. Small opens a new record; wider sizes show your top three categories as chips that record into that category. Large (iPhone · iPad · Mac) adds category progress and recent records. <strong>It is the only Golgoru widget that shows amounts</strong> — other people can see a home screen, so placing it is up to you (<a href="dashboard.html">Home › Home screen widget</a>).</li></ul>
+<h2>Settings › Budget</h2>
+<ul><li><strong>Categories</strong> — name, group (fixed · living) and monthly budget, and new categories.</li><li><strong>Repeating records</strong> — see what repeats; tap to edit, swipe to stop.</li><li><strong>Export CSV</strong> — a year's records as a file. You choose where it goes.</li></ul>
+<h2>Where your records live</h2>
+<ul><li>On your device, one file per year. On Apple devices they sync through <strong>your own iCloud</strong> (CloudKit private database) so iPhone, iPad and Mac see the same budget.</li><li>On Android, only if you turn on device sync, they go to a single file, “골고루-가계부.json”, in <strong>your own Google Drive</strong> (with <code>drive.file</code>, which can see only files this app created).</li><li>Budget records are <strong>never sent to Golgoru's servers, the AI briefing or the community.</strong> See the <a href="privacy.html">privacy policy</a>.</li><li>The budget in the sample is an example. You can change it, but it resets when you reopen the app.</li></ul>
+<h2>What it does not do</h2>
+<p>No card or bank linking, no reading texts or notifications, no AI categorising. Screenshots and memo suggestions keep recording quick enough.</p>
+</div></main>
+<section class="more-docs"><div class="wrap narrow">
+  <h2>Other pages</h2>
+  <div class="doc-cards"><a class="doc-card" href="dashboard.html">Home</a><a class="doc-card" href="portfolio-analysis.html">Portfolio report</a><a class="doc-card" href="asset-ranking.html">Assets</a><a class="doc-card" href="allocation-rebalancing.html">Adjustment plan</a><a class="doc-card" href="market-temperature.html">Market temperature</a><span class="doc-card current">Budget</span><a class="doc-card" href="news-reports.html">News · reports</a><a class="doc-card" href="portfolio-draft.html">Build</a><a class="doc-card" href="broker-connection.html">Brokerage connection</a><a class="doc-card" href="data-security.html">Data · security</a><a class="doc-card" href="getting-started.html">Getting started</a><a class="doc-card" href="privacy.html">Privacy</a></div>
+</div></section>
+<footer><div class="wrap foot-in">
+  <div>© 2026 Golgoru · spread it evenly.</div>
+  <div><a href="../">Home</a> · <a href="getting-started.html">Getting started</a> · <a href="privacy.html">Privacy policy</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script>
+function golgoruBack(event) {
+  try {
+    var from = document.referrer ? new URL(document.referrer) : null;
+    if (from && from.origin === location.origin && /\/(index\.html)?$/.test(from.pathname)) {
+      event.preventDefault();
+      history.back();
+      return false;
+    }
+  } catch (e) {}
+  return true;
+}
+</script>
+<script src="../../site.js?v=3bf37522" defer></script>
+</body></html>
