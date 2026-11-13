@@ -58,9 +58,28 @@ a file on Mac, or paste.
 
 ## Settings › Budget
 
-- **Categories** — name, group (fixed · living) and monthly budget, and new categories.
+From 4.1.0 the first screen is a short index — tap to go one step in (on wide Mac and iPad screens it opens as a popup).
+
+- **Categories · budgets** — pick spending, to assets or income at the top; spending is grouped (fixed, living, optional, occasional).
+  Change a name, group or monthly budget, or add a category. Hidden categories are folded under "Hidden" at the bottom.
 - **Repeating records** — see what repeats; tap to edit, swipe to stop.
-- **Export CSV** — a year's records as a file. You choose where it goes.
+- **Move · backup** — see "Moving to another device" below.
+- **CSV import · export** — a year's records as a CSV file, and CSV import (below).
+
+## Moving to another device · importing
+
+> From 4.1.0
+
+- **Create move file** — records, categories, budgets, repeats and pockets in one file (.json) you save or send where you like.
+  Devices on the same Apple account already stay in step through iCloud, so this is for **iPhone ↔ Android** or a separate backup.
+- **Import move file** — pick the file and it first shows the period, records, those already here, categories, repeats and pockets.
+  **Merge** keeps everything already here: for the same record the later edit wins, and default categories just set up on a new device
+  take the budgets and names from the old one. Importing twice does not add rows twice.
+- **Import from CSV** — Golgoru's own CSV goes straight in; for another budgeting app it guesses the date, amount, memo, category and
+  type columns, which you can change. Korean Excel CSVs (CP949) are read too. Rows go through the same review as screenshot import;
+  rows already recorded and transfers (card bills) start unticked. Save Excel files (.xlsx) as CSV first. A CSV holds records only,
+  so budgets, repeats and pockets do not move.
+- Files are read and written on your device only — never sent to Golgoru's servers.
 
 ## Where your records live
 
