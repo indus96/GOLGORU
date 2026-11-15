@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>카드 내역 캡처로 가계부 쓰기 — 연동 없이, 일주일에 5분 | 골고루 블로그</title>
+<meta property="og:site_name" content="골고루">
+<meta name="application-name" content="골고루">
+<meta name="description" content="가계부를 그만두는 이유는 대개 하나입니다. 적는 게 귀찮아서요. 그래서 골고루 가계부는 카드사 앱의 이용내역 화면을 캡처해 한꺼번에 채우도록 만들었습니다. 은행 · 카드사 계정은 연결하지 않습니다.">
+<meta property="og:title" content="카드 내역 캡처로 가계부 쓰기 — 연동 없이, 일주일에 5분">
+<meta property="og:description" content="가계부를 그만두는 이유는 대개 하나입니다. 적는 게 귀찮아서요. 그래서 골고루 가계부는 카드사 앱의 이용내역 화면을 캡처해 한꺼번에 채우도록 만들었습니다. 은행 · 카드사 계정은 연결하지 않습니다.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://golgoru.app/blog/card-capture-budget.html">
+<meta property="og:url" content="https://golgoru.app/blog/card-capture-budget.html">
+<meta name="apple-itunes-app" content="app-id=6797157864">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "카드 내역 캡처로 가계부 쓰기 — 연동 없이, 일주일에 5분", "datePublished": "2026-11-15", "description": "가계부를 그만두는 이유는 대개 하나입니다. 적는 게 귀찮아서요. 그래서 골고루 가계부는 카드사 앱의 이용내역 화면을 캡처해 한꺼번에 채우도록 만들었습니다. 은행 · 카드사 계정은 연결하지 않습니다.", "mainEntityOfPage": "https://golgoru.app/blog/card-capture-budget.html", "author": {"@type": "Organization", "name": "골고루"}}</script>
+<link rel="stylesheet" href="../docs/doc.css?v=e297be5e">
+</head><body>
+<nav><div class="wrap nav-in">
+  <!-- 앱 이름은 "골고루" 하나다. 로마자를 붙여 쓰면 텍스트로 읽을 때
+       "골고루GOLGORU"가 되어, OAuth 동의 화면 이름과 자동 비교에서 어긋난다. -->
+  <a class="brand" href="../"><img src="../images/app-icon.png" alt="" width="26" height="26">골고루</a>
+  <div class="menu">
+    <button class="menu-btn" type="button" aria-expanded="false">메뉴</button>
+  <div class="nav-links">
+    <a href="../#about">앱 소개</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" type="button" aria-expanded="false">기능</button>
+      <div class="nav-sub">
+      <a href="../#dashboard">홈</a>
+      <a href="../#analysis">구성 리포트</a>
+      <a href="../#rebalance">조정안</a>
+      <a href="../#budget">가계부</a>
+      <a href="../#capture">캡처로 채우기</a>
+      <a href="../docs/portfolio-draft.html">짜보기</a>
+      <a href="../#mac">맥·아이패드</a>
+      </div>
+    </div>
+    <a href="../#principles">원칙</a>
+    <a href="../c/">나눔터</a>
+    <a href="../blog/">블로그</a>
+    <a href="../v/">영상</a>
+    <a href="../#download">다운로드</a>
+  </div>
+  </div>
+  <a class="cta" href="../#download" data-cta="1">앱 받기</a>
+  <a class="lang" href="../en/" hreflang="en"
+     >English</a>
+</div></nav>
+<header class="doc-hero post-hero"><div class="wrap narrow">
+  <a class="back" href="./">← 블로그</a>
+  <p class="post-meta"><span class="eyebrow">사용법</span><time datetime="2026-11-15">2026. 11. 15</time> · 골고루 만든 사람</p>
+  <h1>카드 내역 캡처로 가계부 쓰기 — 연동 없이, 일주일에 5분</h1>
+  <p class="lead">가계부를 그만두는 이유는 대개 하나입니다. 적는 게 귀찮아서요. 그래서 골고루 가계부는 카드사 앱의 이용내역 화면을 캡처해 한꺼번에 채우도록 만들었습니다. 은행 · 카드사 계정은 연결하지 않습니다.</p>
+  <div class="hero-img wide"><img src="../images/blog/card-capture-hero.svg" alt=""></div>
+</div></header>
+<main class="doc-body post"><div class="wrap narrow">
+<h2>왜 연동이 아니라 캡처인가</h2>
+<p>자동으로 긁어 오는 가계부가 편한 건 압니다. 그런데 그러려면 카드사 · 은행 계정을 앱에 맡겨야 하고, 내 결제 내역이 누군가의 서버를 거칩니다. 골고루는 처음부터 <strong>자산 데이터를 기기 밖으로 내보내지 않는다</strong>는 원칙으로 만든 앱이라, 가계부만 예외로 둘 수는 없었습니다.</p>
+<p>그래서 고른 것이 캡처입니다. 어차피 카드사 앱에는 이용내역이 날짜순으로 정리돼 있으니, 그 화면을 사진으로 찍어 읽으면 됩니다.</p>
+<ul><li>글자는 <strong>기기 안에서</strong> 읽습니다. 아이폰 · 아이패드 · 맥은 Apple Vision, 안드로이드는 기기에 들어 있는 ML Kit 입니다.</li><li>캡처한 이미지는 어디로도 보내지 않고, 앱에 저장하지도 않습니다.</li><li>가계부 기록은 기기와 내 iCloud(안드로이드는 켠 경우에만 내 구글 드라이브)에만 있습니다.</li></ul>
+<h2>하는 방법</h2>
+<ol><li>카드사 앱에서 <strong>이용내역</strong> 화면을 엽니다. 길면 내려 가며 여러 장 캡처합니다.</li><li>골고루 가계부 탭에서 <strong>「카드 내역 캡처에서 가져오기」</strong>를 누르고 방금 찍은 사진을 고릅니다. 맥에서는 파일을 고르거나 붙여넣어도 됩니다.</li><li>읽은 줄이 목록으로 나옵니다. 날짜 · 가맹점 · 금액을 확인하고, 뺄 줄은 끄고, 항목이 틀린 줄은 바꿉니다.</li><li><strong>「N개 저장」</strong>을 누르면 끝입니다.</li></ol>
+<h2>여러 장을 찍어도 겹치지 않습니다</h2>
+<p>캡처로 가계부를 채울 때 제일 신경 쓰이는 게 중복입니다. 화면을 내리며 찍다 보면 앞 장 끝과 다음 장 처음이 겹치니까요. 이 부분은 앱이 알아서 걸러 줍니다.</p>
+<ul><li>여러 장이면 날짜가 다음 장으로 이어지고, <strong>겹쳐 찍힌 줄은 한 번만</strong> 셉니다.</li><li>같은 날 · 같은 금액으로 <strong>이미 적어 둔 줄은 꺼진 채로</strong> 나옵니다. 지난주에 가져온 내역을 또 찍어도 두 번 들어가지 않습니다.</li></ul>
+<figure><img src="../images/blog/card-capture-overlap.svg" alt="두 장에 겹쳐 찍힌 줄은 한 번만 들어갑니다"><figcaption>두 장에 겹쳐 찍힌 줄은 한 번만 들어갑니다</figcaption></figure>
+<p>그래서 "어디까지 찍었더라"를 기억할 필요가 없습니다. 넉넉하게 찍고, 꺼져 있는 줄은 그대로 두면 됩니다.</p>
+<h2>알아 둘 점 하나 — 취소 내역</h2>
+<p>카드사 앱이 결제 취소를 금액 앞 − 부호 없이 「취소」 글자로만 표시하는 경우가 있습니다. 이런 줄은 지출로 읽힐 수 있으니, 목록에서 그 줄을 꺼 주세요. 저장하기 전에 목록을 한 번 훑어보는 이유이기도 합니다.</p>
+<h2>제가 권하는 주기 — 일주일에 한 번</h2>
+<p>매일 적으려고 하면 며칠 못 갑니다. 반대로 한 달을 몰아서 하면 캡처가 너무 많아지고, 무엇을 샀는지 기억도 안 납니다.</p>
+<ul><li><strong>일주일에 한 번</strong>, 카드사 앱에서 지난 일주일 치를 두세 장 찍어 가져옵니다.</li><li>현금이나 계좌이체로 쓴 돈만 그때그때 <strong>「+」</strong>로 적습니다. 메모를 치면 지난번에 같은 메모로 고른 항목이 미리 골라져 있습니다.</li><li>월세 · 통신비 · 구독료처럼 정해진 돈은 <strong>반복</strong>으로 걸어 두면 알아서 들어옵니다.</li></ul>
+<p>이렇게 하면 한 주에 5분 안쪽입니다.</p>
+<h2>적고 나면 보이는 것</h2>
+<p>기록이 쌓이면 가계부 탭 맨 위 카드에서 이번 달 <strong>남은 예산</strong>과, 들어온 돈이 <strong>쓴 돈 · 자산으로 보낸 돈 · 통장에 남은 돈</strong>으로 어떻게 나뉘었는지를 봅니다. 적금 · 연금 · 증권 계좌로 보낸 돈은 지출이 아니라 「자산으로」로 따로 적히기 때문에, "이번 달 얼마나 썼나"와 "얼마나 모았나"가 섞이지 않습니다.</p>
+<div class="shots"><figure><img src="../images/app/phone-budget.png" alt="그 달 — 남은 예산과 돈이 나뉜 모습"><figcaption>그 달 — 남은 예산과 돈이 나뉜 모습</figcaption></figure><figure><img src="../images/app/phone-budget-category.png" alt="항목별 — 칸 크기가 쓴 비중"><figcaption>항목별 — 칸 크기가 쓴 비중</figcaption></figure></div>
+<p>항목별 화면에서는 어디에 많이 썼는지가 칸 크기로 보이고, 예산을 넘긴 항목은 주황 테두리로 표시됩니다.</p>
+<h2>다른 가계부에서 넘어온다면</h2>
+<p>쓰던 가계부 앱이 CSV 내보내기를 지원하면, 그 파일을 골고루에서 그대로 가져올 수 있습니다(설정 › 가계부 › CSV 가져오기). 날짜 · 금액 · 메모 칸은 앱이 짐작해 맞추고, 틀리면 바꿀 수 있습니다.</p>
+<h2>함께 보기</h2>
+<ul><li><a href="../docs/budget.html">가계부 안내 — 예산 · 반복 · 주머니</a></li><li><a href="../docs/privacy.html">개인정보처리방침 — 가계부 기록이 있는 곳</a></li></ul>
+<aside class="install">
+  <strong>골고루 받기</strong>
+  <p>로그인 없이 둘러보기부터 해 볼 수 있습니다. iPhone · iPad · Mac · Android.</p>
+  <div><a class="cta" href="https://apps.apple.com/kr/app/id6797157864" target="_blank" rel="noopener" data-store="apple">App Store</a><a class="cta" href="https://play.google.com/store/apps/details?id=com.indus96.golgoru&referrer=utm_source%3Dblog%26utm_campaign%3Dcard-capture-budget" target="_blank" rel="noopener" data-store="android">Google Play</a></div>
+</aside>
+</div></main>
+
+<footer><div class="wrap foot-in">
+  <div>© 2026 골고루 · 내 자산을 골고루.</div>
+  <div><a href="../">홈</a> · <a href="../docs/getting-started.html">시작하기</a> · <a href="../v/">영상</a> · <a href="../docs/privacy.html">개인정보처리방침</a> · <a href="https://github.com/indus96/GOLGORU" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="foot-sns"><a href="https://www.instagram.com/golgoru.app/" target="_blank" rel="noopener">인스타그램</a> · <a href="https://www.youtube.com/@golgoru_app" target="_blank" rel="noopener">유튜브</a> · <a href="https://x.com/golgoru_app" target="_blank" rel="noopener">X</a></div>
+</div></footer>
+<script src="../site.js?v=3bf37522" defer></script>
+</body></html>
