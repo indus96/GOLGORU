@@ -1,0 +1,11 @@
+# 블로그 예약 게시 방아쇠. 비밀(GITHUB_TOKEN)은 wrangler secret 이라 이 파일은 커밋한다.
+#   cd ~/Claude/asset-management/serverless
+#   npx wrangler secret put GITHUB_TOKEN --config ~/Claude/golgoru/scripts/blog-cron/wrangler.toml
+#   npx wrangler deploy --config ~/Claude/golgoru/scripts/blog-cron/wrangler.toml
+name = "golgoru-blog-cron"
+main = "worker.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = false
+
+[triggers]
+crons = ["45 21 * * *", "15 22 * * *"]   # UTC = 한국 06:45 · 07:15
