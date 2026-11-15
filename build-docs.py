@@ -657,6 +657,19 @@ APPLE_STORE = "https://apps.apple.com/kr/app/id6797157864"
 PLAY_STORE = "https://play.google.com/store/apps/details?id=com.indus96.golgoru"
 MWOTAJI_APPLE = "https://apps.apple.com/kr/app/id6828151139"
 
+# 안드로이드 테스터 모집 — 구글 플레이 정식 공개 전까지 블로그 글마다 붙인다(2026-11-16).
+# 정식으로 나가면 그 앱을 빼고, 다 나가면 빈 리스트로 둔다(줄이 통째로 사라진다).
+ANDROID_TESTING = ["뭐타지", "복지비 청구", "메트로놈"]
+
+
+def recruit_html(root):
+    if not ANDROID_TESTING:
+        return ""
+    names = " · ".join(ANDROID_TESTING)
+    return (f'<p class="recruit"><strong>안드로이드 테스터 모집 중</strong> — {names}는 아이폰에 나와 있고, '
+            f'안드로이드는 구글 플레이 정식 공개 전입니다. 먼저 써 보실 분은 '
+            f'<a href="{root}apps/android-test.html">테스트 참여</a>로 오세요.</p>')
+
 
 def blog_footer():
     return (FOOTER.replace('href="getting-started.html"', 'href="../docs/getting-started.html"')
@@ -695,7 +708,7 @@ BLOGS = {
         desc="서울 출퇴근길에 버스 · 따릉이 · 지하철 중 무엇이 빠른지 보는 앱, 뭐타지를 만들고 쓰면서 적는 글.",
         author="뭐타지 만든 사람", back=("../../", "← 앱 안내"),
         nav=lambda: MWOTAJI_NAV, footer=lambda: MWOTAJI_FOOTER,
-        install=("뭐타지 받기", "가입도 광고도 없습니다. 서울의 버스 · 따릉이 · 지하철."),
+        install=("뭐타지 받기", "아이폰 · 애플워치는 App Store에서, 안드로이드는 정식 공개 전 테스터로 먼저 쓸 수 있습니다. 가입도 광고도 없습니다."),
         stores=[("App Store", MWOTAJI_APPLE, "apple"), ("Android 테스트 참여", "../../android-test.html#mwotaji", "")],
     ),
 }
@@ -715,6 +728,7 @@ def blog_head(site, title, desc, canonical, kind="website", extra=""):
 <link rel="canonical" href="{canonical}">
 <meta property="og:url" content="{canonical}">
 <meta name="apple-itunes-app" content="app-id={site["apple_id"]}">
+<link rel="alternate" type="application/rss+xml" title="{site["title"]}" href="{SITE}/{site["folder"]}/rss.xml">
 {extra}<link rel="stylesheet" href="{site["root"]}docs/doc.css">
 </head><body>
 {site["nav"]()}"""
@@ -743,8 +757,23 @@ def read_posts(folder):
     return posts
 
 
+def write_rss(folder, site, posts):
+    """네이버 서치어드바이저 · 피드 구독용 RSS. 최신 20편."""
+    base = f"{SITE}/{folder}"
+    items = "".join(
+        f"<item><title>{esc(p['title'])}</title><link>{base}/{p['slug']}.html</link>"
+        f"<guid>{base}/{p['slug']}.html</guid><description>{esc(p['desc'])}</description>"
+        f"<pubDate>{datetime.datetime.fromisoformat(p['date']).strftime('%a, %d %b %Y 07:00:00 +0900')}</pubDate></item>"
+        for p in posts[:20])
+    (pathlib.Path(folder) / "rss.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>'
+        f"<title>{esc(site['title'])}</title><link>{base}/</link><description>{esc(site['desc'])}</description>"
+        f"<language>ko</language>{items}</channel></rss>\n", encoding="utf-8")
+
+
 def build_blog(folder, site):
     import json
+    site["folder"] = folder
     posts = read_posts(folder)
     out = pathlib.Path(folder)
     out.mkdir(parents=True, exist_ok=True)
@@ -779,6 +808,7 @@ def build_blog(folder, site):
   <p>{site["install"][1]}</p>
   <div>{buttons}</div>
 </aside>
+{recruit_html(site["root"])}
 </div></main>
 {f'<section class="more-docs"><div class="wrap narrow"><h2>다른 글</h2><div class="doc-cards">{others}</div></div></section>' if others else ''}
 {site["footer"]()}
@@ -802,6 +832,7 @@ def build_blog(folder, site):
   <p class="lead">{site["desc"]}</p>
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
+{recruit_html(site["root"])}
 <div class="post-list">
 {items}
 </div>
@@ -811,6 +842,7 @@ def build_blog(folder, site):
 </body></html>
 """
     (out / "index.html").write_text(open_external_in_new_tab(index), encoding="utf-8")
+    write_rss(folder, site, posts)
     return [f"{base}/"] + [f"{base}/{p['slug']}.html" for p in posts]
 
 

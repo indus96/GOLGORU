@@ -181,3 +181,6 @@ a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
 .install div{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
 .install .cta{margin-left:0}
 .install .cta:hover{text-decoration:none}
+.recruit{margin:18px 0 0;padding:14px 18px;border:1px dashed var(--gold);border-radius:14px;
+  font-size:14.5px;color:var(--sub);background:var(--card)}
+.post-list+.recruit,.doc-body .recruit:first-child{margin:0 0 18px}

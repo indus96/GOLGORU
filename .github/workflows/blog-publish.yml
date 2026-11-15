@@ -1,19 +1,24 @@
-# 블로그 예약 게시 — 월 · 수 · 금 아침 7시(한국)에 대기 글(blog/queue/) 맨 앞 하나를 내놓는다.
-# 글은 미리 써서 대기 폴더에 넣어 둔다. 대기 글이 없으면 그날은 건너뛴다.
-# GitHub 예약은 정각을 보장하지 않아(몇 분~30분 늦는다) 10분 일찍 건다.
+# 블로그 예약 게시 — 골고루 월 · 수 · 금, 뭐타지 목 아침 7시(한국)에 대기 글(queue/) 맨 앞 하나를 내놓는다.
+# 게시할지는 scripts/publish-next-post.py --scheduled 가 정한다(요일 · 06:45 이후 · 하루 한 편).
+# 그래서 몇 번 불려도 안전하다.
+#
+# 부르는 곳은 둘이다.
+# 1) 클라우드플레어 크론 워커(scripts/blog-cron/) — 매일 06:45 에 workflow_dispatch. 시각이 정확하다.
+# 2) 아래 GitHub 예약 — 대비책. 이 저장소에서는 GitHub 예약이 3~5시간 늦거나 빠지는 일이 잦다
+#    (2026-11-16 첫 게시가 빠졌다 · 나눔터 05시 작업도 08~10시에 돈다).
 name: blog-publish
 
 on:
   schedule:
-    - cron: "50 21 * * 0,2,4"   # UTC 일 · 화 · 목 21:50 = 한국 월 · 수 · 금 06:50 — 골고루
-    - cron: "50 21 * * 3"       # UTC 수 21:50 = 한국 목 06:50 — 뭐타지
+    - cron: "45 21,23 * * *"   # 한국 06:45 · 08:45
+    - cron: "45 1,3 * * *"     # 한국 10:45 · 12:45
   workflow_dispatch:
     inputs:
       blog:
-        description: 어느 블로그
+        description: 지금 바로 한 편 낼 블로그(비우면 예약 규칙대로)
         type: choice
-        default: blog
-        options: [blog, apps/mwotaji/blog]
+        default: ""
+        options: ["", blog, apps/mwotaji/blog]
 
 permissions:
   contents: write
@@ -34,10 +39,13 @@ jobs:
           python-version: "3.12"
       - name: Move next queued post
         run: |
-          blog="${{ inputs.blog || 'blog' }}"
-          if [ "${{ github.event.schedule }}" = "50 21 * * 3" ]; then blog="apps/mwotaji/blog"; fi
-          python3 scripts/publish-next-post.py "$blog"
+          if [ -n "${{ inputs.blog }}" ]; then
+            python3 scripts/publish-next-post.py "${{ inputs.blog }}"
+          else
+            python3 scripts/publish-next-post.py --scheduled
+          fi
       - name: Build and commit
+        id: commit
         run: |
           git add -A blog apps
           if git diff --cached --quiet; then
@@ -49,3 +57,7 @@ jobs:
           git -c user.name="golgoru-bot" -c user.email="golgoru-bot@users.noreply.github.com" \
             commit -m "블로그 예약 게시 ($(TZ=Asia/Seoul date +%F))"
           git push origin HEAD:master
+          echo "published=1" >> "$GITHUB_OUTPUT"
+      - name: Tell search engines (IndexNow — Bing · Naver)
+        if: steps.commit.outputs.published == '1'
+        run: python3 scripts/indexnow.py
