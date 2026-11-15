@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif">
+  <rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+
+  <!-- 통장 하나 -->
+  <rect x="330" y="48" width="300" height="64" rx="18" fill="#FFFFFF" stroke="#E9E1D2"/>
+  <text x="354" y="87" font-size="13" fill="#6B6350">통장 하나</text>
+  <text x="606" y="89" text-anchor="end" font-size="20" font-weight="800" fill="#3A3A3A">245만</text>
+
+  <g stroke="#C9A227" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 8" fill="none">
+    <path d="M400 112 C400 150 216 140 216 178"/>
+    <path d="M480 112 V178"/>
+    <path d="M560 112 C560 150 744 140 744 178"/>
+  </g>
+
+  <!-- 주머니 셋 -->
+  <g transform="translate(96 184)">
+    <rect width="240" height="176" rx="20" fill="#FFFFFF" stroke="#E9E1D2"/>
+    <path d="M0 20 a20 20 0 0 1 20 -20 h200 a20 20 0 0 1 20 20 v8 l-120 44 l-120 -44z" fill="#FAF7F2" stroke="#E9E1D2"/>
+    <text x="120" y="104" text-anchor="middle" font-size="13" fill="#6B6350">여행</text>
+    <text x="120" y="138" text-anchor="middle" font-size="26" font-weight="800" fill="#C9A227">120만</text>
+    <text x="120" y="160" text-anchor="middle" font-size="11" fill="#948A72">매달 +20만</text>
+  </g>
+  <g transform="translate(360 184)">
+    <rect width="240" height="176" rx="20" fill="#FFFFFF" stroke="#E9E1D2"/>
+    <path d="M0 20 a20 20 0 0 1 20 -20 h200 a20 20 0 0 1 20 20 v8 l-120 44 l-120 -44z" fill="#FAF7F2" stroke="#E9E1D2"/>
+    <text x="120" y="104" text-anchor="middle" font-size="13" fill="#6B6350">경조사</text>
+    <text x="120" y="138" text-anchor="middle" font-size="26" font-weight="800" fill="#C9A227">45만</text>
+    <text x="120" y="160" text-anchor="middle" font-size="11" fill="#948A72">매달 +10만</text>
+  </g>
+  <g transform="translate(624 184)">
+    <rect width="240" height="176" rx="20" fill="#FFFFFF" stroke="#E9E1D2"/>
+    <path d="M0 20 a20 20 0 0 1 20 -20 h200 a20 20 0 0 1 20 20 v8 l-120 44 l-120 -44z" fill="#FAF7F2" stroke="#E9E1D2"/>
+    <text x="120" y="104" text-anchor="middle" font-size="13" fill="#6B6350">자동차</text>
+    <text x="120" y="138" text-anchor="middle" font-size="26" font-weight="800" fill="#C9A227">80만</text>
+    <text x="120" y="160" text-anchor="middle" font-size="11" fill="#948A72">매달 +15만</text>
+  </g>
+  <text x="480" y="394" text-anchor="middle" font-size="12" fill="#948A72">돈은 통장 하나에, 장부에서만 주머니로 나눕니다</text>
+</svg>

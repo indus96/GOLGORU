@@ -692,7 +692,7 @@ def read_posts():
         # 그림 아래에 설명을 붙이고, 폰 화면이 연달아 둘이면 나란히 세운다.
         body = re.sub(r'<figure><img src="([^"]+)" alt="([^"]+)"></figure>',
                       r'<figure><img src="\1" alt="\2"><figcaption>\2</figcaption></figure>', body)
-        body = re.sub(r'(<figure><img src="[^"]+\.png".*?</figure>)\n(<figure><img src="[^"]+\.png".*?</figure>)',
+        body = re.sub(r'(<figure><img src="[^"]*/app/[^"]+".*?</figure>)\n(<figure><img src="[^"]*/app/[^"]+".*?</figure>)',
                       r'<div class="shots">\1\2</div>', body)
         plain = unicodedata.normalize("NFC", " ".join(html.unescape(re.sub(r"<[^>]+>", "", inline(lead or ""))).split()))
         if len(plain) > 155:

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif">
+  <rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+  <rect x="120" y="70" width="720" height="280" rx="22" fill="#FFFFFF" stroke="#E9E1D2"/>
+  <text x="156" y="122" font-size="14" font-weight="700" fill="#948A72">이번 달 들어온 돈</text>
+  <text x="804" y="124" text-anchor="end" font-size="26" font-weight="800" fill="#3A3A3A">320만</text>
+
+  <!-- 막대: 쓴 돈 180 · 자산으로 100 · 남음 40 -->
+  <rect x="156" y="156" width="648" height="34" rx="17" fill="#F1EBDD"/>
+  <path d="M173 156 h347.5 v34 h-347.5 a17 17 0 0 1 0 -34z" fill="#8A7F68"/>
+  <rect x="520.5" y="156" width="202.5" height="34" fill="#3A7D52"/>
+
+  <g font-size="13" fill="#6B6350">
+    <circle cx="163" cy="238" r="6" fill="#8A7F68"/>
+    <text x="178" y="243">쓴 돈</text>
+    <text x="178" y="274" font-size="24" font-weight="800" fill="#3A3A3A">180만</text>
+
+    <circle cx="527" cy="238" r="6" fill="#3A7D52"/>
+    <text x="542" y="243">자산으로</text>
+    <text x="542" y="274" font-size="24" font-weight="800" fill="#3A7D52">100만</text>
+
+    <circle cx="730" cy="238" r="6" fill="#E3DCCB"/>
+    <text x="745" y="243">통장에 남음</text>
+    <text x="745" y="274" font-size="24" font-weight="800" fill="#3A3A3A">40만</text>
+  </g>
+  <text x="156" y="318" font-size="12" fill="#948A72">적금 · 연금 · 증권 계좌로 보낸 돈은 지출에 섞이지 않습니다</text>
+</svg>
