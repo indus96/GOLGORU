@@ -5,8 +5,15 @@ name: blog-publish
 
 on:
   schedule:
-    - cron: "50 21 * * 0,2,4"   # UTC 일 · 화 · 목 21:50 = 한국 월 · 수 · 금 06:50
+    - cron: "50 21 * * 0,2,4"   # UTC 일 · 화 · 목 21:50 = 한국 월 · 수 · 금 06:50 — 골고루
+    - cron: "50 21 * * 3"       # UTC 수 21:50 = 한국 목 06:50 — 뭐타지
   workflow_dispatch:
+    inputs:
+      blog:
+        description: 어느 블로그
+        type: choice
+        default: blog
+        options: [blog, apps/mwotaji/blog]
 
 permissions:
   contents: write
@@ -26,11 +33,14 @@ jobs:
         with:
           python-version: "3.12"
       - name: Move next queued post
-        run: python3 scripts/publish-next-post.py
+        run: |
+          blog="${{ inputs.blog || 'blog' }}"
+          if [ "${{ github.event.schedule }}" = "50 21 * * 3" ]; then blog="apps/mwotaji/blog"; fi
+          python3 scripts/publish-next-post.py "$blog"
       - name: Build and commit
         run: |
-          git add -A blog
-          if git diff --cached --quiet -- blog; then
+          git add -A blog apps
+          if git diff --cached --quiet; then
             echo "내놓을 글 없음"
             exit 0
           fi

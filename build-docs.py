@@ -645,14 +645,17 @@ if __name__ == "__main__" and "--commons" in __import__("sys").argv:
     build_commons()
 
 
-# ── 블로그(/blog/) ───────────────────────────────────────────────────────────
+# ── 블로그(/blog/ · /apps/mwotaji/blog/) ─────────────────────────────────────
 #
 # 사용법 · 기능 소개 · 사용기를 글로 쌓아 검색으로 들어오는 입구를 늘린다(2026-11-15).
-# 글은 `blog/YYYY-MM-DD-주소.md` — 날짜는 파일 이름에서, 제목은 `# `, 요약은 첫 문단에서 읽는다.
-# 맨 위에 `kind: 사용법` · `hero: ../images/app/….png` 줄을 둘 수 있다(없어도 된다).
+# 글은 `<블로그 폴더>/YYYY-MM-DD-주소.md` — 날짜는 파일 이름에서, 제목은 `# `, 요약은 첫 문단에서 읽는다.
+# 맨 위에 `kind: 사용법` · `hero: …/images/blog/….svg` 줄을 둘 수 있다(없어도 된다).
 # 주소에는 날짜를 넣지 않는다 — 글을 고쳐 다시 내도 주소가 그대로여야 한다.
+# 미리 써 둔 글은 `<블로그 폴더>/queue/NN-주소.md` 에 두면 예약 작업이 하나씩 내놓는다
+# (`.github/workflows/blog-publish.yml`).
 APPLE_STORE = "https://apps.apple.com/kr/app/id6797157864"
 PLAY_STORE = "https://play.google.com/store/apps/details?id=com.indus96.golgoru"
+MWOTAJI_APPLE = "https://apps.apple.com/kr/app/id6828151139"
 
 
 def blog_footer():
@@ -660,28 +663,66 @@ def blog_footer():
                   .replace('href="privacy.html"', 'href="../docs/privacy.html"'))
 
 
-def blog_head(title, desc, canonical, kind="website", extra=""):
+# 뭐타지는 골고루 헤더를 쓰지 않는다 — 다른 앱이라 메뉴(자산 · 가계부)가 맞지 않는다.
+MWOTAJI_NAV = f"""<nav><div class="wrap nav-in">
+  <a class="brand" href="./"><img src="../../../images/family/mwotaji.png" alt="" width="26" height="26">뭐타지</a>
+  <div class="nav-links">
+    <a href="./">블로그</a>
+    <a href="../support.html">도움말</a>
+    <a href="../../">다른 앱</a>
+  </div>
+  <a class="cta" href="{MWOTAJI_APPLE}" data-store="apple">앱 받기</a>
+</div></nav>"""
+
+MWOTAJI_FOOTER = """<footer><div class="wrap foot-in">
+  <div>© 2026 뭐타지 · 출퇴근길, 지금 뭐 타고 갈지 한눈에</div>
+  <div><a href="./">블로그</a> · <a href="../support.html">도움말</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../../">다른 앱</a></div>
+</div></footer>"""
+
+# `stores` 의 `{slug}` 는 글 주소로 바뀐다 — 플레이 콘솔 획득 보고서에 어느 글에서 왔는지 잡힌다.
+BLOGS = {
+    "blog": dict(
+        root="../", brand="골고루", title="골고루 블로그", apple_id="6797157864",
+        desc="골고루를 만들고 쓰면서 적는 글 — 사용법, 기능 소개, 자산배분과 가계부를 굴리는 방법.",
+        author="골고루 만든 사람", back=("../", "← 골고루 홈"),
+        nav=lambda: render_nav("../", cta="앱 받기"), footer=blog_footer,
+        install=("골고루 받기", "로그인 없이 둘러보기부터 해 볼 수 있습니다. iPhone · iPad · Mac · Android."),
+        stores=[("App Store", APPLE_STORE, "apple"),
+                ("Google Play", PLAY_STORE + "&referrer=utm_source%3Dblog%26utm_campaign%3D{slug}", "android")],
+    ),
+    "apps/mwotaji/blog": dict(
+        root="../../../", brand="뭐타지", title="뭐타지 블로그", apple_id="6828151139",
+        desc="서울 출퇴근길에 버스 · 따릉이 · 지하철 중 무엇이 빠른지 보는 앱, 뭐타지를 만들고 쓰면서 적는 글.",
+        author="뭐타지 만든 사람", back=("../../", "← 앱 안내"),
+        nav=lambda: MWOTAJI_NAV, footer=lambda: MWOTAJI_FOOTER,
+        install=("뭐타지 받기", "가입도 광고도 없습니다. 서울의 버스 · 따릉이 · 지하철."),
+        stores=[("App Store", MWOTAJI_APPLE, "apple"), ("Android 테스트 참여", "../../android-test.html#mwotaji", "")],
+    ),
+}
+
+
+def blog_head(site, title, desc, canonical, kind="website", extra=""):
     return f"""<!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} | 골고루 블로그</title>
-<meta property="og:site_name" content="골고루">
-<meta name="application-name" content="골고루">
+<title>{esc(title)} | {site["title"]}</title>
+<meta property="og:site_name" content="{site["brand"]}">
+<meta name="application-name" content="{site["brand"]}">
 <meta name="description" content="{esc(desc)}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="{kind}">
 <link rel="canonical" href="{canonical}">
 <meta property="og:url" content="{canonical}">
-<meta name="apple-itunes-app" content="app-id=6797157864">
-{extra}<link rel="stylesheet" href="../docs/doc.css">
+<meta name="apple-itunes-app" content="app-id={site["apple_id"]}">
+{extra}<link rel="stylesheet" href="{site["root"]}docs/doc.css">
 </head><body>
-{render_nav("../", cta="앱 받기")}"""
+{site["nav"]()}"""
 
 
-def read_posts():
+def read_posts(folder):
     posts = []
-    for path in sorted(pathlib.Path("blog").glob("*.md"), reverse=True):
+    for path in sorted(pathlib.Path(folder).glob("*.md"), reverse=True):
         m = re.match(r"(\d{4}-\d{2}-\d{2})-(.+)\.md$", path.name)
         if not m:
             continue
@@ -692,7 +733,7 @@ def read_posts():
         # 그림 아래에 설명을 붙이고, 폰 화면이 연달아 둘이면 나란히 세운다.
         body = re.sub(r'<figure><img src="([^"]+)" alt="([^"]+)"></figure>',
                       r'<figure><img src="\1" alt="\2"><figcaption>\2</figcaption></figure>', body)
-        body = re.sub(r'(<figure><img src="[^"]*/app/[^"]+".*?</figure>)\n(<figure><img src="[^"]*/app/[^"]+".*?</figure>)',
+        body = re.sub(r'(<figure><img src="[^"]*/(?:app|family)/[^"]+".*?</figure>)\n(<figure><img src="[^"]*/(?:app|family)/[^"]+".*?</figure>)',
                       r'<div class="shots">\1\2</div>', body)
         plain = unicodedata.normalize("NFC", " ".join(html.unescape(re.sub(r"<[^>]+>", "", inline(lead or ""))).split()))
         if len(plain) > 155:
@@ -702,28 +743,31 @@ def read_posts():
     return posts
 
 
-def build_blog():
+def build_blog(folder, site):
     import json
-    posts = read_posts()
-    out = pathlib.Path("blog")
+    posts = read_posts(folder)
+    out = pathlib.Path(folder)
+    out.mkdir(parents=True, exist_ok=True)
+    base = f"{SITE}/{folder}"
     keep = {f"{p['slug']}.html" for p in posts} | {"index.html"}
     for old in out.glob("*.html"):
         if old.name not in keep:
             old.unlink()
     for post in posts:
-        canonical = f"{SITE}/blog/{post['slug']}.html"
+        canonical = f"{base}/{post['slug']}.html"
         ld = json.dumps({"@context": "https://schema.org", "@type": "BlogPosting", "headline": post["title"],
                          "datePublished": post["date"], "description": post["desc"], "mainEntityOfPage": canonical,
-                         "author": {"@type": "Organization", "name": "골고루"}}, ensure_ascii=False)
+                         "author": {"@type": "Organization", "name": site["brand"]}}, ensure_ascii=False)
         others = "".join(f'<a class="doc-card" href="{o["slug"]}.html">{esc(o["title"])}</a>'
-                         for o in posts if o is not post)[:4000]
-        # 플레이 링크에는 어느 글에서 왔는지 붙인다(플레이 콘솔 획득 보고서에 잡힌다).
-        play = f"{PLAY_STORE}&referrer=utm_source%3Dblog%26utm_campaign%3D{post['slug']}"
-        page = blog_head(post["title"], post["desc"], canonical, "article",
+                         for o in posts[:8] if o is not post)
+        buttons = "".join(
+            f'<a class="cta" href="{href.format(slug=post["slug"])}"{f" data-store={chr(34)}{store}{chr(34)}" if store else ""}>{label}</a>'
+            for label, href, store in site["stores"])
+        page = blog_head(site, post["title"], post["desc"], canonical, "article",
                          f'<script type="application/ld+json">{ld}</script>\n') + f"""
 <header class="doc-hero post-hero"><div class="wrap narrow">
   <a class="back" href="./">← 블로그</a>
-  <p class="post-meta"><span class="eyebrow">{esc(post["kind"])}</span><time datetime="{post["date"]}">{post["date"].replace("-", ". ")}</time> · 골고루 만든 사람</p>
+  <p class="post-meta"><span class="eyebrow">{esc(post["kind"])}</span><time datetime="{post["date"]}">{post["date"].replace("-", ". ")}</time> · {site["author"]}</p>
   <h1>{inline(post["title"])}</h1>
   {f'<p class="lead">{inline(post["lead"])}</p>' if post["lead"] else ''}
   {f'<div class="hero-img {"wide" if post["hero"].endswith(".svg") else "phone"}"><img src="{post["hero"]}" alt=""></div>' if post["hero"] else ''}
@@ -731,46 +775,46 @@ def build_blog():
 <main class="doc-body post"><div class="wrap narrow">
 {post["body"]}
 <aside class="install">
-  <strong>골고루 받기</strong>
-  <p>로그인 없이 둘러보기부터 해 볼 수 있습니다. iPhone · iPad · Mac · Android.</p>
-  <div><a class="cta" href="{APPLE_STORE}" data-store="apple">App Store</a><a class="cta" href="{play}" data-store="android">Google Play</a></div>
+  <strong>{site["install"][0]}</strong>
+  <p>{site["install"][1]}</p>
+  <div>{buttons}</div>
 </aside>
 </div></main>
 {f'<section class="more-docs"><div class="wrap narrow"><h2>다른 글</h2><div class="doc-cards">{others}</div></div></section>' if others else ''}
-{blog_footer()}
-<script src="../site.js" defer></script>
+{site["footer"]()}
+<script src="{site["root"]}site.js" defer></script>
 </body></html>
 """
         (out / f"{post['slug']}.html").write_text(open_external_in_new_tab(page), encoding="utf-8")
-        print(f"built blog/{post['slug']}.html")
+        print(f"built {folder}/{post['slug']}.html")
     items = "\n".join(
         f'<a class="post-item" href="{p["slug"]}.html"><span class="post-text">'
         f'<span class="post-meta">{p["date"].replace("-", ". ")} · {esc(p["kind"])}</span>'
         f'<strong>{inline(p["title"])}</strong><span>{esc(p["desc"])}</span></span>'
         + (f'<img src="{p["hero"]}" alt="" loading="lazy">' if p["hero"].endswith(".svg") else "") + '</a>'
         for p in posts)
-    desc = "골고루를 만들고 쓰면서 적는 글 — 사용법, 기능 소개, 자산배분과 가계부를 굴리는 방법."
-    index = blog_head("블로그", desc, f"{SITE}/blog/") + f"""
+    back_href, back_label = site["back"]
+    index = blog_head(site, "블로그", site["desc"], f"{base}/") + f"""
 <header class="doc-hero"><div class="wrap">
-  <a class="back" href="../">← 골고루 홈</a>
+  <a class="back" href="{back_href}">{back_label}</a>
   <div class="eyebrow">블로그</div>
-  <h1>골고루 블로그</h1>
-  <p class="lead">{desc}</p>
+  <h1>{site["title"]}</h1>
+  <p class="lead">{site["desc"]}</p>
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
 <div class="post-list">
 {items}
 </div>
 </div></main>
-{blog_footer()}
-<script src="../site.js" defer></script>
+{site["footer"]()}
+<script src="{site["root"]}site.js" defer></script>
 </body></html>
 """
-    (out / "index.html").write_text(index, encoding="utf-8")
-    return posts
+    (out / "index.html").write_text(open_external_in_new_tab(index), encoding="utf-8")
+    return [f"{base}/"] + [f"{base}/{p['slug']}.html" for p in posts]
 
 
-BLOG_POSTS = build_blog()
+BLOG_URLS = [url for folder, site in BLOGS.items() for url in build_blog(folder, site)]
 
 
 def write_sitemap():
@@ -785,8 +829,8 @@ def write_sitemap():
     # `/p/`(공유 코드 보기)는 넣지 않는다: 내용이 URL 조각(#) 뒤에만 있어 코드마다
     # 다른 페이지를 색인할 수 없고, 코드 없는 상태로는 안내문 몇 줄뿐이다(noindex).
     urls = (
-        [f"{SITE}/", f"{SITE}/c/", f"{SITE}/v/", f"{SITE}/blog/"]
-        + [f"{SITE}/blog/{p['slug']}.html" for p in BLOG_POSTS]
+        [f"{SITE}/", f"{SITE}/c/", f"{SITE}/v/", f"{SITE}/apps/android-test.html"]
+        + BLOG_URLS
         + [f"{SITE}/docs/{name}.html" for name in sorted(DOCS)]
         # 나눔터 조합 페이지(`--commons` 로 만든 것) — 있는 파일만.
         + ([f"{SITE}/c/d/"] if pathlib.Path("c/d/index.html").exists() else [])
@@ -818,7 +862,7 @@ inject_shared("c/index.html", "../", cta="앱 받기")
 inject_shared("v/index.html", "../", cta="앱 받기")
 
 for page in ["index.html", "en/index.html", "p/index.html", "c/index.html", "v/index.html"] \
-    + glob.glob("docs/*.html") + glob.glob("en/docs/*.html") + glob.glob("blog/*.html"):
+    + glob.glob("docs/*.html") + glob.glob("en/docs/*.html") + glob.glob("blog/*.html") + glob.glob("apps/mwotaji/blog/*.html"):
     if not os.path.exists(page):
         continue
     stamp_assets(page)
