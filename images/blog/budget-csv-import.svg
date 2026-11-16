@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<g transform="translate(96 70)"><rect width="270" height="280" rx="22" fill="#FFF" stroke="#E9E1D2"/>
+<text x="22" y="40" font-size="12" font-weight="700" fill="#948A72">예전가계부.csv</text>
+<g font-family="ui-monospace,Menlo,monospace" font-size="12" fill="#6B6350">
+<text x="22" y="80">날짜,내용,금액,분류</text><text x="22" y="110">2025-03-02,마트,32400,식비</text><text x="22" y="140">2025-03-02,버스,1500,교통</text><text x="22" y="170">2025-03-03,카드대금,812000,이체</text><text x="22" y="200">2025-03-04,커피,4800,간식</text><text x="22" y="230">…  3년 치 2,814줄</text></g></g>
+<g transform="translate(480 210)"><line x1="-90" y1="0" x2="70" y2="0" stroke="#C9A227" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"/><path d="M66 -9 L80 0 L66 9" fill="none" stroke="#C9A227" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="-70" y="-52" width="140" height="30" rx="15" fill="#FFF" stroke="#E9E1D2"/><text x="0" y="-32" text-anchor="middle" font-size="12" font-weight="700" fill="#B4881F">칸을 짐작해 맞춤</text></g>
+<g transform="translate(594 70)"><rect width="270" height="280" rx="22" fill="#FFF" stroke="#E9E1D2"/>
+<text x="22" y="40" font-size="12" font-weight="700" fill="#948A72">골고루 · 읽은 줄 확인</text>
+<g font-size="13" fill="#3A3A3A">
+<g transform="translate(0 66)"><rect x="22" width="30" height="18" rx="9" fill="#C9A227"/><circle cx="43" cy="9" r="7" fill="#FFF"/><text x="62" y="14">마트</text><text x="248" y="14" text-anchor="end" font-size="11" fill="#B4881F">식비</text></g>
+<g transform="translate(0 106)"><rect x="22" width="30" height="18" rx="9" fill="#C9A227"/><circle cx="43" cy="9" r="7" fill="#FFF"/><text x="62" y="14">버스</text><text x="248" y="14" text-anchor="end" font-size="11" fill="#B4881F">교통</text></g>
+<g transform="translate(0 146)" opacity=".5"><rect x="22" width="30" height="18" rx="9" fill="#E3DCCB"/><circle cx="31" cy="9" r="7" fill="#FFF"/><text x="62" y="14">카드대금</text><text x="248" y="14" text-anchor="end" font-size="11" fill="#948A72">이체 · 꺼 둠</text></g>
+<g transform="translate(0 186)"><rect x="22" width="30" height="18" rx="9" fill="#C9A227"/><circle cx="43" cy="9" r="7" fill="#FFF"/><text x="62" y="14">커피</text><text x="248" y="14" text-anchor="end" font-size="11" fill="#B4881F">카페 · 간식</text></g></g>
+<rect x="22" y="228" width="226" height="30" rx="12" fill="#C9A227"/><text x="135" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#FFF">저장</text></g>
+</svg>
