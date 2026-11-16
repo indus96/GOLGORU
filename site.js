@@ -121,3 +121,13 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
   }, { threshold: 0.35 });
   videos.forEach(function (v) { io.observe(v); });
 })();
+
+// 방문 수 — 어떤 페이지를 어디(도메인)에서 들어와 봤는지만 센다(scripts/hits/worker.mjs).
+// 쿠키 · 기기 식별자를 쓰지 않고, 서버는 IP 를 저장하지 않는다. 내 컴퓨터에서 열면(file:// · localhost) 세지 않는다.
+(function () {
+  if (location.hostname !== 'golgoru.app' || !navigator.sendBeacon) return;
+  try {
+    navigator.sendBeacon('https://golgoru-hits.indus96-asset-management.workers.dev/hit',
+      JSON.stringify({ p: location.pathname, r: document.referrer || '' }));
+  } catch (e) {}
+})();

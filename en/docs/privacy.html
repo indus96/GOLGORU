@@ -52,7 +52,7 @@
   
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
-<blockquote>Last updated: 2026-11-08</blockquote>
+<blockquote>Last updated: 2026-11-16</blockquote>
 <h2>What the app handles</h2>
 <h3>Asset information</h3>
 <p>Account names, holdings, quantities, average costs, cash balances and target weights.</p>
@@ -95,6 +95,8 @@
 <p><strong>App integrity check (from 3.1.1)</strong> — so the briefing allowance is used only by the genuine Golgoru app, the app proves it is the real app on a normal device with the operating system's check (Apple App Attest · Google Play Integrity). Apple and Google check the device and app; our server receives only the result.</p>
 <ul><li>What our server keeps: <strong>a hash of the install ID, the platform, the check method, the first and last check time</strong>, and on Apple devices the check's <strong>public key</strong> (it does not identify the device). Deleted after a year without a check.</li><li>No asset information, holdings or amounts are used in the check.</li><li>Requests without a passed check may have their allowance counted by <strong>a hash of the IP address</strong> (kept 7 days, like the allowance above).</li></ul>
 <p><strong>Importing holdings from a screenshot does not transmit the image either.</strong> Reading the text from what you pasted is done by the operating system on the device (Apple Vision). The image is discarded as soon as it is read and never stored.</p>
+<h3>Website (golgoru.app) visits</h3>
+<p>The website and blog count only <strong>how many times each page was opened</strong> and <strong>which site (domain) the visit came from</strong>, as daily totals. No cookies, advertising IDs or device IDs are used, and IP addresses and browser details are not stored (they are only checked to filter out bots). This has nothing to do with the asset data inside the app.</p>
 <h2>Keeping and deleting</h2>
 <ul><li>Data on the device sits in the app-only area, where other apps cannot read it. Apple devices apply file protection, so it is unreadable while the device is locked; Android keeps it in app-private storage and excludes it from device backups.</li><li>Settings can delete the local cache and the ledger you entered.</li><li>The only things kept on our server are the anonymous usage log (one year), allowance counts (7 days), article summaries (30 days) and app integrity check records (a year after the last check), deleted automatically every day once their time is up. The install ID is stored only as a hash and cannot identify you.</li><li>Deleting the app deletes everything it stored on the device.</li><li>Disconnecting the Google Sheets link (Apple devices only) removes the stored token from the keychain. The sheet itself is yours, so the app does not delete it.</li><li>You can revoke the app's access at any time on the <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google account permissions page</a>.</li></ul>
 <h2>Sharing with third parties</h2>
@@ -130,5 +132,5 @@ function golgoruBack(event) {
   return true;
 }
 </script>
-<script src="../../site.js?v=3bf37522" defer></script>
+<script src="../../site.js?v=06d4ae47" defer></script>
 </body></html>

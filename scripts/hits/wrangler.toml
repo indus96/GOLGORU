@@ -1,0 +1,14 @@
+# golgoru.app 방문 수(쿠키 · IP 없음). 비밀 없음 — 이 파일은 커밋한다.
+#   cd ~/Claude/asset-management/serverless
+#   npx wrangler deploy --config ~/Claude/golgoru/scripts/hits/wrangler.toml
+# 조회: npx wrangler d1 execute golgoru-hits --remote --command "SELECT ..." --config ~/Claude/golgoru/scripts/hits/wrangler.toml
+name = "golgoru-hits"
+main = "worker.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = true
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "golgoru-hits"
+database_id = "7beb764d-75e8-42cb-8fc7-35de29ddeac3"

@@ -3,7 +3,7 @@
 Golgoru (“the app”) does not store your asset data on our servers.
 This page explains what the app handles, where it is kept, and what leaves the device.
 
-> Last updated: 2026-11-08
+> Last updated: 2026-11-16
 
 ## What the app handles
 
@@ -174,6 +174,12 @@ Integrity). Apple and Google check the device and app; our server receives only 
 **Importing holdings from a screenshot does not transmit the image either.** Reading the text from what you
 pasted is done by the operating system on the device (Apple Vision). The image is discarded as soon as it is
 read and never stored.
+
+### Website (golgoru.app) visits
+
+The website and blog count only **how many times each page was opened** and **which site (domain) the visit came from**, as daily totals.
+No cookies, advertising IDs or device IDs are used, and IP addresses and browser details are not stored (they are only checked to filter out bots).
+This has nothing to do with the asset data inside the app.
 
 ## Keeping and deleting
 
