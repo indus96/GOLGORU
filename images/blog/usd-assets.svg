@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<g transform="translate(96 70)"><rect width="300" height="280" rx="22" fill="#FFF" stroke="#E9E1D2"/><text x="24" y="42" font-size="13" font-weight="700" fill="#948A72">해외주식 계좌 · 미국 ETF</text>
+<text x="24" y="104" font-size="12" fill="#6B6350">달러 평가액</text><text x="276" y="106" text-anchor="end" font-size="26" font-weight="800" fill="#3A3A3A">$8,420</text>
+<line x1="24" y1="128" x2="276" y2="128" stroke="#F1EBDD"/>
+<text x="24" y="164" font-size="12" fill="#6B6350">적용 환율</text><text x="276" y="166" text-anchor="end" font-size="18" font-weight="700" fill="#5B7FA6">× 1,385원</text>
+<line x1="24" y1="190" x2="276" y2="190" stroke="#F1EBDD"/>
+<text x="24" y="228" font-size="12" fill="#6B6350">원화 환산</text><text x="276" y="230" text-anchor="end" font-size="22" font-weight="800" fill="#C9A227">1,166만</text>
+<text x="24" y="262" font-size="11" fill="#948A72">계산은 앱 안에서만 · 숫자는 예시</text></g>
+<g transform="translate(470 210)"><line x1="-50" y1="0" x2="40" y2="0" stroke="#C9A227" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"/><path d="M36 -9 L50 0 L36 9" fill="none" stroke="#C9A227" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g transform="translate(554 70)"><rect width="310" height="280" rx="22" fill="#FFF" stroke="#E9E1D2"/><text x="24" y="42" font-size="13" font-weight="700" fill="#948A72">골고루 · 총자산</text><text x="286" y="44" text-anchor="end" font-size="22" font-weight="800" fill="#3A3A3A">4,410만</text>
+<text x="24" y="98" font-size="13" fill="#3A3A3A">연금저축 · 원화</text><text x="286" y="98" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">1,820만</text><rect x="24" y="106" width="262" height="6" rx="3" fill="#F1EBDD"/><rect x="24" y="106" width="264" height="6" rx="3" fill="#C9A227"/>
+<text x="24" y="144" font-size="13" fill="#3A3A3A">해외주식 · 달러</text><text x="286" y="144" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">1,166만</text><rect x="24" y="152" width="262" height="6" rx="3" fill="#F1EBDD"/><rect x="24" y="152" width="170" height="6" rx="3" fill="#5B7FA6"/>
+<text x="24" y="190" font-size="13" fill="#3A3A3A">ISA · 원화</text><text x="286" y="190" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">980만</text><rect x="24" y="198" width="262" height="6" rx="3" fill="#F1EBDD"/><rect x="24" y="198" width="142" height="6" rx="3" fill="#3A7D52"/>
+<text x="24" y="236" font-size="13" fill="#3A3A3A">코인 · 원화</text><text x="286" y="236" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">444만</text><rect x="24" y="244" width="262" height="6" rx="3" fill="#F1EBDD"/><rect x="24" y="244" width="64" height="6" rx="3" fill="#E3DCCB"/>
+</g>
+</svg>

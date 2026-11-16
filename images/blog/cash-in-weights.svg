@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<g transform="translate(96 70)"><rect width="370" height="280" rx="22" fill="#FFF" stroke="#E9E1D2"/><text x="26" y="42" font-size="13" font-weight="700" fill="#948A72">현금 빼고 보면</text>
+<rect x="26" y="70" width="318" height="40" rx="10" fill="#F1EBDD"/><rect x="26" y="70" width="238" height="40" rx="10" fill="#C9A227"/><rect x="254" y="70" width="10" height="40" fill="#C9A227"/><rect x="264" y="70" width="80" height="40" rx="0" fill="#5B7FA6"/><path d="M334 70 h0 a10 10 0 0 1 10 10 v20 a10 10 0 0 1 -10 10z" fill="#5B7FA6"/>
+<text x="26" y="160" font-size="14" fill="#6B6350">주식 ETF</text><text x="344" y="162" text-anchor="end" font-size="34" font-weight="800" fill="#C9772B">75%</text>
+<text x="26" y="206" font-size="13" fill="#948A72">목표 60%보다 15%p 넘친 것처럼 보임</text>
+<text x="26" y="250" font-size="11" fill="#B0A68F">분모 800만(주식 600 + 채권 200)</text></g>
+<g transform="translate(494 70)"><rect width="370" height="280" rx="22" fill="#FFF" stroke="#C9A227" stroke-width="2"/><text x="26" y="42" font-size="13" font-weight="700" fill="#B4881F">골고루 — 현금 넣고</text>
+<rect x="26" y="70" width="190" height="40" rx="10" fill="#C9A227"/><rect x="206" y="70" width="10" height="40" fill="#C9A227"/><rect x="216" y="70" width="64" height="40" fill="#5B7FA6"/><rect x="280" y="70" width="64" height="40" rx="10" fill="#E3DCCB"/><rect x="280" y="70" width="10" height="40" fill="#E3DCCB"/>
+<text x="26" y="160" font-size="14" fill="#6B6350">주식 ETF</text><text x="344" y="162" text-anchor="end" font-size="34" font-weight="800" fill="#3A7D52">60%</text>
+<text x="26" y="206" font-size="13" fill="#6B6350">목표 그대로 — 팔 것 없음</text>
+<text x="26" y="250" font-size="11" fill="#948A72">분모 1,000만(주식 600 + 채권 200 + 현금 200)</text></g>
+</svg>

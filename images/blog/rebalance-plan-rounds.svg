@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<text x="96" y="74" font-size="14" font-weight="700" fill="#948A72">3회 · 7일 간격 · 회차마다 오전 9:05 알림</text>
+<g transform="translate(96 100)" opacity=".6"><rect width="240" height="250" rx="22" fill="#FFF" stroke="#E9E1D2" stroke-width="1"/><text x="22" y="40" font-size="16" font-weight="800" fill="#3A3A3A">1회차</text><text x="218" y="40" text-anchor="end" font-size="12" fill="#948A72">11월 3일</text>
+<g font-size="13" fill="#3A3A3A"><text x="22" y="84">팔기 · 주식 ETF</text><text x="218" y="84" text-anchor="end" fill="#C9772B" font-weight="700">−4주</text><text x="22" y="118">사기 · 채권 ETF</text><text x="218" y="118" text-anchor="end" fill="#3A7D52" font-weight="700">+9주</text><text x="22" y="152" font-size="11" fill="#948A72">예상 잔여 현금 3.2만</text></g>
+<rect x="22" y="186" width="196" height="36" rx="12" fill="#EDF5EF"/><text x="120" y="209" text-anchor="middle" font-size="13" font-weight="700" fill="#3A7D52">✓ 실행함</text>
+</g>
+<g transform="translate(356 100)" opacity="1"><rect width="240" height="250" rx="22" fill="#FFF" stroke="#C9A227" stroke-width="2"/><text x="22" y="40" font-size="16" font-weight="800" fill="#3A3A3A">2회차</text><text x="218" y="40" text-anchor="end" font-size="12" fill="#948A72">11월 10일</text>
+<g font-size="13" fill="#3A3A3A"><text x="22" y="84">팔기 · 주식 ETF</text><text x="218" y="84" text-anchor="end" fill="#C9772B" font-weight="700">−4주</text><text x="22" y="118">사기 · 채권 ETF</text><text x="218" y="118" text-anchor="end" fill="#3A7D52" font-weight="700">+9주</text><text x="22" y="152" font-size="11" fill="#948A72">예상 잔여 현금 3.2만</text></g>
+<rect x="22" y="186" width="196" height="36" rx="12" fill="#C9A227"/><text x="120" y="209" text-anchor="middle" font-size="13" font-weight="700" fill="#FFF">회차 전부 체크</text>
+</g>
+<g transform="translate(616 100)" opacity="1"><rect width="240" height="250" rx="22" fill="#FFF" stroke="#E9E1D2" stroke-width="1"/><text x="22" y="40" font-size="16" font-weight="800" fill="#3A3A3A">3회차</text><text x="218" y="40" text-anchor="end" font-size="12" fill="#948A72">11월 17일</text>
+<g font-size="13" fill="#3A3A3A"><text x="22" y="84">팔기 · 주식 ETF</text><text x="218" y="84" text-anchor="end" fill="#C9772B" font-weight="700">−4주</text><text x="22" y="118">사기 · 채권 ETF</text><text x="218" y="118" text-anchor="end" fill="#3A7D52" font-weight="700">+9주</text><text x="22" y="152" font-size="11" fill="#948A72">예상 잔여 현금 3.2만</text></g>
+<rect x="22" y="186" width="196" height="36" rx="12" fill="#FAF7F2"/><text x="120" y="209" text-anchor="middle" font-size="13" fill="#948A72">예정</text>
+</g>
+<text x="864" y="384" text-anchor="end" font-size="12" fill="#948A72">수량은 예시 · 주문은 증권사 앱에서 직접</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<rect x="96" y="54" width="768" height="312" rx="22" fill="#EEF0EA" stroke="#E9E1D2"/>
+<g stroke="#FFF" stroke-width="10" stroke-linecap="round"><path d="M96 150 H864"/><path d="M96 290 H864"/><path d="M300 54 V366"/><path d="M620 54 V366"/></g>
+<path d="M190 290 L300 290 L300 150 L560 150 L620 150 L620 230" fill="none" stroke="#3A7D52" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="245 290" cy="" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/>
+<circle cx="300 220" cy="" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/>
+<circle cx="380 150" cy="" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/>
+<circle cx="470 150" cy="" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/>
+<circle cx="560 150" cy="" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/>
+<circle cx="245" cy="290" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/><circle cx="300" cy="220" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/><circle cx="380" cy="150" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/><circle cx="470" cy="150" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/><circle cx="560" cy="150" r="6" fill="#FFF" stroke="#3A7D52" stroke-width="3"/><circle cx="190" cy="290" r="11" fill="#FFF" stroke="#C9A227" stroke-width="5"/><text x="190" y="324" text-anchor="middle" font-size="12" font-weight="700" fill="#B4881F">탄 곳</text>
+<circle cx="620" cy="230" r="11" fill="#FFF" stroke="#3A7D52" stroke-width="5"/><text x="650" y="226" font-size="12" font-weight="700" fill="#3A7D52">내린 곳</text>
+<path d="M620 241 L620 275 L760 275 L760 320" fill="none" stroke="#6B6350" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>
+<g transform="translate(760 330)"><path d="M0 -26 a14 14 0 0 1 14 14 c0 10 -14 24 -14 24 s-14 -14 -14 -24 a14 14 0 0 1 14 -14z" fill="#C9A227"/><circle cx="0" cy="-12" r="5" fill="#FFF"/></g><text x="790" y="324" font-size="12" font-weight="700" fill="#3A3A3A">목적지</text>
+<circle cx="160" cy="300" r="7" fill="#5B7FA6" stroke="#FFF" stroke-width="3"/><text x="150" y="276" text-anchor="end" font-size="11" fill="#5B7FA6">지금</text>
+<rect x="116" y="74" width="230" height="40" rx="14" fill="#FFF"/><text x="132" y="99" font-size="13" font-weight="800" fill="#3A3A3A">302 · 5정거장 · 내려서 4분</text>
+</svg>

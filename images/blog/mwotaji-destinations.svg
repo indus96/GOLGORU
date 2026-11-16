@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<g transform="translate(96 64)"><rect width="390" height="292" rx="22" fill="#FFF" stroke="#E9E1D2"/><text x="26" y="42" font-size="14" font-weight="800" fill="#3A3A3A">어디로 갈까요</text>
+<rect x="26" y="62" width="160" height="56" rx="16" fill="#C9A227"/><text x="106" y="96" text-anchor="middle" font-size="16" font-weight="800" fill="#FFF">회사</text>
+<rect x="204" y="62" width="160" height="56" rx="16" fill="#FDF6E3"/><text x="284" y="96" text-anchor="middle" font-size="16" font-weight="800" fill="#B4881F">집</text>
+<g font-size="13"><text x="26" y="156" font-weight="700" fill="#3A3A3A">헬스장</text><text x="26" y="174" font-size="11" fill="#948A72">송파구 ○○로</text><line x1="26" y1="188" x2="364" y2="188" stroke="#F1EBDD"/>
+<text x="26" y="214" font-weight="700" fill="#3A3A3A">부모님 댁</text><text x="26" y="232" font-size="11" fill="#948A72">성남시 ○○동</text><line x1="26" y1="246" x2="364" y2="246" stroke="#F1EBDD"/>
+<text x="26" y="274" fill="#B4881F" font-weight="700">다른 곳…</text></g></g>
+<g transform="translate(520 64)"><rect width="344" height="292" rx="22" fill="#FFF" stroke="#E9E1D2"/><text x="26" y="42" font-size="14" font-weight="800" fill="#3A3A3A">방향은 앱이</text>
+<rect x="26" y="70" width="292" height="40" rx="12" fill="#FAF7F2"/><text x="40" y="95" font-size="13" fill="#6B6350">집 근처</text><text x="304" y="95" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">회사 방향</text>
+<rect x="26" y="122" width="292" height="40" rx="12" fill="#FAF7F2"/><text x="40" y="147" font-size="13" fill="#6B6350">회사 근처 · 오후</text><text x="304" y="147" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">집 방향</text>
+<rect x="26" y="174" width="292" height="40" rx="12" fill="#FAF7F2"/><text x="40" y="199" font-size="13" fill="#6B6350">회사 근처 · 오전</text><text x="304" y="199" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">도착하는 중</text>
+<rect x="26" y="226" width="292" height="40" rx="12" fill="#FAF7F2"/><text x="40" y="251" font-size="13" fill="#6B6350">둘 다 아님</text><text x="304" y="251" text-anchor="end" font-size="13" font-weight="700" fill="#3A3A3A">물어봅니다</text>
+</g>
+</svg>

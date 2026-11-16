@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif"><rect width="960" height="420" rx="24" fill="#FDF6E3"/>
+<rect x="96" y="54" width="768" height="312" rx="22" fill="#FFF" stroke="#E9E1D2"/>
+<text x="126" y="94" font-size="14" font-weight="700" fill="#948A72">내 목표 비중으로 지난 5년 · 다섯 방식</text>
+<g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<path d="M126 300 L210 280 L290 290 L370 240 L450 255 L530 205 L610 220 L690 170 L770 185 L834 150" stroke="#C8BFAE" stroke-dasharray="5 6"/>
+<path d="M126 300 L210 276 L290 282 L370 232 L450 244 L530 196 L610 205 L690 160 L770 168 L834 132" stroke="#5B7FA6"/>
+<path d="M126 300 L210 274 L290 280 L370 228 L450 240 L530 190 L610 198 L690 150 L770 156 L834 120" stroke="#C9A227" stroke-width="4"/>
+<path d="M126 300 L210 278 L290 286 L370 236 L450 250 L530 200 L610 212 L690 164 L770 176 L834 140" stroke="#3A7D52"/>
+</g>
+<g font-size="12" font-weight="700"><rect x="126" y="112" width="12" height="4" fill="#C9A227"/><text x="144" y="118" fill="#3A3A3A">벗어날 때(5%p)</text><rect x="254" y="112" width="12" height="4" fill="#5B7FA6"/><text x="272" y="118" fill="#3A3A3A">1년마다</text><rect x="342" y="112" width="12" height="4" fill="#3A7D52"/><text x="360" y="118" fill="#3A3A3A">분기마다</text><rect x="436" y="112" width="12" height="4" fill="#C8BFAE"/><text x="454" y="118" fill="#948A72">그대로 둠</text></g>
+<rect x="126" y="318" width="708" height="32" rx="10" fill="#FDF6E3"/><text x="140" y="339" font-size="12" fill="#6B6350">최대 낙폭 대비 수익이 가장 좋았던 방식 · 맞춘 횟수 · 사고판 정도를 표로 · <tspan fill="#948A72">곡선은 설명용</tspan></text>
+</svg>
