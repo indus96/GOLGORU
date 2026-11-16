@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: blog-publish
@@ -61,3 +62,10 @@ jobs:
       - name: Tell search engines (IndexNow — Bing · Naver)
         if: steps.commit.outputs.published == '1'
         run: python3 scripts/indexnow.py
+      - name: Warn when the queue runs low (3 or fewer posts)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git pull -q --ff-only origin master || true
+          bash scripts/queue-alert.sh
