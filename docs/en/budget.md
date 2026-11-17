@@ -18,17 +18,44 @@ Tap **+** at the bottom right (or + on the Home budget card, or the budget widge
 
 ## The month
 
-- The top card — days left, **remaining budget**, income and a bar of how it split into spending · to assets · left in the bank.
-- Daily average spending and **categories over budget** and by how much.
+- The top card (a chart from 4.2.0) — spending and a **spending line**: how spending added up day by day, against last month
+  (dotted) and your budget (gold dotted), with today marked in the current month. A chip shows how much more or less than
+  last month by the same day.
+- The income bar — spending · to assets · left in the bank. In a month you spent more than came in, the overspent part shows
+  as an **orange dashed** section. Repeating income still to come (like a salary) is hatched.
+- **Categories over budget** as chips ("Travel +47%").
 - Records by day below, and for the current month, repeats still to come.
-- Use ‹ › at the top to see earlier months.
+- Use ‹ › at the top to see earlier months. **"2026 review"** next to it opens the year in review (below).
 
 ## By category
 
 - Spending as **category blocks** — size is share, and a category over budget gets an orange outline.
 - Grouped into **Fixed** (the same each month) and **Living** (changes month to month), each with spent / budget.
 - **To assets** lists what went to accounts and pockets next to the plan — rows with a repeat show as planned, others as not yet.
-- Tap a category for a **6-month bar chart** and its records, and record straight into it.
+- Tap a category for a **12-month bar chart** (six at a time, swipe for earlier months — from 4.2.0) and its records,
+  and record straight into it.
+
+## Year in review
+
+> From 4.2.0
+
+Tap **"2026 review"** at the right of the month header. Everything is worked out on your device, from your own budget records only.
+
+- **Summary** — the months counted (from the first month with records; this year up to this month), income and the bar of
+  spending · to assets · left, surplus or deficit.
+- **Year check** — the share of income sent to assets (with last year's), the categories most over budget, recurring spending for
+  the year, and a category with plenty left. Tap one to jump to its section.
+- **Month by month** — spending and to-assets bars (the biggest month in orange). **Tap a month** for its top categories,
+  money sent to assets and big expenses, and "Open month N in Budget".
+- **Budget check** — the budget in the middle, **under budget** to the left, **over budget** to the right (in money, not ratios).
+  The yearly budget is today's monthly budget × the months counted.
+- **Shares and big expenses** — fixed · living · optional · occasional, recurring spending, the five biggest expenses.
+- **Year over year** — when two or more years have records (up to four): income, spending, to assets, saving rate and the categories
+  that changed most. A year still running is scaled from year-to-date to 12 months.
+- **Budget suggestions** — after three months, categories whose monthly average is far from the budget. **Pick the ones to change
+  and edit the amounts**, then "Change N picked budgets" — after you confirm, they apply from this month.
+- **Month × category table** — at the bottom, as a popup.
+- On wide Mac and iPad (and Android tablet) screens, the summary and checks sit on the left and the picked section on the right.
 
 ## Pockets
 

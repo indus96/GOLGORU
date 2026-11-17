@@ -44,7 +44,7 @@ Long-press the widget and choose **Edit Widget** (Android: when you place it, or
 | Shows | What you get |
 | --- | --- |
 | **Automatic** (default) | Your mix normally; up next when a rebalancing round or contribution day is near |
-| **Your mix** | The same blocks as the home treemap — size is share, colour is today's move, with the time of the prices (“as of 15:30”) |
+| **Your mix** | The same blocks as the home treemap — size is share, colour is today's move, with the time of the prices (“as of 15:30”). Tap it to open Assets (from 4.2.0) |
 | **Market temperature** | Whether Korea and the US are cold, normal or hot, a small triangle under the bar for where it is now, cooling or warming |
 | **Up next** | The first that applies, in the order below |
 
