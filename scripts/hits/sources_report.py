@@ -7,7 +7,8 @@
 
 → <출력 폴더>/sources.json  [{source, views, blog_views}]   들어온 곳별(사이트 안 이동은 뺌)
   <출력 폴더>/blog.json     [{post, views, search, sns, direct, inside, installs}]  블로그 글별
-  installs = 그 글에서 설치 버튼(앱스토어 · 플레이 · 테스트 참여)을 누른 수 — site.js 가 「/_store/<종류>/<글>」로 센다.
+  installs = 그 글에서 설치 버튼(앱스토어 · 플레이 · 테스트 참여)을 누른 수 — site.js 가 「/_store/<종류>-<앱>/<페이지>」로 센다.
+  <출력 폴더>/installs.json [{app, apple, play, test, total}]  앱별 설치 버튼 누름(홈페이지 전체)
 """
 import json, re, sys
 from collections import defaultdict
@@ -36,6 +37,19 @@ def group(ref):
     return "기타 사이트"
 
 
+# 앱 — 앱스토어 id · 플레이 패키지 끝 · 테스트 안내 #조각, 없으면(11/20 첫 버전) 페이지 경로로 짐작.
+APPS = {"골고루": ("6797157864", "golgoru"), "뭐타지": ("6828151139", "mwotaji"),
+        "복지비 청구": ("6803049427", "medicalclaim", "medical-claim"), "메트로놈": ("6823171086", "metronome")}
+
+
+def app_of(key, page):
+    for name, keys in APPS.items():
+        if key in keys:
+            return name
+    m = re.match(r"/apps/([\w-]+)/", page)
+    return next((n for n, k in APPS.items() if m and m.group(1) in k), "골고루" if not m else "기타")
+
+
 def is_post(path):
     return "/blog/" in path and not path.endswith("/blog/") and not path.endswith("/index.html")
 
@@ -43,12 +57,18 @@ def is_post(path):
 def build(rows):
     src = defaultdict(lambda: [0, 0])
     posts = defaultdict(lambda: defaultdict(int))
+    installs = defaultdict(lambda: defaultdict(int))
     for r in rows:
         g, n, p = group(r["ref"]), int(r["n"]), r["path"]
         if p.startswith("/_store/"):  # 방문이 아니라 설치 버튼 누름
-            post = "/" + p.split("/", 3)[3]
-            if is_post(post):
-                posts[post]["installs"] += n
+            _, _, tag, rest = p.split("/", 3)
+            kind, _, key = tag.partition("-")
+            page = "/" + rest
+            a = installs[app_of(key, page)]
+            a[kind] += n
+            a["total"] += n
+            if is_post(page):
+                posts[page]["installs"] += n
             continue
         if g != "사이트 안":
             src[g][0] += n
@@ -60,26 +80,36 @@ def build(rows):
             posts[p]["views"] += n
     posts = {p: d for p, d in posts.items() if d["views"] or d["installs"]}
     sources = [{"source": k, "views": v[0], "blog_views": v[1]} for k, v in sorted(src.items(), key=lambda kv: -kv[1][0])]
-    blog = [{"post": p.replace("/apps/mwotaji/blog/", "뭐타지 › ").replace("/blog/", "").replace(".html", ""),
+    label = lambda p: re.sub(r"^/apps/([\w-]+)/blog/", lambda m: app_of(m.group(1), m.group(0)) + " › ", p).replace("/blog/", "").replace(".html", "")
+    blog = [{"post": label(p),
              **{k: d.get(k, 0) for k in ("views", "search", "sns", "direct", "inside", "installs")}}
             for p, d in sorted(posts.items(), key=lambda kv: -kv[1]["views"])]
-    return sources, blog
+    inst = [{"app": k, **{f: d.get(f, 0) for f in ("apple", "play", "test", "total")}}
+            for k, d in sorted(installs.items(), key=lambda kv: -kv[1]["total"])]
+    return sources, blog, inst
 
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:  # 자체 확인
-        s, b = build([{"path": "/blog/a.html", "ref": "t.co", "n": 2}, {"path": "/blog/a.html", "ref": "(사이트 안)", "n": 1},
+        s, b, i = build([{"path": "/blog/a.html", "ref": "t.co", "n": 2}, {"path": "/blog/a.html", "ref": "(사이트 안)", "n": 1},
                       {"path": "/", "ref": "www.google.com", "n": 3}, {"path": "/blog/", "ref": "m.facebook.com", "n": 1},
-                      {"path": "/_store/play/blog/a.html", "ref": "(직접)", "n": 1}])
+                      {"path": "/_store/play/blog/a.html", "ref": "(직접)", "n": 1},
+                      {"path": "/_store/apple-6823171086/apps/", "ref": "(직접)", "n": 2},
+                      {"path": "/_store/test-medical-claim/apps/medical-claim/blog/x.html", "ref": "(직접)", "n": 1},
+                      {"path": "/apps/medical-claim/blog/x.html", "ref": "(직접)", "n": 1}])
         assert s[0] == {"source": "구글 검색", "views": 3, "blog_views": 0}, s
         assert {"source": "X", "views": 2, "blog_views": 2} in s and all(x["source"] != "사이트 안" for x in s)
-        assert b == [{"post": "a", "views": 3, "search": 0, "sns": 2, "direct": 0, "inside": 1, "installs": 1}], b
+        assert b[0] == {"post": "a", "views": 3, "search": 0, "sns": 2, "direct": 0, "inside": 1, "installs": 1}, b
         assert s[0]["views"] == 3  # 버튼 누름은 방문에 안 섞인다
+        assert i[0] == {"app": "메트로놈", "apple": 2, "play": 0, "test": 0, "total": 2}, i
+        assert {"app": "골고루", "apple": 0, "play": 1, "test": 0, "total": 1} in i and any(x["app"] == "복지비 청구" for x in i), i
+        assert any(x["post"] == "복지비 청구 › x" and x["installs"] == 1 for x in b), b
         print("ok")
         sys.exit()
     out = Path(sys.argv[1]); out.mkdir(parents=True, exist_ok=True)
     rows = json.load(sys.stdin)[0]["results"]
-    s, b = build(rows)
+    s, b, i = build(rows)
     (out / "sources.json").write_text(json.dumps(s, ensure_ascii=False))
     (out / "blog.json").write_text(json.dumps(b, ensure_ascii=False))
-    print(json.dumps({"sources": s, "blog": b}, ensure_ascii=False, indent=1))
+    (out / "installs.json").write_text(json.dumps(i, ensure_ascii=False))
+    print(json.dumps({"sources": s, "blog": b, "installs": i}, ensure_ascii=False, indent=1))

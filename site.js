@@ -142,6 +142,8 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
       : /play\.google\.com\/store|^market:/.test(h) ? 'play'
       : /android-test\.html|play\.google\.com\/apps\/testing/.test(h) ? 'test' : '';
     if (!kind) return;
-    try { navigator.sendBeacon(HIT, JSON.stringify({ p: '/_store/' + kind + location.pathname, r: '' })); } catch (err) {}
+    // 어느 앱인지 — 앱스토어 id · 플레이 패키지 · 테스트 안내의 #앱 (한 페이지에 앱이 여럿인 앱 안내 때문에)
+    var app = (h.match(/id(\d{6,})/) || h.match(/(?:id=|testing\/)com\.indus96\.([\w-]+)/) || h.match(/#([\w-]+)$/) || [])[1];
+    try { navigator.sendBeacon(HIT, JSON.stringify({ p: '/_store/' + kind + (app ? '-' + app : '') + location.pathname, r: '' })); } catch (err) {}
   }, true);
 })();
