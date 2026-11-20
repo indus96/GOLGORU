@@ -126,8 +126,11 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
 // 쿠키 · 기기 식별자를 쓰지 않고, 서버는 IP 를 저장하지 않는다. 내 컴퓨터에서 열면(file:// · localhost) 세지 않는다.
 (function () {
   if (location.hostname !== 'golgoru.app' || !navigator.sendBeacon) return;
+  // SNS 에 거는 주소엔 ?from=x 같은 꼬리표를 붙인다 — X · 인스타 앱 안 브라우저는 출처를 안 남기는 일이 많아서.
+  var FROM = { x: 'https://x.com/', ig: 'https://instagram.com/', yt: 'https://youtube.com/', th: 'https://threads.net/' };
   try {
+    var from = FROM[new URLSearchParams(location.search).get('from')];
     navigator.sendBeacon('https://golgoru-hits.indus96-asset-management.workers.dev/hit',
-      JSON.stringify({ p: location.pathname, r: document.referrer || '' }));
+      JSON.stringify({ p: location.pathname, r: from || document.referrer || '' }));
   } catch (e) {}
 })();
