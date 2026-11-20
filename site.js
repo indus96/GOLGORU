@@ -128,9 +128,20 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
   if (location.hostname !== 'golgoru.app' || !navigator.sendBeacon) return;
   // SNS 에 거는 주소엔 ?from=x 같은 꼬리표를 붙인다 — X · 인스타 앱 안 브라우저는 출처를 안 남기는 일이 많아서.
   var FROM = { x: 'https://x.com/', ig: 'https://instagram.com/', yt: 'https://youtube.com/', th: 'https://threads.net/' };
+  var HIT = 'https://golgoru-hits.indus96-asset-management.workers.dev/hit';
   try {
     var from = FROM[new URLSearchParams(location.search).get('from')];
-    navigator.sendBeacon('https://golgoru-hits.indus96-asset-management.workers.dev/hit',
-      JSON.stringify({ p: location.pathname, r: from || document.referrer || '' }));
+    navigator.sendBeacon(HIT, JSON.stringify({ p: location.pathname, r: from || document.referrer || '' }));
   } catch (e) {}
+  // 설치 버튼 누름 — 「/_store/<apple|play|test>/<이 페이지>」라는 가짜 페이지로 한 번 센다(누가 눌렀는지는 모른다).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.href;
+    var kind = /apps\.apple\.com|^itms-apps:/.test(h) ? 'apple'
+      : /play\.google\.com\/store|^market:/.test(h) ? 'play'
+      : /android-test\.html|play\.google\.com\/apps\/testing/.test(h) ? 'test' : '';
+    if (!kind) return;
+    try { navigator.sendBeacon(HIT, JSON.stringify({ p: '/_store/' + kind + location.pathname, r: '' })); } catch (err) {}
+  }, true);
 })();

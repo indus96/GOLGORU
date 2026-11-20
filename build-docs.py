@@ -656,6 +656,13 @@ if __name__ == "__main__" and "--commons" in __import__("sys").argv:
 APPLE_STORE = "https://apps.apple.com/kr/app/id6797157864"
 PLAY_STORE = "https://play.google.com/store/apps/details?id=com.indus96.golgoru"
 MWOTAJI_APPLE = "https://apps.apple.com/kr/app/id6828151139"
+# 앱스토어 캠페인 — 제공자 토큰(App Store Connect › 앱 분석 › 캠페인 링크 만들기의 pt=)을 넣으면
+# 블로그 글마다 ct=blog-<글 주소> 가 붙어 「앱 분석 › 캠페인」에서 설치 수를 본다. 비어 있으면 안 붙인다.
+APPLE_PT = ""
+
+
+def apple_blog(url):
+    return url + (f"?pt={APPLE_PT}&ct=blog-{{slug}}&mt=8" if APPLE_PT else "")
 
 # 안드로이드 테스터 모집 — 구글 플레이 정식 공개 전까지 블로그 글마다 붙인다(2026-11-16).
 # 정식으로 나가면 그 앱을 빼고, 다 나가면 빈 리스트로 둔다(줄이 통째로 사라진다).
@@ -700,7 +707,7 @@ BLOGS = {
         author="골고루 만든 사람", back=("../", "← 골고루 홈"),
         nav=lambda: render_nav("../", cta="앱 받기"), footer=blog_footer,
         install=("골고루 받기", "로그인 없이 둘러보기부터 해 볼 수 있습니다. iPhone · iPad · Mac · Android."),
-        stores=[("App Store", APPLE_STORE, "apple"),
+        stores=[("App Store", apple_blog(APPLE_STORE), "apple"),
                 ("Google Play", PLAY_STORE + "&referrer=utm_source%3Dblog%26utm_campaign%3D{slug}", "android")],
     ),
     "apps/mwotaji/blog": dict(
@@ -709,7 +716,7 @@ BLOGS = {
         author="뭐타지 만든 사람", back=("../../", "← 앱 안내"),
         nav=lambda: MWOTAJI_NAV, footer=lambda: MWOTAJI_FOOTER,
         install=("뭐타지 받기", "아이폰 · 애플워치는 App Store에서, 안드로이드는 정식 공개 전 테스터로 먼저 쓸 수 있습니다. 가입도 광고도 없습니다."),
-        stores=[("App Store", MWOTAJI_APPLE, "apple"), ("Android 테스트 참여", "../../android-test.html#mwotaji", "")],
+        stores=[("App Store", apple_blog(MWOTAJI_APPLE), "apple"), ("Android 테스트 참여", "../../android-test.html#mwotaji", "")],
     ),
 }
 
