@@ -658,7 +658,7 @@ PLAY_STORE = "https://play.google.com/store/apps/details?id=com.indus96.golgoru"
 MWOTAJI_APPLE = "https://apps.apple.com/kr/app/id6828151139"
 # 앱스토어 캠페인 — 제공자 토큰(App Store Connect › 앱 분석 › 캠페인 링크 만들기의 pt=)을 넣으면
 # 블로그 글마다 ct=blog-<글 주소> 가 붙어 「앱 분석 › 캠페인」에서 설치 수를 본다. 비어 있으면 안 붙인다.
-APPLE_PT = ""
+APPLE_PT = "129252949"  # 공개 링크에 그대로 실리는 값이라 비밀 아님
 
 
 def apple_blog(url):
