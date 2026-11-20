@@ -88,6 +88,11 @@ leg, down to the cash you would have left.
 
 - Sells are worked out first to raise the money, and the buys are filled from it.
 - It only adjusts **inside one account**. Nothing moves between accounts.
+- **Unchecking a row re-splits the cash over the rows you keep** — an unchecked sell no longer funds the buys,
+  and an unchecked buy's share goes to the others. Rows whose quantity changed show “12 → 4”.
+- Each row can switch **to sell / to buy**. That moves the holding away from its target, so the app says so and
+  shows the amount and gap first. A switched row keeps its quantity; **Undo** puts it back.
+- **Spread leftover cash over picked buys** fills each gap, then buys more by target weight with what is left.
 
 ### 2. Save it → in progress
 

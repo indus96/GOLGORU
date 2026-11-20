@@ -20,6 +20,9 @@ different number columns, and it was never obvious which one to look at.
    The threshold is set under Settings &gt; Data &gt; **Adjust when off by**, and the whole app uses that one value.
 5. The **adjustment plan** row above the list shows [what to move and how much](allocation-rebalancing.md).
 
+In By holding, tap **Cash** to see how much sits in each account (dollar cash in $ too), or a **real-estate** row
+to see each real-estate item with its amount and original account. Tap a line to open that account.
+
 Tap a row for the account detail. **Edit** there changes quantity · average cost · target weight ·
 cash, and tapping a holding shows its price and chart.
 
@@ -71,6 +74,10 @@ Tap a holding and four tabs open under its name and price.
     and large-holding disclosures are features of the Korean market, so the cards do not appear for
     foreign names.
 - **News** — news about that holding (the same source as [news · reports](news-reports.md)).
+- **Buy · Sell** — the buttons under the popup open an order form. Pick the account (the one you came from is
+  already picked), choose **current price · limit price** and a quantity, and see the amount, cash left and gap
+  to target first. Saving keeps it as a one-holding [rebalancing plan](allocation-rebalancing.md); you place the
+  order in your brokerage app.
 - **Notes** — your own record per holding. Why you bought, where your stop is, what to watch, with a date.
   You can pick the date yourself, so an old trade can be written up later, and notes can be edited or deleted.
   You can also record a **buy price · target · stop**. Your average cost and the current price are shown above
