@@ -683,21 +683,36 @@ def blog_footer():
                   .replace('href="privacy.html"', 'href="../docs/privacy.html"'))
 
 
-# 뭐타지는 골고루 헤더를 쓰지 않는다 — 다른 앱이라 메뉴(자산 · 가계부)가 맞지 않는다.
-MWOTAJI_NAV = f"""<nav><div class="wrap nav-in">
-  <a class="brand" href="./"><img src="../../../images/family/mwotaji.png" alt="" width="26" height="26">뭐타지</a>
+# 다른 앱(뭐타지 · 복지비 청구 · 메트로놈) 블로그는 골고루 헤더를 쓰지 않는다 — 메뉴(자산 · 가계부)가 맞지 않는다.
+def app_nav(icon, name, apple):
+    return f"""<nav><div class="wrap nav-in">
+  <a class="brand" href="./"><img src="../../../images/family/{icon}.png" alt="" width="26" height="26">{name}</a>
   <div class="nav-links">
     <a href="./">블로그</a>
     <a href="../support.html">도움말</a>
     <a href="../../">다른 앱</a>
   </div>
-  <a class="cta" href="{MWOTAJI_APPLE}" data-store="apple">앱 받기</a>
+  <a class="cta" href="{apple}" data-store="apple">앱 받기</a>
 </div></nav>"""
 
-MWOTAJI_FOOTER = """<footer><div class="wrap foot-in">
-  <div>© 2026 뭐타지 · 출퇴근길, 지금 뭐 타고 갈지 한눈에</div>
+
+def app_footer(name, tagline):
+    return f"""<footer><div class="wrap foot-in">
+  <div>© 2026 {name} · {tagline}</div>
   <div><a href="./">블로그</a> · <a href="../support.html">도움말</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../../">다른 앱</a></div>
 </div></footer>"""
+
+
+def app_blog(icon, name, apple_id, desc, tagline, install_text):
+    """다른 앱 블로그 하나 — apps/<icon>/blog/. 안드로이드는 정식 공개 전이라 테스트 참여로 보낸다."""
+    apple = f"https://apps.apple.com/kr/app/id{apple_id}"
+    return dict(
+        root="../../../", brand=name, title=f"{name} 블로그", apple_id=apple_id, desc=desc,
+        author=f"{name} 만든 사람", back=("../../", "← 앱 안내"),
+        nav=lambda: app_nav(icon, name, apple), footer=lambda: app_footer(name, tagline),
+        install=(f"{name} 받기", install_text),
+        stores=[("App Store", apple_blog(apple), "apple"), ("Android 테스트 참여", f"../../android-test.html#{icon}", "")],
+    )
 
 # `stores` 의 `{slug}` 는 글 주소로 바뀐다 — 플레이 콘솔 획득 보고서에 어느 글에서 왔는지 잡힌다.
 BLOGS = {
@@ -710,14 +725,21 @@ BLOGS = {
         stores=[("App Store", apple_blog(APPLE_STORE), "apple"),
                 ("Google Play", PLAY_STORE + "&referrer=utm_source%3Dblog%26utm_campaign%3D{slug}", "android")],
     ),
-    "apps/mwotaji/blog": dict(
-        root="../../../", brand="뭐타지", title="뭐타지 블로그", apple_id="6828151139",
-        desc="서울 출퇴근길에 버스 · 따릉이 · 지하철 중 무엇이 빠른지 보는 앱, 뭐타지를 만들고 쓰면서 적는 글.",
-        author="뭐타지 만든 사람", back=("../../", "← 앱 안내"),
-        nav=lambda: MWOTAJI_NAV, footer=lambda: MWOTAJI_FOOTER,
-        install=("뭐타지 받기", "아이폰 · 애플워치는 App Store에서, 안드로이드는 정식 공개 전 테스터로 먼저 쓸 수 있습니다. 가입도 광고도 없습니다."),
-        stores=[("App Store", apple_blog(MWOTAJI_APPLE), "apple"), ("Android 테스트 참여", "../../android-test.html#mwotaji", "")],
-    ),
+    "apps/mwotaji/blog": app_blog(
+        "mwotaji", "뭐타지", "6828151139",
+        "서울 출퇴근길에 버스 · 따릉이 · 지하철 중 무엇이 빠른지 보는 앱, 뭐타지를 만들고 쓰면서 적는 글.",
+        "출퇴근길, 지금 뭐 타고 갈지 한눈에",
+        "아이폰 · 애플워치는 App Store에서, 안드로이드는 정식 공개 전 테스터로 먼저 쓸 수 있습니다. 가입도 광고도 없습니다."),
+    "apps/medical-claim/blog": app_blog(
+        "medical-claim", "복지비 청구", "6803049427",
+        "회사 의료비 · 휴양비 청구 서류를 영수증 사진으로 정리해 제출용 PDF로 만드는 앱, 복지비 청구를 만들고 쓰면서 적는 글.",
+        "영수증을 모아 제출용 PDF로",
+        "아이폰은 App Store에서, 안드로이드는 정식 공개 전 테스터로 먼저 쓸 수 있습니다. 가입 · 광고 · 서버가 없습니다."),
+    "apps/metronome/blog": app_blog(
+        "metronome", "메트로놈", "6823171086",
+        "템포를 조금씩 올려 주는 연습용 메트로놈, 메트로놈 - 템포 트레이너를 만들고 쓰면서 적는 글 — 박자 연습 방법과 기능 소개.",
+        "템포를 조금씩 올려 주는 연습용 메트로놈",
+        "아이폰 · 아이패드는 App Store에서, 안드로이드는 정식 공개 전 테스터로 먼저 쓸 수 있습니다. 가입도 광고도 없습니다."),
 }
 
 
@@ -901,7 +923,7 @@ inject_shared("c/index.html", "../", cta="앱 받기")
 inject_shared("v/index.html", "../", cta="앱 받기")
 
 for page in ["index.html", "en/index.html", "p/index.html", "c/index.html", "v/index.html"] \
-    + glob.glob("docs/*.html") + glob.glob("en/docs/*.html") + glob.glob("blog/*.html") + glob.glob("apps/mwotaji/blog/*.html"):
+    + glob.glob("docs/*.html") + glob.glob("en/docs/*.html") + glob.glob("blog/*.html") + glob.glob("apps/*/blog/*.html"):
     if not os.path.exists(page):
         continue
     stamp_assets(page)

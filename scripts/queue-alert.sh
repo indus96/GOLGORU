@@ -7,7 +7,10 @@ THRESHOLD=3
 LABEL="blog-queue"
 golgoru=$(ls blog/queue/*.md 2>/dev/null | wc -l | tr -d ' ')
 mwotaji=$(ls apps/mwotaji/blog/queue/*.md 2>/dev/null | wc -l | tr -d ' ')
-echo "대기 글 — 골고루 ${golgoru}편 · 뭐타지 ${mwotaji}편"
+claim=$(ls apps/medical-claim/blog/queue/*.md 2>/dev/null | wc -l | tr -d ' ')
+metro=$(ls apps/metronome/blog/queue/*.md 2>/dev/null | wc -l | tr -d ' ')
+summary="골고루 ${golgoru}편 · 뭐타지 ${mwotaji}편 · 복지비 청구 ${claim}편 · 메트로놈 ${metro}편"
+echo "대기 글 — ${summary}"
 
 gh label create "$LABEL" --color C9A227 --description "블로그 대기 글 보충 알림" --force >/dev/null
 open=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].number // empty')
@@ -15,6 +18,9 @@ open=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].numb
 low=""
 [ "$golgoru" -le "$THRESHOLD" ] && low="${low}골고루(${golgoru}편) "
 [ "$mwotaji" -le "$THRESHOLD" ] && low="${low}뭐타지(${mwotaji}편) "
+# 주 1회 블로그는 2편 이하에서 알린다(2주 남음).
+[ "$claim" -le 2 ] && low="${low}복지비 청구(${claim}편) "
+[ "$metro" -le 2 ] && low="${low}메트로놈(${metro}편) "
 
 if [ -n "$low" ]; then
   if [ -z "$open" ]; then
@@ -26,11 +32,13 @@ if [ -n "$low" ]; then
 |---|---|---|
 | 골고루 (\`blog/queue/\`) | ${golgoru}편 | 월 · 수 · 금 |
 | 뭐타지 (\`apps/mwotaji/blog/queue/\`) | ${mwotaji}편 | 목 |
+| 복지비 청구 (\`apps/medical-claim/blog/queue/\`) | ${claim}편 | 화 |
+| 메트로놈 (\`apps/metronome/blog/queue/\`) | ${metro}편 | 토 |
 
 Claude 에게 「다음 글 묶음 준비해」라고 하면 됩니다. 넉넉해지면(4편 이상) 이 이슈는 저절로 닫힙니다."
   else
     echo "알림 이슈 #$open 이 이미 열려 있음"
   fi
 elif [ -n "$open" ]; then
-  gh issue close "$open" --comment "대기 글 보충됨 — 골고루 ${golgoru}편 · 뭐타지 ${mwotaji}편"
+  gh issue close "$open" --comment "대기 글 보충됨 — ${summary}"
 fi

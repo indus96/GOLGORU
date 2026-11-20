@@ -17,7 +17,8 @@ import re
 import sys
 
 # 블로그별 게시 요일(월=0). 바꾸면 여기 한 곳만.
-SCHEDULE = {"blog": {0, 2, 4}, "apps/mwotaji/blog": {3}}
+SCHEDULE = {"blog": {0, 2, 4}, "apps/mwotaji/blog": {3},
+            "apps/medical-claim/blog": {1}, "apps/metronome/blog": {5}}
 EARLIEST = datetime.time(6, 45)
 
 

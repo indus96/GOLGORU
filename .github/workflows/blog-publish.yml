@@ -1,4 +1,4 @@
-# 블로그 예약 게시 — 골고루 월 · 수 · 금, 뭐타지 목 아침 7시(한국)에 대기 글(queue/) 맨 앞 하나를 내놓는다.
+# 블로그 예약 게시 — 골고루 월 · 수 · 금, 뭐타지 목, 복지비 청구 화, 메트로놈 토 아침 7시(한국)에 대기 글(queue/) 맨 앞 하나를 내놓는다.
 # 게시할지는 scripts/publish-next-post.py --scheduled 가 정한다(요일 · 06:45 이후 · 하루 한 편).
 # 그래서 몇 번 불려도 안전하다.
 #
@@ -18,7 +18,7 @@ on:
         description: 지금 바로 한 편 낼 블로그(비우면 예약 규칙대로)
         type: choice
         default: ""
-        options: ["", blog, apps/mwotaji/blog]
+        options: ["", blog, apps/mwotaji/blog, apps/medical-claim/blog, apps/metronome/blog]
 
 permissions:
   contents: write
