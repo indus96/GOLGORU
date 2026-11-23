@@ -201,3 +201,5 @@ a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
   font-size:14.5px;color:var(--sub);background:var(--card)}
 .post-list+.recruit,.doc-body .recruit:first-child{margin:0 0 18px}
 .doc-body .post-grid+.recruit,.doc-body .post-list+.recruit{margin:28px 0 0}
+/* 다른 앱 블로그 머리(이름 · 블로그 · 도움말 · 다른 앱 · 앱 받기)가 좁은 폰에서 넘친다(메트로놈 11px) — 간격을 줄인다. */
+@media(max-width:420px){.nav-in>.nav-links{gap:12px;font-size:13px}.nav-in>.cta{padding:8px 11px;margin-left:8px}}
