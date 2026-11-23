@@ -4,7 +4,7 @@
     /usr/bin/python3 scripts/appstore_sales.py <출력 폴더>      # → <출력 폴더>/appstore.json
 
 App Store Connect API 의 판매 보고서(일별 SUMMARY)를 60일치 받아 더한다 — 크롬 로그인이 필요 없다.
-키는 복지비 청구 배포 스크립트(asc-submit.py)와 같은 것을 쓴다. 판매자 번호(vendor number, 8자리)는
+키: ~/.config/golgoru/asc-sales-key 에 「판매」 권한 키 ID 가 있으면 그 키(~/.appstoreconnect/private_keys/AuthKey_<ID>.p8), 없으면 배포 키(asc-submit.py — 판매 권한 없음). 판매자 번호(vendor number, 8자리)는
 ~/.config/golgoru/asc-vendor 한 줄에 둔다(App Store Connect › 결제 및 재무 보고서 왼쪽 위).
 보고서는 하루 늦게 나오므로 어제까지 센다. 업데이트(제품 유형 7…)와 인앱 구입은 빼고 처음 받기만 센다.
 """
@@ -16,13 +16,20 @@ APPS = {"6797157864": "골고루", "6828151139": "뭐타지", "6803049427": "복
 DOWNLOAD_TYPES = ("1", "1F", "1T", "F1", "1E", "1EP", "1EU")  # 처음 받기(유료 · 무료 · 유니버설 · 맥)
 
 
+SALES_KEY_FILE = HOME / ".config/golgoru/asc-sales-key"  # 판매 권한 키 ID 한 줄(배포 키에는 판매 보고서 권한이 없다 — 403)
+
+
 def token():
     spec = importlib.util.spec_from_file_location("asc", HOME / "Claude/medical-claim/scripts/asc-submit.py")
     asc = importlib.util.module_from_spec(spec); spec.loader.exec_module(asc)
+    key_id, key = asc.KEY_ID, asc.KEY  # 발급자(issuer)는 같은 팀이라 그대로 쓴다
+    if SALES_KEY_FILE.exists():
+        key_id = SALES_KEY_FILE.read_text().strip()
+        key = HOME / ".appstoreconnect/private_keys" / f"AuthKey_{key_id}.p8"
     import jwt
     now = int(time.time())
     return jwt.encode({"iss": asc.ISSUER, "iat": now, "exp": now + 1200, "aud": "appstoreconnect-v1"},
-                      asc.KEY.read_text(), algorithm="ES256", headers={"kid": asc.KEY_ID, "typ": "JWT"})
+                      key.read_text(), algorithm="ES256", headers={"kid": key_id, "typ": "JWT"})
 
 
 def day_units(tok, vendor, day):
