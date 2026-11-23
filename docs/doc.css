@@ -154,6 +154,22 @@ a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
 .post-hero .lead{max-width:none;font-size:17px;line-height:1.75}
 .post-hero .hero-img.wide img{filter:none;border-radius:20px;display:block}
 .post-list{display:flex;flex-direction:column;gap:14px}
+/* 블로그 목록 — 맨 위 새 글 하나를 크게, 최근 4편은 카드 두 줄. */
+.doc-body a.post-featured{position:relative;display:block;padding:18px;background:var(--gold-soft);border-radius:var(--radius);
+  color:var(--sub);font-weight:400;font-size:15px;border:1px solid transparent}
+.doc-body a.post-featured:hover{border-color:var(--gold);text-decoration:none}
+.post-featured img{display:block;width:100%;border-radius:14px;margin-bottom:16px;background:var(--card)}
+.post-featured strong{font-size:23px;font-weight:800;line-height:1.35;color:var(--ink)}
+.post-new{position:absolute;top:28px;left:28px;background:var(--gold);color:#fff;font-size:12.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+.post-read{align-self:flex-start;margin-top:8px;background:var(--ink);color:var(--bg)!important;font-weight:700;padding:9px 18px;border-radius:12px}
+.doc-body h2.post-section{font-size:16px;font-weight:800;border-top:0;padding-top:0;margin:36px 0 12px}
+.post-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.doc-body a.post-card{display:flex;flex-direction:column;gap:10px;padding:12px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);color:var(--sub);font-weight:400;font-size:14px}
+.doc-body a.post-card:hover{border-color:var(--gold);text-decoration:none}
+.post-card img{width:100%;border-radius:10px}
+.post-card strong{font-size:16px;font-weight:800;line-height:1.35}
+@media(max-width:520px){.post-grid{grid-template-columns:1fr 1fr;gap:8px}.post-card strong{font-size:14.5px}.post-featured strong{font-size:20px}}
 .doc-body a.post-item{display:flex;align-items:center;gap:22px;padding:22px;
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
   color:var(--sub);font-weight:400;font-size:15px}
@@ -184,3 +200,4 @@ a.doc-card:hover{border-color:var(--gold);color:var(--gold)}
 .recruit{margin:18px 0 0;padding:14px 18px;border:1px dashed var(--gold);border-radius:14px;
   font-size:14.5px;color:var(--sub);background:var(--card)}
 .post-list+.recruit,.doc-body .recruit:first-child{margin:0 0 18px}
+.doc-body .post-grid+.recruit,.doc-body .post-list+.recruit{margin:28px 0 0}

@@ -140,7 +140,8 @@ document.querySelectorAll('.nav-group').forEach(function (group) {
     var h = a.href;
     var kind = /apps\.apple\.com|^itms-apps:/.test(h) ? 'apple'
       : /play\.google\.com\/store|^market:/.test(h) ? 'play'
-      : /android-test\.html|play\.google\.com\/apps\/testing/.test(h) ? 'test' : '';
+      : /android-test\.html|play\.google\.com\/apps\/testing/.test(h) ? 'test'
+      : /groups\.google\.com\/g\/golgoru-android-testers/.test(h) ? 'group' : '';
     if (!kind) return;
     // 어느 앱인지 — 앱스토어 id · 플레이 패키지 · 테스트 안내의 #앱 (한 페이지에 앱이 여럿인 앱 안내 때문에)
     var app = (h.match(/id(\d{6,})/) || h.match(/(?:id=|testing\/)com\.indus96\.([\w-]+)/) || h.match(/#([\w-]+)$/) || [])[1];

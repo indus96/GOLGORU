@@ -64,7 +64,9 @@ def build(rows):
             _, _, tag, rest = p.split("/", 3)
             kind, _, key = tag.partition("-")
             page = "/" + rest
-            a = installs[app_of(key, page)]
+            # 테스터 그룹 가입 버튼은 앱이 따로 없다 — 「테스터 그룹」 줄의 테스트 참여 칸으로 센다.
+            a = installs["테스터 그룹" if kind == "group" else app_of(key, page)]
+            kind = "test" if kind == "group" else kind
             a[kind] += n
             a["total"] += n
             if is_post(page):
@@ -96,12 +98,14 @@ if __name__ == "__main__":
                       {"path": "/_store/play/blog/a.html", "ref": "(직접)", "n": 1},
                       {"path": "/_store/apple-6823171086/apps/", "ref": "(직접)", "n": 2},
                       {"path": "/_store/test-medical-claim/apps/medical-claim/blog/x.html", "ref": "(직접)", "n": 1},
-                      {"path": "/apps/medical-claim/blog/x.html", "ref": "(직접)", "n": 1}])
+                      {"path": "/apps/medical-claim/blog/x.html", "ref": "(직접)", "n": 1},
+                      {"path": "/_store/group/apps/android-test.html", "ref": "(직접)", "n": 3}])
         assert s[0] == {"source": "구글 검색", "views": 3, "blog_views": 0}, s
         assert {"source": "X", "views": 2, "blog_views": 2} in s and all(x["source"] != "사이트 안" for x in s)
         assert b[0] == {"post": "a", "views": 3, "search": 0, "sns": 2, "direct": 0, "inside": 1, "installs": 1}, b
         assert s[0]["views"] == 3  # 버튼 누름은 방문에 안 섞인다
-        assert i[0] == {"app": "메트로놈", "apple": 2, "play": 0, "test": 0, "total": 2}, i
+        assert i[0] == {"app": "테스터 그룹", "apple": 0, "play": 0, "test": 3, "total": 3}, i
+        assert {"app": "메트로놈", "apple": 2, "play": 0, "test": 0, "total": 2} in i, i
         assert {"app": "골고루", "apple": 0, "play": 1, "test": 0, "total": 1} in i and any(x["app"] == "복지비 청구" for x in i), i
         assert any(x["post"] == "복지비 청구 › x" and x["installs"] == 1 for x in b), b
         print("ok")

@@ -846,12 +846,23 @@ def build_blog(folder, site):
 """
         (out / f"{post['slug']}.html").write_text(open_external_in_new_tab(page), encoding="utf-8")
         print(f"built {folder}/{post['slug']}.html")
+    # 목록 맨 위에 최신 글 하나를 크게, 그다음 최근 4편을 카드로 — 인스타 프로필 링크로 들어온 사람이
+    # 목록에서 글로 넘어가지 않았다(11/20~22 목록 17회 · 글 0회). 나머지는 「지난 글」 목록.
+    def meta(p):
+        return f'<span class="post-meta">{p["date"].replace("-", ". ")} · {esc(p["kind"])}</span>'
+
+    def hero(p, lazy=True):
+        return f'<img src="{p["hero"]}" alt=""{" loading=" + chr(34) + "lazy" + chr(34) if lazy else ""}>' if p["hero"].endswith(".svg") else ""
+
+    featured = (f'<a class="post-featured" href="{posts[0]["slug"]}.html"><span class="post-new">새 글</span>{hero(posts[0], lazy=False)}'
+                f'<span class="post-text">{meta(posts[0])}<strong>{inline(posts[0]["title"])}</strong>'
+                f'<span>{esc(posts[0]["desc"])}</span><span class="post-read">글 읽기</span></span></a>') if posts else ""
+    recent = "".join(f'<a class="post-card" href="{p["slug"]}.html">{hero(p)}<span class="post-text">{meta(p)}'
+                     f'<strong>{inline(p["title"].split(" — ")[0])}</strong></span></a>' for p in posts[1:5])
     items = "\n".join(
         f'<a class="post-item" href="{p["slug"]}.html"><span class="post-text">'
-        f'<span class="post-meta">{p["date"].replace("-", ". ")} · {esc(p["kind"])}</span>'
-        f'<strong>{inline(p["title"])}</strong><span>{esc(p["desc"])}</span></span>'
-        + (f'<img src="{p["hero"]}" alt="" loading="lazy">' if p["hero"].endswith(".svg") else "") + '</a>'
-        for p in posts)
+        f'{meta(p)}<strong>{inline(p["title"])}</strong><span>{esc(p["desc"])}</span></span>{hero(p)}</a>'
+        for p in posts[5:])
     back_href, back_label = site["back"]
     index = blog_head(site, "블로그", site["desc"], f"{base}/") + f"""
 <header class="doc-hero"><div class="wrap">
@@ -861,10 +872,10 @@ def build_blog(folder, site):
   <p class="lead">{site["desc"]}</p>
 </div></header>
 <main class="doc-body"><div class="wrap narrow">
+{featured}
+{f'<h2 class="post-section">최근 글</h2><div class="post-grid">{recent}</div>' if recent else ''}
+{f'<h2 class="post-section">지난 글</h2><div class="post-list">{items}</div>' if items else ''}
 {recruit_html(site["root"])}
-<div class="post-list">
-{items}
-</div>
 </div></main>
 {site["footer"]()}
 <script src="{site["root"]}site.js" defer></script>
