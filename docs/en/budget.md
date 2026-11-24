@@ -45,8 +45,11 @@ Tap **"2026 review"** at the right of the month header. Everything is worked out
   spending · to assets · left, surplus or deficit.
 - **Year check** — the share of income sent to assets (with last year's), the categories most over budget, recurring spending for
   the year, and a category with plenty left. Tap one to jump to its section.
-- **Month by month** — spending and to-assets bars (the biggest month in orange). **Tap a month** for its top categories,
-  money sent to assets and big expenses, and "Open month N in Budget".
+- **Month by month** — spending and to-assets bars (the biggest month in orange) and a **dashed income line** (from 4.4.0).
+  **Tap a month** for its income, top categories, money sent to assets and big expenses, and "Open month N in Budget".
+- **Income** (from 4.4.0) — the year's total, monthly average and change from last year, income **by category** (salary, bonus …)
+  with shares, and a **monthly** chart stacked by category. Occasional income such as a bonus tells you which months it came in.
+  Tap a month for its categories and entries, or a category for its 12 months.
 - **Budget check** — the budget in the middle, **under budget** to the left, **over budget** to the right (in money, not ratios).
   The yearly budget is today's monthly budget × the months counted.
 - **Shares and big expenses** — fixed · living · optional · occasional, recurring spending, the five biggest expenses.
