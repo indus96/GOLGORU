@@ -32,7 +32,7 @@ Tap **+** at the bottom right (or + on the Home budget card, or the budget widge
 - Spending as **category blocks** — size is share, and a category over budget gets an orange outline.
 - Grouped into **Fixed** (the same each month) and **Living** (changes month to month), each with spent / budget.
 - **To assets** lists what went to accounts and pockets next to the plan — rows with a repeat show as planned, others as not yet.
-- Tap a category for a **12-month bar chart** (six at a time, swipe for earlier months — from 4.2.0) and its records,
+- Tap a category for a **12-month bar chart** (six at a time, swipe for earlier months — from 4.2.0; from 4.5.0 switch to "12 mo" for the whole year) and its records,
   and record straight into it.
 
 ## Year in review
