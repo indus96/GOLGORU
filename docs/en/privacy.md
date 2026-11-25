@@ -51,6 +51,10 @@ iCloud do not sync. On Android they sync only if you turn on Settings › Sync b
 "골고루-가계부.json", in **your own Google Drive**, using the permission that sees only files this app created (`drive.file`).
 
 - Budget records are **never sent to the app provider's servers, the AI briefing or the Community.**
+- With **view sharing** (from 4.5, iPhone and Mac), your budget is visible only in **your own iCloud and to the people you invite**.
+  It travels through Apple's CloudKit sharing, not the app provider's servers. Invited people can only view it (memos included),
+  and you can remove someone or stop sharing at any time in Settings › Budget › View sharing. A budget shared with you is stored
+  separately on your device and deleted when sharing ends.
 - Importing a card-history screenshot sends no image — text is read on the device (Apple Vision on Apple devices, the on-device ML Kit model on Android),
   and the image is not stored.
 - The budget shown in Sample mode is example data; edits made there live in a temporary folder and disappear when the app restarts.

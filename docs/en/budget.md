@@ -85,6 +85,17 @@ a file on Mac, or paste.
 - The **budget widget** — remaining budget (or spending, without a budget) and a bar. Small opens a new record; wider sizes show your
   top three categories as chips that record into that category. Large (iPhone · iPad · Mac) adds category progress and recent records.
   **It is the only Golgoru widget that shows amounts** — other people can see a home screen, so placing it is up to you ([Home › Home screen widget](dashboard.html)).
+- **"Record in Golgoru" shortcut** (from 4.5 · iPhone and Mac) — give the Shortcuts app or Siri an amount, category and memo and Golgoru opens
+  with the entry filled in; you tap Save. On Android, long-press the app icon and pick "Budget entry".
+
+## View sharing (from 4.5 · iPhone and Mac)
+
+- In **Settings › Budget › View sharing**, "Add people" sends an invite link (Messages, Mail …); the people you invite can **only view**
+  your budget. You can share with several people, and memos are visible too.
+- Each person shows as "Viewing" or "Invited — not opened yet"; swipe to remove. "Stop sharing" removes it for everyone.
+- Someone who opens the link gets a "My budget · ○○'s budget" picker at the top of the Budget tab. A shared budget is view only —
+  no recording or editing — and the year in review works too. Stop with a swipe in **Settings › Budget › Shared with me**.
+- Works between Golgoru on iPhone and Mac signed in to iCloud. Not available on Android.
 
 ## Settings › Budget
 
